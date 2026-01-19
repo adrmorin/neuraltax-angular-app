@@ -1,0 +1,78 @@
+<aside class="sidebar" [class.collapsed]="isCollapsed">
+  <div class="sidebar-header">
+    <button class="toggle-btn" (click)="toggleSidebar()" [title]="t('common.toggle_sidebar')">
+      <span class="material-symbols-outlined">{{ isCollapsed ? 'menu' : 'menu_open' }}</span>
+    </button>
+    @if (!isCollapsed) {
+      <div class="portal-info">
+        <span class="portal-label">{{ t('common.portal_of') }}</span>
+        <div class="portal-brand">
+          <div class="avatar-nt">NT</div>
+          <span class="portal-name">{{ t('common.agents') }}</span>
+        </div>
+      </div>
+    }
+  </div>
+
+  <ul class="sidebar-nav">
+    <li>
+      <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <span class="material-symbols-outlined">dashboard</span>
+        @if (!isCollapsed) { <span>{{ t('common.dashboard') }}</span> }
+      </a>
+    </li>
+    <li>
+      <a routerLink="/clients" routerLinkActive="active">
+        <span class="material-symbols-outlined">group</span>
+        @if (!isCollapsed) { <span>{{ t('common.clients') }}</span> }
+      </a>
+    </li>
+    <li>
+      <a routerLink="/ai-tools" routerLinkActive="active">
+        <span class="material-symbols-outlined">psychology</span>
+        @if (!isCollapsed) { <span>{{ t('common.ai_tools') }}</span> }
+      </a>
+    </li>
+    <li>
+      <a routerLink="/documents" routerLinkActive="active">
+        <span class="material-symbols-outlined">description</span>
+        @if (!isCollapsed) { <span>{{ t('common.documents') }}</span> }
+      </a>
+    </li>
+    <li>
+      <a routerLink="/reports" routerLinkActive="active">
+        <span class="material-symbols-outlined">bar_chart</span>
+        @if (!isCollapsed) { <span>{{ t('common.reports') }}</span> }
+      </a>
+    </li>
+  </ul>
+
+  <div class="sidebar-footer">
+    <ul class="sidebar-footer-nav">
+      <li>
+        <a routerLink="/" class="back-link">
+          <span class="material-symbols-outlined">home</span>
+          @if (!isCollapsed) { <span>{{ t('common.back_to_home') }}</span> }
+        </a>
+      </li>
+      <li>
+        <a href="#lang" (click)="toggleLanguage($event)" class="lang-switcher">
+          <span class="material-symbols-outlined">language</span>
+          @if (!isCollapsed) { <span>{{ currentLang === 'es' ? 'EN' : 'ES' }}</span> }
+        </a>
+      </li>
+      <li>
+        <a routerLink="/settings" routerLinkActive="active">
+          <span class="material-symbols-outlined">settings</span>
+          @if (!isCollapsed) { <span>{{ t('common.settings') }}</span> }
+        </a>
+      </li>
+      <li>
+        <a routerLink="/login">
+          <span class="material-symbols-outlined">logout</span>
+          @if (!isCollapsed) { <span>{{ t('common.logout') }}</span> }
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>

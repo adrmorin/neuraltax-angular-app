@@ -1,0 +1,201 @@
+.sidebar {
+    width: 260px;
+    background-color: #1e293b;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 0;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    transition: width 0.3s ease;
+    overflow-x: hidden;
+}
+
+.sidebar.collapsed {
+    width: 80px;
+}
+
+.sidebar-header {
+    padding: 0 1.5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.sidebar.collapsed .sidebar-header {
+    padding: 0;
+    align-items: center;
+}
+
+.toggle-btn {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+    width: fit-content;
+}
+
+.toggle-btn:hover {
+    color: white;
+}
+
+.back-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.95rem;
+    padding: 0.75rem 1.5rem;
+    transition: all 0.2s;
+}
+
+.sidebar.collapsed .back-link {
+    padding: 0.75rem 0;
+    justify-content: center;
+}
+
+.back-link:hover {
+    color: white;
+}
+
+.portal-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.portal-label {
+    color: #94a3b8;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.portal-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.avatar-nt {
+    width: 40px;
+    height: 40px;
+    background-color: #688071;
+    color: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.portal-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    white-space: nowrap;
+}
+
+.sidebar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+}
+
+.sidebar-nav li {
+    margin-bottom: 0.25rem;
+}
+
+.sidebar-nav a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1.5rem;
+    color: #94a3b8;
+    text-decoration: none;
+    transition: all 0.2s;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.sidebar.collapsed .sidebar-nav a {
+    padding: 0.75rem 0;
+    justify-content: center;
+}
+
+.sidebar-nav a span.material-symbols-outlined {
+    font-size: 1.5rem;
+    width: 24px;
+    text-align: center;
+}
+
+.sidebar-nav a:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.sidebar-nav a.active {
+    background-color: #dcfce7;
+    color: #166534;
+    border-radius: 0 25px 25px 0;
+    margin-right: 1.5rem;
+}
+
+.sidebar.collapsed .sidebar-nav a.active {
+    margin-right: 0;
+    border-radius: 0;
+}
+
+.sidebar-footer {
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-footer-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-footer-nav a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1.5rem;
+    color: #94a3b8;
+    text-decoration: none;
+    transition: all 0.2s;
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.sidebar.collapsed .sidebar-footer-nav a {
+    padding: 0.75rem 0;
+    justify-content: center;
+}
+
+.sidebar-footer-nav a:hover {
+    color: white;
+}
+
+.sidebar-footer-nav a span.material-symbols-outlined {
+    font-size: 1.5rem;
+    width: 24px;
+    text-align: center;
+}
+
+.lang-switcher {
+    cursor: pointer;
+    font-weight: 700;
+}
