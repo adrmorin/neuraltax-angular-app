@@ -85,18 +85,24 @@
     gap: 1rem;
 }
 
-.avatar-nt {
-    width: 40px;
-    height: 40px;
-    background-color: #688071;
-    color: white;
-    border-radius: 8px;
+.logo-box {
+    width: 53px;
+    height: 53px;
+    background-color: #1e293b;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
-    font-size: 1.1rem;
     flex-shrink: 0;
+    padding: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo-img-high-contrast {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: brightness(0) invert(1) brightness(0.95);
 }
 
 .portal-name {

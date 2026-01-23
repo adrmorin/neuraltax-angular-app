@@ -17,6 +17,8 @@ import { CalculatorComponent } from './pages/calculator.component';
 import { ProfileComponent } from './pages/profile.component';
 import { SettingsComponent } from './pages/settings.component';
 import { AgentComponent } from './pages/agent.component';
+import { AiToolsPageComponent } from './pages/ai-tools.component';
+import { ReportsComponent } from './pages/reports.component';
 
 export const routes: Routes = [
     // Public Routes with Main Layout
@@ -45,7 +47,9 @@ export const routes: Routes = [
             { path: 'calculator', component: CalculatorComponent },
             { path: 'profile', component: ProfileComponent },
             { path: 'settings', component: SettingsComponent },
-            { path: 'agent', component: AgentComponent }
+            { path: 'agent', component: AgentComponent },
+            { path: 'herramientas-ia', component: AiToolsPageComponent },
+            { path: 'reports', component: ReportsComponent }
         ]
     },
 

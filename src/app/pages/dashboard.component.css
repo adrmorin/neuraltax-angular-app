@@ -44,7 +44,7 @@
 .user-role {
   font-size: 0.9rem;
   font-weight: 600;
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   color: white;
   padding: 0.2rem 0.8rem;
   border-radius: 6px;
@@ -53,15 +53,22 @@
 }
 
 .user-avatar {
-  width: 40px;
-  height: 40px;
-  background: #688071;
-  color: white;
-  border-radius: 8px;
+  width: 53px;
+  height: 53px;
+  background: #1e293b;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 600;
+  padding: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.avatar-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: brightness(0) invert(1) brightness(0.95);
 }
 
 .stats-grid {
@@ -78,7 +85,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .stat-icon {
@@ -130,7 +137,7 @@
   background: white;
   border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .card h3 {
@@ -170,13 +177,15 @@
   color: #a855f7;
 }
 
-.tasks-list, .activity-list {
+.tasks-list,
+.activity-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.task-item, .activity-item {
+.task-item,
+.activity-item {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -184,7 +193,8 @@
   border-bottom: 1px solid #f1f5f9;
 }
 
-.task-item:last-child, .activity-item:last-child {
+.task-item:last-child,
+.activity-item:last-child {
   border-bottom: none;
 }
 
@@ -201,18 +211,21 @@
   color: #f59e0b;
 }
 
-.task-content, .activity-content {
+.task-content,
+.activity-content {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-.task-content strong, .activity-content strong {
+.task-content strong,
+.activity-content strong {
   font-size: 0.9rem;
   color: #1e293b;
 }
 
-.task-content span, .activity-content span {
+.task-content span,
+.activity-content span {
   font-size: 0.8rem;
   color: #64748b;
 }

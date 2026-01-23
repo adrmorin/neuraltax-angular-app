@@ -4,13 +4,15 @@
       <span class="material-symbols-outlined">{{ isCollapsed ? 'menu' : 'menu_open' }}</span>
     </button>
     @if (!isCollapsed) {
-      <div class="portal-info">
-        <span class="portal-label">{{ t('common.portal_of') }}</span>
-        <div class="portal-brand">
-          <div class="avatar-nt">NT</div>
-          <span class="portal-name">{{ t('common.agents') }}</span>
+    <div class="portal-info">
+      <span class="portal-label">{{ t('common.portal_of') }}</span>
+      <div class="portal-brand">
+        <div class="logo-box">
+          <img src="assets/neuraltax1.png" alt="Neuraltax" class="logo-img-high-contrast">
         </div>
+        <span class="portal-name">{{ t('common.agents') }}</span>
       </div>
+    </div>
     }
   </div>
 
@@ -28,15 +30,9 @@
       </a>
     </li>
     <li>
-      <a routerLink="/ai-tools" routerLinkActive="active">
+      <a routerLink="/herramientas-ia" routerLinkActive="active">
         <span class="material-symbols-outlined">psychology</span>
         @if (!isCollapsed) { <span>{{ t('common.ai_tools') }}</span> }
-      </a>
-    </li>
-    <li>
-      <a routerLink="/documents" routerLinkActive="active">
-        <span class="material-symbols-outlined">description</span>
-        @if (!isCollapsed) { <span>{{ t('common.documents') }}</span> }
       </a>
     </li>
     <li>
