@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
-    selector: 'app-header',
-    standalone: true,
-    imports: [RouterLink],
-    template: `
+  selector: 'app-header',
+  standalone: true,
+  imports: [RouterLink],
+  template: `
     <header class="glass-header">
       <div class="container">
         <div class="logo">
@@ -13,15 +13,69 @@ import { RouterLink } from '@angular/router';
         </div>
         <nav>
           <ul>
-            <li><a routerLink="/">Home</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">About</a></li>
-            <li><a routerLink="/dashboard" class="btn btn-login">Login</a></li>
+            <li><a routerLink="/free-dashboard" class="btn btn-tier btn-free">Free</a></li>
+            <li><a routerLink="/dashboard" class="btn btn-tier btn-premium">Premium</a></li>
+            <li><a routerLink="/dashboard" class="btn btn-tier btn-vip">VIP</a></li>
+            <li><a routerLink="/login" class="btn btn-login">Login</a></li>
           </ul>
         </nav>
       </div>
     </header>
   `,
-    styles: []
+  styles: [`
+    .btn-tier {
+      padding: 0.5rem 1.25rem !important;
+      border-radius: 8px !important;
+      font-weight: 600 !important;
+      font-size: 0.9rem !important;
+      transition: all 0.3s ease !important;
+      border: 2px solid transparent !important;
+    }
+
+    .btn-free {
+      background-color: #9ca3af !important;
+      color: white !important;
+    }
+
+    .btn-free:hover {
+      background-color: #6b7280 !important;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(156, 163, 175, 0.3);
+    }
+
+    .btn-premium {
+      background-color: #688071 !important;
+      color: white !important;
+    }
+
+    .btn-premium:hover {
+      background-color: #576b5f !important;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(104, 128, 113, 0.4);
+    }
+
+    .btn-vip {
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;
+      color: #78350f !important;
+    }
+
+    .btn-vip:hover {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4);
+    }
+
+    .btn-login {
+      background-color: transparent !important;
+      color: white !important;
+      border: 2px solid white !important;
+    }
+
+    .btn-login:hover {
+      background-color: white !important;
+      color: #1e293b !important;
+    }
+  `]
 })
 export class HeaderComponent { }
+

@@ -10,12 +10,14 @@
         <div class="logo-box">
           <img src="assets/neuraltax1.png" alt="Neuraltax" class="logo-img-high-contrast">
         </div>
-        <span class="portal-name">{{ t('common.agents') }}</span>
+        <span class="portal-name">{{ portalType === 'free' ? t('common.free') : t('common.agents') }}</span>
       </div>
     </div>
     }
   </div>
 
+  <!-- Navigation - Only show for agent portal -->
+  @if (portalType === 'agent') {
   <ul class="sidebar-nav">
     <li>
       <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
@@ -42,6 +44,7 @@
       </a>
     </li>
   </ul>
+  }
 
   <div class="sidebar-footer">
     <ul class="sidebar-footer-nav">

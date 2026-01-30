@@ -1,4 +1,4 @@
-import { Component, signal, computed, ElementRef, ViewChild, AfterViewChecked } from '@angular/core';
+import { Component, signal, computed, ElementRef, ViewChild, AfterViewChecked, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -25,6 +25,10 @@ export class ChatbotComponent implements AfterViewChecked {
     quickReplies = signal<string[]>([]);
     currentLang = 'es';
 
+    @Input() embedded = false;
+    formMode = signal(false);
+    currentFormStep = signal(1);
+
     private readonly intents = {
         GREETING: 'greeting',
         CHECK_STATUS: 'check_status',
@@ -50,10 +54,30 @@ export class ChatbotComponent implements AfterViewChecked {
     }
 
     toggleChat(): void {
+        if (this.embedded) {
+            this.isOpen.set(true);
+            return;
+        }
         this.isOpen.update(v => !v);
         if (this.isOpen() && this.messages().length === 0) {
             this.sendInitialGreeting();
         }
+    }
+
+    ngOnInit(): void {
+        if (this.embedded) {
+            this.isOpen.set(true);
+            this.formMode.set(true);
+            this.sendFormGreeting();
+        }
+    }
+
+    private sendFormGreeting(): void {
+        const text = this.currentLang === 'es'
+            ? '¡Hola! Soy Nerea. Te ayudaré a completar tu formulario de impuestos. ¿Empezamos con tu información personal?'
+            : 'Hello! I\'m Nerea. I\'ll help you complete your tax form. Shall we start with your personal information?';
+        this.messages.set([{ type: 'bot', text }]);
+        this.quickReplies.set(this.currentLang === 'es' ? ['¡Sí, empecemos!', 'Tengo una duda'] : ['Yes, let\'s start!', 'I have a question']);
     }
 
     closeChat(): void {

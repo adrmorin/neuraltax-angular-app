@@ -1,27 +1,15 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DashboardHeaderComponent } from '../components/dashboard/dashboard-header.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, DashboardHeaderComponent],
   template: `
     <div style="padding-bottom: 2rem">
-      <header class="dashboard-header">
-        <div>
-          <h1 class="dashboard-title">Dashboard</h1>
-          <p class="dashboard-subtitle">Bienvenido al portal de agentes</p>
-        </div>
-        <div class="dashboard-user">
-          <div class="user-info">
-            <div class="user-name">Neuraltax</div>
-            <div class="user-role">Agente</div>
-          </div>
-          <div class="user-avatar">
-            <img src="assets/neuraltax1.png" alt="Neuraltax" class="avatar-logo">
-          </div>
-        </div>
-      </header>
+      <!-- Dashboard Header Component -->
+      <app-dashboard-header clientType="agent" userName="Agente Neuraltax" />
 
       <!-- Stats Grid -->
       <div class="stats-grid">

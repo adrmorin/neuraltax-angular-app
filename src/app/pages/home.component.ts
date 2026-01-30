@@ -28,7 +28,7 @@ import { AboutUsComponent } from '../components/common/about-us.component';
             <p class="hero-tagline">More deductions, less stress, full control<br /><strong>starts NOW!</strong></p>
 
             <div class="hero-actions">
-              <a routerLink="/calculator" class="btn btn-dark"><i class="fas fa-fire"></i> Get Free Estimate</a>
+              <a routerLink="/wizard" class="btn btn-dark"><i class="fas fa-fire"></i> Get Free Estimate</a>
               <a routerLink="/dashboard" class="btn btn-light">Login</a>
             </div>
           </div>
