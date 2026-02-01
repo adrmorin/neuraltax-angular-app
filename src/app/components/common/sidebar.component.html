@@ -10,15 +10,20 @@
         <div class="logo-box">
           <img src="assets/neuraltax1.png" alt="Neuraltax" class="logo-img-high-contrast">
         </div>
-        <span class="portal-name">{{ portalType === 'free' ? t('common.free') : t('common.agents') }}</span>
+        <span class="portal-name">
+          @if (portalType === 'free') { {{ t('common.free') }} }
+          @else if (portalType === 'premium') { {{ t('common.premium') }} }
+          @else { {{ t('common.agents') }} }
+        </span>
       </div>
     </div>
     }
   </div>
 
-  <!-- Navigation - Only show for agent portal -->
-  @if (portalType === 'agent') {
+  <!-- Navigation - Only show for agent or premium portal -->
+  @if (portalType === 'agent' || portalType === 'premium') {
   <ul class="sidebar-nav">
+    @if (portalType === 'agent') {
     <li>
       <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
         <span class="material-symbols-outlined">dashboard</span>
@@ -43,6 +48,7 @@
         @if (!isCollapsed) { <span>{{ t('common.reports') }}</span> }
       </a>
     </li>
+    }
   </ul>
   }
 

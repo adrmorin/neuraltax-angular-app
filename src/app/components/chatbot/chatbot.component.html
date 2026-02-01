@@ -1,7 +1,7 @@
 <div class="chat-widget" [class.embedded]="embedded">
-    <div class="chat-trigger" (click)="toggleChat()">
+    <button type="button" class="chat-trigger" (click)="toggleChat()" aria-label="Abrir chat">
         <img src="assets/nerea_avatar.png" alt="Nerea" />
-    </div>
+    </button>
 
     @if (isOpen()) {
     <div class="chat-container" style="display: flex">

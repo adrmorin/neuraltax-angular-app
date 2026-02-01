@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { TaxDataService } from '../../../services/tax-data.service';
 
 type ExpenseValues = Record<string, number>;
 
@@ -11,8 +12,9 @@ type ExpenseValues = Record<string, number>;
     templateUrl: './form1040aC.component.html',
     styleUrls: ['./form1040aC.component.css']
 })
-export class Form1040acComponent {
+export class Form1040acComponent implements OnInit {
     private fb = inject(FormBuilder);
+    private taxDataService = inject(TaxDataService);
     taxForm: FormGroup;
     currentYear = 2026;
 
@@ -131,7 +133,30 @@ export class Form1040acComponent {
 
         this.taxForm.valueChanges.subscribe(() => {
             this.calculateValues();
+            this.taxDataService.saveTaxData(this.taxForm.getRawValue());
         });
+    }
+
+    ngOnInit(): void {
+        const savedData = this.taxDataService.loadTaxData();
+        if (savedData) {
+            this.patchFormWithSavedData(savedData);
+        }
+    }
+
+    private patchFormWithSavedData(data: Record<string, unknown>): void {
+        // Handle FormArray specifically
+        const otherExpenses = data['otherExpensesList'];
+        if (Array.isArray(otherExpenses)) {
+            while (this.otherExpensesList.length > 0) {
+                this.otherExpensesList.removeAt(0);
+            }
+            otherExpenses.forEach(() => {
+                this.addOtherExpense();
+            });
+        }
+        this.taxForm.patchValue(data, { emitEvent: false });
+        this.calculateValues();
     }
 
     createOtherExpenseRow(): FormGroup {

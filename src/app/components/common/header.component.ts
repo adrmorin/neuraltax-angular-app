@@ -14,7 +14,8 @@ import { RouterLink } from '@angular/router';
         <nav>
           <ul>
             <li><a routerLink="/free-dashboard" class="btn btn-tier btn-free">Free</a></li>
-            <li><a routerLink="/dashboard" class="btn btn-tier btn-premium">Premium</a></li>
+            <li><a routerLink="/premium-dashboard" class="btn btn-tier btn-premium">Premium</a></li>
+            <li><a routerLink="/agent" class="btn btn-tier btn-agente">Agente</a></li>
             <li><a routerLink="/dashboard" class="btn btn-tier btn-vip">VIP</a></li>
             <li><a routerLink="/login" class="btn btn-login">Login</a></li>
           </ul>
@@ -30,6 +31,8 @@ import { RouterLink } from '@angular/router';
       font-size: 0.9rem !important;
       transition: all 0.3s ease !important;
       border: 2px solid transparent !important;
+      text-decoration: none;
+      display: inline-block;
     }
 
     .btn-free {
@@ -54,6 +57,18 @@ import { RouterLink } from '@angular/router';
       box-shadow: 0 4px 12px rgba(104, 128, 113, 0.4);
     }
 
+    .btn-agente {
+      background-color: #FF2400 !important; /* Rojo Escarlata Vibrante */
+      color: white !important;
+      border: 2px solid rgba(255, 255, 255, 0.4) !important;
+    }
+
+    .btn-agente:hover {
+      background-color: #D81E00 !important;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 36, 0, 0.4);
+    }
+
     .btn-vip {
       background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;
       color: #78350f !important;
@@ -69,6 +84,7 @@ import { RouterLink } from '@angular/router';
       background-color: transparent !important;
       color: white !important;
       border: 2px solid white !important;
+      text-decoration: none;
     }
 
     .btn-login:hover {

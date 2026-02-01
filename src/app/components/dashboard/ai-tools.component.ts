@@ -87,7 +87,7 @@ export interface AiPerformanceMetric {
     styleUrl: './ai-tools.component.css'
 })
 export class AiToolsComponent {
-    @Input() showHeader: boolean = true;
+    @Input() showHeader = true;
 
     aiTools: AiTool[] = [
         {

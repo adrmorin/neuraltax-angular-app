@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { DashboardHeaderComponent } from '../components/dashboard/dashboard-header.component';
 import { Form1040acComponent } from '../components/forms/form1040aC/form1040aC.component';
+import { TaxDataService } from '../services/tax-data.service';
 
 @Component({
     selector: 'app-free-dashboard',
@@ -12,6 +13,9 @@ import { Form1040acComponent } from '../components/forms/form1040aC/form1040aC.c
     styleUrl: './free-dashboard.component.css'
 })
 export class FreeDashboardComponent {
+    private taxDataService = inject(TaxDataService);
+    isBusinessOwner = this.taxDataService.isBusinessOwner();
+
     stats = [
         {
             label: 'Documentos Subidos',
@@ -45,7 +49,7 @@ export class FreeDashboardComponent {
     declarationSteps = [
         { text: 'Form 1040 (Principal)', completed: true },
         { text: 'Deducción Estándar', completed: true },
-        { text: 'Schedule C (Negocio)', completed: false, premium: true }
+        { text: this.isBusinessOwner ? 'Anexo C (Negocio)' : 'Schedule C (Negocio)', completed: false, premium: !this.isBusinessOwner }
     ];
 
     showForm1040aC = false;

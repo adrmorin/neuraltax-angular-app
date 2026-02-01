@@ -29,7 +29,7 @@ import { AboutUsComponent } from '../components/common/about-us.component';
 
             <div class="hero-actions">
               <a routerLink="/wizard" class="btn btn-dark"><i class="fas fa-fire"></i> Get Free Estimate</a>
-              <a routerLink="/dashboard" class="btn btn-light">Login</a>
+              <a routerLink="/login" class="btn btn-light">Login</a>
             </div>
           </div>
         </div>

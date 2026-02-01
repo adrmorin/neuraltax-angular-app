@@ -20,6 +20,7 @@ import { AgentComponent } from './pages/agent.component';
 import { AiToolsPageComponent } from './pages/ai-tools.component';
 import { ReportsComponent } from './pages/reports.component';
 import { FreeDashboardComponent } from './pages/free-dashboard.component';
+import { PremiumDashboardComponent } from './pages/premium-dashboard.component';
 
 export const routes: Routes = [
     // Public Routes with Main Layout
@@ -51,7 +52,8 @@ export const routes: Routes = [
             { path: 'agent', component: AgentComponent },
             { path: 'herramientas-ia', component: AiToolsPageComponent },
             { path: 'reports', component: ReportsComponent },
-            { path: 'free-dashboard', component: FreeDashboardComponent }
+            { path: 'free-dashboard', component: FreeDashboardComponent },
+            { path: 'premium-dashboard', component: PremiumDashboardComponent }
         ]
     },
 

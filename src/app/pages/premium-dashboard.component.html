@@ -1,0 +1,89 @@
+<div class="premium-dashboard">
+    <app-dashboard-header [clientType]="'premium'" [title]="'Dashboard de Élite'"
+        [subtitle]="'Bienvenido a la excelencia en gestión fiscal, Neuraltax Premium'"
+        [userName]="'Usuario VIP'"></app-dashboard-header>
+
+    <!-- Premium Stats Grid -->
+    <div class="premium-stats-grid">
+        @for (stat of premiumStats; track stat.label) {
+        <div class="premium-stat-card">
+            <div class="card-glass-effect"></div>
+            <div class="stat-header">
+                <div class="stat-icon-wrapper">
+                    <span class="material-symbols-outlined">{{ stat.icon }}</span>
+                </div>
+                <span class="stat-trend">{{ stat.trend }}</span>
+            </div>
+            <div class="stat-main">
+                <h3 class="stat-value">{{ stat.value }}</h3>
+                <p class="stat-label">{{ stat.label }}</p>
+            </div>
+            <p class="stat-description">{{ stat.description }}</p>
+        </div>
+        }
+    </div>
+
+    <div class="premium-main-layout">
+        <!-- AI Advanced Modules -->
+        <div class="ai-modules-section">
+            <div class="section-header">
+                <h2>Inteligencia de Vanguardia</h2>
+                <span class="premium-badge">NEREA AI ELITE</span>
+            </div>
+            <div class="modules-grid">
+                @for (module of aiModules; track module.title) {
+                <div class="module-card">
+                    <div class="module-icon">
+                        <span class="material-symbols-outlined">{{ module.icon }}</span>
+                    </div>
+                    <div class="module-content">
+                        <h3>{{ module.title }}</h3>
+                        <p>{{ module.description }}</p>
+                        <button class="btn-premium-action">
+                            {{ module.action }}
+                            <span class="material-symbols-outlined">chevron_right</span>
+                        </button>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+
+        <!-- Priority Sidebar -->
+        <div class="priority-sidebar">
+            <div class="priority-card">
+                <div class="card-header">
+                    <span class="material-symbols-outlined">priority_high</span>
+                    <h3>Acciones Prioritarias</h3>
+                </div>
+                <div class="priority-list">
+                    @for (task of priorityTasks; track task.text) {
+                    <div class="priority-item" [class.completed]="task.status === 'completado'">
+                        <span class="status-dot"></span>
+                        <span class="task-text">{{ task.text }}</span>
+                        @if (task.status === 'completado') {
+                        <span class="material-symbols-outlined check">check_circle</span>
+                        }
+                    </div>
+                    }
+                </div>
+                <button class="btn-support">
+                    <span class="material-symbols-outlined">headset_mic</span>
+                    Asesor VIP Directo
+                </button>
+                <button class="btn-agent-exclusive" routerLink="/agent">
+                    <span class="material-symbols-outlined">support_agent</span>
+                    Acceso Agente
+                </button>
+            </div>
+
+            <!-- Investment Insight -->
+            <div class="insight-card">
+                <h3>Insight del Mes</h3>
+                <p>Las nuevas regulaciones de 2026 permiten una deducción adicional del 5% en gastos de I+D para
+                    pequeños negocios.</p>
+                <a href="#" class="learn-more">Leer más de Nerea</a>
+            </div>
+        </div>
+    </div>
+</div>

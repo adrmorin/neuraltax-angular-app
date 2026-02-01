@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Header - Neuraltax</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+
+        .glass-header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1.25rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-tier {
+            border: 2px solid transparent;
+        }
+
+        .btn-free {
+            background-color: #9ca3af;
+            color: white;
+        }
+
+        .btn-premium {
+            background-color: #688071;
+            color: white;
+        }
+
+        .btn-agente {
+            background-color: #FF2400;
+            /* ROJO ESCARLATA VIBRANTE */
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-agente:hover {
+            background-color: #D81E00;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 36, 0, 0.4);
+        }
+
+        .btn-vip {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: #78350f;
+        }
+
+        .btn-login {
+            background-color: transparent;
+            color: #1e293b;
+            border: 2px solid #1e293b;
+        }
+
+        .test-section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 1rem;
+            border-left: 4px solid #FF2400;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="glass-header">
+        <div class="container">
+            <div class="logo">
+                <h2 style="color: #1e293b;">NEURALTAX</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="btn btn-tier btn-free">Free</a></li>
+                    <li><a href="#" class="btn btn-tier btn-premium">Premium</a></li>
+                    <li><a href="#" class="btn btn-tier btn-agente">Agente</a></li>
+                    <li><a href="#" class="btn btn-tier btn-vip">VIP</a></li>
+                    <li><a href="#" class="btn btn-login">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="test-section">
+        <h1>🔍 Prueba del Header con Botón "Agente"</h1>
+
+        <div class="highlight">
+            <p><strong>👆 MIRA ARRIBA:</strong> Si puedes ver un botón <strong style="color: #FF2400;">ROJO
+                    ESCARLATA</strong> que dice "Agente" entre "Premium" y "VIP", entonces el código está correcto.</p>
+        </div>
+
+        <p>Este es un archivo de prueba independiente que muestra exactamente el mismo código HTML y CSS que está en tu
+            aplicación Angular.</p>
+
+        <h2 style="margin-top: 2rem; color: #1e293b;">✅ Qué deberías ver:</h2>
+        <ul style="margin-left: 2rem; color: #64748b;">
+            <li>Botón <strong>Free</strong> (gris)</li>
+            <li>Botón <strong>Premium</strong> (verde)</li>
+            <li>Botón <strong style="color: #FF2400;">Agente</strong> (ROJO ESCARLATA - el más notable)</li>
+            <li>Botón <strong>VIP</strong> (dorado)</li>
+            <li>Botón <strong>Login</strong> (borde oscuro)</li>
+        </ul>
+
+        <h2 style="margin-top: 2rem; color: #1e293b;">🔧 Si el botón aparece aquí pero NO en Angular:</h2>
+        <ol style="margin-left: 2rem; color: #64748b; margin-top: 1rem;">
+            <li>Para COMPLETAMENTE el servidor: <code>Ctrl + C</code> en la terminal</li>
+            <li>Borra la carpeta <code>dist</code> si existe</li>
+            <li>Ejecuta: <code>npm start</code></li>
+            <li>Abre el navegador en MODO INCÓGNITO</li>
+            <li>Ve a: <code>http://localhost:4200</code></li>
+        </ol>
+    </div>
+</body>
+
+</html>

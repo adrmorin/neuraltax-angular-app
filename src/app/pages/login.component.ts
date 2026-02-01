@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'app-login',
-    standalone: true,
-    template: `
+  selector: 'app-login',
+  standalone: true,
+  template: `
     <div class="login-page">
       <div class="login-container">
         <div class="login-card glass">
@@ -14,12 +14,12 @@ import { Component } from '@angular/core';
           </div>
           <form class="login-form">
             <div class="form-group">
-              <label>Email</label>
-              <input type="email" placeholder="tucorreo@email.com" />
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="tucorreo@email.com" />
             </div>
             <div class="form-group">
-              <label>Contraseña</label>
-              <input type="password" placeholder="••••••••" />
+              <label for="password">Contraseña</label>
+              <input type="password" id="password" placeholder="••••••••" />
             </div>
             <button type="submit" class="btn btn-primary" style="width: 100%">Iniciar Sesión</button>
           </form>
@@ -28,7 +28,7 @@ import { Component } from '@angular/core';
       </div>
     </div>
   `,
-    styles: [`
+  styles: [`
     .login-page {
       min-height: 100vh;
       display: flex;

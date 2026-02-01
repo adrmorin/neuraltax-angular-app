@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ChatbotComponent } from '../components/chatbot/chatbot.component';
 import { RouterLink } from '@angular/router';
+import { TaxDataService } from '../services/tax-data.service';
+import { inject } from '@angular/core';
 
 @Component({
   selector: 'app-wizard',
@@ -80,6 +82,12 @@ import { RouterLink } from '@angular/router';
                     <div class="form-group">
                       <label for="otherIncome">Otros Ingresos (1099, etc.)</label>
                       <input id="otherIncome" type="number" [(ngModel)]="formData.otherIncome" placeholder="0.00">
+                    </div>
+                    <div class="form-group-checkbox">
+                        <label>
+                          <input type="checkbox" [(ngModel)]="formData.isBusinessOwner">
+                          ¿Tiene un negocio o es trabajador independiente?
+                        </label>
                     </div>
                   </div>
                 }
@@ -159,6 +167,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './wizard.component.css'
 })
 export class WizardComponent {
+  private taxDataService = inject(TaxDataService);
   currentStep = signal(1);
   isCalculating = signal(false);
   resultData = signal<{ refund: number; taxDue: number } | null>(null);
@@ -167,12 +176,16 @@ export class WizardComponent {
     maritalStatus: 'single',
     annualIncome: null,
     otherIncome: null,
+    isBusinessOwner: false,
     medicalExpenses: null,
     charity: null
   };
 
   nextStep() {
     if (this.currentStep() < 4) {
+      if (this.currentStep() === 2) {
+        this.taxDataService.setBusinessOwner(this.formData.isBusinessOwner);
+      }
       this.currentStep.update(s => s + 1);
     } else if (this.currentStep() === 4) {
       this.calculateDeclaration();

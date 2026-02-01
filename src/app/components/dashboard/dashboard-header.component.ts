@@ -20,8 +20,8 @@ export class DashboardHeaderComponent {
     @Input() clientType: 'free' | 'premium' | 'vip' | 'agent' = 'agent';
     @Input() title?: string;
     @Input() subtitle?: string;
-    @Input() showLogo: boolean = true;
-    @Input() userName: string = 'Usuario';
+    @Input() showLogo = true;
+    @Input() userName = 'Usuario';
     @Input() userAvatar?: string;
 
     private clientConfigs: Record<string, ClientConfig> = {

@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 })
 export class SidebarComponent {
     @Input() isCollapsed = false;
-    @Input() portalType: 'agent' | 'free' = 'agent';
+    @Input() portalType: 'agent' | 'free' | 'premium' | 'vip' = 'agent';
     @Output() isCollapsedChange = new EventEmitter<boolean>();
 
     currentLang = 'es';
@@ -33,7 +33,7 @@ export class SidebarComponent {
             es: {
                 'common.portal_of': 'Portal de',
                 'common.agents': 'Agentes',
-                'common.free': 'Free',
+                'common.premium': 'Premium',
                 'common.dashboard': 'Dashboard',
                 'common.clients': 'Clientes',
                 'common.ai_tools': 'Herramientas IA',
@@ -47,7 +47,7 @@ export class SidebarComponent {
             en: {
                 'common.portal_of': 'Portal of',
                 'common.agents': 'Agents',
-                'common.free': 'Free',
+                'common.premium': 'Premium',
                 'common.dashboard': 'Dashboard',
                 'common.clients': 'Clients',
                 'common.ai_tools': 'AI Tools',

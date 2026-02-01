@@ -2,6 +2,8 @@ import { Component, signal, ElementRef, ViewChild, AfterViewChecked, Input, OnIn
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { N8nChatService } from '../../services/n8n-chat.service';
+import { AuthService } from '../../services/auth.service';
 
 interface Message {
     type: 'user' | 'bot';
@@ -33,6 +35,8 @@ interface SpeechRecognitionEvent extends Event {
 })
 export class ChatbotComponent implements OnInit, AfterViewChecked {
     private router = inject(Router);
+    private n8n = inject(N8nChatService);
+    private auth = inject(AuthService);
     @ViewChild('messagesEnd') messagesEnd!: ElementRef;
 
     isOpen = signal(false);
@@ -101,7 +105,11 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     }
 
     private initSpeechRecognition(): void {
-        const SpeechRecognitionClass = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+        const win = window as unknown as {
+            SpeechRecognition?: new () => SpeechRecognition;
+            webkitSpeechRecognition?: new () => SpeechRecognition;
+        };
+        const SpeechRecognitionClass = win.SpeechRecognition || win.webkitSpeechRecognition;
         if (SpeechRecognitionClass) {
             this.recognition = new SpeechRecognitionClass();
             if (this.recognition) {
@@ -179,8 +187,19 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
             return;
         }
         this.isOpen.update(v => !v);
-        if (this.isOpen() && this.messages().length === 0) {
-            this.sendInitialGreeting();
+        if (this.isOpen()) {
+            // Manage session key
+            const token = this.auth.getToken();
+            if (!token) {
+                // If guest, ensure we have a key (service handles generation if null)
+                this.n8n.setGuestKey(null);
+            } else {
+                this.n8n.setGuestKey(null); // auth token will be used
+            }
+
+            if (this.messages().length === 0) {
+                this.sendInitialGreeting();
+            }
         }
     }
 
@@ -228,16 +247,36 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     private processResponse(message: string): void {
         // PII Check
         if (message.match(/\d{3}-\d{2}-\d{4}/) || message.match(/\d{9}/)) {
-            this.messages.update(msgs => [...msgs, { type: 'bot', text: this.t('pii_warning') }]);
+            const text = this.t('pii_warning');
+            this.messages.update(msgs => [...msgs, { type: 'bot', text }]);
+            this.speak(text);
             return;
         }
 
-        const intent = this.detectIntent(message);
-        const response = this.getResponse(intent);
+        // Call n8n service for actual logic
+        this.n8n.sendMessage(message).subscribe({
+            next: (reply: string) => {
+                const text = reply || this.t('unknown');
+                this.messages.update(msgs => [...msgs, { type: 'bot', text }]);
 
-        this.messages.update(msgs => [...msgs, { type: 'bot', text: response.text }]);
-        this.quickReplies.set(response.options || []);
-        this.speak(response.text);
+                // Intent detection for local UI improvements (optional)
+                const intent = this.detectIntent(text);
+                const response = this.getResponse(intent);
+                if (response.options.length > 0) {
+                    this.quickReplies.set(response.options);
+                }
+
+                this.speak(text);
+            },
+            error: (err) => {
+                console.error('Chat error:', err);
+                const errorText = this.currentLang === 'es'
+                    ? 'Lo siento, hubo un error al conectar con mi cerebro. Inténtalo de nuevo.'
+                    : 'Sorry, there was an error connecting to my brain. Please try again.';
+                this.messages.update(msgs => [...msgs, { type: 'bot', text: errorText }]);
+                this.speak(errorText);
+            }
+        });
     }
 
     private detectIntent(message: string): string {
