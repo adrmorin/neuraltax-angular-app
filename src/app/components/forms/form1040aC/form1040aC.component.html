@@ -2,7 +2,7 @@
     <!-- IRS Page Header -->
     <div class="irs-header">
         <div class="irs-header-left">
-            <div class="form-title">Anexo C (Formulario 1040) 2024</div>
+            <div class="form-title">Anexo C (Formulario 1040) 2026</div>
         </div>
         <div class="irs-header-right">
             <span>Página 1</span>
@@ -14,7 +14,7 @@
             <div class="irs-col-1">
                 <span class="irs-form-id">Anexo C</span>
                 <span class="irs-form-sub-id">(Formulario 1040)</span>
-                <span class="irs-tax-year">2024</span>
+                <span class="irs-tax-year">2026</span>
             </div>
             <div class="irs-col-2">
                 <h1>Ganancias o Pérdidas de Negocios</h1>
@@ -92,10 +92,10 @@
                     </div>
                 </div>
                 <div class="irs-field flex-1">
-                    <label for="startedBusiness"><strong>G</strong> ¿Comenzó o adquirió este negocio en 2024?</label>
+                    <label for="startedBusiness"><strong>G</strong> ¿Comenzó o adquirió este negocio en 2026?</label>
                     <div class="irs-radio-group" id="startedBusiness">
-                        <label><input type="radio" [value]="true" formControlName="startedBusiness2024"> Sí</label>
-                        <label><input type="radio" [value]="false" formControlName="startedBusiness2024"> No</label>
+                        <label><input type="radio" [value]="true" formControlName="startedBusiness2026"> Sí</label>
+                        <label><input type="radio" [value]="false" formControlName="startedBusiness2026"> No</label>
                     </div>
                 </div>
             </div>
@@ -104,7 +104,7 @@
                 <div class="irs-field flex-full">
                     <label for="materialParticipation"><strong>H</strong> ¿Participó usted "materialmente" en la
                         operación de este negocio durante
-                        2024? (Vereda las instrucciones sobre participación material)</label>
+                        2026? (Vereda las instrucciones sobre participación material)</label>
                     <div class="irs-radio-group" id="materialParticipation">
                         <label><input type="radio" [value]="true" formControlName="materiallyParticipated"> Sí</label>
                         <label><input type="radio" [value]="false" formControlName="materiallyParticipated"> No</label>
@@ -114,7 +114,7 @@
 
             <div class="irs-row-border flex-row">
                 <div class="irs-field flex-2 border-right">
-                    <label for="required1099"><strong>I</strong> ¿Hizo usted algún pago en 2024 que requeriría que
+                    <label for="required1099"><strong>I</strong> ¿Hizo usted algún pago en 2026 que requeriría que
                         presentara el Formulario
                         1099?</label>
                     <div class="irs-radio-group" id="required1099">
@@ -137,6 +137,13 @@
             <div class="irs-section-header">
                 <span class="irs-part-num">Parte I</span>
                 <span class="irs-part-title">Ingreso</span>
+            </div>
+
+            <div class="nerea-advice-container">
+                <img src="assets/images/nerea_avatar.png" class="nerea-avatar-favicon" alt="Nerea">
+                <div class="nerea-advice-bubble">
+                    <strong>Consejo de Nerea:</strong> {{ nereaAdvice.part1 }}
+                </div>
             </div>
             <table class="irs-table">
                 <tbody>
@@ -215,6 +222,13 @@
                 <span class="irs-part-num">Parte II</span>
                 <span class="irs-part-title">Gastos. Anote los gastos por el uso comercial de su domicilio sólo en la
                     línea 30.</span>
+            </div>
+
+            <div class="nerea-advice-container">
+                <img src="assets/images/nerea_avatar.png" class="nerea-avatar-favicon" alt="Nerea">
+                <div class="nerea-advice-bubble">
+                    <strong>Consejo de Nerea:</strong> {{ nereaAdvice.part2 }}
+                </div>
             </div>
             <table class="irs-table" formGroupName="expenses">
                 <tbody>
@@ -475,6 +489,13 @@
                 <span class="irs-part-title">Costo de Mercancías Vendidas (vea las instrucciones)</span>
             </div>
 
+            <div class="nerea-advice-container">
+                <img src="assets/images/nerea_avatar.png" class="nerea-avatar-favicon" alt="Nerea">
+                <div class="nerea-advice-bubble">
+                    <strong>Consejo de Nerea:</strong> {{ nereaAdvice.part3 }}
+                </div>
+            </div>
+
             <div class="irs-cogs-questions" formGroupName="cogs">
                 <div class="irs-question-row">
                     <div class="irs-line-num">33</div>
@@ -582,6 +603,13 @@
                     que presentar el Formulario 4562.</span>
             </div>
 
+            <div class="nerea-advice-container">
+                <img src="assets/images/nerea_avatar.png" class="nerea-avatar-favicon" alt="Nerea">
+                <div class="nerea-advice-bubble">
+                    <strong>Consejo de Nerea:</strong> {{ nereaAdvice.part4 }}
+                </div>
+            </div>
+
             <div class="irs-vehicle-section" formGroupName="vehicle">
                 <div class="irs-row-vehicle">
                     <div class="irs-line-num">43</div>
@@ -597,7 +625,7 @@
                 <div class="irs-row-vehicle">
                     <div class="irs-line-num">44</div>
                     <div class="irs-desc">
-                        Del total de número de millas que usted usó su vehículo durante 2024, anote el número de millas
+                        Del total de número de millas que usted usó su vehículo durante 2026, anote el número de millas
                         que usted usó su vehículo para:
                         <div class="irs-mileage-row">
                             <div class="irs-mileage-field">
@@ -681,6 +709,13 @@
                 <span class="irs-part-num">Parte V</span>
                 <span class="irs-part-title">Otros Gastos. Anote a continuación los gastos de negocio no incluidos en
                     las líneas 8 a 26, la línea 27b, o la línea 30.</span>
+            </div>
+
+            <div class="nerea-advice-container">
+                <img src="assets/images/nerea_avatar.png" class="nerea-avatar-favicon" alt="Nerea">
+                <div class="nerea-advice-bubble">
+                    <strong>Consejo de Nerea:</strong> {{ nereaAdvice.part5 }}
+                </div>
             </div>
 
             <div class="irs-other-expenses-section">

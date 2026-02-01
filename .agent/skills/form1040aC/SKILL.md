@@ -50,3 +50,30 @@ The skill manages five primary parts:
 - **COGS**: `(Line 35 + 36 + 37 + 38 + 39) - Line 41 = Line 42`
 - **Gross Income**: `Line 1 - Line 2 - Line 4 + Line 6 = Line 7`
 - **Net Profit**: `Line 7 - Line 28 - Line 30 = Line 31`
+
+## Nerea's Updated Advice (2026)
+
+### Part I: Income
+>
+> [!TIP]
+> **Maximize Reporting Accuracy**: For 2026, ensure all 1099-K, 1099-NEC, and 1099-MISC are reconciled. Nerea recommends double-checking "Statutory Employee" status if you have a W-2, as it allows deducting expenses directly on Schedule C without the 2% floor!
+
+### Part II: Expenses
+>
+> [!IMPORTANT]
+> **New for 2026**: Digital platform fees and software subscriptions for business operations are fully deductible. Ensure you separate personal and business use for "Utilities" and "Cell Phone" plans to avoid IRS red flags.
+
+### Part III: Cost of Goods Sold
+>
+> [!NOTE]
+> **Inventory Valuation**: If your gross receipts are under $26 million, you might qualify for simplified accounting. Nerea suggests reviewing if "Cash Method" for inventory is more beneficial for your cash flow this year.
+
+### Part IV: Vehicle Info
+>
+> [!WARNING]
+> **Strict Mileage Logs**: The IRS is increasing audits on vehicle deductions. Use a digital log app! For 2026, the standard mileage rate has been adjusted—make sure you're using the latest rate ($0.67/mile estimated) for maximum benefit.
+
+### Part V: Other Expenses
+>
+> [!TIP]
+> **Don't Forget Micro-Expenses**: Small items like professional memberships, specialized industry news subscriptions, and even small bank fees add up. If it's ordinary and necessary for your business, list it here!

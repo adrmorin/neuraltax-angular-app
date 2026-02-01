@@ -1,4 +1,4 @@
-import { Component, signal, computed, ElementRef, ViewChild, AfterViewChecked, Input } from '@angular/core';
+import { Component, signal, ElementRef, ViewChild, AfterViewChecked, Input, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -8,6 +8,22 @@ interface Message {
     text: string;
 }
 
+// Minimal interfaces for Web Speech API to resolve TS/Lint errors
+interface SpeechRecognition extends EventTarget {
+    continuous: boolean;
+    interimResults: boolean;
+    lang: string;
+    onresult: (event: SpeechRecognitionEvent) => void;
+    onerror: (event: Event) => void;
+    onend: () => void;
+    start: () => void;
+    stop: () => void;
+}
+
+interface SpeechRecognitionEvent extends Event {
+    results: Record<number, Record<number, Record<'transcript', string>>>;
+}
+
 @Component({
     selector: 'app-chatbot',
     standalone: true,
@@ -15,7 +31,8 @@ interface Message {
     templateUrl: './chatbot.component.html',
     styleUrl: './chatbot.component.css'
 })
-export class ChatbotComponent implements AfterViewChecked {
+export class ChatbotComponent implements OnInit, AfterViewChecked {
+    private router = inject(Router);
     @ViewChild('messagesEnd') messagesEnd!: ElementRef;
 
     isOpen = signal(false);
@@ -24,6 +41,11 @@ export class ChatbotComponent implements AfterViewChecked {
     isTyping = signal(false);
     quickReplies = signal<string[]>([]);
     currentLang = 'es';
+    isAudioEnabled = signal(true);
+    isListening = signal(false);
+    private recognition: SpeechRecognition | null = null;
+    private synthesis = window.speechSynthesis;
+    private selectedVoice: SpeechSynthesisVoice | null = null;
 
     @Input() embedded = false;
     formMode = signal(false);
@@ -41,7 +63,105 @@ export class ChatbotComponent implements AfterViewChecked {
         UNKNOWN: 'unknown'
     };
 
-    constructor(private router: Router) { }
+    constructor() {
+        this.initSpeechRecognition();
+        this.initVoiceSelection();
+    }
+
+    private initVoiceSelection(): void {
+        const loadVoices = () => {
+            const voices = this.synthesis.getVoices();
+            // Refined locales: Latin American Spanish (es-MX, es-US, es-CL, etc.) and American English (en-US)
+            const targetLocale = this.currentLang === 'es' ? 'es-MX' : 'en-US';
+            const secondaryLocale = this.currentLang === 'es' ? 'es-US' : 'en-GB';
+
+            const preferredVoices = voices.filter(v => {
+                const isFemale = v.name.toLowerCase().includes('female') ||
+                    v.name.toLowerCase().includes('zira') ||
+                    v.name.toLowerCase().includes('helena') ||
+                    v.name.toLowerCase().includes('google mex') ||
+                    v.name.toLowerCase().includes('google us');
+
+                return (v.lang.startsWith(targetLocale) || v.lang.startsWith(secondaryLocale)) && isFemale;
+            });
+
+            // Prioritize "Natural" or "Google" voices for high-fidelity quality
+            this.selectedVoice = preferredVoices.find(v => v.name.toLowerCase().includes('natural')) ||
+                preferredVoices.find(v => v.name.toLowerCase().includes('google')) ||
+                preferredVoices[0] ||
+                voices.find(v => v.lang.startsWith(targetLocale) && (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('google'))) ||
+                voices.find(v => v.lang.startsWith(this.currentLang)) ||
+                null;
+        };
+
+        if (this.synthesis.onvoiceschanged !== undefined) {
+            this.synthesis.onvoiceschanged = loadVoices;
+        }
+        loadVoices();
+    }
+
+    private initSpeechRecognition(): void {
+        const SpeechRecognitionClass = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+        if (SpeechRecognitionClass) {
+            this.recognition = new SpeechRecognitionClass();
+            if (this.recognition) {
+                this.recognition.continuous = false;
+                this.recognition.interimResults = false;
+                this.recognition.lang = this.currentLang === 'es' ? 'es-ES' : 'en-US';
+
+                this.recognition.onresult = (event: SpeechRecognitionEvent) => {
+                    const text = event.results[0][0].transcript;
+                    this.handleUserMessage(text);
+                    this.isListening.set(false);
+                };
+
+                this.recognition.onerror = () => {
+                    this.isListening.set(false);
+                };
+
+                this.recognition.onend = () => {
+                    this.isListening.set(false);
+                };
+            }
+        }
+    }
+
+    toggleListening(): void {
+        if (!this.recognition) return;
+        if (this.isListening()) {
+            this.recognition.stop();
+        } else {
+            this.recognition.start();
+            this.isListening.set(true);
+        }
+    }
+
+    toggleAudio(): void {
+        this.isAudioEnabled.update(v => !v);
+        if (!this.isAudioEnabled()) {
+            this.synthesis.cancel();
+        }
+    }
+
+    private speak(text: string): void {
+        if (!this.isAudioEnabled() || !this.synthesis) return;
+
+        // Remove HTML tags for cleaner speech
+        const cleanText = text.replace(/<[^>]*>?/gm, '');
+        const utterance = new SpeechSynthesisUtterance(cleanText);
+        utterance.lang = this.currentLang === 'es' ? 'es-ES' : 'en-US';
+
+        if (this.selectedVoice) {
+            utterance.voice = this.selectedVoice;
+        }
+
+        // Adjust for the "Warm, polished, articulate" female persona:
+        utterance.rate = 0.95; // Articulate and moderately paced
+        utterance.pitch = 1.05; // Slightly warmer female tone
+        utterance.volume = 1.0;
+
+        this.synthesis.speak(utterance);
+    }
 
     ngAfterViewChecked(): void {
         this.scrollToBottom();
@@ -74,8 +194,8 @@ export class ChatbotComponent implements AfterViewChecked {
 
     private sendFormGreeting(): void {
         const text = this.currentLang === 'es'
-            ? '¡Hola! Soy Nerea. Te ayudaré a completar tu formulario de impuestos. ¿Empezamos con tu información personal?'
-            : 'Hello! I\'m Nerea. I\'ll help you complete your tax form. Shall we start with your personal information?';
+            ? '¡Hola! Soy Nerea. ¡Es hora de asegurar tu reembolso! ¿Empezamos a completar tu información personal ahora mismo?'
+            : 'Hello! I\'m Nerea. It\'s time to secure your refund! Shall we start completing your personal information right now?';
         this.messages.set([{ type: 'bot', text }]);
         this.quickReplies.set(this.currentLang === 'es' ? ['¡Sí, empecemos!', 'Tengo una duda'] : ['Yes, let\'s start!', 'I have a question']);
     }
@@ -85,9 +205,10 @@ export class ChatbotComponent implements AfterViewChecked {
     }
 
     private sendInitialGreeting(): void {
-        const response = this.getResponse(this.intents.GREETING, '');
+        const response = this.getResponse(this.intents.GREETING);
         this.messages.set([{ type: 'bot', text: response.text }]);
         this.quickReplies.set(response.options);
+        this.speak(response.text);
     }
 
     handleUserMessage(text: string): void {
@@ -112,10 +233,11 @@ export class ChatbotComponent implements AfterViewChecked {
         }
 
         const intent = this.detectIntent(message);
-        const response = this.getResponse(intent, message);
+        const response = this.getResponse(intent);
 
         this.messages.update(msgs => [...msgs, { type: 'bot', text: response.text }]);
         this.quickReplies.set(response.options || []);
+        this.speak(response.text);
     }
 
     private detectIntent(message: string): string {
@@ -133,7 +255,7 @@ export class ChatbotComponent implements AfterViewChecked {
         return this.intents.UNKNOWN;
     }
 
-    private getResponse(intent: string, message: string): { text: string; options: string[] } {
+    private getResponse(intent: string): { text: string; options: string[] } {
         const responses: Record<string, { text: string; options: string[] }> = {
             [this.intents.GREETING]: {
                 text: this.t('greeting'),
@@ -195,7 +317,7 @@ export class ChatbotComponent implements AfterViewChecked {
     private t(key: string): string {
         const translations: Record<string, Record<string, string>> = {
             es: {
-                greeting: '¡Hola! Soy Nerea, tu asistente de impuestos. ¿En qué puedo ayudarte hoy?',
+                greeting: '¡Hola! Soy Nerea. ¡Vamos a por ese reembolso! ¿Quieres subir tus documentos o verificar el estado de tu declaración hoy?',
                 check_status: 'Tu declaración está siendo procesada. Puedes ver el estado en tu Dashboard.',
                 estimate_refund: 'Según tus documentos, tu reembolso estimado está disponible en la calculadora.',
                 upload_docs: 'Puedes subir tus documentos de forma segura. Acepto W2, 1099, y más.',
@@ -216,7 +338,7 @@ export class ChatbotComponent implements AfterViewChecked {
                 encrypted: 'Encriptado de extremo a extremo'
             },
             en: {
-                greeting: 'Hello! I\'m Nerea, your tax assistant. How can I help you today?',
+                greeting: 'Hello! I\'m Nerea. Let\'s get that refund! Do you want to upload your documents or check your declaration status today?',
                 check_status: 'Your return is being processed. You can see the status on your Dashboard.',
                 estimate_refund: 'Based on your documents, your estimated refund is available in the calculator.',
                 upload_docs: 'You can securely upload your documents. I accept W2, 1099, and more.',

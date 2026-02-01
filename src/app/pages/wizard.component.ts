@@ -41,93 +41,111 @@ import { RouterLink } from '@angular/router';
 
             <div class="form-content">
               <!-- Loading State -->
-              <div *ngIf="isCalculating()" class="calculating-overlay">
-                <div class="loader"></div>
-                <h3>Calculando tu declaración...</h3>
-                <p>Nerea está optimizando tus deducciones</p>
-              </div>
-
-              <div *ngIf="!isCalculating()">
-                <!-- Step 1: Personal Info -->
-                <div *ngIf="currentStep() === 1" class="step-content">
-                  <h2>Información Personal</h2>
-                  <div class="form-group">
-                    <label>Nombre Completo</label>
-                    <input type="text" [(ngModel)]="formData.fullName" placeholder="Ej: Juan Pérez">
-                  </div>
-                  <div class="form-group">
-                    <label>Estado Civil</label>
-                    <select [(ngModel)]="formData.maritalStatus">
-                      <option value="single">Soltero/a</option>
-                      <option value="married">Casado/a</option>
-                      <option value="head">Cabeza de Familia</option>
-                    </select>
-                  </div>
+              @if (isCalculating()) {
+                <div class="calculating-overlay">
+                  <div class="loader"></div>
+                  <h3>Calculando tu declaración...</h3>
+                  <p>Nerea está optimizando tus deducciones</p>
                 </div>
+              }
+
+              @if (!isCalculating()) {
+                <!-- Step 1: Personal Info -->
+                @if (currentStep() === 1) {
+                  <div class="step-content">
+                    <h2>Información Personal</h2>
+                    <div class="form-group">
+                      <label for="fullName">Nombre Completo</label>
+                      <input id="fullName" type="text" [(ngModel)]="formData.fullName" placeholder="Ej: Juan Pérez">
+                    </div>
+                    <div class="form-group">
+                      <label for="maritalStatus">Estado Civil</label>
+                      <select id="maritalStatus" [(ngModel)]="formData.maritalStatus">
+                        <option value="single">Soltero/a</option>
+                        <option value="married">Casado/a</option>
+                        <option value="head">Cabeza de Familia</option>
+                      </select>
+                    </div>
+                  </div>
+                }
 
                 <!-- Step 2: Income -->
-                <div *ngIf="currentStep() === 2" class="step-content">
-                  <h2>Ingresos</h2>
-                  <div class="form-group">
-                    <label>Ingresos Anuales (W2)</label>
-                    <input type="number" [(ngModel)]="formData.annualIncome" placeholder="0.00">
+                @if (currentStep() === 2) {
+                  <div class="step-content">
+                    <h2>Ingresos</h2>
+                    <div class="form-group">
+                      <label for="annualIncome">Ingresos Anuales (W2)</label>
+                      <input id="annualIncome" type="number" [(ngModel)]="formData.annualIncome" placeholder="0.00">
+                    </div>
+                    <div class="form-group">
+                      <label for="otherIncome">Otros Ingresos (1099, etc.)</label>
+                      <input id="otherIncome" type="number" [(ngModel)]="formData.otherIncome" placeholder="0.00">
+                    </div>
                   </div>
-                  <div class="form-group">
-                    <label>Otros Ingresos (1099, etc.)</label>
-                    <input type="number" [(ngModel)]="formData.otherIncome" placeholder="0.00">
-                  </div>
-                </div>
+                }
 
                 <!-- Step 3: Deductions -->
-                <div *ngIf="currentStep() === 3" class="step-content">
-                  <h2>Deducciones</h2>
-                  <div class="form-group">
-                    <label>Gastos Médicos</label>
-                    <input type="number" [(ngModel)]="formData.medicalExpenses" placeholder="0.00">
+                @if (currentStep() === 3) {
+                  <div class="step-content">
+                    <h2>Deducciones</h2>
+                    <div class="form-group">
+                      <label for="medicalExpenses">Gastos Médicos</label>
+                      <input id="medicalExpenses" type="number" [(ngModel)]="formData.medicalExpenses" placeholder="0.00">
+                    </div>
+                    <div class="form-group">
+                      <label for="charity">Donaciones</label>
+                      <input id="charity" type="number" [(ngModel)]="formData.charity" placeholder="0.00">
+                    </div>
                   </div>
-                  <div class="form-group">
-                    <label>Donaciones</label>
-                    <input type="number" [(ngModel)]="formData.charity" placeholder="0.00">
-                  </div>
-                </div>
+                }
 
                 <!-- Step 4: Review -->
-                <div *ngIf="currentStep() === 4" class="step-content">
-                  <h2>Revisión Final</h2>
-                  <div class="review-summary">
-                    <p><strong>Nombre:</strong> {{ formData.fullName }}</p>
-                    <p><strong>Estado Civil:</strong> {{ formData.maritalStatus }}</p>
-                    <p><strong>Ingresos Totales:</strong> {{ (formData.annualIncome || 0) + (formData.otherIncome || 0) | currency }}</p>
-                    <p><strong>Deducciones Totales:</strong> {{ (formData.medicalExpenses || 0) + (formData.charity || 0) | currency }}</p>
+                @if (currentStep() === 4) {
+                  <div class="step-content">
+                    <h2>Revisión Final</h2>
+                    <div class="review-summary">
+                      <p><strong>Nombre:</strong> {{ formData.fullName }}</p>
+                      <p><strong>Estado Civil:</strong> {{ formData.maritalStatus }}</p>
+                      <p><strong>Ingresos Totales:</strong> {{ (formData.annualIncome || 0) + (formData.otherIncome || 0) | currency }}</p>
+                      <p><strong>Deducciones Totales:</strong> {{ (formData.medicalExpenses || 0) + (formData.charity || 0) | currency }}</p>
+                    </div>
                   </div>
-                </div>
+                }
 
                 <!-- Step 5: Result -->
-                <div *ngIf="currentStep() === 5" class="step-content result-step">
-                  <h2>Resultado Estimado</h2>
-                  <div class="result-card" [class.refund]="resultData()?.refund! > 0">
-                    <div class="result-icon">
-                      <span class="material-symbols-outlined">{{ resultData()?.refund! > 0 ? 'payments' : 'account_balance_wallet' }}</span>
-                    </div>
-                    <div class="result-amount">
-                      <span class="label">{{ resultData()?.refund! > 0 ? 'Tu Reembolso Estimado' : 'Impuesto a Pagar' }}</span>
-                      <span class="value">{{ (resultData()?.refund! > 0 ? resultData()?.refund : resultData()?.taxDue) | currency }}</span>
+                @if (currentStep() === 5) {
+                  <div class="step-content result-step">
+                    <h2>Resultado Estimado</h2>
+                    @if (resultData(); as result) {
+                      <div class="result-card" [class.refund]="result.refund > 0">
+                        <div class="result-icon">
+                          <span class="material-symbols-outlined">{{ result.refund > 0 ? 'payments' : 'account_balance_wallet' }}</span>
+                        </div>
+                        <div class="result-amount">
+                          <span class="label">{{ result.refund > 0 ? 'Tu Reembolso Estimado' : 'Impuesto a Pagar' }}</span>
+                          <span class="value">{{ (result.refund > 0 ? result.refund : result.taxDue) | currency }}</span>
+                        </div>
+                      </div>
+                    }
+                    <div class="result-actions">
+                      <button class="btn-next" (click)="currentStep.set(1)">Nueva Declaración</button>
                     </div>
                   </div>
-                  <div class="result-actions">
-                    <button class="btn-next" (click)="currentStep.set(1)">Nueva Declaración</button>
-                  </div>
-                </div>
-              </div>
+                }
+              }
             </div>
 
-            <div class="form-actions" *ngIf="currentStep() < 5 && !isCalculating()">
-              <button class="btn-prev" *ngIf="currentStep() > 1" (click)="prevStep()">Anterior</button>
-              <div style="flex: 1"></div>
-              <button class="btn-next" (click)="nextStep()">
-                {{ currentStep() === 4 ? 'Calcular Declaración' : 'Siguiente' }}
-              </button>
-            </div>
+            @if (currentStep() < 5 && !isCalculating()) {
+              <div class="form-actions">
+                @if (currentStep() > 1) {
+                  <button class="btn-prev" (click)="prevStep()">Anterior</button>
+                }
+                <div style="flex: 1"></div>
+                <button class="btn-next" (click)="nextStep()">
+                  {{ currentStep() === 4 ? 'Calcular Declaración' : 'Siguiente' }}
+                </button>
+              </div>
+            }
           </div>
 
           <!-- Chatbot Section (Integrated) -->

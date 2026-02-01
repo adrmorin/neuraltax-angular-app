@@ -14,6 +14,15 @@ type ExpenseValues = Record<string, number>;
 export class Form1040acComponent {
     private fb = inject(FormBuilder);
     taxForm: FormGroup;
+    currentYear = 2026;
+
+    nereaAdvice = {
+        part1: 'Reconcilia todos tus formularios 1099. Si eres "Empleado Estatutario", ¡puedes deducir gastos directamente aquí! Esto reduce tu ingreso imponible sin afectar la deducción estándar.',
+        part2: 'Las suscripciones de software y apps para el negocio son 100% deducibles en 2026. Documentar estas herramientas digitales es clave para sustentar la operatividad de tu negocio ante el IRS.',
+        part3: 'Si tus ingresos son menores a $26M, podrías calificar para métodos de inventario simplificados. Esto mejora tu flujo de caja al permitirte deducir costos de inventario de forma más flexible.',
+        part4: '¡Mantén un registro digital! El IRS está auditando más los gastos de vehículos este año. Un log preciso es tu mejor defensa para maximizar la deducción por millaje ($0.67/milla).',
+        part5: 'No olvides las pequeñas cuotas de membresía o suscripciones profesionales; todo suma. Estas deducciones ordinarias demuestran que te mantienes actualizado en tu industria.'
+    };
 
     constructor() {
         this.taxForm = this.fb.group({
@@ -31,7 +40,7 @@ export class Form1040acComponent {
             cityStateZip: [''],           // E (cont)
             accountingMethod: ['1'],      // F (1=Efectivo, 2=Acumulación, 3=Otro)
             accountingMethodOther: [''],  // F (detalles)
-            startedBusiness2024: [false], // G
+            startedBusiness2026: [false], // G
             materiallyParticipated: [true], // H
             hiredWorkers: [false],        // I
             requiredToSend1099: [false],  // I (sub)

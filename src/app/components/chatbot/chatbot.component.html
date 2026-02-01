@@ -15,6 +15,10 @@
                 <div class="chat-role">{{ currentLang === 'es' ? 'Asistente de Impuestos IA' : 'AI Tax Assistant' }}
                 </div>
             </div>
+            <button class="audio-toggle-btn" (click)="toggleAudio()" [class.disabled]="!isAudioEnabled()"
+                [title]="isAudioEnabled() ? 'Silenciar' : 'Activar Audio'">
+                <span class="material-symbols-outlined">{{ isAudioEnabled() ? 'volume_up' : 'volume_off' }}</span>
+            </button>
             <button class="close-chat-btn" (click)="closeChat()">&times;</button>
         </div>
 
@@ -48,6 +52,13 @@
                 <input type="text" class="chat-input"
                     [placeholder]="currentLang === 'es' ? 'Escribe tu mensaje...' : 'Type your message...'"
                     [ngModel]="inputValue()" (ngModelChange)="inputValue.set($event)" (keypress)="onKeyPress($event)" />
+                <button class="mic-btn" [class.active]="isListening()" (click)="toggleListening()"
+                    [title]="isListening() ? 'Detener escucha' : 'Hablar'">
+                    <span class="material-symbols-outlined">{{ isListening() ? 'mic' : 'mic_none' }}</span>
+                    @if (isListening()) {
+                    <div class="mic-pulse"></div>
+                    }
+                </button>
                 <button class="send-btn" (click)="handleUserMessage(inputValue())">
                     <span class="material-symbols-outlined" style="font-size: 1.2rem">send</span>
                 </button>
