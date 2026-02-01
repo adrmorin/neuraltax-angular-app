@@ -70,14 +70,15 @@ import { RouterLink } from '@angular/router';
     }
 
     .btn-vip {
-      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;
-      color: #78350f !important;
+      background: #000000 !important;
+      color: white !important;
+      border: 2px solid rgba(255, 255, 255, 0.2) !important;
     }
 
     .btn-vip:hover {
-      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+      background: #1e293b !important;
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
     }
 
     .btn-login {
