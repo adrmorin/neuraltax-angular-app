@@ -16,7 +16,7 @@ import { RouterLink } from '@angular/router';
             <li><a routerLink="/free-dashboard" class="btn btn-tier btn-free">Free</a></li>
             <li><a routerLink="/premium-dashboard" class="btn btn-tier btn-premium">Premium</a></li>
             <li><a routerLink="/agent" class="btn btn-tier btn-agente">Agente</a></li>
-            <li><a routerLink="/dashboard" class="btn btn-tier btn-vip">VIP</a></li>
+            <li><a routerLink="/premium-dashboard" class="btn btn-tier btn-vip">VIP</a></li>
             <li><a routerLink="/login" class="btn btn-login">Login</a></li>
           </ul>
         </nav>
