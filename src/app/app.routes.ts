@@ -5,23 +5,23 @@ import { LayoutComponent } from './layouts/layout.component';
 import { DashboardLayoutComponent } from './layouts/dashboard-layout.component';
 
 // Pages
-import { HomeComponent } from './pages/home.component';
-import { LandingPageComponent } from './pages/landing-page.component';
-import { BlogComponent } from './pages/blog.component';
-import { LoginComponent } from './pages/login.component';
-import { WizardComponent } from './pages/wizard.component';
-import { DashboardComponent } from './pages/dashboard.component';
-import { ClientsComponent } from './pages/clients.component';
-import { ReturnsComponent } from './pages/returns.component';
-import { UploadComponent } from './pages/upload.component';
-import { CalculatorComponent } from './pages/calculator.component';
-import { ProfileComponent } from './pages/profile.component';
-import { SettingsComponent } from './pages/settings.component';
-import { AgentComponent } from './pages/agent.component';
-import { AiToolsPageComponent } from './pages/ai-tools.component';
-import { ReportsComponent } from './pages/reports.component';
-import { FreeDashboardComponent } from './pages/free-dashboard.component';
-import { PremiumDashboardComponent } from './pages/premium-dashboard.component';
+import { HomeComponent } from './pages/home/home.component';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { BlogComponent } from './pages/blog/blog.component';
+import { LoginComponent } from './pages/login/login.component';
+import { WizardComponent } from './pages/wizard/wizard.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { ClientsComponent } from './pages/clients/clients.component';
+import { ReturnsComponent } from './pages/returns/returns.component';
+import { UploadComponent } from './pages/upload/upload.component';
+import { CalculatorComponent } from './pages/calculator/calculator.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { SettingsComponent } from './pages/settings/settings.component';
+import { AgentComponent } from './pages/agent/agent.component';
+import { AiToolsPageComponent } from './pages/ai-tools/ai-tools.component';
+import { ReportsComponent } from './pages/reports/reports.component';
+import { FreeDashboardComponent } from './pages/free-dashboard/free-dashboard.component';
+import { PremiumDashboardComponent } from './pages/premium-dashboard/premium-dashboard.component';
 
 export const routes: Routes = [
     // Public Routes with Main Layout
