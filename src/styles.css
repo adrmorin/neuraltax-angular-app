@@ -1321,7 +1321,7 @@ nav a:hover {
 
 /* Header */
 .glass-header {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(30, 58, 138, 0.3);
     backdrop-filter: blur(10px);
     position: fixed;
     top: 0;
@@ -1334,18 +1334,36 @@ nav a:hover {
     display: flex;
     align-items: center;
     overflow: visible !important;
+    animation: slideDownFade 0.8s ease-out forwards;
+}
+
+@keyframes slideDownFade {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .glass-header .logo {
     overflow: visible !important;
     display: flex;
     align-items: center;
+    margin-right: auto;
 }
 
 .glass-header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 3rem;
+    margin: 0;
 }
 
 .glass-header nav ul {

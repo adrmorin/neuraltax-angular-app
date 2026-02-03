@@ -29,7 +29,7 @@ import { RouterLink } from '@angular/router';
   `,
   styles: [`
     .home-hero {
-      padding: 4rem 0 6rem;
+      padding: 160px 0 6rem;
       background: radial-gradient(circle at 10% 20%, rgba(74, 222, 128, 0.05) 0%, transparent 40%);
       overflow: hidden;
     }

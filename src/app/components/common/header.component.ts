@@ -1,15 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject, PLATFORM_ID } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { fromEvent, Subscription, timer } from 'rxjs';
+import { map, pairwise, share, throttleTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   template: `
-    <header class="glass-header">
+    <header class="glass-header" [class.hidden]="isHidden">
       <div class="container">
         <div class="logo">
-          <img src="assets/neuraltax_logo.png" alt="NeuralTax AI" style="max-height: 70px; width: auto; display: block; padding: 5px 0;" />
+          <img src="assets/neuraltax_logo.png" alt="NeuralTax AI" style="max-height: 55px; width: auto; display: block; padding: 5px 0;" />
         </div>
         <nav>
           <ul>
@@ -24,6 +27,15 @@ import { RouterLink } from '@angular/router';
     </header>
   `,
   styles: [`
+    /* Header transition for hiding */
+    .glass-header {
+      transition: transform 0.3s ease-in-out;
+    }
+    
+    .glass-header.hidden {
+      transform: translateY(-100%);
+    }
+
     .btn-tier {
       padding: 0.5rem 1.25rem !important;
       border-radius: 8px !important;
@@ -91,8 +103,64 @@ import { RouterLink } from '@angular/router';
     .btn-login:hover {
       background-color: white !important;
       color: #1e293b !important;
+      transform: translateY(-2px);
+      background-color: white !important;
+      color: #1e293b !important;
     }
   `]
 })
-export class HeaderComponent { }
+export class HeaderComponent implements OnInit, OnDestroy {
+  isHidden = false;
+  private scrollSub: Subscription | null = null;
+  private inactivitySub: Subscription | null = null;
+  private readonly HIDE_DELAY = 180000; // 3 minutes in ms
+  private platformId = inject(PLATFORM_ID);
+
+  ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.startInactivityTimer();
+      this.initScrollListener();
+    }
+  }
+
+  ngOnDestroy() {
+    this.scrollSub?.unsubscribe();
+    this.inactivitySub?.unsubscribe();
+  }
+
+  private startInactivityTimer() {
+    this.resetInactivityTimer();
+  }
+
+  private resetInactivityTimer() {
+    this.inactivitySub?.unsubscribe();
+    // Start timer to hide header after HIDE_DELAY
+    this.inactivitySub = timer(this.HIDE_DELAY).subscribe(() => {
+      this.isHidden = true;
+    });
+  }
+
+  private initScrollListener() {
+    const scroll$ = fromEvent(window, 'scroll').pipe(
+      throttleTime(10), // Reduced throttling for smoother feel
+      map(() => window.scrollY),
+      pairwise(),
+      share()
+    );
+
+    this.scrollSub = scroll$.subscribe(([y1, y2]) => {
+      // If scrolling UP (y2 < y1) and header is hidden, show it
+      if (y2 < y1 && this.isHidden) {
+        this.isHidden = false;
+        this.resetInactivityTimer(); // Restart the cycle
+      }
+      // Note: We deliberately DO NOT hide on scroll down based on user request.
+      // The requirement is: Hide after 3 mins -> Show when scrolling up with mouse -> Repeat cycle.
+
+      // However, any interaction usually resets inactivity. 
+      // User said "vuelve al mismo ciclo de los tres minutos".
+      // So if I scroll up and it shows, the timer resets. 
+    });
+  }
+}
 
