@@ -15,20 +15,24 @@ import { inject } from '@angular/core';
       <!-- Sidebar -->
       <aside class="wizard-sidebar">
         <div class="sidebar-logo">
-          <img src="assets/neuraltax3.png" alt="Neuraltax">
+          <img src="assets/neuraltax1.png" alt="Neuraltax">
         </div>
         <nav class="sidebar-nav">
-          <a routerLink="/" class="nav-item" title="Volver al Inicio">
+          <a routerLink="/home" class="nav-item" title="Volver al Inicio">
             <span class="material-symbols-outlined">home</span>
+          </a>
+          <a routerLink="/login" class="nav-item" title="Cerrar Sesión">
+            <span class="material-symbols-outlined">logout</span>
           </a>
         </nav>
       </aside>
 
       <div class="wizard-main-content">
-        <header class="wizard-header">
-          <h1>Asistente de Impuestos Neuraltax</h1>
-          <p>Completa tu declaración con la ayuda de Nerea</p>
-        </header>
+        <div class="wizard-header">
+          <div class="header-badge">Neural Power</div>
+          <h1>Asistente de Impuestos</h1>
+          <p>Maximiza tus ahorros con nuestra IA especializada</p>
+        </div>
 
         <div class="wizard-layout">
           <!-- Form Section -->

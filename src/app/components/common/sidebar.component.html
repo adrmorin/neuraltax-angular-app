@@ -25,12 +25,6 @@
   <ul class="sidebar-nav">
     @if (portalType === 'agent') {
     <li>
-      <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <span class="material-symbols-outlined">dashboard</span>
-        @if (!isCollapsed) { <span>{{ t('common.dashboard') }}</span> }
-      </a>
-    </li>
-    <li>
       <a routerLink="/clients" routerLinkActive="active">
         <span class="material-symbols-outlined">group</span>
         @if (!isCollapsed) { <span>{{ t('common.clients') }}</span> }
@@ -55,25 +49,13 @@
   <div class="sidebar-footer">
     <ul class="sidebar-footer-nav">
       <li>
-        <a routerLink="/" class="back-link">
+        <a routerLink="/home" class="nav-link" [title]="t('common.back_to_home')">
           <span class="material-symbols-outlined">home</span>
           @if (!isCollapsed) { <span>{{ t('common.back_to_home') }}</span> }
         </a>
       </li>
       <li>
-        <a href="#lang" (click)="toggleLanguage($event)" class="lang-switcher">
-          <span class="material-symbols-outlined">language</span>
-          @if (!isCollapsed) { <span>{{ currentLang === 'es' ? 'EN' : 'ES' }}</span> }
-        </a>
-      </li>
-      <li>
-        <a routerLink="/settings" routerLinkActive="active">
-          <span class="material-symbols-outlined">settings</span>
-          @if (!isCollapsed) { <span>{{ t('common.settings') }}</span> }
-        </a>
-      </li>
-      <li>
-        <a routerLink="/login">
+        <a href="#logout" (click)="logout($event)" class="nav-link logout-link" [title]="t('common.logout')">
           <span class="material-symbols-outlined">logout</span>
           @if (!isCollapsed) { <span>{{ t('common.logout') }}</span> }
         </a>

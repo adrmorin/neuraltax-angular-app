@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   standalone: true,
+  imports: [FormsModule],
   template: `
     <div class="login-page">
       <div class="login-container">
@@ -12,16 +15,21 @@ import { Component } from '@angular/core';
             <h1>Bienvenido</h1>
             <p>Inicia sesión en tu cuenta</p>
           </div>
-          <form class="login-form">
+          <form class="login-form" (submit)="onSubmit()">
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" id="email" placeholder="tucorreo@email.com" />
+              <input type="email" name="email" [(ngModel)]="email" placeholder="tucorreo@email.com" required />
             </div>
             <div class="form-group">
               <label for="password">Contraseña</label>
-              <input type="password" id="password" placeholder="••••••••" />
+              <input type="password" name="password" [(ngModel)]="password" placeholder="••••••••" required />
             </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%">Iniciar Sesión</button>
+            @if (error) {
+              <p style="color: #f87171; text-align: center; margin-bottom: 1rem;">{{ error }}</p>
+            }
+            <button type="submit" class="btn btn-primary" style="width: 100%" [disabled]="loading">
+              {{ loading ? 'Iniciando...' : 'Iniciar Sesión' }}
+            </button>
           </form>
           <p class="login-footer">¿No tienes cuenta? <a href="#">Regístrate</a></p>
         </div>
@@ -80,4 +88,27 @@ import { Component } from '@angular/core';
     }
   `]
 })
-export class LoginComponent { }
+export class LoginComponent {
+  private authService = inject(AuthService);
+
+  email = '';
+  password = '';
+  loading = false;
+  error = '';
+
+  onSubmit() {
+    this.loading = true;
+    this.error = '';
+
+    this.authService.login(this.email, this.password).subscribe({
+      next: () => {
+        this.loading = false;
+        // Navigation is handled inside AuthService.handleSuccessfulLogin
+      },
+      error: (err) => {
+        this.loading = false;
+        this.error = err.message || 'Error al iniciar sesión';
+      }
+    });
+  }
+}

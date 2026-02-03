@@ -19,7 +19,7 @@ import { CommonModule } from '@angular/common';
             @for (item of accordionItems; track $index) {
               <div class="accordion-item" [class.active]="activeAccordion() === $index">
                 <button class="accordion-header" (click)="toggleAccordion($index)">
-                  {{ item.question }} <i class="fas fa-chevron-down"></i>
+                  {{ item.question }} <span class="material-symbols-outlined" style="vertical-align: middle;">keyboard_arrow_down</span>
                 </button>
                 <div class="accordion-body">
                   <p>{{ item.answer }}</p>

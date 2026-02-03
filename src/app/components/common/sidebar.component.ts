@@ -1,6 +1,7 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
+import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
     selector: 'app-sidebar',
@@ -10,6 +11,8 @@ import { CommonModule } from '@angular/common';
     styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
+    private authService = inject(AuthService);
+    private router = inject(Router);
     @Input() isCollapsed = false;
     @Input() portalType: 'agent' | 'free' | 'premium' | 'vip' = 'agent';
     @Output() isCollapsedChange = new EventEmitter<boolean>();
@@ -24,7 +27,12 @@ export class SidebarComponent {
     toggleLanguage(event: Event): void {
         event.preventDefault();
         this.currentLang = this.currentLang === 'es' ? 'en' : 'es';
-        // TODO: Integrate with ngx-translate when configured
+    }
+
+    logout(event: Event): void {
+        event.preventDefault();
+        this.authService.logout();
+        this.router.navigate(['/login']);
     }
 
     // Translations (simplified for now, will use ngx-translate later)

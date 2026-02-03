@@ -9,7 +9,7 @@ import { RouterLink } from '@angular/router';
     <header class="glass-header">
       <div class="container">
         <div class="logo">
-          <img src="assets/neuraltax_logo.png" alt="NeuralTax AI" style="height: 35px" />
+          <img src="assets/neuraltax_logo.png" alt="NeuralTax AI" style="max-height: 70px; width: auto; display: block; padding: 5px 0;" />
         </div>
         <nav>
           <ul>
@@ -58,15 +58,15 @@ import { RouterLink } from '@angular/router';
     }
 
     .btn-agente {
-      background-color: #FF2400 !important; /* Rojo Escarlata Vibrante */
+      background-color: var(--accent-gold, #D4AF37) !important;
       color: white !important;
       border: 2px solid rgba(255, 255, 255, 0.4) !important;
     }
 
     .btn-agente:hover {
-      background-color: #D81E00 !important;
+      background-color: var(--accent-gold-hover, #C5A028) !important;
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(255, 36, 0, 0.4);
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
     }
 
     .btn-vip {

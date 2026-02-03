@@ -47,7 +47,7 @@ export class DashboardHeaderComponent {
             accentColor: '#fbbf24'
         },
         agent: {
-            title: 'Dashboard',
+            title: 'Portal de Agentes',
             subtitle: 'Bienvenido al portal de agentes',
             brandName: 'Neuraltax',
             brandSubtitle: 'Agente',

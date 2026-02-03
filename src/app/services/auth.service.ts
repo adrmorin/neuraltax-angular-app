@@ -1,9 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { catchError, tap, delay } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { User } from '../models/user-interface';
 
 @Injectable({
@@ -29,20 +29,7 @@ export class AuthService {
         return this.http.post<{ token: string; user: { email: string } }>(`${this.baseUrl}/login`, body, { headers }).pipe(
             tap((response) => this.handleSuccessfulLogin(response)),
             catchError((err: Error) => {
-                console.warn('Login request failed — fallback offline enabled. Error:', err);
-
-                // === Fallback Offline Mode (solo para testing) ===
-                if (email === 'chano@yahoo.com' && password === 'Abcde12345$$') {
-                    const fakeResponse = {
-                        token: 'fake-jwt-token-offline-123456',
-                        user: { email }
-                    };
-                    return of(fakeResponse).pipe(
-                        delay(300),
-                        tap((resp) => this.handleSuccessfulLogin(resp))
-                    );
-                }
-
+                console.error('Login error:', err);
                 return throwError(() => new Error('Credenciales inválidas o backend no disponible.'));
             })
         );
@@ -53,9 +40,30 @@ export class AuthService {
         if (response && response.token) {
             localStorage.setItem('token', response.token);
             this.loggedIn.next(true);
-            this.router.navigate(['/home']);
+
+            // Fetch user info to determine the role and redirect accordingly
+            this.getUserInfo().subscribe({
+                next: (user) => {
+                    this.handleRoleNavigation(user.roles || []);
+                },
+                error: () => {
+                    this.router.navigate(['/home']);
+                }
+            });
         } else {
             console.error('Token is undefined or null');
+        }
+    }
+
+    private handleRoleNavigation(roles: string[]) {
+        if (roles.includes('ROLE_AGENT')) {
+            this.router.navigate(['/agent']);
+        } else if (roles.includes('ROLE_VIP')) {
+            this.router.navigate(['/dashboard']);
+        } else if (roles.includes('ROLE_PREMIUM')) {
+            this.router.navigate(['/premium-dashboard']);
+        } else {
+            this.router.navigate(['/free-dashboard']);
         }
     }
 

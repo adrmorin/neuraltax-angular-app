@@ -6,6 +6,7 @@ import { DashboardLayoutComponent } from './layouts/dashboard-layout.component';
 
 // Pages
 import { HomeComponent } from './pages/home.component';
+import { LandingPageComponent } from './pages/landing-page.component';
 import { BlogComponent } from './pages/blog.component';
 import { LoginComponent } from './pages/login.component';
 import { WizardComponent } from './pages/wizard.component';
@@ -28,7 +29,8 @@ export const routes: Routes = [
         path: '',
         component: LayoutComponent,
         children: [
-            { path: '', component: HomeComponent },
+            { path: '', component: LandingPageComponent },
+            { path: 'home', component: HomeComponent },
             { path: 'blog', component: BlogComponent }
         ]
     },
