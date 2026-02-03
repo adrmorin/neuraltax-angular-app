@@ -5,28 +5,31 @@ import { MembershipPlansComponent } from '../components/home/plans/plans.compone
 import { LatestNewsComponent } from '../components/home/news/news.component';
 import { TestimonialsComponent } from '../components/home/testimonials/testimonials.component';
 import { StatsBarComponent } from '../components/home/stats/stats.bar.component';
+import { AboutUsComponent } from '../components/common/about-us.component';
 
 @Component({
-    selector: 'app-home',
-    standalone: true,
-    imports: [
-        CommonModule,
-        HomeHeroComponent,
-        MembershipPlansComponent,
-        LatestNewsComponent,
-        TestimonialsComponent,
-        StatsBarComponent
-    ],
-    template: `
+  selector: 'app-home',
+  standalone: true,
+  imports: [
+    CommonModule,
+    HomeHeroComponent,
+    MembershipPlansComponent,
+    LatestNewsComponent,
+    TestimonialsComponent,
+    StatsBarComponent,
+    AboutUsComponent
+  ],
+  template: `
     <div class="home-page">
       <app-home-hero />
       <app-membership-plans />
       <app-latest-news />
       <app-testimonials />
       <app-stats-bar />
+      <app-about-us />
     </div>
   `,
-    styles: [`
+  styles: [`
     .home-page {
       background: white;
     }

@@ -1,16 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject, PLATFORM_ID } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CommonModule, isPlatformBrowser } from '@angular/common'; // Import CommonModule for ngClass/ngFor
+import { Subscription, timer } from 'rxjs';
 
 @Component({
   selector: 'app-home-hero',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   template: `
     <section class="home-hero">
       <div class="hero-container">
         <div class="hero-header">
-          <div class="hero-logo">
-            <img src="assets/neuraltax3.png" alt="Neuraltax" class="hero-logo-img">
+          <div class="hero-logo-slider">
+            @for (img of images; track img; let i = $index) {
+              <img 
+                [src]="img" 
+                alt="Neuraltax Slider {{i}}" 
+                class="hero-logo-img" 
+                [class.active]="i === currentImageIndex">
+            }
           </div>
         </div>
         <div class="hero-main">
@@ -43,10 +51,27 @@ import { RouterLink } from '@angular/router';
       flex-direction: column;
       align-items: flex-end;
       margin-bottom: 2rem;
+      height: 120px; /* Fixed height to prevent jumps */
+      position: relative;
+    }
+    .hero-logo-slider {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: flex-end; /* Align images to right/center as before */
     }
     .hero-logo-img {
       height: 120px;
       object-fit: contain;
+      position: absolute;
+      top: 0;
+      right: 0;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .hero-logo-img.active {
+      opacity: 1;
     }
     .hero-slogan {
       display: flex;
@@ -121,13 +146,45 @@ import { RouterLink } from '@angular/router';
     @media (max-width: 1024px) {
       .hero-main { grid-template-columns: 1fr; }
       .hero-header { align-items: center; text-align: center; }
+      .hero-logo-slider { justify-content: center; }
+      .hero-logo-img { right: auto; left: 50%; transform: translateX(-50%); } /* Center in mobile */
       .hero-slogan { margin-right: 0; align-items: center; }
       .hero-slogan span { margin-left: 0; }
       .hero-title { font-size: 2.5rem; }
     }
   `]
 })
-export class HomeHeroComponent {
+export class HomeHeroComponent implements OnInit, OnDestroy {
+  images: string[] = [
+    'assets/slider/slide-1.png',
+    'assets/slider/slide-2.png',
+    'assets/slider/slide-3.png',
+    'assets/slider/slide-4.png',
+    'assets/slider/slide-5.png',
+    'assets/slider/slide-6.png',
+    'assets/slider/slide-7.png',
+    'assets/slider/slide-8.png'
+  ];
+  currentImageIndex = 0;
+  private sliderSub: Subscription | null = null;
+  private platformId = inject(PLATFORM_ID);
+
+  ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.startSlider();
+    }
+  }
+
+  ngOnDestroy() {
+    this.sliderSub?.unsubscribe();
+  }
+
+  startSlider() {
+    this.sliderSub = timer(0, 4000).subscribe(() => {
+      this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
+    });
+  }
+
   onImgError(event: Event) {
     const target = event.target as HTMLImageElement;
     target.src = 'https://placehold.co/600x400/e2e8f0/1e293b?text=Neuraltax+Family';
