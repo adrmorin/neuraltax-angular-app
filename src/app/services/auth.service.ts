@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, signal, computed } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, throwError, of } from 'rxjs';
 import { environment } from '../../environments/environment';
@@ -17,6 +17,14 @@ export class AuthService {
     private loggedIn = new BehaviorSubject<boolean>(false);
     isLoggedIn = this.loggedIn.asObservable();
     private alreadyChecked = false;
+
+    // --- NEW: User Signals ---
+    public currentUser = signal<User | null>(null);
+    public currentUserDashboard = computed(() => {
+        const user = this.currentUser();
+        if (!user) return '/';
+        return this.getDashboardRoute(user.roles || []);
+    });
 
     // === LOGIN ===
     login(email: string, password: string): Observable<{ token: string; user: { email: string } }> {
@@ -55,6 +63,7 @@ export class AuthService {
             // Fetch user info to determine the role and redirect accordingly
             this.getUserInfo().subscribe({
                 next: (user) => {
+                    this.currentUser.set(user); // Sync signal
                     this.handleRoleNavigation(user.roles || []);
                 },
                 error: () => {
@@ -66,16 +75,18 @@ export class AuthService {
         }
     }
 
+    private getDashboardRoute(roles: string[]): string {
+        if (roles.includes('ROLE_AGENT')) return '/agent';
+        if (roles.includes('ROLE_VIP')) return '/dashboard';
+        if (roles.includes('ROLE_PREMIUM')) return '/premium-dashboard';
+        if (roles.includes('ROLE_FREE')) return '/free-dashboard';
+        if (roles.includes('ROLE_USER_HOME')) return '/home';
+        return '/free-dashboard';
+    }
+
     private handleRoleNavigation(roles: string[]) {
-        if (roles.includes('ROLE_AGENT')) {
-            this.router.navigate(['/agent']);
-        } else if (roles.includes('ROLE_VIP')) {
-            this.router.navigate(['/dashboard']);
-        } else if (roles.includes('ROLE_PREMIUM')) {
-            this.router.navigate(['/premium-dashboard']);
-        } else {
-            this.router.navigate(['/free-dashboard']);
-        }
+        const route = this.getDashboardRoute(roles);
+        this.router.navigate([route]);
     }
 
     // === TOKEN ===
@@ -86,6 +97,7 @@ export class AuthService {
     logout(): void {
         localStorage.removeItem('token');
         this.loggedIn.next(false);
+        this.currentUser.set(null); // Clear signal
         this.alreadyChecked = false;
     }
 
@@ -103,6 +115,10 @@ export class AuthService {
                 next: () => {
                     this.loggedIn.next(true);
                     this.alreadyChecked = true;
+                    // Also sync user info if missing
+                    if (!this.currentUser()) {
+                        this.getUserInfo().subscribe(u => this.currentUser.set(u));
+                    }
                 },
                 error: () => {
                     this.loggedIn.next(false);
@@ -133,7 +149,7 @@ export class AuthService {
                 email: 'animacuba@gmail.com',
                 phone: '000000000',
                 password: '',
-                roles: ['ROLE_AGENT'] // Access to all areas
+                roles: ['ROLE_USER_HOME', 'ROLE_FREE'] // Redirection to /home on login, but /free-dashboard as dashboard
             });
         }
         return this.http.get<User>(`${this.baseUrl}/user-info`, { headers: this.getAuthHeaders() });

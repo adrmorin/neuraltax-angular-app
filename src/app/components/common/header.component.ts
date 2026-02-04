@@ -4,6 +4,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { fromEvent, Subscription, timer } from 'rxjs';
 import { map, pairwise, share, throttleTime } from 'rxjs/operators';
 import { ModalService } from '../../services/modal.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +22,18 @@ import { ModalService } from '../../services/modal.service';
             <li><a routerLink="/premium-dashboard" class="btn btn-tier btn-premium">Premium</a></li>
             <li><a routerLink="/agent" class="btn btn-tier btn-agente">Agente</a></li>
             <li><a routerLink="/premium-dashboard" class="btn btn-tier btn-vip">VIP</a></li>
-            <li><button (click)="modalService.openLogin()" class="btn btn-login">Login</button></li>
+            
+            @if (authService.currentUser(); as user) {
+              <li><a [routerLink]="authService.currentUserDashboard()" class="btn btn-dashboard">Dashboard</a></li>
+              <li class="user-profile">
+                <div class="user-avatar-container">
+                  <img src="assets/nerea_avatar.png" alt="User Profile" class="user-avatar" />
+                  <span class="status-indicator"></span>
+                </div>
+              </li>
+            } @else {
+              <li><button (click)="modalService.openLogin()" class="btn btn-login">Login</button></li>
+            }
           </ul>
         </nav>
       </div>
@@ -105,8 +117,66 @@ import { ModalService } from '../../services/modal.service';
       background-color: white !important;
       color: #1e293b !important;
       transform: translateY(-2px);
-      background-color: white !important;
-      color: #1e293b !important;
+    }
+
+    .btn-dashboard {
+      background-color: var(--accent-green-bright) !important;
+      color: #0f172a !important;
+      padding: 0.5rem 1.25rem !important;
+      border-radius: 8px !important;
+      font-weight: 700 !important;
+      font-size: 0.9rem !important;
+      transition: all 0.3s ease !important;
+      border: none !important;
+    }
+
+    .btn-dashboard:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(74, 222, 128, 0.4);
+      filter: brightness(1.1);
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      margin-left: 1rem;
+    }
+
+    .user-avatar-container {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid var(--accent-green-bright);
+      padding: 2px;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .user-avatar-container:hover {
+      transform: scale(1.1);
+    }
+
+    .user-avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .status-indicator {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 10px;
+      height: 10px;
+      background-color: #22c55e;
+      border: 2px solid #0f172a;
+      border-radius: 50%;
     }
   `]
 })
@@ -117,6 +187,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private readonly HIDE_DELAY = 180000; // 3 minutes in ms
   private platformId = inject(PLATFORM_ID);
   public modalService = inject(ModalService);
+  public authService = inject(AuthService);
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
