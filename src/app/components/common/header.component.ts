@@ -120,8 +120,8 @@ import { AuthService } from '../../services/auth.service';
     }
 
     .btn-dashboard {
-      background-color: #4ade80 !important; /* Solid institutional green */
-      color: #0f172a !important;
+      background-color: #9ca3af !important; /* Matched with Free button gray */
+      color: white !important;
       padding: 0.6rem 1.4rem !important;
       border-radius: 8px !important;
       font-weight: 700 !important;
@@ -133,9 +133,9 @@ import { AuthService } from '../../services/auth.service';
     }
 
     .btn-dashboard:hover {
+      background-color: #6b7280 !important;
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(74, 222, 128, 0.4);
-      filter: brightness(1.1);
+      box-shadow: 0 4px 12px rgba(156, 163, 175, 0.3);
     }
 
     .user-profile {
