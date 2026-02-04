@@ -120,14 +120,16 @@ import { AuthService } from '../../services/auth.service';
     }
 
     .btn-dashboard {
-      background-color: var(--accent-green-bright) !important;
+      background-color: #4ade80 !important; /* Solid institutional green */
       color: #0f172a !important;
-      padding: 0.5rem 1.25rem !important;
+      padding: 0.6rem 1.4rem !important;
       border-radius: 8px !important;
       font-weight: 700 !important;
       font-size: 0.9rem !important;
       transition: all 0.3s ease !important;
       border: none !important;
+      display: inline-block;
+      text-decoration: none;
     }
 
     .btn-dashboard:hover {
