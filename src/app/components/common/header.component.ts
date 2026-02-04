@@ -20,8 +20,8 @@ import { AuthService } from '../../services/auth.service';
           <ul>
             <li><a routerLink="/free-dashboard" class="btn btn-tier btn-free">Free</a></li>
             <li><a routerLink="/premium-dashboard" class="btn btn-tier btn-premium">Premium</a></li>
-            <li><a routerLink="/agent" class="btn btn-tier btn-agente">Agente</a></li>
             <li><a routerLink="/premium-dashboard" class="btn btn-tier btn-vip">VIP</a></li>
+            <li><a routerLink="/agent" class="btn btn-tier btn-agente">Agente</a></li>
             
             @if (authService.currentUser(); as user) {
               <li><a [routerLink]="authService.currentUserDashboard()" class="btn btn-dashboard">Dashboard</a></li>
