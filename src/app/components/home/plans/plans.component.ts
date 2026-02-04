@@ -142,7 +142,7 @@ import { CommonModule } from '@angular/common';
       transform: translateY(-10px);
     }
     .plan-card.featured {
-      background: radial-gradient(circle at 85% 15%, #3b82f6 0%, #1e3a8a 100%) !important;
+      background: radial-gradient(circle at 75% 15%, #60a5fa 0%, #1e3a8a 70%) !important;
       color: white;
       padding: 4rem 2rem;
       margin-top: -1rem;
