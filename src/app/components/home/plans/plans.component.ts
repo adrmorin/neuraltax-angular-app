@@ -114,7 +114,7 @@ import { CommonModule } from '@angular/common';
     }
     .section-title {
       font-size: 3rem;
-      color: var(--brand-blue);
+      color: #1e3a8a; /* Forced brand blue */
       margin-bottom: 1rem;
     }
     .section-subtitle {
@@ -140,7 +140,7 @@ import { CommonModule } from '@angular/common';
       transform: translateY(-10px);
     }
     .plan-card.featured {
-      background: var(--brand-blue);
+      background: #1e3a8a; /* Forced brand blue */
       color: white;
       padding: 4rem 2rem;
       margin-top: -1rem;
