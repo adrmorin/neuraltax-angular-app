@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 
         <div class="plans-grid">
           <!-- Free Plan -->
-          <div class="plan-card">
+          <div class="plan-card free">
             <div class="card-header">
               <h3>Individual Free Member</h3>
               <p>Essential tax services with AI automation</p>
@@ -114,7 +114,7 @@ import { CommonModule } from '@angular/common';
     }
     .section-title {
       font-size: 3rem;
-      color: #4b5563 !important; /* Gray to match new theme */
+      color: #152961 !important; /* Brand Blue Forced Darker 30% */
       font-weight: 800 !important;
       text-transform: uppercase !important;
       margin-bottom: 1rem;
@@ -141,8 +141,12 @@ import { CommonModule } from '@angular/common';
     .plan-card:hover {
       transform: translateY(-10px);
     }
+    .plan-card.free {
+      background: #f1f5f9; /* Light Gray */
+      border: 1px solid #e2e8f0;
+    }
     .plan-card.featured {
-      background: radial-gradient(circle at 75% 15%, #9ca3af 0%, #4b5563 70%) !important;
+      background: radial-gradient(circle at 75% 15%, #60a5fa 0%, #152961 70%) !important;
       color: white;
       padding: 4rem 2rem;
       margin-top: -1rem;
