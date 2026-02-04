@@ -79,7 +79,7 @@ import { CommonModule } from '@angular/common';
 
           <!-- Agent Plan -->
           <div class="plan-card agent">
-            <div class="popular-badge" style="background: #FDE68A; color: #92400E;">B2B Solution</div>
+            <div class="popular-badge agent-badge">B2B Solution</div>
             <div class="card-header">
               <h3>Professional Agent</h3>
               <p>For tax professionals and accounting firms</p>
@@ -88,7 +88,7 @@ import { CommonModule } from '@angular/common';
               <span class="price-value">Custom Plan</span>
             </div>
             <ul class="feature-list">
-              <li class="emphasized" style="color: #B45309;"><span class="material-symbols-outlined" style="color: #B45309;">hub</span> Unlimited Client Management</li>
+              <li class="emphasized green-highlight"><span class="material-symbols-outlined green-highlight">hub</span> Unlimited Client Management</li>
               <li><span class="material-symbols-outlined">check</span> Advanced AI Tools for Agents</li>
               <li><span class="material-symbols-outlined">check</span> Multi-user collaboration</li>
               <li><span class="material-symbols-outlined">check</span> Wholesale filing rates</li>
@@ -180,6 +180,13 @@ import { CommonModule } from '@angular/common';
       border-radius: 99px;
       font-size: 0.75rem;
       font-weight: 700;
+    }
+    .popular-badge.agent-badge {
+      background: #4ade80 !important;
+      color: #064e4b !important;
+    }
+    .green-highlight {
+      color: #4ade80 !important;
     }
     .card-header h3 {
       font-size: 1.5rem;
