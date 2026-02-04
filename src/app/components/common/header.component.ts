@@ -72,14 +72,14 @@ import { AuthService } from '../../services/auth.service';
     }
 
     .btn-premium {
-      background-color: #688071 !important;
+      background-color: #1e3a8a !important; /* Logo Dark Blue */
       color: white !important;
     }
 
     .btn-premium:hover {
-      background-color: #576b5f !important;
+      background-color: #172554 !important; /* Solid darker blue */
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(104, 128, 113, 0.4);
+      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.4);
     }
 
     .btn-agente {
