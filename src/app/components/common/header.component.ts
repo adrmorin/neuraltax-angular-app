@@ -72,7 +72,7 @@ import { AuthService } from '../../services/auth.service';
     }
 
     .btn-premium {
-      background-color: #1e3a8a !important; /* Logo Dark Blue */
+      background-color: var(--brand-blue) !important;
       color: white !important;
     }
 
