@@ -49,7 +49,7 @@ import { CommonModule } from '@angular/common';
     }
     .section-title {
       font-size: 2.5rem;
-      color: #182e6e;
+      color: #152961;
       margin-bottom: 1rem;
     }
     .section-subtitle {

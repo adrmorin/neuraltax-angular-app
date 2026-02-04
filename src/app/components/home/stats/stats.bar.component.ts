@@ -43,7 +43,7 @@ import { Component } from '@angular/core';
     .stat-value {
       font-size: 2rem;
       font-weight: 800;
-      color: #182e6e;
+      color: #152961;
     }
     .stat-label {
       font-size: 0.9rem;

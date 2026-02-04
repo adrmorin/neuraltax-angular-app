@@ -114,7 +114,7 @@ import { CommonModule } from '@angular/common';
     }
     .section-title {
       font-size: 3rem;
-      color: #182e6e !important; /* Brand Blue Forced Darker 20% */
+      color: #152961 !important; /* Brand Blue Forced Darker 30% */
       font-weight: 800 !important;
       text-transform: uppercase !important;
       margin-bottom: 1rem;
@@ -142,7 +142,7 @@ import { CommonModule } from '@angular/common';
       transform: translateY(-10px);
     }
     .plan-card.featured {
-      background: radial-gradient(circle at 75% 15%, #60a5fa 0%, #182e6e 70%) !important;
+      background: radial-gradient(circle at 75% 15%, #60a5fa 0%, #152961 70%) !important;
       color: white;
       padding: 4rem 2rem;
       margin-top: -1rem;
