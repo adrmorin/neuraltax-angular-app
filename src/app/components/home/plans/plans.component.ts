@@ -142,7 +142,7 @@ import { CommonModule } from '@angular/common';
       transform: translateY(-10px);
     }
     .plan-card.free {
-      background: #9ca3af !important; /* Medium Gray (50% darker) */
+      background: radial-gradient(circle at 75% 15%, #d1d5db 0%, #9ca3af 70%) !important; /* Gray Glow Effect */
       border: 1px solid #6b7280;
     }
     .plan-card.free h3,
