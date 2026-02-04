@@ -142,8 +142,16 @@ import { CommonModule } from '@angular/common';
       transform: translateY(-10px);
     }
     .plan-card.free {
-      background: #f1f5f9; /* Light Gray */
-      border: 1px solid #e2e8f0;
+      background: #9ca3af !important; /* Medium Gray (50% darker) */
+      border: 1px solid #6b7280;
+    }
+    .plan-card.free h3,
+    .plan-card.free .card-header p,
+    .plan-card.free .feature-list li {
+      color: #1f2937 !important; /* Dark text for contrast */
+    }
+    .plan-card.free .price-value {
+      color: #111827 !important;
     }
     .plan-card.featured {
       background: radial-gradient(circle at 75% 15%, #60a5fa 0%, #152961 70%) !important;
