@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError, of } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { catchError, tap } from 'rxjs/operators';
 import { User } from '../models/user-interface';
@@ -20,6 +20,17 @@ export class AuthService {
 
     // === LOGIN ===
     login(email: string, password: string): Observable<{ token: string; user: { email: string } }> {
+        // --- MAGIC LOGIN FOR USER ---
+        if (email === 'animacuba@gmail.com' && password === 'adr2310') {
+            const mockResponse = {
+                token: 'MOCK_TOKEN_ADR_NEURALTAX',
+                user: { email: 'animacuba@gmail.com' }
+            };
+            return of(mockResponse).pipe(
+                tap((response) => this.handleSuccessfulLogin(response))
+            );
+        }
+
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -105,11 +116,26 @@ export class AuthService {
 
     // === VALIDACIÓN DE TOKEN ===
     validateToken(): Observable<unknown> {
+        const token = this.getToken();
+        if (token === 'MOCK_TOKEN_ADR_NEURALTAX') {
+            return of({ valid: true });
+        }
         return this.http.get(`${this.baseUrl}/validate-token`, { headers: this.getAuthHeaders() });
     }
 
     // === INFO DEL USUARIO ===
     getUserInfo(): Observable<User> {
+        const token = this.getToken();
+        if (token === 'MOCK_TOKEN_ADR_NEURALTAX') {
+            return of({
+                firstName: 'Neural',
+                lastName: 'User',
+                email: 'animacuba@gmail.com',
+                phone: '000000000',
+                password: '',
+                roles: ['ROLE_AGENT'] // Access to all areas
+            });
+        }
         return this.http.get<User>(`${this.baseUrl}/user-info`, { headers: this.getAuthHeaders() });
     }
 
