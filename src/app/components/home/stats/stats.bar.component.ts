@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'app-stats-bar',
-    standalone: true,
-    template: `
+  selector: 'app-stats-bar',
+  standalone: true,
+  template: `
     <div class="stats-bar">
       <div class="container">
         <div class="stats-grid">
@@ -23,7 +23,7 @@ import { Component } from '@angular/core';
       </div>
     </div>
   `,
-    styles: [`
+  styles: [`
     .stats-bar {
       background: white;
       padding: 3rem 0;
@@ -43,7 +43,7 @@ import { Component } from '@angular/core';
     .stat-value {
       font-size: 2rem;
       font-weight: 800;
-      color: #1e3a8a;
+      color: #182e6e;
     }
     .stat-label {
       font-size: 0.9rem;

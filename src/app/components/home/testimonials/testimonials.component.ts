@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: 'app-testimonials',
-    standalone: true,
-    imports: [CommonModule],
-    template: `
+  selector: 'app-testimonials',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
     <section class="testimonials">
       <div class="container">
         <div class="section-header">
@@ -38,7 +38,7 @@ import { CommonModule } from '@angular/common';
       </div>
     </section>
   `,
-    styles: [`
+  styles: [`
     .testimonials {
       padding: 6rem 0;
       background: #f8fafc;
@@ -49,7 +49,7 @@ import { CommonModule } from '@angular/common';
     }
     .section-title {
       font-size: 2.5rem;
-      color: #1e3a8a;
+      color: #182e6e;
       margin-bottom: 1rem;
     }
     .section-subtitle {
@@ -137,48 +137,48 @@ import { CommonModule } from '@angular/common';
   `]
 })
 export class TestimonialsComponent {
-    reviews = [
-        {
-            name: 'Maria Gonzalez',
-            initials: 'MG',
-            role: 'Executive Director',
-            company: 'Legal Consulting',
-            text: 'Neuraltax completely revolutionized our tax management. AI automation saved us over 80% of the time in tax preparation.'
-        },
-        {
-            name: 'Carlos Rodriguez',
-            initials: 'CR',
-            role: 'CEO',
-            company: 'TechStart Solutions',
-            text: 'The accuracy and speed of Neuraltax is impressive. We haven\'t had a single error in our tax returns since we started using the service.'
-        },
-        {
-            name: 'Ana Patricia Diaz',
-            initials: 'APD',
-            role: 'Independent Accountant',
-            company: 'Freelancer',
-            text: 'As an independent professional, Neuraltax allows me to offer premium quality services to my clients without the traditional technical complexity.'
-        },
-        {
-            name: 'Roberto Silva',
-            initials: 'RS',
-            role: 'CFO',
-            company: 'RSM Investments',
-            text: 'The operational cost savings have been extraordinary. Neuraltax helped us optimize our tax structure in a completely legal manner.'
-        },
-        {
-            name: 'Laura Mendoza',
-            initials: 'LM',
-            role: 'Financial Manager',
-            company: 'Retail Plus',
-            text: 'The interface is intuitive and the technical support exceptional. I recommend Neuraltax to any company looking to modernize their tax management.'
-        },
-        {
-            name: 'David Chen',
-            initials: 'DC',
-            role: 'Founder',
-            company: 'Global E-commerce',
-            text: 'Neuraltax perfectly handles the tax complexities of our international business. An indispensable tool for global companies.'
-        }
-    ];
+  reviews = [
+    {
+      name: 'Maria Gonzalez',
+      initials: 'MG',
+      role: 'Executive Director',
+      company: 'Legal Consulting',
+      text: 'Neuraltax completely revolutionized our tax management. AI automation saved us over 80% of the time in tax preparation.'
+    },
+    {
+      name: 'Carlos Rodriguez',
+      initials: 'CR',
+      role: 'CEO',
+      company: 'TechStart Solutions',
+      text: 'The accuracy and speed of Neuraltax is impressive. We haven\'t had a single error in our tax returns since we started using the service.'
+    },
+    {
+      name: 'Ana Patricia Diaz',
+      initials: 'APD',
+      role: 'Independent Accountant',
+      company: 'Freelancer',
+      text: 'As an independent professional, Neuraltax allows me to offer premium quality services to my clients without the traditional technical complexity.'
+    },
+    {
+      name: 'Roberto Silva',
+      initials: 'RS',
+      role: 'CFO',
+      company: 'RSM Investments',
+      text: 'The operational cost savings have been extraordinary. Neuraltax helped us optimize our tax structure in a completely legal manner.'
+    },
+    {
+      name: 'Laura Mendoza',
+      initials: 'LM',
+      role: 'Financial Manager',
+      company: 'Retail Plus',
+      text: 'The interface is intuitive and the technical support exceptional. I recommend Neuraltax to any company looking to modernize their tax management.'
+    },
+    {
+      name: 'David Chen',
+      initials: 'DC',
+      role: 'Founder',
+      company: 'Global E-commerce',
+      text: 'Neuraltax perfectly handles the tax complexities of our international business. An indispensable tool for global companies.'
+    }
+  ];
 }
