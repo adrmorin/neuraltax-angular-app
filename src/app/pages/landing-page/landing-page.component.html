@@ -21,7 +21,10 @@
                     <a routerLink="/wizard" class="btn btn-dark"><span class="material-symbols-outlined"
                             style="color: #ff4d4d; margin-right: 8px; vertical-align: middle;">bolt</span> Get Free
                         Estimate</a>
-                    <a routerLink="/login" class="btn btn-loguin">Loguin</a>
+                    <button (click)="modalService.openLogin()" class="btn btn-loguin">
+                        <span>Loguin</span>
+                        <span class="btn-subtext">or register</span>
+                    </button>
                 </div>
             </div>
         </div>

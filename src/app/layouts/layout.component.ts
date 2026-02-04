@@ -5,10 +5,10 @@ import { FooterComponent } from '../components/common/footer.component';
 import { ChatbotComponent } from '../components/chatbot/chatbot.component';
 
 @Component({
-    selector: 'app-layout',
-    standalone: true,
-    imports: [RouterOutlet, HeaderComponent, FooterComponent, ChatbotComponent],
-    template: `
+  selector: 'app-layout',
+  standalone: true,
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, ChatbotComponent],
+  template: `
     <div class="app-layout">
       <app-header />
       <main>
@@ -18,6 +18,6 @@ import { ChatbotComponent } from '../components/chatbot/chatbot.component';
       <app-chatbot />
     </div>
   `,
-    styles: []
+  styles: []
 })
 export class LayoutComponent { }

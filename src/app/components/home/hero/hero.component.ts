@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal, OnInit, OnDestroy } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HeroSliderComponent } from '../hero-slider/hero-slider.component';
+import { ModalService } from '../../../services/modal.service';
 
 @Component({
   selector: 'app-home-hero',
@@ -13,6 +14,13 @@ import { HeroSliderComponent } from '../hero-slider/hero-slider.component';
         <div class="support-text-block">
           <h3>Specialized Support</h3>
           <p>Support in English or Spanish, powered by AI and human assistance when needed.</p>
+          
+          <!-- Animated Text Block -->
+          <div class="animated-text-carousel">
+            <div class="carousel-item">
+              <p class="carousel-message" [innerHTML]="messages[currentMessageIndex()]"></p>
+            </div>
+          </div>
         </div>
 
         <!-- LEFT COLUMN: Slider -->
@@ -42,10 +50,10 @@ import { HeroSliderComponent } from '../hero-slider/hero-slider.component';
                 <span class="material-symbols-outlined icon-flame">local_fire_department</span>
                 Get Free Estimate
               </a>
-              <a routerLink="/login" class="btn btn-login-hero">
+              <button (click)="modalService.openLogin()" class="btn btn-login-hero">
                 <span>Loguin</span>
                 <span class="btn-subtext">or register</span>
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -98,7 +106,7 @@ import { HeroSliderComponent } from '../hero-slider/hero-slider.component';
     
     .support-text-block {
       position: absolute;
-      top: 2rem; /* Slight spacing from very top */
+      top: 6rem; /* Moved 20% further down (relative offset increase) */
       left: 50%;
       transform: translateX(-50%);
       z-index: 10;
@@ -108,6 +116,39 @@ import { HeroSliderComponent } from '../hero-slider/hero-slider.component';
       color: #334155;
       text-align: right; /* Right align text as requested */
       padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .animated-text-carousel {
+       margin-top: 3.5rem; /* Moved 30% further down relative to the support block */
+       width: 100%;
+       /* Removed overflow: hidden to prevent cutting descenders or wrapped lines */
+    }
+
+    .carousel-item {
+       animation: textFade 5s infinite;
+       display: flex;
+       justify-content: flex-end;
+    }
+
+    .carousel-message {
+       font-size: 0.5rem;
+       line-height: 1.4;
+       color: #166534; /* Strong brand green from sidebar/logo palette */
+       font-style: italic;
+       max-width: 375px; /* Reduced by 25% from 500px */
+       white-space: normal; /* Ensure text wraps */
+       overflow-wrap: break-word; /* Wrap long words */
+       word-wrap: break-word;
+       text-align: right;
+    }
+
+    @keyframes textFade {
+       0%, 10% { opacity: 0; transform: translateY(10px); }
+       15%, 85% { opacity: 1; transform: translateY(0); }
+       90%, 100% { opacity: 0; transform: translateY(-10px); }
     }
     .support-text-block h3 {
       font-weight: 700;
@@ -154,7 +195,7 @@ import { HeroSliderComponent } from '../hero-slider/hero-slider.component';
 
     .main-slogan {
       font-family: 'Inter', sans-serif; /* Or custom font */
-      font-size: 2.8rem; /* Reduced from 3.5rem (20% reduction) */
+      font-size: 1.96rem; /* Reduced by 30% from 2.8rem */
       font-weight: 300; /* Light/Thin for "NEURAL POWER" */
       color: #64748b; /* Grayish text */
       line-height: 1.1;
@@ -165,7 +206,7 @@ import { HeroSliderComponent } from '../hero-slider/hero-slider.component';
     
     .highlight-text {
       font-weight: 300;
-      font-size: 2rem; /* Reduced from 2.5rem (20% reduction) */
+      font-size: 1.4rem; /* Reduced by 30% from 2rem */
       color: #64748b;
       display: block;
       margin-top: 0.5rem;
@@ -207,7 +248,8 @@ import { HeroSliderComponent } from '../hero-slider/hero-slider.component';
     .hero-actions {
       display: flex;
       gap: 1rem;
-      justify-content: flex-start; /* Changed from flex-end to align left */
+      justify-content: flex-start;
+      margin-left: -20rem; /* Shifted 50% to the left relative to text block */
     }
 
     .btn {
@@ -227,7 +269,6 @@ import { HeroSliderComponent } from '../hero-slider/hero-slider.component';
       background-color: #1e293b; /* Dark bg */
       color: white;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      margin-left: -5rem; /* Move 5rem to the left */
     }
     .icon-flame {
       color: #ef4444; /* Red flame */
@@ -238,7 +279,10 @@ import { HeroSliderComponent } from '../hero-slider/hero-slider.component';
       background-color: #94a3b8; /* Grayish green/blue */
       color: #0f172a;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: inline-flex;
       flex-direction: column; /* Stack text */
+      align-items: center; /* Center horizontally */
+      justify-content: center; /* Center vertically */
       line-height: 1.1;
       text-align: center;
       padding: 0.5rem 1.5rem; /* Adjust padding for height */
@@ -272,4 +316,36 @@ import { HeroSliderComponent } from '../hero-slider/hero-slider.component';
     }
   `]
 })
-export class HomeHeroComponent { }
+export class HomeHeroComponent implements OnInit, OnDestroy {
+  public modalService = inject(ModalService);
+
+  protected currentMessageIndex = signal(0);
+  private intervalId?: ReturnType<typeof setInterval>;
+
+  protected messages = [
+    "Optimize your taxes with AI—fast,<br />and hassle-free.",
+    "Tax technology that understands<br />your needs.",
+    "Clear taxes, automated processes,<br />precise results.",
+    "Automate your taxes and avoid<br />costly mistakes.",
+    "Save time and money with intelligent<br />tax automation.",
+    "Trust your taxes to a smart and<br />secure system.",
+    "AI + human expertise: the new era of<br />tax filing.",
+    "Full control of your taxes in<br />one place."
+  ];
+
+  ngOnInit() {
+    this.startCarousel();
+  }
+
+  ngOnDestroy() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+  }
+
+  private startCarousel() {
+    this.intervalId = setInterval(() => {
+      this.currentMessageIndex.update(idx => (idx + 1) % this.messages.length);
+    }, 5000);
+  }
+}

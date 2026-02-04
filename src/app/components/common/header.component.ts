@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { fromEvent, Subscription, timer } from 'rxjs';
 import { map, pairwise, share, throttleTime } from 'rxjs/operators';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +21,7 @@ import { map, pairwise, share, throttleTime } from 'rxjs/operators';
             <li><a routerLink="/premium-dashboard" class="btn btn-tier btn-premium">Premium</a></li>
             <li><a routerLink="/agent" class="btn btn-tier btn-agente">Agente</a></li>
             <li><a routerLink="/premium-dashboard" class="btn btn-tier btn-vip">VIP</a></li>
-            <li><a routerLink="/login" class="btn btn-login">Login</a></li>
+            <li><button (click)="modalService.openLogin()" class="btn btn-login">Login</button></li>
           </ul>
         </nav>
       </div>
@@ -115,6 +116,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private inactivitySub: Subscription | null = null;
   private readonly HIDE_DELAY = 180000; // 3 minutes in ms
   private platformId = inject(PLATFORM_ID);
+  public modalService = inject(ModalService);
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {

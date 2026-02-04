@@ -8,7 +8,6 @@ import { DashboardLayoutComponent } from './layouts/dashboard-layout.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { BlogComponent } from './pages/blog/blog.component';
-import { LoginComponent } from './pages/login/login.component';
 import { WizardComponent } from './pages/wizard/wizard.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ClientsComponent } from './pages/clients/clients.component';
@@ -36,7 +35,6 @@ export const routes: Routes = [
     },
 
     // Standalone Routes
-    { path: 'login', component: LoginComponent },
     { path: 'wizard', component: WizardComponent },
 
     // Dashboard Routes with Dashboard Layout

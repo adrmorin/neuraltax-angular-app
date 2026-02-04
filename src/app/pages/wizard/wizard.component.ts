@@ -1,8 +1,10 @@
 import { Component, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { ChatbotComponent } from '../../components/chatbot/chatbot.component';
+import { ModalService } from '../../services/modal.service';
+import { AuthService } from '../../services/auth.service';
 import { TaxDataService } from '../../services/tax-data.service';
 
 @Component({
@@ -13,7 +15,17 @@ import { TaxDataService } from '../../services/tax-data.service';
     styleUrls: ['./wizard.component.css']
 })
 export class WizardComponent {
+    private router = inject(Router);
+    public modalService = inject(ModalService);
+    private authService = inject(AuthService);
     private taxDataService = inject(TaxDataService);
+
+    logout() {
+        this.authService.logout();
+        this.router.navigate(['/']).then(() => {
+            this.modalService.openLogin();
+        });
+    }
     currentStep = signal(1);
     isCalculating = signal(false);
     resultData = signal<{ refund: number; taxDue: number } | null>(null);

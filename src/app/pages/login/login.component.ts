@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormsModule } from '@angular/forms';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
     selector: 'app-login',
@@ -11,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class LoginComponent {
     private authService = inject(AuthService);
+    public modalService = inject(ModalService);
 
     email = '';
     password = '';
@@ -24,6 +26,7 @@ export class LoginComponent {
         this.authService.login(this.email, this.password).subscribe({
             next: () => {
                 this.loading = false;
+                this.modalService.closeLogin();
                 // Navigation is handled inside AuthService.handleSuccessfulLogin
             },
             error: (err) => {

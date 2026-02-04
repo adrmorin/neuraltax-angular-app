@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
     selector: 'app-sidebar',
@@ -13,6 +14,7 @@ import { AuthService } from '../../services/auth.service';
 export class SidebarComponent {
     private authService = inject(AuthService);
     private router = inject(Router);
+    public modalService = inject(ModalService);
     @Input() isCollapsed = false;
     @Input() portalType: 'agent' | 'free' | 'premium' | 'vip' = 'agent';
     @Output() isCollapsedChange = new EventEmitter<boolean>();
@@ -32,7 +34,9 @@ export class SidebarComponent {
     logout(event: Event): void {
         event.preventDefault();
         this.authService.logout();
-        this.router.navigate(['/login']);
+        this.router.navigate(['/']).then(() => {
+            this.modalService.openLogin();
+        });
     }
 
     // Translations (simplified for now, will use ngx-translate later)
