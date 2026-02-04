@@ -140,7 +140,7 @@ import { CommonModule } from '@angular/common';
       transform: translateY(-10px);
     }
     .plan-card.featured {
-      background: #1e293b;
+      background: #1e3a8a; /* Matched with Premium button blue */
       color: white;
       padding: 4rem 2rem;
       margin-top: -1rem;
