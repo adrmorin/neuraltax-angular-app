@@ -83,15 +83,15 @@ import { AuthService } from '../../services/auth.service';
     }
 
     .btn-agente {
-      background-color: var(--accent-gold, #D4AF37) !important;
+      background-color: #064e4b !important;
       color: white !important;
-      border: 2px solid rgba(255, 255, 255, 0.4) !important;
+      border: 2px solid rgba(255, 255, 255, 0.2) !important;
     }
 
     .btn-agente:hover {
-      background-color: var(--accent-gold-hover, #C5A028) !important;
+      background-color: #0d9488 !important;
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+      box-shadow: 0 4px 12px rgba(13, 148, 136, 0.4);
     }
 
     .btn-vip {

@@ -161,14 +161,14 @@ import { CommonModule } from '@angular/common';
       box-shadow: 0 20px 40px rgba(0,0,0,0.2);
     }
     .plan-card.black {
-      background: #000;
+      background: radial-gradient(circle at 75% 15%, #334155 0%, #000000 70%) !important;
       color: white;
       box-shadow: 0 20px 40px rgba(0,0,0,0.3);
     }
     .plan-card.agent {
-      background: #FFFBEB;
-      border: 1px solid #FDE68A;
-      color: #1e293b;
+      background: radial-gradient(circle at 75% 15%, #0d9488 0%, #064e4b 70%) !important;
+      border: 1px solid #134e4a;
+      color: white !important;
     }
     .popular-badge {
       position: absolute;
@@ -251,11 +251,14 @@ import { CommonModule } from '@angular/common';
       color: white;
     }
     .btn-agent {
-      background: #D4AF37;
+      background: #14b8a6;
       color: white;
+      border: 1px solid rgba(255,255,255,0.2);
     }
     .btn-agent:hover {
-      background: #C5A028;
+      background: #0d9488;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(13, 148, 136, 0.4);
     }
     .disclaimer {
       text-align: center;
