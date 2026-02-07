@@ -31,17 +31,21 @@ import { Subscription, timer } from 'rxjs';
       width: auto;
       object-fit: contain;
       position: absolute;
-      top: 0;
+      bottom: 0;
       left: 0;
       opacity: 0;
       transition: opacity 1s ease-in-out;
+      z-index: 1;
     }
     .hero-logo-img.active {
       opacity: 1;
     }
     @media (max-width: 1024px) {
-      .hero-logo-slider { justify-content: center; }
-      .hero-logo-img { right: auto; left: 50%; transform: translateX(-50%); } 
+      .hero-logo-img { 
+        height: 100%;
+        left: 50%; 
+        transform: translateX(-50%); 
+      } 
     }
   `]
 })

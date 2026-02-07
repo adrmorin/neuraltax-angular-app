@@ -333,3 +333,19 @@
         width: 100%;
     }
 }
+
+/* Form Section */
+.form-section {
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-top: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+app-form-1040-principal {
+    display: block;
+    width: 100%;
+}

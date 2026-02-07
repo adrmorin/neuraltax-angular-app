@@ -27,11 +27,12 @@ export class LoginComponent {
             next: () => {
                 this.loading = false;
                 this.modalService.closeLogin();
-                // Navigation is handled inside AuthService.handleSuccessfulLogin
+                console.log('Login successful');
             },
             error: (err) => {
                 this.loading = false;
-                this.error = err.message || 'Error al iniciar sesión';
+                this.error = err.message || 'Error al iniciar sesión. Por favor verifica tus credenciales.';
+                console.error('Login error:', err);
             }
         });
     }

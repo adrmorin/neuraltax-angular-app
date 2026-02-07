@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './guards/auth.guard';
+// import { landingGuard } from './guards/landing.guard';
 
 // Layouts
 import { LayoutComponent } from './layouts/layout.component';
@@ -29,7 +31,7 @@ export const routes: Routes = [
         component: LayoutComponent,
         children: [
             { path: '', component: LandingPageComponent },
-            { path: 'home', component: HomeComponent },
+            { path: 'home', component: HomeComponent, canActivate: [authGuard] },
             { path: 'blog', component: BlogComponent }
         ]
     },
@@ -37,10 +39,11 @@ export const routes: Routes = [
     // Standalone Routes
     { path: 'wizard', component: WizardComponent },
 
-    // Dashboard Routes with Dashboard Layout
+    // Dashboard Routes with Dashboard Layout (Protected)
     {
         path: '',
         component: DashboardLayoutComponent,
+        canActivate: [authGuard], // Protect all dashboard routes
         children: [
             { path: 'dashboard', component: DashboardComponent },
             { path: 'clients', component: ClientsComponent },
@@ -58,5 +61,6 @@ export const routes: Routes = [
     },
 
     // Fallback
+    { path: 'update', loadComponent: () => import('./pages/update/update.component').then(m => m.UpdateComponent) },
     { path: '**', redirectTo: '' }
 ];

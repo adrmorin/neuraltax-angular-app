@@ -1,37 +1,38 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-latest-news',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   template: `
     <section class="latest-news">
       <div class="container">
         <div class="section-actions">
-           <button class="btn-view-all">View All Articles</button>
+           <button class="btn-view-all">{{ 'HOME.NEWS.VIEW_ALL' | translate }}</button>
         </div>
         
         <div class="section-header">
-          <h2 class="section-title">Latest News & Tax Insights</h2>
-          <p class="section-subtitle">Stay updated with the latest US tax regulations, AI-powered tax solutions, and IRS guidelines with our expert articles and comprehensive tax preparation guides.</p>
+          <h2 class="section-title">{{ 'HOME.NEWS.TITLE' | translate }}</h2>
+          <p class="section-subtitle">{{ 'HOME.NEWS.SUBTITLE' | translate }}</p>
         </div>
 
         <div class="news-grid">
-          @for (article of articles; track article.title) {
+          @for (article of articles; track $index) {
             <article class="news-card">
               <div class="card-image">
-                <img [src]="article.image" [alt]="article.title">
-                <span class="category-tag">{{ article.category }}</span>
+                <img [src]="article.image" [alt]="'HOME.NEWS.ARTICLES.' + $index + '.TITLE' | translate">
+                <span class="category-tag">{{ 'HOME.NEWS.ARTICLES.' + $index + '.CATEGORY' | translate }}</span>
               </div>
               <div class="card-content">
                 <div class="article-meta">
                   <span class="date">{{ article.date }}</span>
-                  <span class="read-time">{{ article.readTime }}</span>
+                  <span class="read-time">{{ article.readTime }} {{ 'COMMON.READ_TIME_SUFFIX' | translate }}</span>
                 </div>
-                <h3 class="article-title">{{ article.title }}</h3>
-                <p class="article-excerpt">{{ article.excerpt }}</p>
-                <a href="#" class="read-more">Read More &rsaquo;</a>
+                <h3 class="article-title">{{ 'HOME.NEWS.ARTICLES.' + $index + '.TITLE' | translate }}</h3>
+                <p class="article-excerpt">{{ 'HOME.NEWS.ARTICLES.' + $index + '.EXCERPT' | translate }}</p>
+                <a href="#" class="read-more">{{ 'COMMON.READ_MORE' | translate }} &rsaquo;</a>
               </div>
             </article>
           }
@@ -149,35 +150,23 @@ import { CommonModule } from '@angular/common';
 export class LatestNewsComponent {
   articles = [
     {
-      title: 'AI-Powered Tax Preparation:',
-      excerpt: 'Discover how artificial intelligence is transforming US tax preparation, from automated...',
-      category: 'AI Technology',
       date: 'January 15, 2024',
-      readTime: '6 min read',
+      readTime: '6',
       image: 'assets/news/ai-tech.png'
     },
     {
-      title: 'Maximizing US Tax Deductions: 2024 IRS',
-      excerpt: 'Learn the latest IRS deduction strategies for 2024 and how AI-powered tools can identify...',
-      category: 'IRS Guidelines',
       date: 'January 12, 2024',
-      readTime: '8 min read',
+      readTime: '8',
       image: 'assets/news/irs-guidelines.png'
     },
     {
-      title: 'Form 1040 Made Simple: AI-',
-      excerpt: 'Navigate the complexities of US tax forms with AI assistance. From Schedule C to Form 8829...',
-      category: 'Tax Forms',
       date: 'January 8, 2024',
-      readTime: '7 min read',
+      readTime: '7',
       image: 'assets/news/tax-forms.png'
     },
     {
-      title: 'Smart Tax Technology: The',
-      excerpt: 'Explore cutting-edge tax preparation technology that\'s reshaping the industry. From...',
-      category: 'Innovation',
       date: 'January 5, 2024',
-      readTime: '5 min read',
+      readTime: '5',
       image: 'assets/news/innovation.png'
     }
   ];

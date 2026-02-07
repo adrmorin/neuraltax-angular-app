@@ -1,27 +1,28 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-testimonials',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   template: `
     <section class="testimonials">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title">What Our Clients Say</h2>
-          <p class="section-subtitle">Discover why thousands of businesses and professionals trust Neuraltax for their most important tax needs.</p>
+          <h2 class="section-title">{{ 'HOME.TESTIMONIALS.TITLE' | translate }}</h2>
+          <p class="section-subtitle">{{ 'HOME.TESTIMONIALS.SUBTITLE' | translate }}</p>
         </div>
 
         <div class="testimonials-grid">
-          @for (item of reviews; track item.name) {
+          @for (item of reviews; track $index) {
             <div class="testimonial-card">
               <div class="card-header">
                 <div class="user-info">
                   <div class="user-avatar">{{ item.initials }}</div>
                   <div class="user-details">
                     <h4 class="user-name">{{ item.name }}</h4>
-                    <span class="user-role">{{ item.role }}</span>
+                    <span class="user-role">{{ 'HOME.TESTIMONIALS.REVIEWS.' + $index + '.ROLE' | translate }}</span>
                     <span class="user-company">{{ item.company }}</span>
                   </div>
                 </div>
@@ -31,7 +32,7 @@ import { CommonModule } from '@angular/common';
                   <span class="material-symbols-outlined">star</span>
                 }
               </div>
-              <p class="testimonial-text">"{{ item.text }}"</p>
+              <p class="testimonial-text">"{{ 'HOME.TESTIMONIALS.REVIEWS.' + $index + '.TEXT' | translate }}"</p>
             </div>
           }
         </div>
@@ -141,44 +142,32 @@ export class TestimonialsComponent {
     {
       name: 'Maria Gonzalez',
       initials: 'MG',
-      role: 'Executive Director',
-      company: 'Legal Consulting',
-      text: 'Neuraltax completely revolutionized our tax management. AI automation saved us over 80% of the time in tax preparation.'
+      company: 'Legal Consulting'
     },
     {
       name: 'Carlos Rodriguez',
       initials: 'CR',
-      role: 'CEO',
-      company: 'TechStart Solutions',
-      text: 'The accuracy and speed of Neuraltax is impressive. We haven\'t had a single error in our tax returns since we started using the service.'
+      company: 'TechStart Solutions'
     },
     {
       name: 'Ana Patricia Diaz',
       initials: 'APD',
-      role: 'Independent Accountant',
-      company: 'Freelancer',
-      text: 'As an independent professional, Neuraltax allows me to offer premium quality services to my clients without the traditional technical complexity.'
+      company: 'Freelancer'
     },
     {
       name: 'Roberto Silva',
       initials: 'RS',
-      role: 'CFO',
-      company: 'RSM Investments',
-      text: 'The operational cost savings have been extraordinary. Neuraltax helped us optimize our tax structure in a completely legal manner.'
+      company: 'RSM Investments'
     },
     {
       name: 'Laura Mendoza',
       initials: 'LM',
-      role: 'Financial Manager',
-      company: 'Retail Plus',
-      text: 'The interface is intuitive and the technical support exceptional. I recommend Neuraltax to any company looking to modernize their tax management.'
+      company: 'Retail Plus'
     },
     {
       name: 'David Chen',
       initials: 'DC',
-      role: 'Founder',
-      company: 'Global E-commerce',
-      text: 'Neuraltax perfectly handles the tax complexities of our international business. An indispensable tool for global companies.'
+      company: 'Global E-commerce'
     }
   ];
 }

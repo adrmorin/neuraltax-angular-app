@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 interface ClientConfig {
     title: string;
@@ -12,11 +13,22 @@ interface ClientConfig {
 @Component({
     selector: 'app-dashboard-header',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, TranslateModule],
     templateUrl: './dashboard-header.component.html',
     styleUrl: './dashboard-header.component.css'
 })
 export class DashboardHeaderComponent {
+    private translate = inject(TranslateService);
+
+    get currentLang(): string {
+        return this.translate.currentLang || 'es';
+    }
+
+    switchLanguage(lang: string) {
+        this.translate.use(lang);
+    }
+
+    @Input() showLangSwitcher = false;
     @Input() clientType: 'free' | 'premium' | 'vip' | 'agent' = 'agent';
     @Input() title?: string;
     @Input() subtitle?: string;
@@ -26,31 +38,31 @@ export class DashboardHeaderComponent {
 
     private clientConfigs: Record<string, ClientConfig> = {
         free: {
-            title: 'Dashboard',
-            subtitle: 'Bienvenido al portal Free',
+            title: 'DASHBOARD.HEADER.TITLE',
+            subtitle: 'DASHBOARD.HEADER.SUBTITLE_FREE',
             brandName: 'Neuraltax',
-            brandSubtitle: 'Free',
+            brandSubtitle: 'COMMON.FREE',
             accentColor: '#9ca3af'
         },
         premium: {
-            title: 'Dashboard',
-            subtitle: 'Bienvenido al portal Premium',
+            title: 'DASHBOARD.HEADER.TITLE',
+            subtitle: 'DASHBOARD.HEADER.SUBTITLE_PREMIUM',
             brandName: 'Neuraltax',
-            brandSubtitle: 'Premium',
+            brandSubtitle: 'COMMON.PREMIUM',
             accentColor: '#688071'
         },
         vip: {
-            title: 'Dashboard',
-            subtitle: 'Bienvenido al portal VIP',
+            title: 'DASHBOARD.HEADER.TITLE',
+            subtitle: 'DASHBOARD.HEADER.SUBTITLE_VIP',
             brandName: 'Neuraltax',
-            brandSubtitle: 'VIP',
+            brandSubtitle: 'COMMON.VIP',
             accentColor: '#fbbf24'
         },
         agent: {
-            title: 'Portal de Agentes',
-            subtitle: 'Bienvenido al portal de agentes',
+            title: 'DASHBOARD.HEADER.TITLE_AGENT',
+            subtitle: 'DASHBOARD.HEADER.SUBTITLE_AGENT',
             brandName: 'Neuraltax',
-            brandSubtitle: 'Agente',
+            brandSubtitle: 'COMMON.AGENT',
             accentColor: '#688071'
         }
     };

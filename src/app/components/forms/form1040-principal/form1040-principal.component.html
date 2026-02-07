@@ -1,0 +1,1161 @@
+<div class="irs-form-container">
+    <!-- Header Section -->
+    <div class="irs-header">
+        <div class="irs-form-number">
+            <span class="form-label">Form</span>
+            <span class="form-title">1040</span>
+        </div>
+        <div class="irs-dept-info">
+            <div class="dept-line">Department of the Treasury—Internal Revenue Service</div>
+            <div class="form-year-title">
+                <span class="main-title">U.S. Individual Income Tax Return</span>
+            </div>
+        </div>
+        <div class="irs-year-box">
+            <span class="year-val">2025</span>
+        </div>
+        <div class="irs-omb-box">
+            <span>OMB No. 1545-0074</span>
+            <div class="irs-use-only">IRS Use Only—Do not write or staple in this space.</div>
+        </div>
+    </div>
+
+    <!-- Year Dates -->
+    <div class="irs-year-row">
+        <div class="year-field">
+            For the year Jan. 1–Dec. 31, 2025, or other tax year beginning
+            <input type="text" class="irs-input-inline" style="width: 150px">, 2025, ending
+            <input type="text" class="irs-input-inline" style="width: 150px">, 20
+            <input type="text" class="irs-input-inline" style="width: 40px">
+        </div>
+        <div class="irs-instructions-link">See separate instructions.</div>
+    </div>
+
+    <!-- Section: Checks -->
+    <div class="irs-field-row border-bottom">
+        <div class="irs-checkbox-group">
+            <label><input type="checkbox"> Filed pursuant to section 301.9100-2</label>
+            <label><input type="checkbox"> Combat zone</label>
+        </div>
+        <div class="irs-deceased-group">
+            <input type="checkbox"> Deceased MM <input type="text" class="irs-input-inline mini"> / DD <input
+                type="text" class="irs-input-inline mini"> / YYYY <input type="text" class="irs-input-inline medium">
+            Spouse MM <input type="text" class="irs-input-inline mini"> / DD <input type="text"
+                class="irs-input-inline mini"> / YYYY <input type="text" class="irs-input-inline medium">
+        </div>
+    </div>
+
+    <div class="irs-field-row border-bottom no-padding">
+        <div class="irs-col-left border-right">
+            <div class="irs-field-box">
+                <label><input type="checkbox"> Other</label>
+                <div class="irs-input-line-container">
+                    <input type="text" class="irs-input-full border-top-dotted">
+                </div>
+            </div>
+        </div>
+        <div class="irs-col-right">
+            <!-- Empty space as per form -->
+        </div>
+    </div>
+
+    <!-- Names and SSN -->
+    <div class="irs-grid-names border-bottom">
+        <div class="irs-cell border-right">
+            <label class="irs-top-label" for="firstName">Your first name and middle initial</label>
+            <input type="text" id="firstName" class="irs-cell-input">
+        </div>
+        <div class="irs-cell border-right">
+            <label class="irs-top-label" for="lastName">Last name</label>
+            <input type="text" id="lastName" class="irs-cell-input">
+        </div>
+        <div class="irs-cell irs-ssn-cell">
+            <span class="irs-top-label" id="ssnLabel">Your social security number</span>
+            <div class="irs-ssn-inputs" aria-labelledby="ssnLabel">
+                <input type="text" id="ssn1" class="ssn-part" aria-label="First 3 digits of SSN"> <span
+                    class="ssn-dash">-</span>
+                <input type="text" id="ssn2" class="ssn-part" aria-label="Middle 2 digits of SSN"> <span
+                    class="ssn-dash">-</span>
+                <input type="text" id="ssn3" class="ssn-part" aria-label="Last 4 digits of SSN">
+            </div>
+        </div>
+    </div>
+
+    <div class="irs-grid-names border-bottom">
+        <div class="irs-cell border-right">
+            <label class="irs-top-label" for="spouseFirstName">If joint return, spouse’s first name and middle
+                initial</label>
+            <input type="text" id="spouseFirstName" class="irs-cell-input">
+        </div>
+        <div class="irs-cell border-right">
+            <label class="irs-top-label" for="spouseLastName">Last name</label>
+            <input type="text" id="spouseLastName" class="irs-cell-input">
+        </div>
+        <div class="irs-cell irs-ssn-cell">
+            <span class="irs-top-label" id="spouseSsnLabel">Spouse’s social security number</span>
+            <div class="irs-ssn-inputs" aria-labelledby="spouseSsnLabel">
+                <input type="text" id="spouseSsn1" class="ssn-part" aria-label="First 3 digits of spouse SSN"> <span
+                    class="ssn-dash">-</span>
+                <input type="text" id="spouseSsn2" class="ssn-part" aria-label="Middle 2 digits of spouse SSN"> <span
+                    class="ssn-dash">-</span>
+                <input type="text" id="spouseSsn3" class="ssn-part" aria-label="Last 4 digits of spouse SSN">
+            </div>
+        </div>
+    </div>
+
+    <!-- Address -->
+    <div class="irs-grid-address border-bottom">
+        <div class="irs-cell border-right" style="flex: 2;">
+            <label class="irs-top-label" for="homeAddress">Home address (number and street). If you have a P.O. box, see
+                instructions.</label>
+            <input type="text" id="homeAddress" class="irs-cell-input">
+        </div>
+        <div class="irs-cell border-right" style="width: 120px;">
+            <label class="irs-top-label" for="aptNo">Apt. no.</label>
+            <input type="text" id="aptNo" class="irs-cell-input">
+        </div>
+        <div class="irs-cell irs-side-info" style="flex: 1;">
+            <div class="irs-small-text">
+                <label for="mainHomeUs">Check here if your main home, and your spouse's if filing a joint return, was in
+                    the U.S. for more than
+                    half of 2025.</label>
+                <input type="checkbox" id="mainHomeUs" class="irs-checkbox-side">
+            </div>
+        </div>
+    </div>
+
+    <div class="irs-grid-address border-bottom">
+        <div class="irs-cell border-right" style="flex: 2;">
+            <label class="irs-top-label" for="cityTown">City, town, or post office. If you have a foreign address, also
+                complete spaces
+                below.</label>
+            <input type="text" id="cityTown" class="irs-cell-input">
+        </div>
+        <div class="irs-cell border-right" style="width: 100px;">
+            <label class="irs-top-label" for="state">State</label>
+            <input type="text" id="state" class="irs-cell-input">
+        </div>
+        <div class="irs-cell border-right" style="width: 120px;">
+            <label class="irs-top-label" for="zipCode">ZIP code</label>
+            <input type="text" id="zipCode" class="irs-cell-input">
+        </div>
+        <div class="irs-cell irs-election-box" style="flex: 1;">
+            <div class="election-title">Presidential Election Campaign</div>
+            <div class="election-desc">
+                Check here if you, or your spouse if filing jointly, want $3 to go to this fund. Checking a box below
+                will not change your tax or refund.
+            </div>
+            <div class="election-checks">
+                <label><input type="checkbox" id="campaignYou"> You</label>
+                <label><input type="checkbox" id="campaignSpouse"> Spouse</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Foreign Address -->
+    <div class="irs-grid-address border-bottom">
+        <div class="irs-cell border-right" style="flex: 1.5;">
+            <label class="irs-top-label" for="foreignCountry">Foreign country name</label>
+            <input type="text" id="foreignCountry" class="irs-cell-input">
+        </div>
+        <div class="irs-cell border-right" style="flex: 1.5;">
+            <label class="irs-top-label" for="foreignProvince">Foreign province/state/county</label>
+            <input type="text" id="foreignProvince" class="irs-cell-input">
+        </div>
+        <div class="irs-cell" style="width: 150px;">
+            <label class="irs-top-label" for="foreignPostalCode">Foreign postal code</label>
+            <input type="text" id="foreignPostalCode" class="irs-cell-input">
+        </div>
+    </div>
+
+    <!-- Filing Status Section -->
+    <div class="irs-filing-status-section">
+        <div class="status-label-col">
+            <div class="status-main-label">Filing Status</div>
+            <div class="status-sub-label">Check only one box.</div>
+        </div>
+        <div class="status-options-col">
+            <div class="status-row">
+                <label><input type="checkbox"> Single</label>
+                <label><input type="checkbox"> Head of household (HOH)</label>
+            </div>
+            <div class="status-row">
+                <label><input type="checkbox"> Married filing jointly (even if only one had income)</label>
+                <label><input type="checkbox"> Qualifying surviving spouse (QSS)</label>
+            </div>
+            <div class="status-row">
+                <label><input type="checkbox"> Married filing separately (MFS). Enter spouse’s SSN above and full name
+                    here: </label>
+            </div>
+            <div class="status-name-input-line">
+                <input type="text" class="irs-input-full dotted-bottom">
+            </div>
+            <div class="status-row-h-extra">
+                If you checked the HOH or QSS box, enter the child’s name if the qualifying person is a child but not
+                your dependent:
+            </div>
+            <div class="status-name-input-line">
+                <input type="text" class="irs-input-full dotted-bottom">
+            </div>
+            <div class="status-row-alien">
+                <label><input type="checkbox"> If treating a nonresident alien or dual-status alien spouse as a U.S.
+                    resident for the entire tax year, check the box and enter their name (see instructions and attach
+                    statement if required):</label>
+                <input type="text" class="irs-input-full dotted-bottom">
+            </div>
+        </div>
+    </div>
+
+    <!-- Digital Assets Section -->
+    <div class="irs-digital-assets-row border-bottom border-top">
+        <div class="digital-assets-title">Digital Assets</div>
+        <div class="digital-assets-question">
+            At any time during 2025, did you: (a) receive (as a reward, award, or payment for property or services); or
+            (b) sell, exchange, or otherwise dispose of a digital asset (or a financial interest in a digital asset)?
+            (See instructions.)
+        </div>
+        <div class="digital-assets-checks">
+            <label for="digitalYes"><input type="checkbox" id="digitalYes"> Yes</label>
+            <label for="digitalNo"><input type="checkbox" id="digitalNo"> No</label>
+        </div>
+    </div>
+
+    <!-- Dependents Section -->
+    <div class="irs-dependents-section border-bottom">
+        <div class="dependents-sidebar">
+            <div class="dep-main-label">Dependents</div>
+            <div class="dep-sub-label">(see instructions)</div>
+            <div class="dep-extra-info">
+                <label for="moreThanFour">If more than four dependents, see instructions and check here</label>
+                <input type="checkbox" id="moreThanFour">
+            </div>
+        </div>
+        <div class="dependents-table-container">
+            <table class="irs-dependents-table">
+                <thead>
+                    <tr>
+                        <th class="empty-th"></th>
+                        <th>Dependent 1</th>
+                        <th>Dependent 2</th>
+                        <th>Dependent 3</th>
+                        <th>Dependent 4</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="row-label">(1) First name</td>
+                        <td><input type="text" class="irs-table-input"></td>
+                        <td><input type="text" class="irs-table-input"></td>
+                        <td><input type="text" class="irs-table-input"></td>
+                        <td><input type="text" class="irs-table-input"></td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">(2) Last name</td>
+                        <td><input type="text" class="irs-table-input"></td>
+                        <td><input type="text" class="irs-table-input"></td>
+                        <td><input type="text" class="irs-table-input"></td>
+                        <td><input type="text" class="irs-table-input"></td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">(3) SSN</td>
+                        <td>
+                            <div class="ssn-grid"><input type="text"> <input type="text"> <input type="text"></div>
+                        </td>
+                        <td>
+                            <div class="ssn-grid"><input type="text"> <input type="text"> <input type="text"></div>
+                        </td>
+                        <td>
+                            <div class="ssn-grid"><input type="text"> <input type="text"> <input type="text"></div>
+                        </td>
+                        <td>
+                            <div class="ssn-grid"><input type="text"> <input type="text"> <input type="text"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">(4) Relationship</td>
+                        <td><input type="text" class="irs-table-input"></td>
+                        <td><input type="text" class="irs-table-input"></td>
+                        <td><input type="text" class="irs-table-input"></td>
+                        <td><input type="text" class="irs-table-input"></td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">(5) Check if lived with you more than half of 2025</td>
+                        <td>
+                            <div class="table-sub-row">(a) <input type="checkbox"> Yes</div>
+                            <div class="table-sub-row">(b) <input type="checkbox"> And in the U.S.</div>
+                        </td>
+                        <td>
+                            <div class="table-sub-row">(a) <input type="checkbox"> Yes</div>
+                            <div class="table-sub-row">(b) <input type="checkbox"> And in the U.S.</div>
+                        </td>
+                        <td>
+                            <div class="table-sub-row">(a) <input type="checkbox"> Yes</div>
+                            <div class="table-sub-row">(b) <input type="checkbox"> And in the U.S.</div>
+                        </td>
+                        <td>
+                            <div class="table-sub-row">(a) <input type="checkbox"> Yes</div>
+                            <div class="table-sub-row">(b) <input type="checkbox"> And in the U.S.</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">(6) Check if</td>
+                        <td>
+                            <div class="table-sub-row"><input type="checkbox"> Full-time student</div>
+                            <div class="table-sub-row"><input type="checkbox"> Permanently and totally disabled</div>
+                        </td>
+                        <td>
+                            <div class="table-sub-row"><input type="checkbox"> Full-time student</div>
+                            <div class="table-sub-row"><input type="checkbox"> Permanently and totally disabled</div>
+                        </td>
+                        <td>
+                            <div class="table-sub-row"><input type="checkbox"> Full-time student</div>
+                            <div class="table-sub-row"><input type="checkbox"> Permanently and totally disabled</div>
+                        </td>
+                        <td>
+                            <div class="table-sub-row"><input type="checkbox"> Full-time student</div>
+                            <div class="table-sub-row"><input type="checkbox"> Permanently and totally disabled</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">(7) Credits</td>
+                        <td>
+                            <div class="table-sub-row"><input type="checkbox"> Child tax credit</div>
+                            <div class="table-sub-row"><input type="checkbox"> Credit for other dependents</div>
+                        </td>
+                        <td>
+                            <div class="table-sub-row"><input type="checkbox"> Child tax credit</div>
+                            <div class="table-sub-row"><input type="checkbox"> Credit for other dependents</div>
+                        </td>
+                        <td>
+                            <div class="table-sub-row"><input type="checkbox"> Child tax credit</div>
+                            <div class="table-sub-row"><input type="checkbox"> Credit for other dependents</div>
+                        </td>
+                        <td>
+                            <div class="table-sub-row"><input type="checkbox"> Child tax credit</div>
+                            <div class="table-sub-row"><input type="checkbox"> Credit for other dependents</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="irs-extra-checks-row border-bottom">
+        <div class="irs-long-check-text">
+            <label for="mfsHohCheck">
+                <input type="checkbox" id="mfsHohCheck"> Check if your filing status is MFS or HOH and you lived apart
+                from your spouse for the last 6 months of 2025, or you are legally separated according to your state law
+                under a written separation agreement or a decree of separate maintenance and you did not live in the
+                same household as your spouse at the end of 2025.
+            </label>
+        </div>
+    </div>
+
+    <!-- Income Section -->
+    <div class="irs-income-section">
+        <div class="income-sidebar">
+            <div class="income-main-label">Income</div>
+            <div class="attach-box">
+                <strong>Attach Form(s) W-2 here. Also attach Forms W-2G and 1099-R if tax was withheld.</strong>
+                <p>If you did not get a Form W-2, see instructions.</p>
+            </div>
+            <div class="sch-b-bubble">
+                Attach Sch. B if required.
+            </div>
+        </div>
+
+        <div class="income-lines-container">
+            <!-- Lines 1a-1z -->
+            <div class="irs-row-line">
+                <div class="line-num">1a</div>
+                <div class="line-text">Total amount from Form(s) W-2, box 1 (see instructions)</div>
+                <div class="line-box-right border-left border-bottom">1a</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+            <div class="irs-row-line">
+                <div class="line-num">b</div>
+                <div class="line-text">Household employee wages not reported on Form(s) W-2</div>
+                <div class="line-box-right border-left border-bottom">1b</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+            <div class="irs-row-line">
+                <div class="line-num">c</div>
+                <div class="line-text">Tip income not reported on line 1a (see instructions)</div>
+                <div class="line-box-right border-left border-bottom">1c</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+            <div class="irs-row-line">
+                <div class="line-num">d</div>
+                <div class="line-text">Medicaid waiver payments not reported on Form(s) W-2 (see instructions)</div>
+                <div class="line-box-right border-left border-bottom">1d</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+            <div class="irs-row-line">
+                <div class="line-num">e</div>
+                <div class="line-text">Taxable dependent care benefits from Form 2441, line 26</div>
+                <div class="line-box-right border-left border-bottom">1e</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+            <div class="irs-row-line">
+                <div class="line-num">f</div>
+                <div class="line-text">Employer-provided adoption benefits from Form 8839, line 31</div>
+                <div class="line-box-right border-left border-bottom">1f</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+            <div class="irs-row-line">
+                <div class="line-num">g</div>
+                <div class="line-text">Wages from Form 8919, line 6</div>
+                <div class="line-box-right border-left border-bottom">1g</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+            <div class="irs-row-line">
+                <div class="line-num">h</div>
+                <div class="line-text">Other earned income (see instructions). Enter type and amount: <input type="text"
+                        class="irs-input-inline" style="width: 200px"></div>
+                <div class="line-box-right border-left border-bottom">1h</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+            <div class="irs-row-line bg-alt">
+                <div class="line-num">i</div>
+                <div class="line-text">Nontaxable combat pay election (see instructions)</div>
+                <div class="line-box-mid border-left border-bottom">1i</div>
+                <div class="line-input-mid border-bottom"><input type="text"></div>
+                <div class="line-box-right border-left border-bottom"></div>
+                <div class="line-input-right border-bottom"></div>
+            </div>
+            <div class="irs-row-line">
+                <div class="line-num">z</div>
+                <div class="line-text">Add lines 1a through 1h</div>
+                <div class="line-box-right border-left border-bottom">1z</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+
+            <!-- Line 2 -->
+            <div class="irs-row-line">
+                <div class="line-num">2a</div>
+                <div class="line-text">Tax-exempt interest</div>
+                <div class="line-box-mid border-left border-bottom">2a</div>
+                <div class="line-input-mid border-bottom"><input type="text"></div>
+                <div class="line-box-right border-left border-bottom"><b>b</b> Taxable interest</div>
+                <div class="line-box-num border-left border-bottom">2b</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+
+            <!-- Line 3 -->
+            <div class="irs-row-line">
+                <div class="line-num">3a</div>
+                <div class="line-text">Qualified dividends</div>
+                <div class="line-box-mid border-left border-bottom">3a</div>
+                <div class="line-input-mid border-bottom"><input type="text"></div>
+                <div class="line-box-right border-left border-bottom"><b>b</b> Ordinary dividends</div>
+                <div class="line-box-num border-left border-bottom">3b</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+            <div class="irs-row-line bg-alt">
+                <div class="line-num">c</div>
+                <div class="line-text">Check if your child’s dividends are included in <b>1</b> <input type="checkbox">
+                    Line 3a <b>2</b> <input type="checkbox"> Line 3b</div>
+                <div class="line-box-right border-left border-bottom"></div>
+                <div class="line-input-right border-bottom"></div>
+            </div>
+
+            <!-- Line 4 -->
+            <div class="irs-row-line">
+                <div class="line-num">4a</div>
+                <div class="line-text">IRA distributions</div>
+                <div class="line-box-mid border-left border-bottom">4a</div>
+                <div class="line-input-mid border-bottom"><input type="text"></div>
+                <div class="line-box-right border-left border-bottom"><b>b</b> Taxable amount</div>
+                <div class="line-box-num border-left border-bottom">4b</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+            <div class="irs-row-line bg-alt">
+                <div class="line-num">c</div>
+                <div class="line-text">Check if (see instructions) <b>1</b> <input type="checkbox"> Rollover <b>2</b>
+                    <input type="checkbox"> QCD <b>3</b> <input type="text" class="irs-input-inline"
+                        style="width: 40px">
+                </div>
+                <div class="line-box-right border-left border-bottom"></div>
+                <div class="line-input-right border-bottom"></div>
+            </div>
+
+            <!-- Line 5 -->
+            <div class="irs-row-line">
+                <div class="line-num">5a</div>
+                <div class="line-text">Pensions and annuities</div>
+                <div class="line-box-mid border-left border-bottom">5a</div>
+                <div class="line-input-mid border-bottom"><input type="text"></div>
+                <div class="line-box-right border-left border-bottom"><b>b</b> Taxable amount</div>
+                <div class="line-box-num border-left border-bottom">5b</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+            <div class="irs-row-line bg-alt">
+                <div class="line-num">c</div>
+                <div class="line-text">Check if (see instructions) <b>1</b> <input type="checkbox"> Rollover <b>2</b>
+                    <input type="checkbox"> PSO <b>3</b> <input type="text" class="irs-input-inline"
+                        style="width: 40px">
+                </div>
+                <div class="line-box-right border-left border-bottom"></div>
+                <div class="line-input-right border-bottom"></div>
+            </div>
+
+            <!-- Line 6 -->
+            <div class="irs-row-line">
+                <div class="line-num">6a</div>
+                <div class="line-text">Social security benefits</div>
+                <div class="line-box-mid border-left border-bottom">6a</div>
+                <div class="line-input-mid border-bottom"><input type="text"></div>
+                <div class="line-box-right border-left border-bottom"><b>b</b> Taxable amount</div>
+                <div class="line-box-num border-left border-bottom">6b</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+            <div class="irs-row-line bg-alt">
+                <div class="line-num">c</div>
+                <div class="line-text">If you elect to use the lump-sum election method, check here (see instructions)
+                    <input type="checkbox">
+                </div>
+                <div class="line-box-right border-left border-bottom"></div>
+                <div class="line-input-right border-bottom"></div>
+            </div>
+            <div class="irs-row-line bg-alt">
+                <div class="line-num">d</div>
+                <div class="line-text">If you are married filing separately and lived apart from your spouse the entire
+                    year (see inst.), check here <input type="checkbox"></div>
+                <div class="line-box-right border-left border-bottom"></div>
+                <div class="line-input-right border-bottom"></div>
+            </div>
+
+            <!-- Line 7 -->
+            <div class="irs-row-line">
+                <div class="line-num">7a</div>
+                <div class="line-text">Capital gain or (loss). Attach Schedule D if required</div>
+                <div class="line-box-right border-left border-bottom">7a</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+            <div class="irs-row-line bg-alt">
+                <div class="line-num">b</div>
+                <div class="line-text">Check if: <input type="checkbox"> Schedule D not required <input type="checkbox">
+                    Includes child’s capital gain or (loss) <input type="text" class="irs-input-inline"
+                        style="width: 100px"></div>
+                <div class="line-box-right border-left border-bottom"></div>
+                <div class="line-input-right border-bottom"></div>
+            </div>
+
+            <!-- Line 8 -->
+            <div class="irs-row-line">
+                <div class="line-num">8</div>
+                <div class="line-text">Additional income from Schedule 1, line 10</div>
+                <div class="line-box-right border-left border-bottom">8</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+
+            <!-- Line 9 -->
+            <div class="irs-row-line bold-text">
+                <div class="line-num">9</div>
+                <div class="line-text">Add lines 1z, 2b, 3b, 4b, 5b, 6b, 7a, and 8. This is your <b>total income</b>
+                </div>
+                <div class="line-box-right border-left border-bottom">9</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+
+            <!-- Line 10 -->
+            <div class="irs-row-line">
+                <div class="line-num">10</div>
+                <div class="line-text">Adjustments to income from Schedule 1, line 26</div>
+                <div class="line-box-right border-left border-bottom">10</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+
+            <!-- Line 11a -->
+            <div class="irs-row-line bold-text highlighted-row">
+                <div class="line-num">11a</div>
+                <div class="line-text">Subtract line 10 from line 9. This is your <b>adjusted gross income</b></div>
+                <div class="line-box-right border-left border-bottom">11a</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tax and Credits Section -->
+    <div class="irs-tax-credits-section">
+        <div class="tax-sidebar">
+            <div class="tax-main-label">Tax and Credits</div>
+            <div class="deduction-bubble">
+                <strong>Standard deduction for —</strong>
+                <ul>
+                    <li>Single or Married filing separately, $15,750</li>
+                    <li>Married filing jointly or Qualifying surviving spouse, $31,500</li>
+                    <li>Head of household, $23,625</li>
+                    <li>If you checked a box on line 12a, 12b, 12c, or 12d, see inst.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tax-lines-container">
+            <!-- Line 11b -->
+            <div class="irs-row-line">
+                <div class="line-num">11b</div>
+                <div class="line-text">Amount from line 11a (adjusted gross income)</div>
+                <div class="line-box-right border-left border-bottom">11b</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+
+            <!-- Line 12a-d -->
+            <div class="irs-row-line">
+                <div class="line-num">12a</div>
+                <div class="line-text">Someone can claim: <label for="claimYou"><input type="checkbox" id="claimYou">
+                        You as a dependent</label> <label for="claimSpouse"><input type="checkbox" id="claimSpouse">
+                        Your spouse as a dependent</label></div>
+                <div class="line-box-right border-left"></div>
+                <div class="line-input-right"></div>
+            </div>
+            <div class="irs-row-line">
+                <div class="line-num">b</div>
+                <div class="line-text"><label for="spouseSeparate"><input type="checkbox" id="spouseSeparate"> Spouse
+                        itemizes on a separate return</label></div>
+                <div class="line-num" style="margin-left: 10px;">c</div>
+                <div class="line-text"><label for="dualStatus"><input type="checkbox" id="dualStatus"> You were a
+                        dual-status alien</label></div>
+                <div class="line-box-right border-left"></div>
+                <div class="line-input-right"></div>
+            </div>
+            <div class="irs-row-line">
+                <div class="line-num">d</div>
+                <div class="line-text">
+                    <strong>You:</strong> <label for="bornBefore1961"><input type="checkbox" id="bornBefore1961"> Were
+                        born before January 2, 1961</label> <label for="areBlind"><input type="checkbox" id="areBlind">
+                        Are blind</label>
+                    <br>
+                    <strong>Spouse:</strong> <label for="spouseBornBefore1961"><input type="checkbox"
+                            id="spouseBornBefore1961"> Was born before January 2, 1961</label> <label
+                        for="spouseAreBlind"><input type="checkbox" id="spouseAreBlind"> Is blind</label>
+                </div>
+                <div class="line-box-right border-left border-bottom"></div>
+                <div class="line-input-right border-bottom"></div>
+            </div>
+
+            <!-- Line 12e -->
+            <div class="irs-row-line bold-text">
+                <div class="line-num">e</div>
+                <div class="line-text">Standard deduction or itemized deductions (from Schedule A)</div>
+                <div class="line-box-right border-left border-bottom">12e</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+
+            <!-- Line 13a -->
+            <div class="irs-row-line">
+                <div class="line-num">13a</div>
+                <div class="line-text">Qualified business income deduction from Form 8995 or Form 8995-A</div>
+                <div class="line-box-right border-left border-bottom">13a</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+
+            <!-- Line 13b -->
+            <div class="irs-row-line">
+                <div class="line-num">b</div>
+                <div class="line-text">Additional deductions from Schedule 1-A, line 38</div>
+                <div class="line-box-right border-left border-bottom">13b</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+
+            <!-- Line 14 -->
+            <div class="irs-row-line">
+                <div class="line-num">14</div>
+                <div class="line-text">Add lines 12e, 13a, and 13b</div>
+                <div class="line-box-right border-left border-bottom">14</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+
+            <!-- Line 15 -->
+            <div class="irs-row-line bold-text">
+                <div class="line-num">15</div>
+                <div class="line-text">Subtract line 14 from line 11b. If zero or less, enter -0-. This is your
+                    <b>taxable income</b>
+                </div>
+                <div class="line-box-right border-left border-bottom">15</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+
+            <!-- Line 16 -->
+            <div class="irs-row-line">
+                <div class="line-num">16</div>
+                <div class="line-text">
+                    Tax (see instructions). Check if any from Form(s):
+                    <b>1</b> <label for="form8814"><input type="checkbox" id="form8814"> 8814</label>
+                    <b>2</b> <label for="form4972"><input type="checkbox" id="form4972"> 4972</label>
+                    <b>3</b> <input type="checkbox" id="formOther"> <input type="text" class="irs-input-inline"
+                        style="width: 80px">
+                </div>
+                <div class="line-box-right border-left border-bottom">16</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+
+            <!-- Line 17 -->
+            <div class="irs-row-line">
+                <div class="line-num">17</div>
+                <div class="line-text">Amount from Schedule 2, line 3</div>
+                <div class="line-box-right border-left border-bottom">17</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+
+            <!-- Line 18 -->
+            <div class="irs-row-line">
+                <div class="line-num">18</div>
+                <div class="line-text">Add lines 16 and 17</div>
+                <div class="line-box-right border-left border-bottom">18</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+
+            <!-- Line 19 -->
+            <div class="irs-row-line">
+                <div class="line-num">19</div>
+                <div class="line-text">Child tax credit or credit for other dependents from Schedule 8812</div>
+                <div class="line-box-right border-left border-bottom">19</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+
+            <!-- Line 20 -->
+            <div class="irs-row-line">
+                <div class="line-num">20</div>
+                <div class="line-text">Amount from Schedule 3, line 8</div>
+                <div class="line-box-right border-left border-bottom">20</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+
+            <!-- Line 21 -->
+            <div class="irs-row-line">
+                <div class="line-num">21</div>
+                <div class="line-text">Add lines 19 and 20</div>
+                <div class="line-box-right border-left border-bottom">21</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+
+            <!-- Line 22 -->
+            <div class="irs-row-line">
+                <div class="line-num">22</div>
+                <div class="line-text">Subtract line 21 from line 18. If zero or less, enter -0-</div>
+                <div class="line-box-right border-left border-bottom">22</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+
+            <!-- Line 23 -->
+            <div class="irs-row-line">
+                <div class="line-num">23</div>
+                <div class="line-text">Other taxes, including self-employment tax, from Schedule 2, line 21</div>
+                <div class="line-box-right border-left border-bottom">23</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+
+            <!-- Line 24 -->
+            <div class="irs-row-line bold-text highlighted-row">
+                <div class="line-num">24</div>
+                <div class="line-text">Add lines 22 and 23. This is your <b>total tax</b></div>
+                <div class="line-box-right border-left border-bottom">24</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payments and Refundable Credits Section -->
+    <div class="irs-payments-section">
+        <div class="payments-sidebar">
+            <div class="payments-main-label">Payments and Refundable Credits</div>
+            <div class="eic-bubble">
+                If you have a qualifying child, you may need to attach Sch. EIC.
+            </div>
+        </div>
+
+        <div class="payments-lines-container">
+            <div class="irs-row-line">
+                <div class="line-num">25</div>
+                <div class="line-text">Federal income tax withheld from:</div>
+                <div class="line-box-right border-left"></div>
+                <div class="line-input-right"></div>
+            </div>
+            <div class="irs-row-line">
+                <div class="line-num" style="padding-left: 20px;">a</div>
+                <div class="line-text">Form(s) W-2</div>
+                <div class="line-box-mid border-left border-bottom">25a</div>
+                <div class="line-input-mid border-bottom"><input type="text"></div>
+                <div class="line-box-right border-left"></div>
+                <div class="line-input-right"></div>
+            </div>
+            <div class="irs-row-line">
+                <div class="line-num" style="padding-left: 20px;">b</div>
+                <div class="line-text">Form(s) 1099</div>
+                <div class="line-box-mid border-left border-bottom">25b</div>
+                <div class="line-input-mid border-bottom"><input type="text"></div>
+                <div class="line-box-right border-left"></div>
+                <div class="line-input-right"></div>
+            </div>
+            <div class="irs-row-line">
+                <div class="line-num" style="padding-left: 20px;">c</div>
+                <div class="line-text">Other forms (see instructions)</div>
+                <div class="line-box-mid border-left border-bottom">25c</div>
+                <div class="line-input-mid border-bottom"><input type="text"></div>
+                <div class="line-box-right border-left"></div>
+                <div class="line-input-right"></div>
+            </div>
+            <div class="irs-row-line">
+                <div class="line-num" style="padding-left: 20px;">d</div>
+                <div class="line-text">Add lines 25a through 25c</div>
+                <div class="line-box-right border-left border-bottom">25d</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+            <div class="irs-row-line">
+                <div class="line-num">26</div>
+                <div class="line-text">2025 estimated tax payments and amount applied from 2024 return</div>
+                <div class="line-box-right border-left border-bottom">26</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+            <div class="irs-row-line bg-alt">
+                <div class="line-num"></div>
+                <div class="line-text">
+                    If you made estimated tax payments with your former spouse in 2025, enter their SSN (see
+                    instructions):
+                    <div class="irs-ssn-inputs" style="display: inline-flex; margin-left:10px;">
+                        <input type="text" class="ssn-part" id="formerSpouseSsn1" aria-label="Former spouse SSN part 1">
+                        -
+                        <input type="text" class="ssn-part" id="formerSpouseSsn2" aria-label="Former spouse SSN part 2">
+                        -
+                        <input type="text" class="ssn-part" id="formerSpouseSsn3" aria-label="Former spouse SSN part 3">
+                    </div>
+                </div>
+                <div class="line-box-right border-left"></div>
+                <div class="line-input-right"></div>
+            </div>
+            <div class="irs-row-line">
+                <div class="line-num">27a</div>
+                <div class="line-text">Earned income credit (EIC)</div>
+                <div class="line-box-mid border-left border-bottom">27a</div>
+                <div class="line-input-mid border-bottom"><input type="text"></div>
+                <div class="line-box-right border-left"></div>
+                <div class="line-input-right"></div>
+            </div>
+            <div class="irs-row-line bg-alt">
+                <div class="line-num">b</div>
+                <div class="line-text">Clergy filing Schedule SE (see instructions)</div>
+                <div class="line-box-num border-left"
+                    style="background-color: white; border-bottom: 1px solid #77caca;"><input type="checkbox"></div>
+                <div class="line-box-right border-left"></div>
+                <div class="line-input-right"></div>
+            </div>
+            <div class="irs-row-line bg-alt">
+                <div class="line-num">c</div>
+                <div class="line-text">If you do not want to claim the EIC, check here</div>
+                <div class="line-box-num border-left"
+                    style="background-color: white; border-bottom: 1px solid #77caca;"><input type="checkbox"></div>
+                <div class="line-text"><label for="noEICCheck">If you do not want to claim the EIC, check here</label>
+                </div>
+                <div class="line-box-num border-left"
+                    style="background-color: white; border-bottom: 1px solid #77caca;"><input type="checkbox"
+                        id="noEICCheck"></div>
+                <div class="line-box-right border-left"></div>
+                <div class="line-input-right"></div>
+            </div>
+            <div class="irs-row-line">
+                <div class="line-num">28</div>
+                <div class="line-text"><label for="noActcCheck">Additional child tax credit (ACTC) from Schedule 8812.
+                        If you do not want to
+                        claim the ACTC, check here</label> <input type="checkbox" id="noActcCheck"
+                        style="margin-left: 10px;"></div>
+                <div class="line-box-right border-left border-bottom">28</div>
+                <div class="line-input-right border-bottom"><input type="text" id="line28"></div>
+            </div>
+            <div class="irs-row-line">
+                <div class="line-num">29</div>
+                <div class="line-text">American opportunity credit from Form 8863, line 8</div>
+                <div class="line-box-right border-left border-bottom">29</div>
+                <div class="line-input-right border-bottom"><input type="text" id="line29"></div>
+            </div>
+            <div class="irs-row-line">
+                <div class="line-num">30</div>
+                <div class="line-text">Refundable adoption credit from Form 8839, line 13</div>
+                <div class="line-box-right border-left border-bottom">30</div>
+                <div class="line-input-right border-bottom"><input type="text" id="line30"></div>
+            </div>
+            <div class="irs-row-line">
+                <div class="line-num">31</div>
+                <div class="line-text">Amount from Schedule 3, line 15</div>
+                <div class="line-box-right border-left border-bottom">31</div>
+                <div class="line-input-right border-bottom"><input type="text" id="line31"></div>
+            </div>
+            <div class="irs-row-line bold-text highlighted-row">
+                <div class="line-num">32</div>
+                <div class="line-text">Add lines 27a, 28, 29, 30, and 31. These are your <b>total other payments and
+                        refundable credits</b></div>
+                <div class="line-box-right border-left border-bottom">32</div>
+                <div class="line-input-right border-bottom"><input type="text" id="line32"></div>
+            </div>
+            <div class="irs-row-line bold-text highlighted-row">
+                <div class="line-num">33</div>
+                <div class="line-text">Add lines 25d, 26, and 32. These are your <b>total payments</b></div>
+                <div class="line-box-right border-left border-bottom">33</div>
+                <div class="line-input-right border-bottom"><input type="text" id="line33"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Refund Section -->
+    <div class="irs-refund-section">
+        <div class="refund-sidebar">
+            <div class="refund-main-label">Refund</div>
+            <div class="refund-sub-label">Direct deposit? See instructions.</div>
+        </div>
+        <div class="refund-lines-container">
+            <div class="irs-row-line bold-text">
+                <div class="line-num">34</div>
+                <div class="line-text">If line 33 is more than line 24, subtract line 24 from line 33. This is the
+                    amount you <b>overpaid</b></div>
+                <div class="line-box-right border-left border-bottom">34</div>
+                <div class="line-input-right border-bottom"><input type="text" id="line34"></div>
+            </div>
+            <div class="irs-row-line">
+                <div class="line-num">35a</div>
+                <div class="line-text"><label for="refund8888">Amount of line 34 you want <b>refunded to you</b>. If
+                        Form 8888 is attached,
+                        check here</label> <input type="checkbox" id="refund8888"></div>
+                <div class="line-box-right border-left border-bottom">35a</div>
+                <div class="line-input-right border-bottom"><input type="text" id="line35a"></div>
+            </div>
+            <div class="irs-row-line bg-alt">
+                <div class="line-num">b</div>
+                <div class="line-text">
+                    Routing number
+                    <div class="irs-grid-inputs routing-grid" style="display:inline-flex; margin: 0 10px;"
+                        aria-label="Routing number">
+                        <input type="text" class="grid-char" aria-label="Digit 1"> <input type="text" class="grid-char"
+                            aria-label="Digit 2"> <input type="text" class="grid-char" aria-label="Digit 3"> <input
+                            type="text" class="grid-char" aria-label="Digit 4"> <input type="text" class="grid-char"
+                            aria-label="Digit 5"> <input type="text" class="grid-char" aria-label="Digit 6"> <input
+                            type="text" class="grid-char" aria-label="Digit 7"> <input type="text" class="grid-char"
+                            aria-label="Digit 8"> <input type="text" class="grid-char" aria-label="Digit 9">
+                    </div>
+                    <b>c</b> Type: <label for="typeChecking"><input type="checkbox" id="typeChecking"> Checking</label>
+                    <label for="typeSavings"><input type="checkbox" id="typeSavings">
+                        Savings</label>
+                </div>
+                <div class="line-box-right border-left"></div>
+                <div class="line-input-right"></div>
+            </div>
+            <div class="irs-row-line bg-alt">
+                <div class="line-num">d</div>
+                <div class="line-text">
+                    Account number
+                    <div class="irs-grid-inputs account-grid" style="display:inline-flex; margin-left: 10px;">
+                        <input type="text" class="grid-char"> <input type="text" class="grid-char"> <input type="text"
+                            class="grid-char"> <input type="text" class="grid-char"> <input type="text"
+                            class="grid-char"> <input type="text" class="grid-char"> <input type="text"
+                            class="grid-char"> <input type="text" class="grid-char"> <input type="text"
+                            class="grid-char"> <input type="text" class="grid-char"> <input type="text"
+                            class="grid-char"> <input type="text" class="grid-char"> <input type="text"
+                            class="grid-char"> <input type="text" class="grid-char"> <input type="text"
+                            class="grid-char"> <input type="text" class="grid-char"> <input type="text"
+                            class="grid-char">
+                    </div>
+                </div>
+                <div class="line-box-right border-left"></div>
+                <div class="line-input-right"></div>
+            </div>
+            <div class="irs-row-line">
+                <div class="line-num">36</div>
+                <div class="line-text"><label for="line36">Amount of line 34 you want <b>applied to your 2026 estimated
+                            tax</b></label></div>
+                <div class="line-box-mid border-left border-bottom">36</div>
+                <div class="line-input-mid border-bottom"><input type="text" id="line36"></div>
+                <div class="line-box-right border-left"></div>
+                <div class="line-input-right"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Amount You Owe Section -->
+    <div class="irs-owe-section">
+        <div class="owe-sidebar">
+            <div class="owe-main-label">Amount You Owe</div>
+        </div>
+        <div class="owe-lines-container">
+            <div class="irs-row-line bold-text">
+                <div class="line-num">37</div>
+                <div class="line-text">Subtract line 33 from line 24. This is the <b>amount you owe.</b><br>For details
+                    on how to pay, go to <i>www.irs.gov/Payments</i> or see instructions.</div>
+                <div class="line-box-right border-left border-bottom">37</div>
+                <div class="line-input-right border-bottom"><input type="text"></div>
+            </div>
+            <div class="irs-row-line">
+                <div class="line-num">38</div>
+                <div class="line-text">Estimated tax penalty (see instructions)</div>
+                <div class="line-box-mid border-left border-bottom">38</div>
+                <div class="line-input-mid border-bottom"><input type="text"></div>
+                <div class="line-box-right border-left"></div>
+                <div class="line-input-right"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Third Party Designee Section -->
+    <div class="irs-designee-section border-top">
+        <div class="designee-sidebar">
+            <div class="designee-main-label">Third Party Designee</div>
+        </div>
+        <div class="designee-content">
+            <div class="designee-top-row">
+                Do you want to allow another person to discuss this return with the IRS? See instructions.
+                <label for="designeeYes"><input type="checkbox" id="designeeYes"> Yes. Complete below.</label> <label
+                    for="designeeNo"><input type="checkbox" id="designeeNo"> No</label>
+            </div>
+            <div class="designee-grid">
+                <div class="designee-cell border-right">
+                    <label for="designeeName">Designee's name</label>
+                    <input type="text" id="designeeName">
+                </div>
+                <div class="designee-cell border-right">
+                    <label for="designeePhone">Phone no.</label>
+                    <input type="text" id="designeePhone">
+                </div>
+                <div class="designee-cell">
+                    <div id="designeePinLabel">Personal identification number (PIN)</div>
+                    <div class="irs-grid-inputs pin-grid" aria-labelledby="designeePinLabel">
+                        <input type="text" class="grid-char" aria-label="PIN digit 1"> <input type="text"
+                            class="grid-char" aria-label="PIN digit 2"> <input type="text" class="grid-char"
+                            aria-label="PIN digit 3"> <input type="text" class="grid-char" aria-label="PIN digit 4">
+                        <input type="text" class="grid-char" aria-label="PIN digit 5">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign Here Section -->
+    <div class="irs-sign-section border-top">
+        <div class="sign-sidebar">
+            <div class="sign-main-label">Sign Here</div>
+            <div class="sign-sub-label">Joint return? See instructions. Keep a copy for your records.</div>
+        </div>
+        <div class="sign-content">
+            <div class="sign-intro">Under penalties of perjury, I declare that I have examined this return and
+                accompanying schedules and statements, and to the best of my knowledge and belief, they are true,
+                correct, and complete. Declaration of preparer (other than taxpayer) is based on all information of
+                which preparer has any knowledge.</div>
+            <div class="sign-grid border-bottom">
+                <div class="sign-cell border-right" style="flex:2">
+                    <div id="yourSignatureLabel">Your signature</div>
+                    <div class="signature-box" role="img" aria-labelledby="yourSignatureLabel"></div>
+                </div>
+                <div class="sign-cell border-right" style="width:120px">
+                    <label for="yourSignDate">Date</label>
+                    <input type="text" id="yourSignDate">
+                </div>
+                <div class="sign-cell border-right" style="flex:1.5">
+                    <label for="yourOccupation">Your occupation</label>
+                    <input type="text" id="yourOccupation">
+                </div>
+                <div class="sign-cell" style="width:180px">
+                    <div id="yourIpPinLabel">If the IRS sent you an Identity Protection PIN, enter it here (see
+                        inst.)</div>
+                    <div class="irs-grid-inputs pin-grid-small" aria-labelledby="yourIpPinLabel">
+                        <input type="text" class="grid-char" aria-label="Digit 1"> <input type="text" class="grid-char"
+                            aria-label="Digit 2"> <input type="text" class="grid-char" aria-label="Digit 3"> <input
+                            type="text" class="grid-char" aria-label="Digit 4"> <input type="text" class="grid-char"
+                            aria-label="Digit 5"> <input type="text" class="grid-char" aria-label="Digit 6">
+                    </div>
+                </div>
+            </div>
+            <div class="sign-grid border-bottom">
+                <div class="sign-cell border-right" style="flex:2">
+                    <div id="spouseSignatureLabel">Spouse's signature. If a joint return, <b>both</b> must
+                        sign.</div>
+                    <div class="signature-box" role="img" aria-labelledby="spouseSignatureLabel"></div>
+                </div>
+                <div class="sign-cell border-right" style="width:120px">
+                    <label for="spouseSignDate">Date</label>
+                    <input type="text" id="spouseSignDate">
+                </div>
+                <div class="sign-cell border-right" style="flex:1.5">
+                    <label for="spouseOccupation">Spouse's occupation</label>
+                    <input type="text" id="spouseOccupation">
+                </div>
+                <div class="sign-cell" style="width:180px">
+                    <div id="spouseIpPinLabel">If the IRS sent your spouse an Identity Protection PIN, enter it here
+                        (see inst.)</div>
+                    <div class="irs-grid-inputs pin-grid-small" aria-labelledby="spouseIpPinLabel">
+                        <input type="text" class="grid-char" aria-label="Digit 1"> <input type="text" class="grid-char"
+                            aria-label="Digit 2"> <input type="text" class="grid-char" aria-label="Digit 3"> <input
+                            type="text" class="grid-char" aria-label="Digit 4"> <input type="text" class="grid-char"
+                            aria-label="Digit 5"> <input type="text" class="grid-char" aria-label="Digit 6">
+                    </div>
+                </div>
+            </div>
+            <div class="sign-grid">
+                <div class="sign-cell border-right" style="flex:1">
+                    <label for="phoneNo">Phone no.</label>
+                    <input type="text" id="phoneNo">
+                </div>
+                <div class="sign-cell" style="flex:1">
+                    <label for="emailAddr">Email address</label>
+                    <input type="text" id="emailAddr">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Paid Preparer Use Only Section -->
+    <div class="irs-preparer-section border-top">
+        <div class="preparer-sidebar">
+            <div class="preparer-main-label">Paid Preparer Use Only</div>
+        </div>
+        <div class="preparer-content">
+            <div class="preparer-grid border-bottom">
+                <div class="prep-cell border-right" style="flex:1.5">
+                    <label for="prepName">Preparer's name</label>
+                    <input type="text" id="prepName">
+                </div>
+                <div class="prep-cell border-right" style="flex:1.5">
+                    <div id="prepSignLabel">Preparer's signature</div>
+                    <div class="signature-box" role="img" aria-labelledby="prepSignLabel"></div>
+                </div>
+                <div class="prep-cell border-right" style="width:80px">
+                    <label for="prepDate">Date</label>
+                    <input type="text" id="prepDate">
+                </div>
+                <div class="prep-cell border-right" style="width:120px">
+                    <label for="prepPtin">PTIN</label>
+                    <input type="text" id="prepPtin">
+                </div>
+                <div class="prep-cell">
+                    <label for="prepSelfEmployed">Check if: <input type="checkbox" id="prepSelfEmployed">
+                        Self-employed</label>
+                </div>
+            </div>
+            <div class="preparer-grid border-bottom">
+                <div class="prep-cell border-right" style="flex:1">
+                    <label for="firmName">Firm's name</label>
+                    <input type="text" id="firmName">
+                </div>
+                <div class="prep-cell" style="width:150px">
+                    <label for="firmPhone">Phone no.</label>
+                    <input type="text" id="firmPhone">
+                </div>
+            </div>
+            <div class="preparer-grid">
+                <div class="prep-cell border-right" style="flex:1">
+                    <label for="firmAddr">Firm's address</label>
+                    <input type="text" id="firmAddr">
+                </div>
+                <div class="prep-cell" style="width:150px">
+                    <label for="firmEin">Firm's EIN</label>
+                    <input type="text" id="firmEin">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="irs-footer">
+        <div class="footer-left">For Disclosure, Privacy Act, and Paperwork Reduction Act Notice, see separate
+            instructions.</div>
+        <div class="footer-mid">Cat. No. 11320B</div>
+        <div class="footer-right">Form <strong>1040</strong> (2025) Created 9/5/25</div>
+    </div>
+
+</div>

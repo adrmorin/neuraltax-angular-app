@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { DashboardHeaderComponent } from '../../components/dashboard/dashboard-header.component';
 import { TaxDataService } from '../../services/tax-data.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-premium-dashboard',
     standalone: true,
-    imports: [CommonModule, RouterLink, DashboardHeaderComponent],
+    imports: [CommonModule, RouterLink, DashboardHeaderComponent, TranslateModule],
     templateUrl: './premium-dashboard.component.html',
     styleUrl: './premium-dashboard.component.css'
 })
@@ -16,52 +17,52 @@ export class PremiumDashboardComponent {
 
     premiumStats = [
         {
-            label: 'Eficiencia Fiscal',
+            label: 'DASHBOARD.PREMIUM.STATS.EFFICIENCY',
             value: '94%',
             icon: 'insights',
-            trend: '+12%',
-            description: 'Basado en deducciones optimizadas por Nerea'
+            trend: 'DASHBOARD.PREMIUM.STATS.TREND_OPTIMIZED',
+            description: 'DASHBOARD.PREMIUM.STATS.EFFICIENCY_DESC'
         },
         {
-            label: 'Ahorro Potencial',
+            label: 'DASHBOARD.PREMIUM.STATS.SAVINGS',
             value: '$4,250',
             icon: 'savings',
-            trend: 'Optimizado',
-            description: 'Créditos fiscales identificados'
+            trend: 'DASHBOARD.PREMIUM.STATS.TREND_OPTIMIZED',
+            description: 'DASHBOARD.PREMIUM.STATS.SAVINGS_DESC'
         },
         {
-            label: 'Riesgo de Auditoría',
+            label: 'DASHBOARD.PREMIUM.STATS.RISK',
             value: 'Bajo',
             icon: 'verified_user',
-            trend: 'Certificado',
-            description: 'Análisis de "Red Flags" completado'
+            trend: 'DASHBOARD.PREMIUM.STATS.TREND_CERTIFIED',
+            description: 'DASHBOARD.PREMIUM.STATS.RISK_DESC'
         }
     ];
 
     aiModules = [
         {
-            title: 'Auditor de IA en Tiempo Real',
-            description: 'Nerea analiza cada entrada para asegurar el cumplimiento con las normativas del IRS de 2026.',
+            title: 'DASHBOARD.PREMIUM.AI.AUDITOR_TITLE',
+            description: 'DASHBOARD.PREMIUM.AI.AUDITOR_DESC',
             icon: 'biotech',
-            action: 'Iniciar Escaneo'
+            action: 'DASHBOARD.PREMIUM.AI.AUDITOR_ACTION'
         },
         {
-            title: 'Optimizador de Deducciones',
-            description: 'Algoritmos avanzados que buscan deducciones específicas para su sector industrial.',
+            title: 'DASHBOARD.PREMIUM.AI.OPTIMIZER_TITLE',
+            description: 'DASHBOARD.PREMIUM.AI.OPTIMIZER_DESC',
             icon: 'auto_awesome',
-            action: 'Optimizar'
+            action: 'DASHBOARD.PREMIUM.AI.OPTIMIZER_ACTION'
         },
         {
-            title: 'Estrategia de Oasis Fiscal',
-            description: 'Planificación proactiva para el próximo trimestre basada en sus gastos actuales.',
+            title: 'DASHBOARD.PREMIUM.AI.STRATEGY_TITLE',
+            description: 'DASHBOARD.PREMIUM.AI.STRATEGY_DESC',
             icon: 'area_chart',
-            action: 'Ver Estrategia'
+            action: 'DASHBOARD.PREMIUM.AI.STRATEGY_ACTION'
         }
     ];
 
     priorityTasks = [
-        { text: 'Validación de Anexo C (Business)', status: 'completado' },
-        { text: 'Análisis de Crédito por Energía Limpia', status: 'pendiente' },
-        { text: 'Sincronización de Gastos Digitales', status: 'pendiente' }
+        { text: 'DASHBOARD.PREMIUM.PRIORITY.TASKS.SCHEDULE_C', status: 'completado' },
+        { text: 'DASHBOARD.PREMIUM.PRIORITY.TASKS.ENERGY_CREDIT', status: 'pendiente' },
+        { text: 'DASHBOARD.PREMIUM.PRIORITY.TASKS.EXPENSE_SYNC', status: 'pendiente' }
     ];
 }

@@ -1,10 +1,19 @@
 <div class="dashboard-header">
     <div class="header-left">
-        <h1 class="header-title">{{ displayTitle }}</h1>
-        <p class="header-subtitle">{{ displaySubtitle }}</p>
+        <h1 class="header-title">{{ displayTitle | translate }}</h1>
+        <p class="header-subtitle">{{ displaySubtitle | translate }}</p>
     </div>
 
     <div class="header-right">
+        <!-- Language Switcher (Conditional) -->
+        @if (showLangSwitcher) {
+        <button class="btn btn-lang" (click)="switchLanguage(currentLang === 'es' ? 'en' : 'es')">
+            <span class="material-symbols-outlined">public</span>
+            <span class="lang-text">{{ currentLang | uppercase }}</span>
+        </button>
+        }
+
+
         <!-- User Info -->
         <div class="user-info-section">
             <div class="user-avatar-circle">
@@ -19,8 +28,8 @@
 
         <!-- Brand Info -->
         <div class="brand-info">
-            <div class="brand-name">{{ config.brandName }}</div>
-            <div class="brand-subtitle" [style.color]="config.accentColor">{{ config.brandSubtitle }}</div>
+            <div class="brand-name">{{ config.brandName | translate }}</div>
+            <div class="brand-subtitle" [style.color]="config.accentColor">{{ config.brandSubtitle | translate }}</div>
         </div>
 
         <!-- Logo -->

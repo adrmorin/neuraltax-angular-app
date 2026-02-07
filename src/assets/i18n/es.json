@@ -1,0 +1,312 @@
+{
+    "HEADER": {
+        "HOME": "Inicio",
+        "ABOUT": "Nosotros",
+        "SERVICES": "Servicios",
+        "PRICING": "Precios",
+        "CONTACT": "Contacto",
+        "DASHBOARD": "Panel",
+        "LOGIN": "Iniciar Sesión",
+        "REGISTER": "Registrarse",
+        "LOGOUT": "Cerrar Sesión",
+        "BACK_TO_HOME": "Volver al Inicio"
+    },
+    "COMMON": {
+        "CLOSE": "Cerrar",
+        "SAVE": "Guardar",
+        "CANCEL": "Cancelar",
+        "PREMIUM": "Premium",
+        "FREE": "Gratis",
+        "AGENT": "Agente",
+        "VIP": "VIP",
+        "EN": "Inglés",
+        "ES": "Español",
+        "READ_MORE": "Leer Más",
+        "READ_TIME_SUFFIX": "min de lectura"
+    },
+    "HOME": {
+        "HERO": {
+            "SPECIALIZED_SUPPORT": "Soporte Especializado",
+            "SUPPORT_DESC": "Soporte en Inglés o Español, impulsado por IA y asistencia humana cuando sea necesario.",
+            "MAIN_SLOGAN": "\"PODER NEURAL,<br><span class='highlight-text'>eficiencia entregada..</span>\"",
+            "MAXIMIZE_SAVINGS": "Maximiza tus ahorros",
+            "AI_OPTIMIZATION_DESC": "y tu tranquilidad con<br>optimización fiscal por IA",
+            "VALUE_PROP": "Más deducciones,<br>menos estrés, control total<br><strong>¡empieza ahora!</strong>",
+            "GET_ESTIMATE": "Obtener Estimación Gratis",
+            "UPDATE": "Actualizar"
+        },
+        "MESSAGES": [
+            "Optimiza tus impuestos con IA—rápido,<br />y sin complicaciones.",
+            "Tecnología fiscal que entiende<br />tus necesidades.",
+            "Impuestos claros, procesos automatizados,<br />resultados precisos.",
+            "Automatiza tus impuestos y evita<br />errores costosos.",
+            "Ahorra tiempo y dinero con automatización<br />fiscal inteligente.",
+            "Confía tus impuestos a un sistema<br />inteligente y seguro.",
+            "IA + experiencia humana: la nueva era de<br />declaración de impuestos.",
+            "Control total de tus impuestos en<br />un solo lugar."
+        ],
+        "STATS": {
+            "SATISFACTION": "Satisfacción",
+            "CLIENTS": "Clientes",
+            "SUPPORT": "Soporte"
+        },
+        "PLANS": {
+            "TITLE": "Planes de membresía",
+            "SUBTITLE": "Elige el plan de membresía que mejor se adapte a tus necesidades fiscales. Todos los planes incluyen nuestra tecnología avanzada de IA y soporte experto.",
+            "MOST_POPULAR": "Más Popular",
+            "EXCLUSIVE_VIP": "VIP Exclusivo",
+            "B2B_SOLUTION": "Solución B2B",
+            "INDIVIDUAL_FREE": "Miembro Individual Gratis",
+            "SMART_SAVER": "Ahorrador Inteligente",
+            "BLACK_VIP": "Black (VIP Exclusivo)",
+            "PROFESSIONAL_AGENT": "Agente Profesional",
+            "FREE_DESC": "Servicios fiscales esenciales con automatización de IA",
+            "SMART_SAVER_DESC": "Solución integral mensual de gestión fiscal",
+            "BLACK_VIP_DESC": "Membresía exclusiva definitiva solo por invitación",
+            "AGENT_DESC": "Para profesionales fiscales y firmas de contabilidad",
+            "TAX_FEE_LABEL": "Tarifa de declaración de impuestos",
+            "MONTHLY": "Mensual",
+            "BY_INVITATION": "Por invitación",
+            "CUSTOM_PLAN": "Plan Personalizado",
+            "CONTACT_SALES": "Contactar Ventas",
+            "REQUEST_INVITATION": "Solicitar Invitación",
+            "UPDATE_NOW": "Actualizar Ahora",
+            "FEATURES": {
+                "AI_AUTOMATION": "Automatización de presentación de formularios por IA",
+                "SECURITY": "Seguridad nivel IRS/CISA",
+                "EFILE": "Envío directo de e-file",
+                "ADVANCE_PAY": "Pago anticipado",
+                "CHATBOT": "Asistente Chatbot",
+                "PRIORITY_SUPPORT": "soporte prioritario",
+                "EDUCATIONAL": "Recursos educativos fiscales",
+                "STORAGE": "Almacenamiento de facturas y documentos (ilimitado)",
+                "SMART_SAVER_FEE": "Tarifa de declaración: $0 (si tienes +4 meses con membresía)",
+                "SMART_SAVER_FEE_LESS": "$29-$39 (si tienes menos de 4 meses)",
+                "FREE_TAX_DECL": "Declaración de impuestos gratis",
+                "CHATBOT_1TO1": "Asistente Chatbot (1-a-1)",
+                "PERSONAL_COUNSELING": "Asesoramiento financiero personal",
+                "INVESTMENT_PLANS": "Planes de inversión FTF",
+                "CLIENT_MGMT": "Gestión ilimitada de clientes",
+                "AGENT_TOOLS": "Herramientas de IA avanzadas para agentes",
+                "COLLABORATION": "Colaboración multiusuario",
+                "FILING_RATES": "Tarifas de presentación al por mayor",
+                "ACCOUNT_MANAGER": "Gerente de cuenta dedicado",
+                "API_INTEGRATION": "Integraciones de API personalizadas"
+            }
+        },
+        "NEWS": {
+            "TITLE": "Últimas Noticias y Perspectivas Fiscales",
+            "SUBTITLE": "Manténgase al día con las últimas regulaciones fiscales de EE. UU., soluciones fiscales impulsadas por IA y pautas del IRS con nuestros artículos expertos y guías completas de preparación de impuestos.",
+            "VIEW_ALL": "Ver todos los artículos",
+            "ARTICLES": [
+                {
+                    "TITLE": "Preparación de impuestos impulsada por IA:",
+                    "EXCERPT": "Descubra cómo la inteligencia artificial está transformando la preparación de impuestos en los EE. UU., desde la automatización...",
+                    "CATEGORY": "Tecnología IA"
+                },
+                {
+                    "TITLE": "Maximizando las deducciones fiscales de EE. UU.: IRS 2024",
+                    "EXCERPT": "Conozca las últimas estrategias de deducción del IRS para 2024 y cómo las herramientas impulsadas por IA pueden identificar...",
+                    "CATEGORY": "Pautas del IRS"
+                },
+                {
+                    "TITLE": "Formulario 1040 simplificado: con IA",
+                    "EXCERPT": "Navegue por las complejidades de los formularios fiscales de EE. UU. con asistencia de IA. Desde el Anexo C hasta el Formulario 8829...",
+                    "CATEGORY": "Formularios Fiscales"
+                },
+                {
+                    "TITLE": "Tecnología fiscal inteligente: El futuro",
+                    "EXCERPT": "Explore la tecnología de preparación de impuestos de vanguardia que está remodelando la industria. Desde...",
+                    "CATEGORY": "Innovación"
+                }
+            ]
+        },
+        "TESTIMONIALS": {
+            "TITLE": "Lo que dicen nuestros clientes",
+            "SUBTITLE": "Descubra por qué miles de empresas y profesionales confían en Neuraltax para sus necesidades fiscales más importantes.",
+            "REVIEWS": [
+                {
+                    "ROLE": "Directora Ejecutiva",
+                    "TEXT": "Neuraltax revolucionó por completo nuestra gestión fiscal. La automatización de IA nos ahorró más del 80% del tiempo en la preparación de impuestos."
+                },
+                {
+                    "ROLE": "CEO",
+                    "TEXT": "La precisión y rapidez de Neuraltax son impresionantes. No hemos tenido ni un solo error en nuestras declaraciones desde que empezamos a usar el servicio."
+                },
+                {
+                    "ROLE": "Contadora Independiente",
+                    "TEXT": "Como profesional independiente, Neuraltax me permite ofrecer servicios de calidad premium a mis clientes sin la complejidad técnica tradicional."
+                },
+                {
+                    "ROLE": "CFO",
+                    "TEXT": "El ahorro en costos operativos ha sido extraordinario. Neuraltax nos ayudó a optimizar nuestra estructura fiscal de manera completamente legal."
+                },
+                {
+                    "ROLE": "Gerente Financiera",
+                    "TEXT": "La interfaz es intuitiva y el soporte técnico excepcional. Recomiendo Neuraltax a cualquier empresa que busque modernizar su gestión fiscal."
+                },
+                {
+                    "ROLE": "Fundador",
+                    "TEXT": "Neuraltax maneja perfectamente las complejidades fiscales de nuestro negocio internacional. Una herramienta indispensable para empresas globales."
+                }
+            ]
+        },
+        "ABOUT": {
+            "TITLE": "NOSOTROS",
+            "QUESTIONS": [
+                {
+                    "Q": "¿Neuraltax reemplaza a un contador?",
+                    "A": "Neuraltax actúa como un poderoso asistente de IA que maneja la mayoría de los escenarios fiscales con precisión. Para casos complejos, ofrecemos acceso a expertos humanos."
+                },
+                {
+                    "Q": "¿Cómo empiezo?",
+                    "A": "Simplemente haga clic en \"Obtener estimación gratis\" o \"Iniciar sesión\" para crear su cuenta. Nuestro asistente lo guiará a través del proceso paso a paso."
+                },
+                {
+                    "Q": "¿Puedo usar Neuraltax si solo presento impuestos personales?",
+                    "A": "¡Absolutamente! Neuraltax está optimizado para declarantes individuales (1040), autónomos y familias."
+                },
+                {
+                    "Q": "¿Qué tan segura es la plataforma?",
+                    "A": "Utilizamos cifrado de 256 bits de nivel bancario para proteger sus datos. Su privacidad y seguridad son nuestras prioridades principales."
+                },
+                {
+                    "Q": "¿Qué servicios ofrece?",
+                    "A": "Ofrecemos presentación de impuestos federales y estatales, planificación fiscal y apoyo en auditorías."
+                },
+                {
+                    "Q": "¿Para quién es?",
+                    "A": "Cualquier persona que busque simplificar su proceso de declaración de impuestos."
+                },
+                {
+                    "Q": "¿Cuáles son los principales beneficios?",
+                    "A": "Precisión, rapidez y garantía de máximo reembolso."
+                },
+                {
+                    "Q": "¿Como funciona?",
+                    "A": "Suba sus documentos, responda preguntas simples y deje que nuestra IA haga el resto."
+                },
+                {
+                    "Q": "¿Qué planes de precios están disponibles?",
+                    "A": "Ofrecemos planes gratuitos y premium para adaptarse a sus necesidades."
+                },
+                {
+                    "Q": "¿Qué es Neuraltax?",
+                    "A": "Su compañero de declaración de impuestos impulsado por IA."
+                }
+            ]
+        }
+    },
+    "LANDING": {
+        "OR_REGISTER": "o registrarse",
+        "WHY_NEURALTAX": "¿Por qué Neuraltax?",
+        "WHY_NEURALTAX_DESC": "Neuraltax es tu experto fiscal automatizado. Diseñado para simplificar la gestión fiscal, combinamos tecnología de vanguardia con precisión y eficiencia. Nuestro sistema inteligente analiza, calcula y optimiza tus declaraciones, asegurando el cumplimiento total del IRS y maximizando tus beneficios fiscales.",
+        "SMART_AUTOMATION": "Automatización Inteligente:",
+        "FAST_PROCESSES": "Procesos rápidos, sin errores humanos",
+        "SAVE_TIME": "Ahorra Tiempo y Dinero: Olvídate de las complicaciones, enfócate en lo que importa.",
+        "GUARANTEED_COMPLIANCE": "Cumplimiento Garantizado: Siempre actualizado con las regulaciones fiscales.",
+        "DISCOVER_TRANSFORM": "Descubre cómo Neuraltax puede transformar tu experiencia fiscal."
+    },
+    "FOOTER": {
+        "BRAND_DESC": "Su experto en impuestos automatizado. Simplificando la gestión fiscal con tecnología de IA de vanguardia y precisión.",
+        "BUSINESS_REG": "Registro de Empresa",
+        "CONTACT_INFO": "Información de Contacto",
+        "EMAIL_US": "Envíenos un correo electrónico",
+        "BUSINESS_HOURS": "Horario Comercial",
+        "WEEKDAYS": "Lunes - Viernes",
+        "WEEKENDS": "Sábado - Domingo",
+        "CLOSED": "Cerrado",
+        "RESPONSE_TIME": "Tiempo de Respuesta",
+        "RESPONSE_DESC": "Dentro de 24 horas",
+        "CONNECT_WITH_US": "Conéctate con nosotros",
+        "SERVICES": "Nuestros Servicios",
+        "PRICING": "Precios",
+        "ABOUT": "Nosotros",
+        "FAQ": "Preguntas Frecuentes",
+        "QUICK_LINKS": "Enlaces Rápidos",
+        "RIGHTS": "Todos los derechos reservados.",
+        "PRIVACY": "Política de Privacidad",
+        "TERMS": "Términos de Servicio",
+        "SUPPORT": "Soporte",
+        "REG_INFO": "Número de Registro de Empresa",
+        "DISCLAIMER": "Neuraltax no está destinado a recopilar PII ni a asegurar datos confidenciales. Por favor, consulte con un profesional de impuestos calificado para situaciones fiscales complejas.",
+        "LICENSE": "Licenciado y registrado para servicios de asesoría fiscal. Todas las comunicaciones son confidenciales y seguras."
+    },
+    "DASHBOARD": {
+        "HEADER": {
+            "TITLE": "Panel de Control",
+            "TITLE_AGENT": "Portal de Agentes",
+            "SUBTITLE_FREE": "Bienvenido al portal Free",
+            "SUBTITLE_PREMIUM": "Bienvenido al portal Premium",
+            "SUBTITLE_VIP": "Bienvenido al portal VIP",
+            "SUBTITLE_AGENT": "Bienvenido al portal de agentes"
+        },
+        "FREE": {
+            "WELCOME_TITLE": "Bienvenido a Neuraltax Free",
+            "WELCOME_DESC": "Sube tus documentos fiscales y completa tu Form 1040 para declarar tus impuestos. Actualiza a Premium para funciones avanzadas y asistencia IA.",
+            "STATS": {
+                "UPLOADED_DOCS": "Documentos Subidos",
+                "COMPLETED_FORMS": "Formularios Completados",
+                "EST_REFUND": "Reembolso Est.",
+                "IN_PROGRESS": "En Progreso",
+                "ESTIMATED": "Estimado"
+            },
+            "ACTIONS": {
+                "UPLOAD_TITLE": "Subir Documentos",
+                "UPLOAD_STEP": "Paso 1 de 2",
+                "UPLOAD_DESC": "Sube tus formularios W-2, 1099 y recibos de forma segura. Nuestra IA extraerá automáticamente datos clave para verificarlos.",
+                "GO_TO_DOCS": "Ir a Documentos",
+                "DECLARATION_TITLE": "Prepara tu Declaración",
+                "DECLARATION_STEP": "Paso 2 de 2",
+                "DECLARATION_DESC": "Completa tu formulario 1040 y anexos con nuestra guía paso a paso. Revisión automática de errores incluida.",
+                "START_DECLARATION": "Continuar Declaración"
+            },
+            "STEPS": {
+                "W2": "Formularios W-2",
+                "INTEREST": "Estados de Interés",
+                "RECEIPTS": "Recibos y Facturas",
+                "FORM1040": "Form 1040 (Principal)",
+                "DEDUCTION": "Deducción Estándar",
+                "SCHEDULE_C": "Anexo C (Negocio)"
+            },
+            "UPSELL": {
+                "TITLE": "Desbloquea Funciones Premium",
+                "COMPARE_PLANS": "Comparar Planes"
+            }
+        },
+        "UPDATE": {
+            "PAYMENT_METHOD": "Seleccione Método de Pago",
+            "SECURE_SSL": "Transacción Segura Encriptada SSL",
+            "METHODS": {
+                "CARD": "Tarjeta Crédito / Débito",
+                "CARD_DESC": "Visa, Mastercard, Amex",
+                "PAYPAL": "PayPal",
+                "PAYPAL_DESC": "Rápido y seguro",
+                "CRYPTO": "Cripto",
+                "CRYPTO_DESC": "BTC, ETH, USDT"
+            },
+            "FORM": {
+                "CARDHOLDER": "Nombre en la Tarjeta",
+                "CARD_NUMBER": "Número de Tarjeta",
+                "EXPIRY": "Fecha Expiración",
+                "CVC": "CVC",
+                "SAVE_CARD": "Guardar para futuros pagos",
+                "PAY_BIN": "Pagar"
+            },
+            "PAYPAL_REDIRECT": "Será redirigido a PayPal para completar su compra de forma segura.",
+            "PAY_WITH_PAYPAL": "Pagar con PayPal",
+            "CRYPTO_CONNECT": "Conecte su billetera o escanee el código QR para pagar.",
+            "CONNECT_WALLET": "Conectar Billetera",
+            "SUMMARY": {
+                "TITLE": "Resumen del Pedido",
+                "PLAN_NAME": "Plan Ahorrador Inteligente",
+                "PLAN_FREQ": "Suscripción mensual",
+                "SUBTOTAL": "Subtotal",
+                "TAX": "Impuestos",
+                "TOTAL": "Total a pagar",
+                "SECURE_CHECKOUT": "Pago Seguro",
+                "GUARANTEE": "Garantía de Devolución"
+            }
+        }
+    }
+}

@@ -253,28 +253,59 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
             return;
         }
 
-        // Call n8n service for actual logic
+        // Add a placeholder message for the bot response
+        this.messages.update(msgs => [...msgs, { type: 'bot', text: '' }]);
+        const botMessageIndex = this.messages().length - 1;
+
+        // Call n8n service for actual logic with streaming
         this.n8n.sendMessage(message).subscribe({
-            next: (reply: string) => {
-                const text = reply || this.t('unknown');
-                this.messages.update(msgs => [...msgs, { type: 'bot', text }]);
-
-                // Intent detection for local UI improvements (optional)
-                const intent = this.detectIntent(text);
-                const response = this.getResponse(intent);
-                if (response.options.length > 0) {
-                    this.quickReplies.set(response.options);
-                }
-
-                this.speak(text);
+            next: (chunk: string) => {
+                // Update the last message with the new chunk
+                this.messages.update(msgs => {
+                    const newMsgs = [...msgs];
+                    if (newMsgs[botMessageIndex]) {
+                        newMsgs[botMessageIndex] = {
+                            ...newMsgs[botMessageIndex],
+                            text: newMsgs[botMessageIndex].text + chunk
+                        };
+                    }
+                    return newMsgs;
+                });
+                this.scrollToBottom();
             },
             error: (err) => {
                 console.error('Chat error:', err);
                 const errorText = this.currentLang === 'es'
                     ? 'Lo siento, hubo un error al conectar con mi cerebro. Inténtalo de nuevo.'
                     : 'Sorry, there was an error connecting to my brain. Please try again.';
-                this.messages.update(msgs => [...msgs, { type: 'bot', text: errorText }]);
+
+                this.messages.update(msgs => {
+                    const newMsgs = [...msgs];
+                    // If we have started a message, append error, otherwise create new
+                    if (newMsgs[botMessageIndex] && newMsgs[botMessageIndex].text) {
+                        newMsgs[botMessageIndex].text += '\n\n[' + errorText + ']';
+                    } else {
+                        // Replace the empty placeholder or append if missing
+                        if (newMsgs[botMessageIndex]) {
+                            newMsgs[botMessageIndex].text = errorText;
+                        } else {
+                            newMsgs.push({ type: 'bot', text: errorText });
+                        }
+                    }
+                    return newMsgs;
+                });
                 this.speak(errorText);
+            },
+            complete: () => {
+                // Determine intent from full text after stream completes
+                const fullText = this.messages()[botMessageIndex]?.text || '';
+                const intent = this.detectIntent(fullText); // Note: acting on bot reply might differ from user intent logic, but keeping structure
+                const response = this.getResponse(intent);
+                // Only show options if meaningful
+                if (response.options.length > 0 && intent !== this.intents.UNKNOWN) {
+                    this.quickReplies.set(response.options);
+                }
+                this.speak(fullText);
             }
         });
     }

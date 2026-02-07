@@ -1,0 +1,36 @@
+<div class="login-card glass">
+    <button class="close-btn" (click)="modalService.closeRegister()">&times;</button>
+    <div class="login-header">
+        <img src="assets/neuraltax_logo.png" alt="NeuralTax" style="height: 50px" />
+        <h1>Únete a Nosotros</h1>
+        <p>Regístrate para recibir actualizaciones exclusivas</p>
+    </div>
+
+    @if (!success) {
+    <form class="login-form" (submit)="onSubmit()">
+        <div class="form-group">
+            <label for="reg-email">Email</label>
+            <input type="email" name="reg-email" [(ngModel)]="email" placeholder="tucorreo@email.com" required />
+        </div>
+
+        @if (error) {
+        <p class="error-msg">{{ error }}</p>
+        }
+
+        <button type="submit" class="btn btn-primary" style="width: 100%" [disabled]="loading">
+            {{ loading ? 'Registrando...' : 'Registrarme' }}
+        </button>
+    </form>
+    } @else {
+    <div class="success-msg">
+        <span class="material-symbols-outlined check-icon">check_circle</span>
+        <h2>¡Gracias por registrarte!</h2>
+        <p>Te hemos enviado un correo de confirmación.</p>
+    </div>
+    }
+
+    @if (!success) {
+    <p class="login-footer">¿Ya tienes cuenta? <a href="javascript:void(0)" (click)="modalService.openLogin()">Inicia
+            sesión</a></p>
+    }
+</div>

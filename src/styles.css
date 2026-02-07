@@ -1,35 +1,71 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-    /* Primary Colors - Mockup Based */
-    --bg-dark-deep: #0a0f0d;
-    --bg-dark-card: #141d1a;
-    --accent-mint: #9DD3AF;
-    --accent-green-bright: #4ade80;
-    --secondary-sage: #688071;
-    --bg-light-green: #F0F0F0;
-    --accent-high-contrast: #F6F8F6;
-    --brand-blue: #152961;
+    /* Base Palette (Static) */
+    --color-dark-deep: #0a0f0d;
+    --color-dark-card: #141d1a;
+    --color-light-bg: #F0F0F0;
+    /* Current light bg */
+    --color-white: #FFFFFF;
+    --color-accent-mint: #9DD3AF;
+    --color-accent-green: #4ade80;
+    --color-brand-blue: #152961;
 
-    /* Neutral Colors */
-    --text-light: #FFFFFF;
-    --text-dark: #0a0f0d;
-    --text-secondary: #94a3b8;
+    /* Semantic Variables (Default - Light Mode) */
+    --bg-page: var(--color-light-bg);
+    --bg-card: var(--color-white);
+    --bg-header: var(--color-dark-deep);
+    /* Header stays dark usually? Or matches theme? */
+    /* User said "header button... for dark mode". Usually headers might stay dark or adapt. 
+       Let's assume the header (which was black/glass) stays dark for now, or adapts?
+       The current header background is --bg-dark-deep.
+       If we want a "Light Mode" header, it might need to be light.
+       But standard "Light Mode" apps often have dark headers.
+       I will keep header dark-ish but maybe adapt semantic text.
+       ACTUALLY: User said "currently is light mode". And header is dark (glass/black).
+       So header likely doesn't flip. But the BODY background does.
+    */
+    --text-main: var(--color-dark-deep);
+    --text-inverse: var(--color-white);
+
+    /* Variables from existing file mapped */
+    --bg-dark-deep: #0a0f0d;
+    /* Keep for back-compat */
+    --bg-light-green: #F0F0F0;
+    --accent-green-bright: #4ade80;
     --border-glass: rgba(255, 255, 255, 0.1);
-    --shadow-premium: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
 
     /* Typography */
-    --accent-gold: #D4AF37;
-    --accent-gold-hover: #C5A028;
     --font-family-body: 'Inter', sans-serif;
-    --font-family-heading: 'Outfit', sans-serif;
+    --font-family-heading: 'Inter', sans-serif;
     --font-size-title: 3.5rem;
     --font-size-header: 2.25rem;
     --font-size-body: 1rem;
 
-    /* Spacing & Borders */
-    --border-radius: 12px;
     --container-max-width: 1440px;
+    --border-radius: 12px;
+}
+
+[data-theme="dark"] {
+    /* Dark Mode Overrides */
+    --bg-page: #0B1120;
+    /* Deep blue/black for dark mode page */
+    --bg-card: #1e293b;
+    --text-main: #e2e8f0;
+    /* Light text */
+    --text-secondary: #94a3b8;
+
+    /* In dark mode, maybe we want specific overrides? */
+}
+
+body {
+    font-family: var(--font-family-body);
+    font-size: var(--font-size-body);
+    line-height: 1.5;
+    color: var(--text-main);
+    background-color: var(--bg-page);
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 * {
@@ -38,13 +74,17 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: var(--font-family-body);
-    font-size: var(--font-size-body);
-    line-height: 1.5;
-    color: var(--text-dark);
-    background-color: var(--bg-light-green);
-    -webkit-font-smoothing: antialiased;
+/* Typography */
+h1 {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-title);
+    font-weight: 700;
+}
+
+h2 {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-header);
+    font-weight: 600;
 }
 
 /* Glassmorphism Utilities */
@@ -64,25 +104,13 @@ body {
 
 /* Typography Utilities */
 .text-gradient {
-    background: linear-gradient(to right, var(--accent-mint), var(--accent-green-bright));
+    background: linear-gradient(to right, var(--color-accent-mint), var(--accent-green-bright));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
 }
 
-h1 {
-    font-family: var(--font-family-heading);
-    font-size: var(--font-size-title);
-    font-weight: 700;
-}
-
-h2 {
-    font-family: var(--font-family-heading);
-    font-size: var(--font-size-header);
-    font-weight: 600;
-}
-
 /* Layout Components */
 .container {
     max-width: var(--container-max-width);
@@ -110,7 +138,7 @@ header .container {
     gap: 0.5rem;
     font-weight: 700;
     font-size: 1.5rem;
-    color: var(--text-light);
+    color: #FFFFFF;
 }
 
 .logo span {
@@ -120,19 +148,19 @@ header .container {
 nav ul {
     display: flex;
     list-style: none;
-    gap: 2.5rem;
+    gap: 1.5rem;
     align-items: center;
 }
 
 nav a {
-    color: var(--text-secondary);
+    color: #94a3b8;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s;
 }
 
 nav a:hover {
-    color: var(--text-light);
+    color: #FFFFFF;
 }
 
 /* Buttons */
@@ -160,7 +188,7 @@ nav a:hover {
 /* Hero Section */
 .hero {
     background: var(--bg-dark-deep);
-    color: var(--text-light);
+    color: #FFFFFF;
     padding: 8rem 0;
     position: relative;
     overflow: hidden;
@@ -215,10 +243,10 @@ nav a:hover {
 }
 
 .plan-card.featured {
-    background: var(--bg-dark-card);
-    color: var(--text-light);
+    background: var(--color-dark-card);
+    color: #FFFFFF;
     transform: scale(1.05);
-    box-shadow: var(--shadow-premium);
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
 }
 
 /* Dashboard Layout */
@@ -230,7 +258,7 @@ nav a:hover {
 
 .sidebar {
     background: var(--bg-dark-deep);
-    color: var(--text-light);
+    color: #FFFFFF;
     padding: 2rem;
 }
 
@@ -252,401 +280,7 @@ nav a:hover {
     height: 60px;
     border-radius: 50%;
     background: white;
-    box-shadow: var(--shadow-premium);
-    cursor: pointer;
-    overflow: hidden;
-    transition: transform 0.3s ease;
-    border: 2px solid var(--accent-green-bright);
-}
-
-.chat-trigger:hover {
-    transform: scale(1.1);
-}
-
-.chat-trigger img {
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-}
-
-h1 {
-    font-family: var(--font-family-heading);
-    font-size: var(--font-size-title);
-    font-weight: 700;
-}
-
-h2 {
-    font-family: var(--font-family-heading);
-    font-size: var(--font-size-header);
-    font-weight: 600;
-}
-
-/* Layout Components */
-.container {
-    max-width: var(--container-max-width);
-    margin: 0 auto;
-    padding: 0 2rem;
-}
-
-header {
-    background: var(--bg-dark-deep);
-    padding: 1.25rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: var(--text-light);
-}
-
-.logo span {
-    color: var(--accent-green-bright);
-}
-
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 2.5rem;
-    align-items: center;
-}
-
-nav a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s;
-}
-
-nav a:hover {
-    color: var(--text-light);
-}
-
-/* Buttons */
-.btn {
-    padding: 0.75rem 1.5rem;
-    border-radius: 50px;
-    font-weight: 600;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: none;
-    display: inline-block;
-}
-
-.btn-primary {
-    background: var(--accent-green-bright);
-    color: var(--bg-dark-deep);
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(74, 222, 128, 0.4);
-}
-
-/* Hero Section */
-.hero {
-    background: var(--bg-dark-deep);
-    color: var(--text-light);
-    padding: 8rem 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 4rem;
-}
-
-.hero-text {
-    flex: 1;
-}
-
-.hero-visual {
-    flex: 1;
-    text-align: right;
-}
-
-.hero-visual img {
-    max-width: 100%;
-    filter: drop-shadow(0 0 30px rgba(74, 222, 128, 0.2));
-    animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-20px);
-    }
-}
-
-/* Cards */
-.card {
-    border-radius: var(--border-radius);
-    padding: 2rem;
-    transition: all 0.3s ease;
-}
-
-.plan-card {
-    background: white;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-}
-
-.plan-card.featured {
-    background: var(--bg-dark-card);
-    color: var(--text-light);
-    transform: scale(1.05);
-    box-shadow: var(--shadow-premium);
-}
-
-/* Dashboard Layout */
-.dashboard-container {
-    display: grid;
-    grid-template-columns: 260px 1fr;
-    min-height: 100vh;
-}
-
-.sidebar {
-    background: var(--bg-dark-deep);
-    color: var(--text-light);
-    padding: 2rem;
-}
-
-.main-content {
-    padding: 2rem;
-    background: var(--bg-light-green);
-}
-
-/* Chat Widget */
-.chat-widget {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    z-index: 1000;
-}
-
-.chat-trigger {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: white;
-    box-shadow: var(--shadow-premium);
-    cursor: pointer;
-    overflow: hidden;
-    transition: transform 0.3s ease;
-    border: 2px solid var(--accent-green-bright);
-}
-
-.chat-trigger:hover {
-    transform: scale(1.1);
-}
-
-.chat-trigger img {
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-}
-
-h1 {
-    font-family: var(--font-family-heading);
-    font-size: var(--font-size-title);
-    font-weight: 700;
-}
-
-h2 {
-    font-family: var(--font-family-heading);
-    font-size: var(--font-size-header);
-    font-weight: 600;
-}
-
-/* Layout Components */
-.container {
-    max-width: var(--container-max-width);
-    margin: 0 auto;
-    padding: 0 2rem;
-}
-
-header {
-    background: var(--bg-dark-deep);
-    padding: 1.25rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: var(--text-light);
-}
-
-.logo span {
-    color: var(--accent-green-bright);
-}
-
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 2.5rem;
-    align-items: center;
-}
-
-nav a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s;
-}
-
-nav a:hover {
-    color: var(--text-light);
-}
-
-/* Buttons */
-.btn {
-    padding: 0.75rem 1.5rem;
-    border-radius: 50px;
-    font-weight: 600;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: none;
-    display: inline-block;
-}
-
-.btn-primary {
-    background: var(--accent-green-bright);
-    color: var(--bg-dark-deep);
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(74, 222, 128, 0.4);
-}
-
-/* Hero Section */
-.hero {
-    background: var(--bg-dark-deep);
-    color: var(--text-light);
-    padding: 8rem 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 4rem;
-}
-
-.hero-text {
-    flex: 1;
-}
-
-.hero-visual {
-    flex: 1;
-    text-align: right;
-}
-
-.hero-visual img {
-    max-width: 100%;
-    filter: drop-shadow(0 0 30px rgba(74, 222, 128, 0.2));
-    animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-20px);
-    }
-}
-
-/* Cards */
-.card {
-    border-radius: var(--border-radius);
-    padding: 2rem;
-    transition: all 0.3s ease;
-}
-
-.plan-card {
-    background: white;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-}
-
-.plan-card.featured {
-    background: var(--bg-dark-card);
-    color: var(--text-light);
-    transform: scale(1.05);
-    box-shadow: var(--shadow-premium);
-}
-
-/* Dashboard Layout */
-.dashboard-container {
-    display: grid;
-    grid-template-columns: 260px 1fr;
-    min-height: 100vh;
-}
-
-.sidebar {
-    background: var(--bg-dark-deep);
-    color: var(--text-light);
-    padding: 2rem;
-}
-
-.main-content {
-    padding: 2rem;
-    background: var(--bg-light-green);
-}
-
-/* Chat Widget */
-.chat-widget {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    z-index: 1000;
-}
-
-.chat-trigger {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: white;
-    box-shadow: var(--shadow-premium);
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     overflow: hidden;
     transition: transform 0.3s ease;
@@ -673,8 +307,10 @@ nav a:hover {
 }
 
 .neuraltax-footer .logo img {
-    filter: brightness(0) saturate(100%) invert(96%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(105%) contrast(105%);
+    filter: brightness(0) invert(1);
 }
+
+
 
 .footer-top {
     display: grid;

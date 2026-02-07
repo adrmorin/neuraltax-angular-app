@@ -6,9 +6,8 @@
     <div class="welcome-banner">
         <span class="material-symbols-outlined">info</span>
         <div class="welcome-content">
-            <strong>Bienvenido a Neuraltax Free</strong>
-            <p>Sube tus documentos fiscales y completa tu Form 1040 para declarar tus impuestos. Actualiza a Premium
-                para funciones avanzadas y asistencia IA.</p>
+            <strong>{{ 'DASHBOARD.FREE.WELCOME_TITLE' | translate }}</strong>
+            <p>{{ 'DASHBOARD.FREE.WELCOME_DESC' | translate }}</p>
         </div>
     </div>
 
@@ -21,9 +20,9 @@
             </div>
             <div class="stat-content">
                 <div class="stat-value">{{ stat.value }}<span class="stat-total">{{ stat.total }}</span></div>
-                <div class="stat-label">{{ stat.label }}</div>
+                <div class="stat-label">{{ stat.label | translate }}</div>
             </div>
-            <div class="stat-status">{{ stat.status }}</div>
+            <div class="stat-status">{{ stat.status | translate }}</div>
         </div>
         }
     </div>
@@ -37,12 +36,12 @@
                     <span class="material-symbols-outlined">upload_file</span>
                 </div>
                 <div class="action-title">
-                    <h3>Subir Documentos</h3>
-                    <p class="action-step">Paso 1 de 2</p>
+                    <h3>{{ 'DASHBOARD.FREE.ACTIONS.UPLOAD_TITLE' | translate }}</h3>
+                    <p class="action-step">{{ 'DASHBOARD.FREE.ACTIONS.UPLOAD_STEP' | translate }}</p>
                 </div>
             </div>
             <p class="action-description">
-                Sube tu W-2, 1099 y otros documentos fiscales. Puedes subir hasta 10 documentos.
+                {{ 'DASHBOARD.FREE.ACTIONS.UPLOAD_DESC' | translate }}
             </p>
             <ul class="action-checklist">
                 @for (step of uploadSteps; track step.text) {
@@ -50,16 +49,16 @@
                     <span class="material-symbols-outlined">
                         {{ step.completed ? 'check_circle' : 'radio_button_unchecked' }}
                     </span>
-                    <span>{{ step.text }}</span>
+                    <span>{{ step.text | translate }}</span>
                     @if (step.premium) {
-                    <span class="premium-badge">Premium</span>
+                    <span class="premium-badge">{{ 'COMMON.PREMIUM' | translate }}</span>
                     }
                 </li>
                 }
             </ul>
             <button class="btn btn-primary">
                 <span class="material-symbols-outlined">upload</span>
-                Ir a Documentos
+                {{ 'DASHBOARD.FREE.ACTIONS.GO_TO_DOCS' | translate }}
             </button>
         </div>
 
@@ -70,12 +69,12 @@
                     <span class="material-symbols-outlined">description</span>
                 </div>
                 <div class="action-title">
-                    <h3>Declaración Jurada (Form 1040)</h3>
-                    <p class="action-step">Paso 2 de 2</p>
+                    <h3>{{ 'DASHBOARD.FREE.ACTIONS.DECLARATION_TITLE' | translate }}</h3>
+                    <p class="action-step">{{ 'DASHBOARD.FREE.ACTIONS.DECLARATION_STEP' | translate }}</p>
                 </div>
             </div>
             <p class="action-description">
-                Completa tu Form 1040 para calcular tus impuestos y reembolso estimado.
+                {{ 'DASHBOARD.FREE.ACTIONS.DECLARATION_DESC' | translate }}
             </p>
             <ul class="action-checklist">
                 @for (step of declarationSteps; track step.text) {
@@ -83,16 +82,16 @@
                     <span class="material-symbols-outlined">
                         {{ step.completed ? 'check_circle' : 'radio_button_unchecked' }}
                     </span>
-                    <span>{{ step.text }}</span>
+                    <span>{{ step.text | translate }}</span>
                     @if (step.premium) {
-                    <span class="premium-badge">Premium</span>
+                    <span class="premium-badge">{{ 'COMMON.PREMIUM' | translate }}</span>
                     }
                 </li>
                 }
             </ul>
-            <button class="btn btn-primary" (click)="toggleForm()">
-                <span class="material-symbols-outlined">{{ showForm1040aC ? 'close' : 'edit_document' }}</span>
-                {{ showForm1040aC ? 'Cerrar Declaración' : 'Iniciar Declaración' }}
+            <button class="btn btn-primary" (click)="scrollToForm()">
+                <span class="material-symbols-outlined">edit_document</span>
+                {{ 'DASHBOARD.FREE.ACTIONS.START_DECLARATION' | translate }}
             </button>
         </div>
     </div>
@@ -103,20 +102,22 @@
             <span class="material-symbols-outlined">workspace_premium</span>
         </div>
         <div class="upsell-content">
-            <h3>Desbloquea Funciones Premium <span class="premium-arrow">↑</span></h3>
-            <p>Obtén asistencia IA, documentos ilimitados, Schedule C para negocios, deducciones avanzadas y soporte
-                prioritario.</p>
+            <h3>{{ 'DASHBOARD.FREE.UPSELL.TITLE' | translate }} <span class="premium-arrow">↑</span></h3>
+            <p>{{ 'DASHBOARD.FREE.UPSELL.DESC' | translate }}</p>
         </div>
         <div class="upsell-actions">
-            <button class="btn btn-premium" routerLink="/pricing">Actualizar a Premium</button>
-            <a href="#" class="compare-link">Comparar Planes</a>
+            <button class="btn btn-premium" routerLink="/pricing">{{ 'DASHBOARD.FREE.UPSELL.UPGRADE_NOW' | translate
+                }}</button>
+            <a href="#" class="compare-link">{{ 'DASHBOARD.FREE.UPSELL.COMPARE_PLANS' | translate }}</a>
         </div>
     </div>
 
-    <!-- 1040 Form Section -->
-    @if (showForm1040aC) {
-    <div class="form-overlay-section" style="margin-top: 3rem; border-top: 2px solid #0d47a1; padding-top: 3rem;">
-        <app-form-1040a-c></app-form-1040a-c>
+
+    <!-- Form 1040 Section -->
+    @if (showForm1040) {
+    <div class="form-section" id="form1040Section">
+        <app-form-1040-principal />
     </div>
     }
+
 </div>

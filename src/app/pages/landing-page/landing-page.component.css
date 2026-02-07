@@ -1,1 +1,132 @@
-/* CSS for Landing Page if needed */
+/* CSS for Landing Page */
+
+.hero-new {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    /* Force 70% of screen height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: white;
+    /* Ensure text is visible on video */
+}
+
+.hero-bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.hero-bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    /* Dark overlay for text readability */
+    z-index: 1;
+}
+
+.hero-container {
+    position: relative;
+    z-index: 2;
+    /* Content above overlay and video */
+    width: 100%;
+    padding-top: 80px;
+    /* Offset for fixed header if needed */
+}
+
+/* Ensure existing classes work well with the video bg */
+.hero-content-right {
+    max-width: 600px;
+    margin-left: auto;
+    /* Align right as per previous design */
+    text-align: right;
+    padding: 2rem;
+}
+
+.main-logo-img {
+    max-height: 80px;
+    width: auto;
+    margin-bottom: 2rem;
+}
+
+.hero-value-prop h3 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.hero-value-prop p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #e2e8f0;
+}
+
+.hero-tagline {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    margin-bottom: 2rem;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.btn-dark {
+    background-color: #0f172a;
+    color: white;
+    border: none;
+}
+
+.video-controls {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 10;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-video-control {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+}
+
+.btn-video-control:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.1);
+}
+
+.btn-video-control .material-symbols-outlined {
+    font-size: 24px;
+    color: white;
+}
+
+/* Adjust for mobile */
+@media (max-width: 768px) {
+    .video-controls {
+        bottom: 1rem;
+        right: 1rem;
+    }
+}

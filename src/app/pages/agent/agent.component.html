@@ -11,7 +11,7 @@
             </div>
             <div class="stat-content">
                 <span class="stat-value">{{ stat.value }}</span>
-                <span class="stat-title">{{ stat.title }}</span>
+                <span class="stat-title">{{ stat.title | translate }}</span>
             </div>
             <span class="stat-change positive">{{ stat.change }}</span>
         </div>
@@ -22,7 +22,7 @@
     <div class="dashboard-grid">
         <!-- Membership Distribution -->
         <div class="card membership-card">
-            <h3>Distribución de Membresías</h3>
+            <h3>{{ 'DASHBOARD.AGENT.MEMBERSHIP.TITLE' | translate }}</h3>
             <div class="membership-chart">
                 <div class="chart-placeholder">
                     <div class="pie-segment free" style="--percent: 35%">Free: 35%</div>
@@ -34,14 +34,14 @@
 
         <!-- Upcoming Tasks -->
         <div class="card tasks-card">
-            <h3>Tareas Pendientes</h3>
+            <h3>{{ 'DASHBOARD.AGENT.TASKS.TITLE' | translate }}</h3>
             <ul class="tasks-list">
                 @for (task of upcomingTasks; track task.title) {
                 <li class="task-item" [class]="task.priority">
                     <span class="material-symbols-outlined">{{ task.icon }}</span>
                     <div class="task-content">
-                        <strong>{{ task.title }}</strong>
-                        <span>{{ task.dueDate }}</span>
+                        <strong>{{ task.title | translate }}</strong>
+                        <span>{{ task.dueDate | translate }}</span>
                     </div>
                 </li>
                 }
@@ -51,14 +51,14 @@
 
     <!-- Recent Activity -->
     <div class="card activity-card">
-        <h3>Actividad Reciente</h3>
+        <h3>{{ 'DASHBOARD.AGENT.ACTIVITY.TITLE' | translate }}</h3>
         <ul class="activity-list">
             @for (activity of recentActivity; track activity.action) {
             <li class="activity-item">
                 <span class="material-symbols-outlined">{{ activity.icon }}</span>
                 <div class="activity-content">
-                    <strong>{{ activity.action }}</strong>
-                    <span>{{ activity.time }}</span>
+                    <strong>{{ activity.action | translate }}</strong>
+                    <span>{{ activity.time | translate }}</span>
                 </div>
             </li>
             }

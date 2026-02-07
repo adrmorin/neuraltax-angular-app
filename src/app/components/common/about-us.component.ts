@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-about-us',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   template: `
     <section class="about-section">
       <div class="container about-container">
@@ -13,16 +14,16 @@ import { CommonModule } from '@angular/common';
           <div class="gradient-overlay"></div>
         </div>
         <div class="about-content">
-          <h2 class="section-title">ABOUT US</h2>
+          <h2 class="section-title">{{ 'HOME.ABOUT.TITLE' | translate }}</h2>
 
           <div class="accordion">
             @for (item of accordionItems; track $index) {
               <div class="accordion-item" [class.active]="activeAccordion() === $index">
                 <button class="accordion-header" (click)="toggleAccordion($index)">
-                  {{ item.question }} <span class="material-symbols-outlined" style="vertical-align: middle;">keyboard_arrow_down</span>
+                  {{ 'HOME.ABOUT.QUESTIONS.' + $index + '.Q' | translate }} <span class="material-symbols-outlined" style="vertical-align: middle;">keyboard_arrow_down</span>
                 </button>
                 <div class="accordion-body">
-                  <p>{{ item.answer }}</p>
+                  <p>{{ 'HOME.ABOUT.QUESTIONS.' + $index + '.A' | translate }}</p>
                 </div>
               </div>
             }
@@ -68,18 +69,7 @@ import { CommonModule } from '@angular/common';
 export class AboutUsComponent {
   activeAccordion = signal<number | null>(null);
 
-  accordionItems = [
-    { question: 'Does Neuraltax replace an accountant?', answer: 'Neuraltax acts as a powerful AI assistant that handles most tax scenarios with precision. For complex cases, we offer access to human experts.' },
-    { question: 'How do I get started?', answer: 'Simply click "Get Free Estimate" or "Login" to create your account. Our wizard will guide you through the process step-by-step.' },
-    { question: 'Can I use Neuraltax if I only file personal taxes?', answer: 'Absolutely! Neuraltax is optimized for individual filers (1040), freelancers, and families.' },
-    { question: 'How secure is the platform?', answer: 'We use bank-level 256-bit encryption to protect your data. Your privacy and security are our top priorities.' },
-    { question: 'What services does it offer?', answer: 'We offer federal and state tax filing, tax planning, and audit support.' },
-    { question: 'Who is it for?', answer: 'Anyone looking to simplify their tax filing process.' },
-    { question: 'What are the main benefits?', answer: 'Accuracy, speed, and maximum refund guarantee.' },
-    { question: 'How does it work?', answer: 'Upload your documents, answer simple questions, and let our AI do the rest.' },
-    { question: 'What pricing plans are available?', answer: 'We offer free and premium plans to suit your needs.' },
-    { question: 'What is Neuraltax?', answer: 'Your AI-powered tax filing companion.' }
-  ];
+  accordionItems = new Array(10);
 
   toggleAccordion(index: number): void {
     this.activeAccordion.set(this.activeAccordion() === index ? null : index);

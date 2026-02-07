@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [],
+  imports: [TranslateModule],
   template: `
     <footer class="neuraltax-footer">
       <div class="container">
@@ -11,14 +12,14 @@ import { Component } from '@angular/core';
           <!-- Left Column -->
           <div class="footer-col footer-brand">
             <div class="logo">
-              <img src="assets/neuraltax_logo.png" alt="NeuralTax AI" style="height: 40px" />
+              <img src="assets/neuraltax_logo.png" alt="NeuralTax AI" style="height: 55px; width: auto;" />
             </div>
             <h3>Neuraltax AI Expert</h3>
-            <p>Your automated tax expert. Simplifying tax management with cutting-edge AI technology and precision.</p>
+            <p>{{ 'FOOTER.BRAND_DESC' | translate }}</p>
             <div class="business-reg-box">
               <span class="material-symbols-outlined" style="vertical-align: middle; margin-right: 8px;">description</span>
               <div>
-                <span>Business Registration</span>
+                <span>{{ 'FOOTER.BUSINESS_REG' | translate }}</span>
                 <strong>L25000152874</strong>
               </div>
             </div>
@@ -26,11 +27,11 @@ import { Component } from '@angular/core';
 
           <!-- Middle Column -->
           <div class="footer-col footer-contact">
-            <h4>Contact Information</h4>
+            <h4>{{ 'FOOTER.CONTACT_INFO' | translate }}</h4>
             <div class="email-box">
               <span class="material-symbols-outlined" style="vertical-align: middle; margin-right: 8px;">mail</span>
               <div>
-                <span>Email us</span>
+                <span>{{ 'FOOTER.EMAIL_US' | translate }}</span>
                 <a href="mailto:neuraltaxai&#64;gmail.com">neuraltaxai&#64;gmail.com</a>
               </div>
             </div>
@@ -38,16 +39,16 @@ import { Component } from '@angular/core';
               <div class="detail-item">
                 <span class="material-symbols-outlined" style="vertical-align: middle; margin-right: 8px;">schedule</span>
                 <div>
-                  <strong>Business Hours</strong>
-                  <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-                  <p>Saturday - Sunday: Closed</p>
+                  <strong>{{ 'FOOTER.BUSINESS_HOURS' | translate }}</strong>
+                  <p>{{ 'FOOTER.WEEKDAYS' | translate }}: 9:00 AM - 6:00 PM</p>
+                  <p>{{ 'FOOTER.WEEKENDS' | translate }}: {{ 'FOOTER.CLOSED' | translate }}</p>
                 </div>
               </div>
               <div class="detail-item">
                 <span class="material-symbols-outlined" style="vertical-align: middle; margin-right: 8px;">bolt</span>
                 <div>
-                  <strong>Response Time</strong>
-                  <p>Within 24 hours</p>
+                  <strong>{{ 'FOOTER.RESPONSE_TIME' | translate }}</strong>
+                  <p>{{ 'FOOTER.RESPONSE_DESC' | translate }}</p>
                 </div>
               </div>
             </div>
@@ -56,7 +57,7 @@ import { Component } from '@angular/core';
           <!-- Right Column -->
           <div class="footer-col footer-connect">
             <div class="connect-header">
-              <h4>Connect With Us</h4>
+              <h4>{{ 'FOOTER.CONNECT_WITH_US' | translate }}</h4>
               <div class="social-icons">
                 <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: currentColor;"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.129 22 16.99 22 12z"/></svg></a>
                 <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: currentColor;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.919-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
@@ -67,27 +68,27 @@ import { Component } from '@angular/core';
               </div>
             </div>
             <div class="footer-links">
-              <a href="#">Our Services</a>
-              <a href="#">Pricing</a>
-              <a href="#">About Us</a>
-              <a href="#">FAQ</a>
-              <a href="#">Quick Links</a>
+              <a href="#">{{ 'FOOTER.SERVICES' | translate }}</a>
+              <a href="#">{{ 'FOOTER.PRICING' | translate }}</a>
+              <a href="#">{{ 'FOOTER.ABOUT' | translate }}</a>
+              <a href="#">{{ 'FOOTER.FAQ' | translate }}</a>
+              <a href="#">{{ 'FOOTER.QUICK_LINKS' | translate }}</a>
             </div>
             <div class="footer-copyright">
-              <p>&copy; 2025 Neuraltax. All rights reserved.</p>
+              <p>&copy; 2025 Neuraltax. {{ 'FOOTER.RIGHTS' | translate }}</p>
               <div class="legal-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Support</a>
+                <a href="#">{{ 'FOOTER.PRIVACY' | translate }}</a>
+                <a href="#">{{ 'FOOTER.TERMS' | translate }}</a>
+                <a href="#">{{ 'FOOTER.SUPPORT' | translate }}</a>
               </div>
             </div>
           </div>
         </div>
 
         <div class="footer-bottom">
-          <p class="reg-info">Business Registration Number: L25000152874 | Contact: neuraltaxai&#64;gmail.com</p>
-          <p class="disclaimer">Neuraltax is not meant for collecting PII or securing sensitive data. Please consult with a qualified tax professional for complex tax situations.</p>
-          <p class="license">Licensed and registered for tax advisory services. All communications are confidential and secure.</p>
+          <p class="reg-info">{{ 'FOOTER.REG_INFO' | translate }}: L25000152874 | Contact: neuraltaxai&#64;gmail.com</p>
+          <p class="disclaimer">{{ 'FOOTER.DISCLAIMER' | translate }}</p>
+          <p class="license">{{ 'FOOTER.LICENSE' | translate }}</p>
         </div>
       </div>
     </footer>

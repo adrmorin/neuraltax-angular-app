@@ -2,59 +2,69 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { DashboardHeaderComponent } from '../../components/dashboard/dashboard-header.component';
-import { Form1040acComponent } from '../../components/forms/form1040aC/form1040aC.component';
 import { TaxDataService } from '../../services/tax-data.service';
+import { Form1040PrincipalComponent } from '../../components/forms/form1040-principal/form1040-principal.component';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-free-dashboard',
     standalone: true,
-    imports: [CommonModule, RouterLink, DashboardHeaderComponent, Form1040acComponent],
+    imports: [CommonModule, RouterLink, DashboardHeaderComponent, Form1040PrincipalComponent, TranslateModule],
     templateUrl: './free-dashboard.component.html',
     styleUrl: './free-dashboard.component.css'
 })
 export class FreeDashboardComponent {
     private taxDataService = inject(TaxDataService);
+    private translate = inject(TranslateService);
     isBusinessOwner = this.taxDataService.isBusinessOwner();
+    showForm1040 = false;
+
+    scrollToForm() {
+        this.showForm1040 = true;
+        // Wait for Angular to render the component before scrolling
+        setTimeout(() => {
+            const element = document.getElementById('form1040Section');
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, 100);
+    }
 
     stats = [
         {
-            label: 'Documentos Subidos',
+            label: 'DASHBOARD.FREE.STATS.UPLOADED_DOCS',
             value: '2',
             total: '/10',
             icon: 'description',
             status: '2/10'
         },
         {
-            label: 'Formularios Completados',
+            label: 'DASHBOARD.FREE.STATS.COMPLETED_FORMS',
             value: '0',
             total: '/1',
             icon: 'task_alt',
-            status: 'En Progreso'
+            status: 'DASHBOARD.FREE.STATS.IN_PROGRESS'
         },
         {
-            label: 'Reembolso Est.',
+            label: 'DASHBOARD.FREE.STATS.EST_REFUND',
             value: '$0',
             total: '',
             icon: 'payments',
-            status: 'Estimado'
+            status: 'DASHBOARD.FREE.STATS.ESTIMATED'
         }
     ];
 
     uploadSteps = [
-        { text: 'Formularios W-2', completed: true },
-        { text: 'Estados de Interés', completed: true },
-        { text: 'Recibos y Facturas', completed: false, premium: true }
+        { text: 'DASHBOARD.FREE.STEPS.W2', completed: true },
+        { text: 'DASHBOARD.FREE.STEPS.INTEREST', completed: true },
+        { text: 'DASHBOARD.FREE.STEPS.RECEIPTS', completed: false, premium: true }
     ];
 
     declarationSteps = [
-        { text: 'Form 1040 (Principal)', completed: true },
-        { text: 'Deducción Estándar', completed: true },
-        { text: this.isBusinessOwner ? 'Anexo C (Negocio)' : 'Schedule C (Negocio)', completed: false, premium: !this.isBusinessOwner }
+        { text: 'DASHBOARD.FREE.STEPS.FORM1040', completed: true },
+        { text: 'DASHBOARD.FREE.STEPS.DEDUCTION', completed: true },
+        { text: 'DASHBOARD.FREE.STEPS.SCHEDULE_C', completed: false, premium: !this.isBusinessOwner }
     ];
 
-    showForm1040aC = false;
 
-    toggleForm() {
-        this.showForm1040aC = !this.showForm1040aC;
-    }
 }

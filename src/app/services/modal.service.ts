@@ -6,29 +6,93 @@ import { Injectable, signal } from '@angular/core';
 export class ModalService {
     private loginVisible = signal(false);
 
-    // Getter para el estado del modal
+    private plansVisible = signal(false);
+
+    // Getter para el estado del modal de login
     get isLoginVisible() {
         return this.loginVisible.asReadonly();
     }
 
-    // Abrir el modal
+    // Getter para el estado del modal de planes
+    get isPlansVisible() {
+        return this.plansVisible.asReadonly();
+    }
+
+    // Abrir el modal de login
     openLogin() {
         this.loginVisible.set(true);
+        this.plansVisible.set(false); // Close plans if open
+        this.registerVisible.set(false); // Close register if open
         document.body.style.overflow = 'hidden'; // Bloquear scroll
     }
 
-    // Cerrar el modal
+    // Cerrar el modal de login
     closeLogin() {
         this.loginVisible.set(false);
-        document.body.style.overflow = 'auto'; // Habilitar scroll
+        if (!this.plansVisible()) {
+            document.body.style.overflow = 'auto'; // Habilitar scroll only if no other modal is open
+        }
     }
 
-    // Alternar el modal
+    // Alternar el modal de login
     toggleLogin() {
         if (this.loginVisible()) {
             this.closeLogin();
         } else {
             this.openLogin();
+        }
+    }
+
+    // === PLANS MODAL ===
+
+    openPlans() {
+        this.plansVisible.set(true);
+        this.loginVisible.set(false); // Close login if open
+        this.registerVisible.set(false); // Close register if open
+        document.body.style.overflow = 'hidden';
+    }
+
+    closePlans() {
+        this.plansVisible.set(false);
+        if (!this.loginVisible()) {
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    togglePlans() {
+        if (this.plansVisible()) {
+            this.closePlans();
+        } else {
+            this.openPlans();
+        }
+    }
+
+    // === REGISTER MODAL ===
+    private registerVisible = signal(false);
+
+    get isRegisterVisible() {
+        return this.registerVisible.asReadonly();
+    }
+
+    openRegister() {
+        this.registerVisible.set(true);
+        this.loginVisible.set(false);
+        this.plansVisible.set(false);
+        document.body.style.overflow = 'hidden';
+    }
+
+    closeRegister() {
+        this.registerVisible.set(false);
+        if (!this.loginVisible() && !this.plansVisible()) {
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    toggleRegister() {
+        if (this.registerVisible()) {
+            this.closeRegister();
+        } else {
+            this.openRegister();
         }
     }
 }

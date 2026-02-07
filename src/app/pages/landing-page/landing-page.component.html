@@ -1,6 +1,18 @@
 <div class="landing-page">
+    <app-header></app-header>
     <!-- Hero Section -->
     <section class="hero-new">
+        <video #heroVideo autoplay muted playsinline class="hero-bg-video" (ended)="onVideoEnded()">
+            <source src="assets/landing/Nuraltax_final.webm" type="video/webm">
+        </video>
+        <div class="video-controls">
+            <button class="btn-video-control" (click)="togglePlay()" [title]="isPlaying() ? 'Pause' : 'Play'">
+                <span class="material-symbols-outlined">{{ isPlaying() ? 'pause' : 'play_arrow' }}</span>
+            </button>
+            <button class="btn-video-control" (click)="toggleMute()" [title]="isMuted() ? 'Unmute' : 'Mute'">
+                <span class="material-symbols-outlined">{{ isMuted() ? 'volume_off' : 'volume_up' }}</span>
+            </button>
+        </div>
         <div class="hero-bg-overlay"></div>
         <div class="container hero-container">
 
@@ -11,19 +23,19 @@
 
 
                 <div class="hero-value-prop">
-                    <h3>Maximize your savings</h3>
-                    <p>and your peace of mind with<br />AI-powered tax optimization</p>
+                    <h3>{{ 'HOME.HERO.MAXIMIZE_SAVINGS' | translate }}</h3>
+                    <p [innerHTML]="'HOME.HERO.AI_OPTIMIZATION_DESC' | translate"></p>
                 </div>
 
-                <p class="hero-tagline">More deductions, less stress, full control<br /><strong>starts NOW!</strong></p>
+                <p class="hero-tagline" [innerHTML]="'HOME.HERO.VALUE_PROP' | translate"></p>
 
                 <div class="hero-actions">
                     <a routerLink="/wizard" class="btn btn-dark"><span class="material-symbols-outlined"
-                            style="color: #ff4d4d; margin-right: 8px; vertical-align: middle;">bolt</span> Get Free
-                        Estimate</a>
+                            style="color: #ff4d4d; margin-right: 8px; vertical-align: middle;">bolt</span> {{
+                        'HOME.HERO.GET_ESTIMATE' | translate }}</a>
                     <button (click)="modalService.openLogin()" class="btn btn-loguin">
-                        <span>Loguin</span>
-                        <span class="btn-subtext">or register</span>
+                        <span>{{ 'HEADER.LOGIN' | translate }}</span>
+                        <span class="btn-subtext">{{ 'LANDING.OR_REGISTER' | translate }}</span>
                     </button>
                 </div>
             </div>
@@ -34,18 +46,16 @@
     <section class="features-bar">
         <div class="container features-grid">
             <div class="feature-col left">
-                <h3>Why Neuraltax?</h3>
-                <p>Neuraltax is your automated tax expert. Designed to simplify tax management, we combine cutting-edge
-                    technology with precision and efficiency. Our intelligent system analyzes, calculates, and optimizes
-                    your returns, ensuring full IRS compliance and maximizing your tax benefits.</p>
+                <h3>{{ 'LANDING.WHY_NEURALTAX' | translate }}</h3>
+                <p>{{ 'LANDING.WHY_NEURALTAX_DESC' | translate }}</p>
             </div>
             <div class="feature-col right">
-                <h3>Smart Automation:</h3>
+                <h3>{{ 'LANDING.SMART_AUTOMATION' | translate }}</h3>
                 <ul>
-                    <li><strong>Fast processes, no human errors</strong></li>
-                    <li>Save Time and Money: Forget the hassle, focus on what matters.</li>
-                    <li>Guaranteed Compliance: Always up-to-date with tax regulations.</li>
-                    <li><strong>Discover how Neuraltax can transform your tax experience.</strong></li>
+                    <li><strong>{{ 'LANDING.FAST_PROCESSES' | translate }}</strong></li>
+                    <li>{{ 'LANDING.SAVE_TIME' | translate }}</li>
+                    <li>{{ 'LANDING.GUARANTEED_COMPLIANCE' | translate }}</li>
+                    <li><strong>{{ 'LANDING.DISCOVER_TRANSFORM' | translate }}</strong></li>
                 </ul>
             </div>
         </div>

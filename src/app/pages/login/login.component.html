@@ -21,5 +21,6 @@
             {{ loading ? 'Iniciando...' : 'Iniciar Sesión' }}
         </button>
     </form>
-    <p class="login-footer">¿No tienes cuenta? <a href="#">Regístrate</a></p>
+    <p class="login-footer">¿No tienes cuenta? <a href="javascript:void(0)"
+            (click)="modalService.openRegister()">Regístrate</a></p>
 </div>

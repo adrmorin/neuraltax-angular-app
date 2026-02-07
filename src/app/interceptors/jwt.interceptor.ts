@@ -7,8 +7,8 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
     // Solo añadir Authorization si la URL pertenece a la API propia
     const isOwnApi = req.url.startsWith(environment.apiUrl);
 
-    // No añadir token para login/register
-    const isAuthEndpoint = /(\/api\/(users|auth)\/(login|register))(\b|\/|\?)/.test(req.url);
+    // No añadir token para login/register o assets
+    const isAuthEndpoint = /(\/api\/(users|auth)\/(login|register))(\b|\/|\?)/.test(req.url) || req.url.includes('/assets/');
 
     if (token && isOwnApi && !isAuthEndpoint) {
         req = req.clone({

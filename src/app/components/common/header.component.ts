@@ -1,15 +1,17 @@
-import { Component, OnDestroy, OnInit, inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject, PLATFORM_ID, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { fromEvent, Subscription, timer } from 'rxjs';
 import { map, pairwise, share, throttleTime } from 'rxjs/operators';
 import { ModalService } from '../../services/modal.service';
 import { AuthService } from '../../services/auth.service';
+import { ThemeService } from '../../services/theme.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, TranslateModule],
   template: `
     <header class="glass-header" [class.hidden]="isHidden">
       <div class="container">
@@ -18,21 +20,57 @@ import { AuthService } from '../../services/auth.service';
         </div>
         <nav>
           <ul>
-            <li><a routerLink="/free-dashboard" class="btn btn-tier btn-free">Free</a></li>
-            <li><a routerLink="/premium-dashboard" class="btn btn-tier btn-premium">Premium</a></li>
-            <li><a routerLink="/premium-dashboard" class="btn btn-tier btn-vip">VIP</a></li>
-            <li><a routerLink="/agent" class="btn btn-tier btn-agente">Agente</a></li>
+
+            @if (minimal) {
+              <li>
+                <a routerLink="/home" class="back-home-link">
+                  <span class="material-symbols-outlined">home</span>
+                  {{ 'HEADER.BACK_TO_HOME' | translate }}
+                </a>
+              </li>
+            }
+
+            @if (!minimal) {
+              <!-- Theme Toggle MOVED UP -->
+              <li class="theme-switcher">
+                <button class="btn btn-theme" (click)="themeService.toggleTheme()" [title]="themeService.theme() === 'dark' ? 'Switch to Light' : 'Switch to Dark'">
+                  <span class="material-symbols-outlined">
+                    {{ themeService.theme() === 'dark' ? 'light_mode' : 'dark_mode' }}
+                  </span>
+                </button>
+              </li>
+
+              <li><a routerLink="/free-dashboard" class="btn btn-tier btn-free">{{ 'COMMON.FREE' | translate }}</a></li>
+              <li><a routerLink="/premium-dashboard" class="btn btn-tier btn-premium">{{ 'COMMON.PREMIUM' | translate }}</a></li>
+
+              <li class="lang-switcher">
+                <button class="btn btn-lang" (click)="switchLanguage(currentLang === 'es' ? 'en' : 'es')">
+                  <span class="material-symbols-outlined">public</span>
+                  <span class="lang-text">{{ currentLang | uppercase }}</span>
+                </button>
+              </li>
+            }
             
             @if (authService.currentUser(); as user) {
-              <li><a [routerLink]="authService.currentUserDashboard()" class="btn btn-dashboard">Dashboard</a></li>
+              @if (!minimal) {
+                <li><a [routerLink]="authService.currentUserDashboard()" class="btn btn-dashboard">{{ 'HEADER.DASHBOARD' | translate }}</a></li>
+              }
               <li class="user-profile">
+                <span class="user-name">
+                  {{ getUserDisplayName(user) }}
+                </span>
                 <div class="user-avatar-container">
                   <img src="assets/nerea_avatar.png" alt="User Profile" class="user-avatar" />
                   <span class="status-indicator"></span>
                 </div>
+                <button (click)="logout()" class="btn btn-logout" title="Cerrar Sesión">
+                  <span class="material-symbols-outlined">logout</span>
+                </button>
               </li>
             } @else {
-              <li><button (click)="modalService.openLogin()" class="btn btn-login">Login</button></li>
+              @if (!minimal) {
+                <li><button (click)="modalService.openLogin()" class="btn btn-login">{{ 'HEADER.LOGIN' | translate }}</button></li>
+              }
             }
           </ul>
         </nav>
@@ -43,10 +81,76 @@ import { AuthService } from '../../services/auth.service';
     /* Header transition for hiding */
     .glass-header {
       transition: transform 0.3s ease-in-out;
+      background: var(--bg-dark-deep) !important;
+      position: sticky;
+      top: 0;
+      z-index: 9999;
     }
     
     .glass-header.hidden {
       transform: translateY(-100%);
+    }
+
+    nav ul {
+      gap: 1.5rem !important;
+      flex-wrap: nowrap;
+    }
+
+    .btn-theme {
+      background: transparent !important;
+      border: none !important;
+      color: #4ade80 !important;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 50%;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      min-width: 40px;
+      min-height: 40px;
+    }
+
+    .btn-theme:hover {
+      background: rgba(74, 222, 128, 0.1) !important;
+    }
+
+    .btn-theme .material-symbols-outlined {
+      font-size: 1.5rem !important;
+      transition: transform 0.3s ease, color 0.3s ease;
+      color: #4ade80 !important;
+    }
+
+    .btn-theme:hover .material-symbols-outlined {
+      transform: rotate(15deg) scale(1.1);
+      color: #22c55e !important;
+    }
+
+    .back-home-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+
+    .back-home-link:hover {
+      color: #166534;
+      transform: translateX(-4px);
+    }
+
+    .back-home-link span {
+      font-size: 1.1rem;
+    }
+
+    .user-name {
+      margin-right: 1rem;
+      font-weight: 600;
+      color: white;
+      font-size: 0.9rem;
     }
 
     .btn-tier {
@@ -141,7 +245,39 @@ import { AuthService } from '../../services/auth.service';
     .user-profile {
       display: flex;
       align-items: center;
-      margin-left: 1rem;
+      gap: 0.75rem;
+    }
+
+    .user-name {
+      font-weight: 600;
+      color: white;
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+
+    .btn-logout {
+      background-color: transparent !important;
+      color: #ef4444 !important;
+      border: 1px solid rgba(239, 68, 68, 0.3) !important;
+      padding: 0.5rem !important;
+      border-radius: 8px !important;
+      cursor: pointer !important;
+      transition: all 0.3s ease !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      min-width: 40px;
+      min-height: 40px;
+    }
+
+    .btn-logout:hover {
+      background-color: rgba(239, 68, 68, 0.1) !important;
+      border-color: #ef4444 !important;
+      transform: translateY(-2px);
+    }
+
+    .btn-logout .material-symbols-outlined {
+      font-size: 1.2rem !important;
     }
 
     .user-avatar-container {
@@ -180,9 +316,40 @@ import { AuthService } from '../../services/auth.service';
       border: 2px solid #0f172a;
       border-radius: 50%;
     }
+
+    .btn-lang {
+      background-color: transparent !important;
+      color: white !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 0.4rem !important;
+      padding: 0.5rem 0.8rem !important;
+      border-radius: 8px !important;
+      font-weight: 700 !important;
+      font-size: 0.85rem !important;
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+      cursor: pointer !important;
+      transition: all 0.3s ease !important;
+    }
+
+    .btn-lang:hover {
+      background-color: rgba(255, 255, 255, 0.1) !important;
+      border-color: var(--accent-green-bright) !important;
+    }
+
+    .btn-lang .material-symbols-outlined {
+      font-size: 1.2rem !important;
+      color: var(--accent-green-bright) !important;
+    }
+
+    .logo img {
+      /* High contrast faint green almost white */
+      filter: brightness(0) invert(1) sepia(0.1) saturate(500%) hue-rotate(70deg) brightness(1.2);
+    }
   `]
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  @Input() minimal = false;
   isHidden = false;
   private scrollSub: Subscription | null = null;
   private inactivitySub: Subscription | null = null;
@@ -190,6 +357,34 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private platformId = inject(PLATFORM_ID);
   public modalService = inject(ModalService);
   public authService = inject(AuthService);
+  public themeService = inject(ThemeService);
+  private translate = inject(TranslateService);
+
+  get currentLang(): string {
+    return this.translate.currentLang || this.translate.defaultLang || 'es';
+  }
+
+  getUserDisplayName(user: { firstName?: string; lastName?: string; email?: string }): string {
+    if (user.firstName && user.lastName) {
+      return `${user.firstName} ${user.lastName}`;
+    }
+    if (user.firstName) {
+      return user.firstName;
+    }
+    if (user.email) {
+      return user.email.split('@')[0];
+    }
+    return 'Usuario';
+  }
+
+  logout(): void {
+    this.authService.logout();
+    console.log('👋 Sesión cerrada');
+  }
+
+  switchLanguage(lang: string) {
+    this.translate.use(lang);
+  }
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {

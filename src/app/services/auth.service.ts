@@ -28,11 +28,22 @@ export class AuthService {
 
     // === LOGIN ===
     login(email: string, password: string): Observable<{ token: string; user: { email: string } }> {
-        // --- MAGIC LOGIN FOR USER ---
+        // --- MAGIC LOGIN FOR USER 1 ---
         if (email === 'animacuba@gmail.com' && password === 'adr2310') {
             const mockResponse = {
                 token: 'MOCK_TOKEN_ADR_NEURALTAX',
                 user: { email: 'animacuba@gmail.com' }
+            };
+            return of(mockResponse).pipe(
+                tap((response) => this.handleSuccessfulLogin(response))
+            );
+        }
+
+        // --- MAGIC LOGIN FOR USER 2 (from old service) ---
+        if (email === 'chano@yahoo.com' && password === 'Abcde12345$$') {
+            const mockResponse = {
+                token: 'MOCK_TOKEN_CHANO_NEURALTAX',
+                user: { email: 'chano@yahoo.com' }
             };
             return of(mockResponse).pipe(
                 tap((response) => this.handleSuccessfulLogin(response))
@@ -64,10 +75,13 @@ export class AuthService {
             this.getUserInfo().subscribe({
                 next: (user) => {
                     this.currentUser.set(user); // Sync signal
-                    this.handleRoleNavigation(user.roles || []);
+                    // Navigate to home page
+                    this.handleRoleNavigation();
                 },
                 error: () => {
-                    this.router.navigate(['/home']);
+                    // If getUserInfo fails, redirect to default dashboard
+                    console.error('Failed to get user info, redirecting to default dashboard');
+                    this.router.navigate(['/free-dashboard']);
                 }
             });
         } else {
@@ -84,9 +98,9 @@ export class AuthService {
         return '/free-dashboard';
     }
 
-    private handleRoleNavigation(roles: string[]) {
-        const route = this.getDashboardRoute(roles);
-        this.router.navigate([route]);
+    private handleRoleNavigation() {
+        // After login, redirect to /home (protected route)
+        this.router.navigate(['/home']);
     }
 
     // === TOKEN ===
@@ -144,14 +158,27 @@ export class AuthService {
         const token = this.getToken();
         if (token === 'MOCK_TOKEN_ADR_NEURALTAX') {
             return of({
-                firstName: 'Neural',
-                lastName: 'User',
+                firstName: 'Adrian',
+                lastName: 'Morin',
                 email: 'animacuba@gmail.com',
                 phone: '000000000',
                 password: '',
                 roles: ['ROLE_USER_HOME', 'ROLE_FREE'] // Redirection to /home on login, but /free-dashboard as dashboard
             });
         }
+
+        // Mock user 2 - Chano
+        if (token === 'MOCK_TOKEN_CHANO_NEURALTAX') {
+            return of({
+                firstName: 'Chano',
+                lastName: 'User',
+                email: 'chano@yahoo.com',
+                phone: '000000000',
+                password: '',
+                roles: ['ROLE_USER_HOME', 'ROLE_FREE']
+            });
+        }
+
         return this.http.get<User>(`${this.baseUrl}/user-info`, { headers: this.getAuthHeaders() });
     }
 

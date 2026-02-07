@@ -1,101 +1,103 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-membership-plans',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink, TranslateModule],
   template: `
     <section class="membership-plans">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title">Membership plans</h2>
-          <p class="section-subtitle">Choose the membership plan that best fits your tax needs. All plans include our advanced AI technology and expert support.</p>
+          <h2 class="section-title">{{ 'HOME.PLANS.TITLE' | translate }}</h2>
+          <p class="section-subtitle">{{ 'HOME.PLANS.SUBTITLE' | translate }}</p>
         </div>
 
         <div class="plans-grid">
           <!-- Free Plan -->
           <div class="plan-card free">
             <div class="card-header">
-              <h3>Individual Free Member</h3>
-              <p>Essential tax services with AI automation</p>
+              <h3>{{ 'HOME.PLANS.INDIVIDUAL_FREE' | translate }}</h3>
+              <p>{{ 'HOME.PLANS.FREE_DESC' | translate }}</p>
             </div>
             <div class="card-price">
-              <span class="price-label">Tax declaration fee</span>
+              <span class="price-label">{{ 'HOME.PLANS.TAX_FEE_LABEL' | translate }}</span>
               <span class="price-value">$49</span>
             </div>
             <ul class="feature-list">
-              <li><span class="material-symbols-outlined">check</span> AI form filing automation</li>
-              <li><span class="material-symbols-outlined">check</span> IRS/CISA level security</li>
-              <li><span class="material-symbols-outlined">check</span> Direct e-file submission</li>
-              <li><span class="material-symbols-outlined">check</span> Advance payment</li>
-              <li><span class="material-symbols-outlined">check</span> Chatbot Assistant</li>
+              <li><span class="material-symbols-outlined">check</span> {{ 'HOME.PLANS.FEATURES.AI_AUTOMATION' | translate }}</li>
+              <li><span class="material-symbols-outlined">check</span> {{ 'HOME.PLANS.FEATURES.SECURITY' | translate }}</li>
+              <li><span class="material-symbols-outlined">check</span> {{ 'HOME.PLANS.FEATURES.EFILE' | translate }}</li>
+              <li><span class="material-symbols-outlined">check</span> {{ 'HOME.PLANS.FEATURES.ADVANCE_PAY' | translate }}</li>
+              <li><span class="material-symbols-outlined">check</span> {{ 'HOME.PLANS.FEATURES.CHATBOT' | translate }}</li>
             </ul>
           </div>
 
           <!-- Smart Saver (Most Popular) -->
           <div class="plan-card featured">
-            <div class="popular-badge">Most Popular</div>
+            <div class="popular-badge">{{ 'HOME.PLANS.MOST_POPULAR' | translate }}</div>
             <div class="card-header">
-              <h3>Smart Saver</h3>
-              <p>Comprehensive monthly tax management solution</p>
+              <h3>{{ 'HOME.PLANS.SMART_SAVER' | translate }}</h3>
+              <p>{{ 'HOME.PLANS.SMART_SAVER_DESC' | translate }}</p>
             </div>
             <div class="card-price">
-              <span class="price-value">$12/Monthly</span>
+              <span class="price-value">$12/{{ 'HOME.PLANS.MONTHLY' | translate }}</span>
             </div>
             <ul class="feature-list">
-              <li class="emphasized"><span class="material-symbols-outlined">check</span> Tax declaration fee: $0 (if you have +4 months with membership)</li>
-              <li class="sub-feature">$29-$39 (if you have less than 4 months)</li>
-              <li><span class="material-symbols-outlined">check</span> Chatbot Assistant (priority support)</li>
-              <li><span class="material-symbols-outlined">check</span> Tax educational resources</li>
-              <li><span class="material-symbols-outlined">check</span> AI form filing automation</li>
-              <li><span class="material-symbols-outlined">check</span> IRS/CISA level security</li>
-              <li><span class="material-symbols-outlined">check</span> Direct e-file submission</li>
-              <li><span class="material-symbols-outlined">check</span> Advance payment</li>
-              <li><span class="material-symbols-outlined">check</span> Invoice & document storage (unlimited)</li>
+              <li class="emphasized"><span class="material-symbols-outlined">check</span> {{ 'HOME.PLANS.FEATURES.SMART_SAVER_FEE' | translate }}</li>
+              <li class="sub-feature">{{ 'HOME.PLANS.FEATURES.SMART_SAVER_FEE_LESS' | translate }}</li>
+              <li><span class="material-symbols-outlined">check</span> {{ 'HOME.PLANS.FEATURES.CHATBOT' | translate }} ({{ 'HOME.PLANS.FEATURES.PRIORITY_SUPPORT' | translate }})</li>
+              <li><span class="material-symbols-outlined">check</span> {{ 'HOME.PLANS.FEATURES.EDUCATIONAL' | translate }}</li>
+              <li><span class="material-symbols-outlined">check</span> {{ 'HOME.PLANS.FEATURES.AI_AUTOMATION' | translate }}</li>
+              <li><span class="material-symbols-outlined">check</span> {{ 'HOME.PLANS.FEATURES.SECURITY' | translate }}</li>
+              <li><span class="material-symbols-outlined">check</span> {{ 'HOME.PLANS.FEATURES.EFILE' | translate }}</li>
+              <li><span class="material-symbols-outlined">check</span> {{ 'HOME.PLANS.FEATURES.ADVANCE_PAY' | translate }}</li>
+              <li><span class="material-symbols-outlined">check</span> {{ 'HOME.PLANS.FEATURES.STORAGE' | translate }}</li>
             </ul>
-            <button class="btn btn-outline-light">Update Now</button>
+            <button class="btn btn-outline-light" routerLink="/update">{{ 'HOME.PLANS.UPDATE_NOW' | translate }}</button>
           </div>
 
           <!-- VIP Plan -->
           <div class="plan-card black">
-            <div class="popular-badge">Exclusive VIP</div>
+            <div class="popular-badge">{{ 'HOME.PLANS.EXCLUSIVE_VIP' | translate }}</div>
             <div class="card-header">
-              <h3>Black (Exclusive VIP)</h3>
-              <p>Ultimate exclusive membership by invitation only</p>
+              <h3>{{ 'HOME.PLANS.BLACK_VIP' | translate }}</h3>
+              <p>{{ 'HOME.PLANS.BLACK_VIP_DESC' | translate }}</p>
             </div>
             <div class="card-price">
-              <span class="price-value">By invitation</span>
+              <span class="price-value">{{ 'HOME.PLANS.BY_INVITATION' | translate }}</span>
             </div>
             <ul class="feature-list">
-              <li><span class="material-symbols-outlined">check</span> Free Tax declaration</li>
-              <li><span class="material-symbols-outlined">check</span> Chatbot Assistant (1-to-1)</li>
-              <li><span class="material-symbols-outlined">check</span> IRS/CISA level security</li>
-              <li><span class="material-symbols-outlined">check</span> Personal financial counseling</li>
-              <li><span class="material-symbols-outlined">check</span> FTF investment plans</li>
+              <li><span class="material-symbols-outlined">check</span> {{ 'HOME.PLANS.FEATURES.FREE_TAX_DECL' | translate }}</li>
+              <li><span class="material-symbols-outlined">check</span> {{ 'HOME.PLANS.FEATURES.CHATBOT_1TO1' | translate }}</li>
+              <li><span class="material-symbols-outlined">check</span> {{ 'HOME.PLANS.FEATURES.SECURITY' | translate }}</li>
+              <li><span class="material-symbols-outlined">check</span> {{ 'HOME.PLANS.FEATURES.PERSONAL_COUNSELING' | translate }}</li>
+              <li><span class="material-symbols-outlined">check</span> {{ 'HOME.PLANS.FEATURES.INVESTMENT_PLANS' | translate }}</li>
             </ul>
-            <button class="btn btn-outline-light">Request Invitation</button>
+            <button class="btn btn-outline-light">{{ 'HOME.PLANS.REQUEST_INVITATION' | translate }}</button>
           </div>
 
           <!-- Agent Plan -->
           <div class="plan-card agent">
-            <div class="popular-badge agent-badge">B2B Solution</div>
+            <div class="popular-badge agent-badge">{{ 'HOME.PLANS.B2B_SOLUTION' | translate }}</div>
             <div class="card-header">
-              <h3>Professional Agent</h3>
-              <p>For tax professionals and accounting firms</p>
+              <h3>{{ 'HOME.PLANS.PROFESSIONAL_AGENT' | translate }}</h3>
+              <p>{{ 'HOME.PLANS.AGENT_DESC' | translate }}</p>
             </div>
             <div class="card-price">
-              <span class="price-value">Custom Plan</span>
+              <span class="price-value">{{ 'HOME.PLANS.CUSTOM_PLAN' | translate }}</span>
             </div>
             <ul class="feature-list">
-              <li class="emphasized green-highlight"><span class="material-symbols-outlined green-highlight">hub</span> Unlimited Client Management</li>
-              <li><span class="material-symbols-outlined">check</span> Advanced AI Tools for Agents</li>
-              <li><span class="material-symbols-outlined">check</span> Multi-user collaboration</li>
-              <li><span class="material-symbols-outlined">check</span> Wholesale filing rates</li>
-              <li><span class="material-symbols-outlined">check</span> Dedicated account manager</li>
-              <li><span class="material-symbols-outlined">check</span> Custom API integrations</li>
+              <li class="emphasized green-highlight"><span class="material-symbols-outlined green-highlight">hub</span> {{ 'HOME.PLANS.FEATURES.CLIENT_MGMT' | translate }}</li>
+              <li><span class="material-symbols-outlined">check</span> {{ 'HOME.PLANS.FEATURES.AGENT_TOOLS' | translate }}</li>
+              <li><span class="material-symbols-outlined">check</span> {{ 'HOME.PLANS.FEATURES.COLLABORATION' | translate }}</li>
+              <li><span class="material-symbols-outlined">check</span> {{ 'HOME.PLANS.FEATURES.FILING_RATES' | translate }}</li>
+              <li><span class="material-symbols-outlined">check</span> {{ 'HOME.PLANS.FEATURES.ACCOUNT_MANAGER' | translate }}</li>
+              <li><span class="material-symbols-outlined">check</span> {{ 'HOME.PLANS.FEATURES.API_INTEGRATION' | translate }}</li>
             </ul>
-            <button class="btn btn-agent">Contact Sales</button>
+            <button class="btn btn-agent">{{ 'HOME.PLANS.CONTACT_SALES' | translate }}</button>
           </div>
         </div>
         

@@ -1,31 +1,32 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardHeaderComponent } from '../../components/dashboard/dashboard-header.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-agent',
     standalone: true,
-    imports: [CommonModule, DashboardHeaderComponent],
+    imports: [CommonModule, DashboardHeaderComponent, TranslateModule],
     templateUrl: './agent.component.html',
     styleUrl: './agent.component.css'
 })
 export class AgentComponent {
     stats = [
-        { title: 'Total Clientes', value: '87', change: '+12%', icon: 'group', color: '255, 36, 0' },
-        { title: 'Ingresos Mensuales', value: '$24,580', change: '+8%', icon: 'payments', color: '255, 36, 0' },
-        { title: 'Declaraciones Completadas', value: '43', change: '+15%', icon: 'task_alt', color: '255, 36, 0' },
-        { title: 'Índice de Satisfacción', value: '98%', change: '+2%', icon: 'star', color: '255, 36, 0' }
+        { title: 'DASHBOARD.AGENT.STATS.TOTAL_CLIENTS', value: '87', change: '+12%', icon: 'group', color: '255, 36, 0' },
+        { title: 'DASHBOARD.AGENT.STATS.REVENUE', value: '$24,580', change: '+8%', icon: 'payments', color: '255, 36, 0' },
+        { title: 'DASHBOARD.AGENT.STATS.COMPLETED', value: '43', change: '+15%', icon: 'task_alt', color: '255, 36, 0' },
+        { title: 'DASHBOARD.AGENT.STATS.SATISFACTION', value: '98%', change: '+2%', icon: 'star', color: '255, 36, 0' }
     ];
 
     upcomingTasks = [
-        { title: 'Revisar documentos W2 de María García', dueDate: 'Hoy', icon: 'description', priority: 'urgent' },
-        { title: 'Completar declaración de Carlos Rodríguez', dueDate: 'Mañana', icon: 'task', priority: 'high' },
-        { title: 'Llamada con nuevo cliente', dueDate: 'En 2 días', icon: 'call', priority: 'normal' }
+        { title: 'DASHBOARD.AGENT.TASKS.W2_REVIEW', dueDate: 'DASHBOARD.AGENT.TASKS.DUE_TODAY', icon: 'description', priority: 'urgent' },
+        { title: 'DASHBOARD.AGENT.TASKS.DECLARATION_COMPLETE', dueDate: 'DASHBOARD.AGENT.TASKS.DUE_TOMORROW', icon: 'task', priority: 'high' },
+        { title: 'DASHBOARD.AGENT.TASKS.NEW_CLIENT_CALL', dueDate: 'DASHBOARD.AGENT.TASKS.DUE_2_DAYS', icon: 'call', priority: 'normal' }
     ];
 
     recentActivity = [
-        { action: 'Nuevo cliente registrado: Ana Martínez', time: 'Hace 2 horas', icon: 'person_add' },
-        { action: 'Declaración enviada al IRS: Juan Pérez', time: 'Hace 4 horas', icon: 'send' },
-        { action: 'Documentos recibidos: Laura Sánchez', time: 'Hace 6 horas', icon: 'upload_file' }
+        { action: 'DASHBOARD.AGENT.ACTIVITY.NEW_CLIENT', time: 'DASHBOARD.AGENT.ACTIVITY.TIME_2H', icon: 'person_add' },
+        { action: 'DASHBOARD.AGENT.ACTIVITY.IRS_SENT', time: 'DASHBOARD.AGENT.ACTIVITY.TIME_4H', icon: 'send' },
+        { action: 'DASHBOARD.AGENT.ACTIVITY.DOCS_RECEIVED', time: 'DASHBOARD.AGENT.ACTIVITY.TIME_6H', icon: 'upload_file' }
     ];
 }

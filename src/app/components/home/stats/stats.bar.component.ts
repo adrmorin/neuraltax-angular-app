@@ -1,23 +1,25 @@
 import { Component } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-stats-bar',
   standalone: true,
+  imports: [TranslateModule],
   template: `
     <div class="stats-bar">
       <div class="container">
         <div class="stats-grid">
           <div class="stat-item">
             <span class="stat-value">98%</span>
-            <span class="stat-label">Satisfaction</span>
+            <span class="stat-label">{{ 'HOME.STATS.SATISFACTION' | translate }}</span>
           </div>
           <div class="stat-item">
             <span class="stat-value">5,000+</span>
-            <span class="stat-label">Clients</span>
+            <span class="stat-label">{{ 'HOME.STATS.CLIENTS' | translate }}</span>
           </div>
           <div class="stat-item">
             <span class="stat-value">24/7</span>
-            <span class="stat-label">Support</span>
+            <span class="stat-label">{{ 'HOME.STATS.SUPPORT' | translate }}</span>
           </div>
         </div>
       </div>
