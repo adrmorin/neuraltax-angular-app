@@ -603,7 +603,7 @@ nav a:hover {
     }
 }
 
-@keyframes bounce {
+@keyframes bounce-dots {
 
     0%,
     80%,
@@ -872,7 +872,7 @@ nav a:hover {
     height: 6px;
     background: #94a3b8;
     border-radius: 50%;
-    animation: bounce 1.4s infinite ease-in-out both;
+    animation: bounce-dots 1.4s infinite ease-in-out both;
 }
 
 .dot:nth-child(1) {
@@ -883,27 +883,8 @@ nav a:hover {
     animation-delay: -0.16s;
 }
 
-/* --- Refined Premium Styles (Overrides) --- */
-
-/* Enhanced Glassmorphism */
-.glass {
-    background: rgba(20, 29, 26, 0.65) !important;
-    backdrop-filter: blur(16px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2) !important;
-}
-
-.glass-light {
-    background: rgba(255, 255, 255, 0.65) !important;
-    backdrop-filter: blur(16px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.4) !important;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15) !important;
-}
-
 /* Smoother Bounce Animation */
-@keyframes bounce {
+@keyframes bounce-float {
 
     0%,
     100% {
@@ -913,6 +894,10 @@ nav a:hover {
     50% {
         transform: translateY(-4px);
     }
+}
+
+.chat-trigger:hover {
+    animation: bounce-float 2s infinite ease-in-out;
 }
 
 /* Pop Animation for Chat Window */
