@@ -1,8 +1,10 @@
 .login-card {
-    padding: 3rem;
+    padding: 2rem;
     border-radius: 16px;
-    width: 100%;
-    max-width: 400px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
     position: relative;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     animation: slideIn 0.3s ease-out;
@@ -18,6 +20,29 @@
         transform: translateY(0);
         opacity: 1;
     }
+}
+
+/* Custom Scrollbar */
+.login-card::-webkit-scrollbar {
+    width: 6px;
+}
+
+.login-card::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.login-card::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.form-group.half {
+    flex: 1;
 }
 
 .close-btn {
@@ -131,8 +156,81 @@
 
 /* Glass effect fallback if global glass class is missing specific properties */
 .login-card.glass {
-    background: rgba(30, 41, 59, 0.7);
+    background: rgba(30, 41, 59, 0.95);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.password-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-toggle-btn {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: #94a3b8;
+    background: none;
+    border: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.password-toggle-btn:hover {
+    color: white;
+}
+
+.password-requirements {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.75rem;
+    border-radius: 8px;
+}
+
+.password-requirements p {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.25rem 0;
+    color: #94a3b8;
+    transition: color 0.3s;
+}
+
+.password-requirements p .icon {
+    font-size: 1rem;
+}
+
+.password-requirements p.valid {
+    color: #4ade80;
+}
+
+.password-requirements p.invalid {
+    color: #ef4444;
+}
+
+.match-message {
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.match-message.valid {
+    color: #4ade80;
+}
+
+.match-message.invalid {
+    color: #ef4444;
+}
+
+.match-message .icon {
+    font-size: 1rem;
 }

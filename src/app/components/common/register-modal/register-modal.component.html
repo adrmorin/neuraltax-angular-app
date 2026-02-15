@@ -8,13 +8,77 @@
 
     @if (!success) {
     <form class="login-form" (submit)="onSubmit()">
+        <div class="form-row">
+            <div class="form-group half">
+                <label for="reg-firstName">First Name</label>
+                <input type="text" name="reg-firstName" [(ngModel)]="firstName" placeholder="First Name" required />
+            </div>
+            <div class="form-group half">
+                <label for="reg-lastName">Last Name</label>
+                <input type="text" name="reg-lastName" [(ngModel)]="lastName" placeholder="Last Name" required />
+            </div>
+        </div>
+
         <div class="form-group">
             <label for="reg-email">Email</label>
             <input type="email" name="reg-email" [(ngModel)]="email" placeholder="tucorreo@email.com" required />
         </div>
 
+        <div class="form-group">
+            <label for="reg-phone">Teléfono</label>
+            <input type="tel" name="reg-phone" [(ngModel)]="phone" placeholder="1234567890" required />
+        </div>
+
+        <div class="form-group">
+            <label for="reg-password">Contraseña</label>
+            <div class="password-input-container">
+                <input [type]="showPassword ? 'text' : 'password'" name="reg-password" [(ngModel)]="password"
+                    placeholder="********" (input)="validatePassword()" required />
+                <button type="button" class="password-toggle-btn" (click)="togglePasswordVisibility()"
+                    [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'">
+                    <span class="material-symbols-outlined">
+                        {{ showPassword ? 'visibility_off' : 'visibility' }}
+                    </span>
+                </button>
+            </div>
+
+            @if (password) {
+            <div class="password-requirements">
+                <p [class.valid]="hasUpperCase" [class.invalid]="!hasUpperCase">
+                    <span class="material-symbols-outlined icon">{{ hasUpperCase ? 'check' : 'close' }}</span>
+                    Al menos una mayúscula
+                </p>
+                <p [class.valid]="hasSpecialChar" [class.invalid]="!hasSpecialChar">
+                    <span class="material-symbols-outlined icon">{{ hasSpecialChar ? 'check' : 'close' }}</span>
+                    Al menos un carácter especial
+                </p>
+                <p [class.valid]="hasNumber" [class.invalid]="!hasNumber">
+                    <span class="material-symbols-outlined icon">{{ hasNumber ? 'check' : 'close' }}</span>
+                    Al menos un número
+                </p>
+                <p [class.valid]="minLength" [class.invalid]="!minLength">
+                    <span class="material-symbols-outlined icon">{{ minLength ? 'check' : 'close' }}</span>
+                    Mínimo 8 caracteres
+                </p>
+            </div>
+            }
+        </div>
+
+        <div class="form-group">
+            <label for="reg-confirm-password">Repetir Contraseña</label>
+            <input type="password" name="reg-confirm-password" [(ngModel)]="confirmPassword" placeholder="********"
+                (input)="checkPasswordsMatch()" required />
+
+            @if (confirmPassword) {
+            <p class="match-message" [class.valid]="passwordsMatch" [class.invalid]="!passwordsMatch">
+                <span class="material-symbols-outlined icon">{{ passwordsMatch ? 'check' : 'close' }}</span>
+                {{ passwordsMatch ? 'Las contraseñas coinciden' : 'Las contraseñas no coinciden' }}
+            </p>
+            }
+        </div>
+
         @if (error) {
-        <p class="error-msg">{{ error }}</p>
+        <app-message type="error" [message]="error" />
         }
 
         <button type="submit" class="btn btn-primary" style="width: 100%" [disabled]="loading">
@@ -23,9 +87,7 @@
     </form>
     } @else {
     <div class="success-msg">
-        <span class="material-symbols-outlined check-icon">check_circle</span>
-        <h2>¡Gracias por registrarte!</h2>
-        <p>Te hemos enviado un correo de confirmación.</p>
+        <app-message type="success" message="¡Gracias por registrarte! Te hemos enviado un correo de confirmación." />
     </div>
     }
 

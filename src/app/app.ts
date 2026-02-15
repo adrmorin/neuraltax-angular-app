@@ -76,7 +76,7 @@ import { TranslateService } from '@ngx-translate/core';
 
     .modal-content {
       width: 100%;
-      max-width: 400px;
+      max-width: 100%; /* Allow children to control max-width */
       display: flex;
       justify-content: center;
       padding: 20px;

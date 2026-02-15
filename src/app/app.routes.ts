@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './guards/auth.guard';
-// import { landingGuard } from './guards/landing.guard';
+import { landingGuard } from './guards/landing.guard';
 
 // Layouts
 import { LayoutComponent } from './layouts/layout.component';
@@ -30,7 +30,11 @@ export const routes: Routes = [
         path: '',
         component: LayoutComponent,
         children: [
-            { path: '', component: LandingPageComponent },
+            {
+                path: '',
+                component: LandingPageComponent,
+                canActivate: [landingGuard] // Prevent logged in users from seeing landing
+            },
             { path: 'home', component: HomeComponent, canActivate: [authGuard] },
             { path: 'blog', component: BlogComponent }
         ]

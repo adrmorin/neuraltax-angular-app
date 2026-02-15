@@ -28,4 +28,5 @@ export interface UserRegister {
     email: string;
     phone: string;
     password: string;
+    username?: string;
 }

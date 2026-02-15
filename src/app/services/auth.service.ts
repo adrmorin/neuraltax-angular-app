@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject, signal, computed } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, throwError, of } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { catchError, tap } from 'rxjs/operators';
 import { User } from '../models/user-interface';
@@ -27,28 +27,7 @@ export class AuthService {
     });
 
     // === LOGIN ===
-    login(email: string, password: string): Observable<{ token: string; user: { email: string } }> {
-        // --- MAGIC LOGIN FOR USER 1 ---
-        if (email === 'animacuba@gmail.com' && password === 'adr2310') {
-            const mockResponse = {
-                token: 'MOCK_TOKEN_ADR_NEURALTAX',
-                user: { email: 'animacuba@gmail.com' }
-            };
-            return of(mockResponse).pipe(
-                tap((response) => this.handleSuccessfulLogin(response))
-            );
-        }
-
-        // --- MAGIC LOGIN FOR USER 2 (from old service) ---
-        if (email === 'chano@yahoo.com' && password === 'Abcde12345$$') {
-            const mockResponse = {
-                token: 'MOCK_TOKEN_CHANO_NEURALTAX',
-                user: { email: 'chano@yahoo.com' }
-            };
-            return of(mockResponse).pipe(
-                tap((response) => this.handleSuccessfulLogin(response))
-            );
-        }
+    login(email: string, password: string): Observable<{ token: string; userId: string; firstName: string; lastName: string }> {
 
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
@@ -56,7 +35,7 @@ export class AuthService {
         });
         const body = { email, password };
 
-        return this.http.post<{ token: string; user: { email: string } }>(`${this.baseUrl}/login`, body, { headers }).pipe(
+        return this.http.post<{ token: string; userId: string; firstName: string; lastName: string }>(`${this.baseUrl}/login`, body, { headers }).pipe(
             tap((response) => this.handleSuccessfulLogin(response)),
             catchError((err: Error) => {
                 console.error('Login error:', err);
@@ -66,26 +45,38 @@ export class AuthService {
     }
 
     // === PROCESA EL LOGIN EXITOSO ===
-    private handleSuccessfulLogin(response: { token: string; user: { email: string } }) {
+    private handleSuccessfulLogin(response: { token: string; userId: string; firstName: string; lastName: string }) {
+        console.log('🔍 handleSuccessfulLogin called with response:', response);
+
         if (response && response.token) {
+            console.log('✅ Token received:', response.token);
             localStorage.setItem('token', response.token);
+
+            // Set expiration to 24 hours from now
+            const expirationTime = Date.now() + 24 * 60 * 60 * 1000;
+            localStorage.setItem('token_expiry', expirationTime.toString());
+
+            console.log('💾 Token saved to localStorage');
+            console.log('📅 Expiry set to:', new Date(expirationTime).toLocaleString());
+
             this.loggedIn.next(true);
 
-            // Fetch user info to determine the role and redirect accordingly
-            this.getUserInfo().subscribe({
-                next: (user) => {
-                    this.currentUser.set(user); // Sync signal
-                    // Navigate to home page
-                    this.handleRoleNavigation();
-                },
-                error: () => {
-                    // If getUserInfo fails, redirect to default dashboard
-                    console.error('Failed to get user info, redirecting to default dashboard');
-                    this.router.navigate(['/free-dashboard']);
-                }
+            // Set user from login response (backend sends firstName, lastName directly)
+            this.currentUser.set({
+                firstName: response.firstName || 'Usuario',
+                lastName: response.lastName || '',
+                email: '',  // Email not provided in login response
+                phone: '',
+                password: '',
+                roles: ['ROLE_FREE']
             });
+            console.log('👤 User info set:', response.firstName, response.lastName);
+            console.log('🔍 currentUser signal value:', this.currentUser());
+
+            // Navigate IMMEDIATELY to /home for instant UX
+            this.router.navigate(['/home']);
         } else {
-            console.error('Token is undefined or null');
+            console.error('❌ Token is undefined or null in response:', response);
         }
     }
 
@@ -105,14 +96,30 @@ export class AuthService {
 
     // === TOKEN ===
     getToken(): string | null {
-        return localStorage.getItem('token');
+        const token = localStorage.getItem('token');
+        const expiry = localStorage.getItem('token_expiry');
+
+        if (!token || !expiry) {
+            return null;
+        }
+
+        // Check if token has expired
+        if (Date.now() > parseInt(expiry, 10)) {
+            console.warn('Token has expired');
+            this.logout();
+            return null;
+        }
+
+        return token;
     }
 
     logout(): void {
         localStorage.removeItem('token');
+        localStorage.removeItem('token_expiry');
         this.loggedIn.next(false);
         this.currentUser.set(null); // Clear signal
         this.alreadyChecked = false;
+        this.router.navigate(['/']); // Ensure redirect to landing on logout
     }
 
     // === CHECK LOGIN STATUS ===
@@ -129,10 +136,26 @@ export class AuthService {
                 next: () => {
                     this.loggedIn.next(true);
                     this.alreadyChecked = true;
-                    // Also sync user info if missing
-                    if (!this.currentUser()) {
-                        this.getUserInfo().subscribe(u => this.currentUser.set(u));
-                    }
+                    // Always fetch user info on app init
+                    this.getUserInfo().subscribe({
+                        next: (u) => {
+                            console.log('✅ User info loaded on app init:', u);
+                            this.currentUser.set(u);
+                        },
+                        error: (err) => {
+                            console.error('❌ Failed to load user info on init:', err);
+                            // Even if getUserInfo fails, keep user logged in with minimal info
+                            // This prevents showing "Iniciar Sesión" button if token is valid
+                            this.currentUser.set({
+                                firstName: 'Usuario',
+                                lastName: '',
+                                email: '',
+                                phone: '',
+                                password: '',
+                                roles: ['ROLE_FREE']
+                            });
+                        }
+                    });
                 },
                 error: () => {
                     this.loggedIn.next(false);
@@ -146,38 +169,13 @@ export class AuthService {
 
     // === VALIDACIÓN DE TOKEN ===
     validateToken(): Observable<unknown> {
-        const token = this.getToken();
-        if (token === 'MOCK_TOKEN_ADR_NEURALTAX') {
-            return of({ valid: true });
-        }
+
         return this.http.get(`${this.baseUrl}/validate-token`, { headers: this.getAuthHeaders() });
     }
 
     // === INFO DEL USUARIO ===
     getUserInfo(): Observable<User> {
-        const token = this.getToken();
-        if (token === 'MOCK_TOKEN_ADR_NEURALTAX') {
-            return of({
-                firstName: 'Adrian',
-                lastName: 'Morin',
-                email: 'animacuba@gmail.com',
-                phone: '000000000',
-                password: '',
-                roles: ['ROLE_USER_HOME', 'ROLE_FREE'] // Redirection to /home on login, but /free-dashboard as dashboard
-            });
-        }
-
-        // Mock user 2 - Chano
-        if (token === 'MOCK_TOKEN_CHANO_NEURALTAX') {
-            return of({
-                firstName: 'Chano',
-                lastName: 'User',
-                email: 'chano@yahoo.com',
-                phone: '000000000',
-                password: '',
-                roles: ['ROLE_USER_HOME', 'ROLE_FREE']
-            });
-        }
+        console.log('📞 Calling getUserInfo() - Fetching user data from backend...');
 
         return this.http.get<User>(`${this.baseUrl}/user-info`, { headers: this.getAuthHeaders() });
     }

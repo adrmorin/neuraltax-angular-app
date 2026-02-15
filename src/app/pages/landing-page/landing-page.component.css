@@ -6,7 +6,7 @@
     height: 70vh;
     /* Force 70% of screen height */
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     overflow: hidden;
     color: white;
@@ -32,68 +32,223 @@
     background: rgba(0, 0, 0, 0.4);
     /* Dark overlay for text readability */
     z-index: 1;
+    transition: opacity 0.5s ease;
+    opacity: 1;
+}
+
+.hero-bg-overlay.hidden-overlay {
+    opacity: 0;
 }
 
 .hero-container {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     z-index: 2;
     /* Content above overlay and video */
     width: 100%;
+    height: 100%;
+    /* Override global container styles */
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
     padding-top: 80px;
-    /* Offset for fixed header if needed */
+    /* Avoid header overlap */
+
+    display: flex;
+    justify-content: flex-end;
+    /* Align to right */
+    align-items: flex-start;
+    /* Align to top */
+
+    transition: opacity 0.5s ease;
+}
+
+.hero-container.visible {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 /* Ensure existing classes work well with the video bg */
 .hero-content-right {
-    max-width: 600px;
-    margin-left: auto;
-    /* Align right as per previous design */
-    text-align: right;
+    /* Removed absolute positioning & constraints */
+    width: 100%;
+
+
+
     padding: 2rem;
+
+    /* Clear header */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    /* Align to top */
+    z-index: 10;
+}
+
+/* Mobile adjustment for the container */
+@media (max-width: 768px) {
+    .hero-content-right {
+        margin-right: 0;
+        padding: 1.5rem;
+        width: 100%;
+        text-align: center;
+        align-items: center;
+    }
+}
+
+.main-logo-container {
+    margin-bottom: 2rem;
+    order: 1;
+    /* First */
+}
+
+.hero-container.visible .main-logo-container {
+    animation: fadeInUp 0.8s ease forwards 0.1s;
 }
 
 .main-logo-img {
-    max-height: 80px;
+    max-height: 250px;
+    /* Larger logo */
     width: auto;
-    margin-bottom: 2rem;
 }
 
+.hero-value-prop {
+    margin-bottom: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    order: 2;
+    /* Content after logo */
+}
+
+@media (max-width: 768px) {
+    .hero-value-prop {
+        align-items: center;
+    }
+}
+
+/* Heading: Maximize your savings */
 .hero-value-prop h3 {
     font-size: 2.5rem;
     font-weight: 800;
     margin-bottom: 1rem;
-    color: white;
+    color: #FFFFFF;
+    /* White Text */
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    /* Shadow for readability */
+    order: 1;
 }
 
+.hero-container.visible .hero-value-prop h3 {
+    animation: fadeInUp 0.8s ease forwards 0.3s;
+}
+
+/* Subtext: More deductions... */
 .hero-value-prop p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    color: #e2e8f0;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #f1f5f9;
+    /* Off-white text */
+    font-weight: 500;
+    line-height: 1.4;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+    order: 2;
+}
+
+.hero-container.visible .hero-value-prop p {
+    animation: fadeInUp 0.8s ease forwards 0.4s;
 }
 
 .hero-tagline {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #cbd5e1;
-    margin-bottom: 2rem;
+    display: none;
+    /* Hidden as per user request hierarchy */
 }
 
 .hero-actions {
     display: flex;
     gap: 1rem;
     justify-content: flex-end;
+    order: 4;
+    /* Buttons last */
+}
+
+@media (max-width: 768px) {
+    .hero-actions {
+        justify-content: center;
+    }
+}
+
+.hero-container.visible .hero-actions {
+    animation: fadeInUp 0.8s ease forwards 0.5s;
 }
 
 .btn-dark {
-    background-color: #0f172a;
-    color: white;
+    background-color: #FFFFFF;
+    color: var(--color-brand-blue);
+    /* Inverted for dark overlay */
     border: none;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-dark:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.4);
+}
+
+.btn-loguin {
+    background-color: transparent;
+    color: #FFFFFF;
+    border: 2px solid #FFFFFF;
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+}
+
+.btn-loguin:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-subtext {
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-top: 2px;
+    opacity: 0.9;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .video-controls {
     position: absolute;
     bottom: 2rem;
-    right: 2rem;
+    left: 2rem;
+    /* Moved from right to left */
     z-index: 10;
     display: flex;
     gap: 0.5rem;
