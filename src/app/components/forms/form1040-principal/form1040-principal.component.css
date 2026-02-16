@@ -348,12 +348,15 @@
 
 .dependents-table-container {
     flex: 1;
+    overflow-x: auto;
+    max-width: 100%;
 }
 
 .irs-dependents-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 10px;
+    table-layout: fixed;
 }
 
 .irs-dependents-table th {
@@ -365,6 +368,14 @@
     font-weight: 700;
 }
 
+.irs-dependents-table th.empty-th {
+    width: 200px;
+}
+
+.irs-dependents-table th:not(.empty-th) {
+    width: calc((100% - 200px) / 4);
+}
+
 .irs-dependents-table td {
     border-left: 1px solid #77caca;
     border-bottom: 1px solid #77caca;
@@ -373,8 +384,10 @@
 
 .row-label {
     font-weight: 700;
-    width: 150px;
+    width: 200px;
     background-color: #effcfc;
+    text-align: left;
+    padding-left: 5px;
 }
 
 .irs-table-input {
