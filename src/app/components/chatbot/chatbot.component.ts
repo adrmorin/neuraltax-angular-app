@@ -80,18 +80,26 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
             const secondaryLocale = this.currentLang === 'es' ? 'es-US' : 'en-GB';
 
             const preferredVoices = voices.filter(v => {
-                const isFemale = v.name.toLowerCase().includes('female') ||
-                    v.name.toLowerCase().includes('zira') ||
-                    v.name.toLowerCase().includes('helena') ||
-                    v.name.toLowerCase().includes('google mex') ||
-                    v.name.toLowerCase().includes('google us');
+                const name = v.name.toLowerCase();
+                const isFemale = name.includes('female') ||
+                    name.includes('zira') ||
+                    name.includes('helena') ||
+                    name.includes('sabi') ||
+                    name.includes('daria') ||
+                    name.includes('google mex') ||
+                    name.includes('mexic') ||
+                    name.includes('latin') ||
+                    name.includes('google us') ||
+                    name.includes('natural');
 
-                return (v.lang.startsWith(targetLocale) || v.lang.startsWith(secondaryLocale)) && isFemale;
+                return (v.lang.startsWith(targetLocale) || v.lang.startsWith(secondaryLocale) || v.lang.startsWith('es-')) && isFemale;
             });
 
-            // Prioritize "Natural" or "Google" voices for high-fidelity quality
+            // Prioritize high-fidelity "Natural", "Google", or "Microsoft" professional voices
             this.selectedVoice = preferredVoices.find(v => v.name.toLowerCase().includes('natural')) ||
+                preferredVoices.find(v => v.name.toLowerCase().includes('mexic')) ||
                 preferredVoices.find(v => v.name.toLowerCase().includes('google')) ||
+                preferredVoices.find(v => v.name.toLowerCase().includes('microsoft')) ||
                 preferredVoices[0] ||
                 voices.find(v => v.lang.startsWith(targetLocale) && (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('google'))) ||
                 voices.find(v => v.lang.startsWith(this.currentLang)) ||
@@ -115,7 +123,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
             if (this.recognition) {
                 this.recognition.continuous = false;
                 this.recognition.interimResults = false;
-                this.recognition.lang = this.currentLang === 'es' ? 'es-ES' : 'en-US';
+                this.recognition.lang = this.currentLang === 'es' ? 'es-MX' : 'en-US';
 
                 this.recognition.onresult = (event: SpeechRecognitionEvent) => {
                     const text = event.results[0][0].transcript;
@@ -157,15 +165,15 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
         // Remove HTML tags for cleaner speech
         const cleanText = text.replace(/<[^>]*>?/gm, '');
         const utterance = new SpeechSynthesisUtterance(cleanText);
-        utterance.lang = this.currentLang === 'es' ? 'es-ES' : 'en-US';
+        utterance.lang = this.currentLang === 'es' ? 'es-MX' : 'en-US';
 
         if (this.selectedVoice) {
             utterance.voice = this.selectedVoice;
         }
 
-        // Adjust for the "Warm, polished, articulate" female persona:
-        utterance.rate = 0.95; // Articulate and moderately paced
-        utterance.pitch = 1.05; // Slightly warmer female tone
+        // Persona: Professional female adult (30-45), warm but authoritative
+        utterance.rate = 1.05; // Moderately fast, clear diction
+        utterance.pitch = 0.9; // Deeper, more mature tone
         utterance.volume = 1.0;
 
         this.synthesis.speak(utterance);

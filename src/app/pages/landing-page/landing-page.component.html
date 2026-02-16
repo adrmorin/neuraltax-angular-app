@@ -2,7 +2,8 @@
     <app-header></app-header>
     <!-- Hero Section -->
     <section class="hero-new">
-        <video #heroVideo autoplay muted playsinline class="hero-bg-video" (ended)="onVideoEnded()">
+        <video #heroVideo autoplay muted playsinline class="hero-bg-video" (ended)="onVideoEnded()" (play)="onPlay()"
+            (pause)="onPause()">
             <source src="assets/landing/Nuraltax_final.webm" type="video/webm">
         </video>
         <div class="video-controls">
@@ -13,8 +14,8 @@
                 <span class="material-symbols-outlined">{{ isMuted() ? 'volume_off' : 'volume_up' }}</span>
             </button>
         </div>
-        <div class="hero-bg-overlay"></div>
-        <div class="container hero-container">
+        <div class="hero-bg-overlay" [class.hidden-overlay]="isPlaying()"></div>
+        <div class="container hero-container" [class.visible]="!isPlaying()" [class.hidden-content]="isPlaying()">
 
             <div class="hero-content-right">
                 <div class="main-logo-container">

@@ -14,6 +14,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
     styleUrl: './free-dashboard.component.css'
 })
 export class FreeDashboardComponent {
+    // Re-saved to trigger IDE sync
     private taxDataService = inject(TaxDataService);
     private translate = inject(TranslateService);
     isBusinessOwner = this.taxDataService.isBusinessOwner();

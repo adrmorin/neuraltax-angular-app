@@ -61,12 +61,18 @@
     align-items: flex-start;
     /* Align to top */
 
-    transition: opacity 0.5s ease;
+    transition: opacity 0.8s ease-in-out;
+    opacity: 0;
 }
 
 .hero-container.visible {
     opacity: 1;
     pointer-events: auto;
+}
+
+.hero-container.hidden-content {
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* Ensure existing classes work well with the video bg */

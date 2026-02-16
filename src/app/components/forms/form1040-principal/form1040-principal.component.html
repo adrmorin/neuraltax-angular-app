@@ -1,6 +1,6 @@
-<div class="irs-form-container">
+<div class="irs-form-container" style="position: relative;" [formGroup]="taxForm">
     <!-- Header Section -->
-    <div class="irs-header">
+    <div class="irs-header" id="irs-header">
         <div class="irs-form-number">
             <span class="form-label">Form</span>
             <span class="form-title">1040</span>
@@ -63,11 +63,11 @@
     <div class="irs-grid-names border-bottom">
         <div class="irs-cell border-right">
             <label class="irs-top-label" for="firstName">Your first name and middle initial</label>
-            <input type="text" id="firstName" class="irs-cell-input">
+            <input type="text" id="firstName" class="irs-cell-input" formControlName="firstName">
         </div>
         <div class="irs-cell border-right">
             <label class="irs-top-label" for="lastName">Last name</label>
-            <input type="text" id="lastName" class="irs-cell-input">
+            <input type="text" id="lastName" class="irs-cell-input" formControlName="lastName">
         </div>
         <div class="irs-cell irs-ssn-cell">
             <span class="irs-top-label" id="ssnLabel">Your social security number</span>
@@ -108,7 +108,7 @@
         <div class="irs-cell border-right" style="flex: 2;">
             <label class="irs-top-label" for="homeAddress">Home address (number and street). If you have a P.O. box, see
                 instructions.</label>
-            <input type="text" id="homeAddress" class="irs-cell-input">
+            <input type="text" id="homeAddress" class="irs-cell-input" formControlName="homeAddress">
         </div>
         <div class="irs-cell border-right" style="width: 120px;">
             <label class="irs-top-label" for="aptNo">Apt. no.</label>
@@ -169,7 +169,7 @@
     </div>
 
     <!-- Filing Status Section -->
-    <div class="irs-filing-status-section">
+    <div class="irs-filing-status-section" id="irs-filing-status">
         <div class="status-label-col">
             <div class="status-main-label">Filing Status</div>
             <div class="status-sub-label">Check only one box.</div>
@@ -207,7 +207,7 @@
     </div>
 
     <!-- Digital Assets Section -->
-    <div class="irs-digital-assets-row border-bottom border-top">
+    <div class="irs-digital-assets-row border-bottom border-top" id="irs-digital-assets">
         <div class="digital-assets-title">Digital Assets</div>
         <div class="digital-assets-question">
             At any time during 2025, did you: (a) receive (as a reward, award, or payment for property or services); or
@@ -221,7 +221,8 @@
     </div>
 
     <!-- Dependents Section -->
-    <div class="irs-dependents-section border-bottom">
+    <div class="irs-dependents-section border-bottom" id="irs-dependents">
+        <input type="checkbox" style="display: none;" formControlName="hasDependents">
         <div class="dependents-sidebar">
             <div class="dep-main-label">Dependents</div>
             <div class="dep-sub-label">(see instructions)</div>
@@ -352,7 +353,7 @@
     </div>
 
     <!-- Income Section -->
-    <div class="irs-income-section">
+    <div class="irs-income-section" id="irs-income">
         <div class="income-sidebar">
             <div class="income-main-label">Income</div>
             <div class="attach-box">
@@ -370,7 +371,7 @@
                 <div class="line-num">1a</div>
                 <div class="line-text">Total amount from Form(s) W-2, box 1 (see instructions)</div>
                 <div class="line-box-right border-left border-bottom">1a</div>
-                <div class="line-input-right border-bottom"><input type="text"></div>
+                <div class="line-input-right border-bottom"><input type="text" formControlName="incomeW2"></div>
             </div>
             <div class="irs-row-line">
                 <div class="line-num">b</div>
@@ -577,7 +578,7 @@
     </div>
 
     <!-- Tax and Credits Section -->
-    <div class="irs-tax-credits-section">
+    <div class="irs-tax-credits-section" id="irs-tax-credits">
         <div class="tax-sidebar">
             <div class="tax-main-label">Tax and Credits</div>
             <div class="deduction-bubble">
@@ -711,7 +712,7 @@
                 <div class="line-num">19</div>
                 <div class="line-text">Child tax credit or credit for other dependents from Schedule 8812</div>
                 <div class="line-box-right border-left border-bottom">19</div>
-                <div class="line-input-right border-bottom"><input type="text"></div>
+                <div class="line-input-right border-bottom"><input type="text" formControlName="childTaxCredit"></div>
             </div>
 
             <!-- Line 20 -->
@@ -757,7 +758,7 @@
     </div>
 
     <!-- Payments and Refundable Credits Section -->
-    <div class="irs-payments-section">
+    <div class="irs-payments-section" id="irs-payments">
         <div class="payments-sidebar">
             <div class="payments-main-label">Payments and Refundable Credits</div>
             <div class="eic-bubble">
@@ -800,7 +801,7 @@
                 <div class="line-num" style="padding-left: 20px;">d</div>
                 <div class="line-text">Add lines 25a through 25c</div>
                 <div class="line-box-right border-left border-bottom">25d</div>
-                <div class="line-input-right border-bottom"><input type="text"></div>
+                <div class="line-input-right border-bottom"><input type="text" formControlName="taxWithheld"></div>
             </div>
             <div class="irs-row-line">
                 <div class="line-num">26</div>
@@ -897,7 +898,8 @@
     </div>
 
     <!-- Refund Section -->
-    <div class="irs-refund-section">
+    <div class="irs-refund-section" id="irs-refund">
+        <input type="text" style="display: none;" formControlName="refundMethod">
         <div class="refund-sidebar">
             <div class="refund-main-label">Refund</div>
             <div class="refund-sub-label">Direct deposit? See instructions.</div>
@@ -970,7 +972,8 @@
     </div>
 
     <!-- Amount You Owe Section -->
-    <div class="irs-owe-section">
+    <div class="irs-owe-section" id="irs-owe">
+        <input type="text" style="display: none;" formControlName="owePayment">
         <div class="owe-sidebar">
             <div class="owe-main-label">Amount You Owe</div>
         </div>
@@ -994,7 +997,8 @@
     </div>
 
     <!-- Third Party Designee Section -->
-    <div class="irs-designee-section border-top">
+    <div class="irs-designee-section border-top" id="irs-designee">
+        <input type="checkbox" style="display: none;" formControlName="thirdPartyDesignee">
         <div class="designee-sidebar">
             <div class="designee-main-label">Third Party Designee</div>
         </div>
@@ -1158,4 +1162,6 @@
         <div class="footer-right">Form <strong>1040</strong> (2025) Created 9/5/25</div>
     </div>
 
+    <!-- Floating Assistant -->
+    <app-chatforms></app-chatforms>
 </div>

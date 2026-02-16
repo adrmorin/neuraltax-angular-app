@@ -2,16 +2,18 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { TaxDataService } from '../../../services/tax-data.service';
+import { ChatFormsComponent } from '../chatforms/chatforms.component';
 
 type ExpenseValues = Record<string, number>;
 
 @Component({
     selector: 'app-form-1040a-c',
     standalone: true,
-    imports: [CommonModule, FormsModule, ReactiveFormsModule],
+    imports: [CommonModule, FormsModule, ReactiveFormsModule, ChatFormsComponent],
     templateUrl: './form1040aC.component.html',
     styleUrls: ['./form1040aC.component.css']
 })
+// ChatFormsComponent is integrated at the bottom of the template for live assistance.
 export class Form1040acComponent implements OnInit {
     private fb = inject(FormBuilder);
     private taxDataService = inject(TaxDataService);

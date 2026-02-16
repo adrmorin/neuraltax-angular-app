@@ -18,17 +18,23 @@ export class LandingPageComponent {
 
     @ViewChild('heroVideo') videoRef!: ElementRef<HTMLVideoElement>;
 
-    isPlaying = signal(true);
+    isPlaying = signal(false); // Default to false to ensure content is visible if video fails
     isMuted = signal(true);
+
+    onPlay() {
+        this.isPlaying.set(true);
+    }
+
+    onPause() {
+        this.isPlaying.set(false);
+    }
 
     togglePlay() {
         const video = this.videoRef.nativeElement;
         if (video.paused) {
             video.play().catch(e => console.error('Error playing video:', e));
-            this.isPlaying.set(true);
         } else {
             video.pause();
-            this.isPlaying.set(false);
         }
     }
 
@@ -39,6 +45,8 @@ export class LandingPageComponent {
     }
 
     onVideoEnded() {
+        const video = this.videoRef.nativeElement;
+        video.currentTime = 0; // Reset to frame 1
         this.isPlaying.set(false);
     }
 }

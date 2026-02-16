@@ -348,32 +348,24 @@
 
 .dependents-table-container {
     flex: 1;
-    overflow-x: auto;
-    max-width: 100%;
 }
 
 .irs-dependents-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 10px;
-    table-layout: fixed;
 }
 
 .irs-dependents-table th {
-    background-color: #effcfc;
+    background-color: #d8eded;
+    /* Slightly darker teal for headers */
     border-left: 1px solid #77caca;
     border-bottom: 1px solid #77caca;
-    padding: 2px 5px;
+    padding: 6px 5px;
     text-align: center;
     font-weight: 700;
-}
-
-.irs-dependents-table th.empty-th {
-    width: 200px;
-}
-
-.irs-dependents-table th:not(.empty-th) {
-    width: calc((100% - 200px) / 4);
+    color: #004d4d;
+    font-size: 11px;
 }
 
 .irs-dependents-table td {
@@ -384,38 +376,54 @@
 
 .row-label {
     font-weight: 700;
-    width: 200px;
-    background-color: #effcfc;
-    text-align: left;
-    padding-left: 5px;
+    width: 180px;
+    /* Slightly wider for longer labels */
+    background-color: #f0fafa;
+    color: #333;
+    font-size: 10px;
 }
 
 .irs-table-input {
     width: 100%;
-    border: 1px solid #aaa;
-    background-color: #e8f4f4;
-    /* Subtle blue from image */
-    padding: 2px;
+    border: 1px solid #77caca;
+    /* Match form theme */
+    background-color: #fdfdfd;
+    padding: 4px;
     font-size: 11px;
+    box-sizing: border-box;
 }
 
 .ssn-grid {
     display: flex;
-    gap: 2px;
+    border: 1px solid #77caca;
+    background-color: #fdfdfd;
 }
 
 .ssn-grid input {
-    flex: 1;
-    border: 1px dotted #aaa;
+    width: 33.33%;
+    border: none;
+    border-right: 1px dotted #77caca;
     text-align: center;
-    background-color: #e8f4f4;
+    padding: 4px 0;
+    font-size: 11px;
+    background: transparent;
+}
+
+.ssn-grid input:last-child {
+    border-right: none;
 }
 
 .table-sub-row {
     display: flex;
     align-items: center;
-    gap: 5px;
-    margin-bottom: 2px;
+    gap: 8px;
+    margin-bottom: 4px;
+    font-size: 9px;
+}
+
+.table-sub-row input[type="checkbox"] {
+    width: 12px;
+    height: 12px;
 }
 
 /* Extra checks row */
