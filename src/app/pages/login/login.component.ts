@@ -28,12 +28,11 @@ export class LoginComponent {
             next: () => {
                 this.loading = false;
                 this.modalService.closeLogin();
-                console.log('Login successful');
             },
             error: (err) => {
                 this.loading = false;
                 this.error = err.message || 'Error al iniciar sesión. Por favor verifica tus credenciales.';
-                console.error('Login error:', err);
+                console.error('❌ Login error in component:', err);
             }
         });
     }

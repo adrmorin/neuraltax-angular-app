@@ -39,10 +39,14 @@
 .form-row {
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
+    /* Allow wrapping on small screens */
 }
 
 .form-group.half {
     flex: 1;
+    min-width: 200px;
+    /* Prevent squishing */
 }
 
 .close-btn {
@@ -51,7 +55,7 @@
     right: 1.5rem;
     background: none;
     border: none;
-    color: #94a3b8;
+    color: var(--text-secondary);
     font-size: 2rem;
     cursor: pointer;
     line-height: 1;
@@ -59,7 +63,7 @@
 }
 
 .close-btn:hover {
-    color: white;
+    color: var(--text-inverse);
 }
 
 .login-header {
@@ -68,12 +72,12 @@
 }
 
 .login-header h1 {
-    color: white;
+    color: var(--text-inverse);
     margin: 1rem 0 0.5rem;
 }
 
 .login-header p {
-    color: #94a3b8;
+    color: var(--text-secondary);
 }
 
 .form-group {
@@ -82,7 +86,7 @@
 
 .form-group label {
     display: block;
-    color: #94a3b8;
+    color: var(--text-secondary);
     margin-bottom: 0.5rem;
 }
 
@@ -92,18 +96,18 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.05);
-    color: white;
+    color: var(--text-inverse);
     font-size: 1rem;
 }
 
 .login-footer {
     text-align: center;
     margin-top: 1.5rem;
-    color: #94a3b8;
+    color: var(--text-secondary);
 }
 
 .login-footer a {
-    color: #4ade80;
+    color: var(--color-accent-green);
     text-decoration: none;
     cursor: pointer;
 }
@@ -131,16 +135,16 @@
 }
 
 .success-msg h2 {
-    color: white;
+    color: var(--text-inverse);
     margin-bottom: 0.5rem;
 }
 
 .success-msg p {
-    color: #94a3b8;
+    color: var(--text-secondary);
 }
 
 .btn-primary {
-    background-color: #2563eb;
+    background-color: var(--color-brand-blue);
     color: white;
     font-weight: 600;
     padding: 0.75rem;
@@ -151,7 +155,7 @@
 }
 
 .btn-primary:hover {
-    background-color: #1d4ed8;
+    background-color: #172554;
 }
 
 /* Glass effect fallback if global glass class is missing specific properties */

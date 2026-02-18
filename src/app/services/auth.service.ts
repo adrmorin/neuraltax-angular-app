@@ -37,8 +37,7 @@ export class AuthService {
 
         return this.http.post<{ token: string; userId: string; firstName: string; lastName: string }>(`${this.baseUrl}/login`, body, { headers }).pipe(
             tap((response) => this.handleSuccessfulLogin(response)),
-            catchError((err: Error) => {
-                console.error('Login error:', err);
+            catchError(() => {
                 return throwError(() => new Error('Credenciales inválidas o backend no disponible.'));
             })
         );
@@ -46,37 +45,31 @@ export class AuthService {
 
     // === PROCESA EL LOGIN EXITOSO ===
     private handleSuccessfulLogin(response: { token: string; userId: string; firstName: string; lastName: string }) {
-        console.log('🔍 handleSuccessfulLogin called with response:', response);
-
         if (response && response.token) {
-            console.log('✅ Token received:', response.token);
             localStorage.setItem('token', response.token);
 
             // Set expiration to 24 hours from now
             const expirationTime = Date.now() + 24 * 60 * 60 * 1000;
             localStorage.setItem('token_expiry', expirationTime.toString());
 
-            console.log('💾 Token saved to localStorage');
-            console.log('📅 Expiry set to:', new Date(expirationTime).toLocaleString());
-
             this.loggedIn.next(true);
 
-            // Set user from login response (backend sends firstName, lastName directly)
+            // Set user from login response
             this.currentUser.set({
                 firstName: response.firstName || 'Usuario',
                 lastName: response.lastName || '',
-                email: '',  // Email not provided in login response
+                email: '',
                 phone: '',
                 password: '',
-                roles: ['ROLE_FREE']
+                roles: ['ROLE_FREE'],
+                isValidated: false // Explicitly false until they complete validation
             });
-            console.log('👤 User info set:', response.firstName, response.lastName);
-            console.log('🔍 currentUser signal value:', this.currentUser());
 
-            // Navigate IMMEDIATELY to /home for instant UX
-            this.router.navigate(['/home']);
+            // Navigate to dashboard
+            const dashboardRoute = this.getDashboardRoute(['ROLE_FREE']);
+            this.router.navigate([dashboardRoute]);
         } else {
-            console.error('❌ Token is undefined or null in response:', response);
+            throw new Error('El servidor no devolvió un token de acceso válido.');
         }
     }
 
@@ -89,10 +82,7 @@ export class AuthService {
         return '/free-dashboard';
     }
 
-    private handleRoleNavigation() {
-        // After login, redirect to /home (protected route)
-        this.router.navigate(['/home']);
-    }
+
 
     // === TOKEN ===
     getToken(): string | null {
@@ -152,7 +142,8 @@ export class AuthService {
                                 email: '',
                                 phone: '',
                                 password: '',
-                                roles: ['ROLE_FREE']
+                                roles: ['ROLE_FREE'],
+                                isValidated: false
                             });
                         }
                     });

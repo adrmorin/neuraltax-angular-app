@@ -2,20 +2,13 @@
     <app-header></app-header>
     <!-- Hero Section -->
     <section class="hero-new">
-        <video #heroVideo autoplay muted playsinline class="hero-bg-video" (ended)="onVideoEnded()" (play)="onPlay()"
-            (pause)="onPause()">
-            <source src="assets/landing/Nuraltax_final.webm" type="video/webm">
+        <video #heroVideo autoplay [muted]="isMuted()" playsinline class="hero-bg-video" oncontextmenu="return false;"
+            controlsList="nodownload nofullscreen" disablePictureInPicture disableRemotePlayback
+            (ended)="onVideoEnded()" (play)="onPlay()" (pause)="onPause()">
         </video>
-        <div class="video-controls">
-            <button class="btn-video-control" (click)="togglePlay()" [title]="isPlaying() ? 'Pause' : 'Play'">
-                <span class="material-symbols-outlined">{{ isPlaying() ? 'pause' : 'play_arrow' }}</span>
-            </button>
-            <button class="btn-video-control" (click)="toggleMute()" [title]="isMuted() ? 'Unmute' : 'Mute'">
-                <span class="material-symbols-outlined">{{ isMuted() ? 'volume_off' : 'volume_up' }}</span>
-            </button>
-        </div>
-        <div class="hero-bg-overlay" [class.hidden-overlay]="isPlaying()"></div>
-        <div class="container hero-container" [class.visible]="!isPlaying()" [class.hidden-content]="isPlaying()">
+
+        <div class="hero-bg-overlay" [class.dimmed]="isPlaying()"></div>
+        <div class="container hero-container" [class.visible]="!isPlaying()">
 
             <div class="hero-content-right">
                 <div class="main-logo-container">
@@ -40,6 +33,15 @@
                     </button>
                 </div>
             </div>
+        </div>
+
+        <div class="video-controls">
+            <button class="btn-video-control" (click)="togglePlay()" [title]="isPlaying() ? 'Pause' : 'Play'">
+                <span class="material-symbols-outlined">{{ isPlaying() ? 'pause' : 'play_arrow' }}</span>
+            </button>
+            <button class="btn-video-control" (click)="toggleMute()" [title]="isMuted() ? 'Unmute' : 'Mute'">
+                <span class="material-symbols-outlined">{{ isMuted() ? 'volume_off' : 'volume_up' }}</span>
+            </button>
         </div>
     </section>
 

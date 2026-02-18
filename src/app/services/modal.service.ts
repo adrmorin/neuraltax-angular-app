@@ -95,4 +95,26 @@ export class ModalService {
             this.openRegister();
         }
     }
+
+    // === VALIDATE MODAL ===
+    private validateVisible = signal(false);
+
+    get isValidateVisible() {
+        return this.validateVisible.asReadonly();
+    }
+
+    openValidate() {
+        this.validateVisible.set(true);
+        this.loginVisible.set(false);
+        this.plansVisible.set(false);
+        this.registerVisible.set(false);
+        document.body.style.overflow = 'hidden';
+    }
+
+    closeValidate() {
+        this.validateVisible.set(false);
+        if (!this.loginVisible() && !this.plansVisible() && !this.registerVisible()) {
+            document.body.style.overflow = 'auto';
+        }
+    }
 }

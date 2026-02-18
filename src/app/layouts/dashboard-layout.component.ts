@@ -4,11 +4,14 @@ import { SidebarComponent } from '../components/common/sidebar.component';
 import { ChatbotComponent } from '../components/chatbot/chatbot.component';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs/operators';
+import { ValidateModalComponent } from '../components/common/validate-modal.component';
+import { ModalService } from '../services/modal.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-dashboard-layout',
   standalone: true,
-  imports: [RouterOutlet, SidebarComponent, ChatbotComponent, CommonModule],
+  imports: [RouterOutlet, SidebarComponent, ChatbotComponent, CommonModule, ValidateModalComponent],
   template: `
     <div class="dashboard-container">
       <app-sidebar 
@@ -20,6 +23,7 @@ import { filter } from 'rxjs/operators';
         <router-outlet />
       </main>
       <app-chatbot />
+      <app-validate-modal />
     </div>
   `,
   styles: []
@@ -34,6 +38,8 @@ export class DashboardLayoutComponent {
   });
 
   private router = inject(Router);
+  private modalService = inject(ModalService);
+  private authService = inject(AuthService);
 
   constructor() {
     // Set initial URL
@@ -44,6 +50,21 @@ export class DashboardLayoutComponent {
       filter((event: Event): event is NavigationEnd => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
       this.currentUrl.set(event.url);
+      this.checkValidation();
     });
+
+    // Initial check
+    this.checkValidation();
+  }
+
+  checkValidation() {
+    // Check if user is validated (Validation Logic)
+    const user = this.authService.currentUser();
+    // Only check if user is logged in (implicit by being in dashboard layout, but good to be safe)
+    if (user && !user.isValidated) {
+      // Prevent opening if already on validate page (if we were using a page), but we are using a modal.
+      // We should open the modal.
+      this.modalService.openValidate();
+    }
   }
 }

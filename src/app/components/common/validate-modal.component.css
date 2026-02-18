@@ -1,0 +1,161 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    /* Darker backdrop for focus */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    /* High z-index to be on top of everything */
+    backdrop-filter: blur(5px);
+}
+
+.modal-container {
+    background-color: #1e1e1e;
+    /* Dark theme background */
+    color: #fff;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    padding: 2rem;
+    overflow-y: auto;
+    max-height: 90vh;
+    border: 1px solid #333;
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.modal-header h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: #4CAF50;
+    /* Green accent */
+}
+
+.modal-header p {
+    color: #aaa;
+    font-size: 0.95rem;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.upload-section {
+    background-color: #2a2a2a;
+    padding: 1.2rem;
+    border-radius: 8px;
+    border: 1px solid #444;
+}
+
+.upload-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #e0e0e0;
+}
+
+.info-text {
+    font-size: 0.85rem;
+    color: #bbb;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.info-text small {
+    display: block;
+    margin-top: 0.3rem;
+    color: #888;
+}
+
+.file-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.file-input-wrapper input[type="file"] {
+    display: none;
+}
+
+.file-input-wrapper label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #333;
+    color: #fff;
+    padding: 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+    border: 2px dashed #555;
+    font-weight: 500;
+}
+
+.file-input-wrapper label:hover {
+    background-color: #3a3a3a;
+    border-color: #777;
+}
+
+.file-input-wrapper.uploaded label {
+    border-color: #4CAF50;
+    color: #4CAF50;
+    background-color: rgba(76, 175, 80, 0.1);
+}
+
+.material-icons {
+    font-size: 24px;
+}
+
+.modal-footer {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-validate {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 1rem 3rem;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    width: 100%;
+}
+
+.btn-validate:hover:not(:disabled) {
+    background-color: #43a047;
+    transform: translateY(-2px);
+}
+
+.btn-validate:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Scrollbar for modal content */
+.modal-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-container::-webkit-scrollbar-track {
+    background: #1e1e1e;
+}
+
+.modal-container::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 4px;
+}

@@ -10,9 +10,8 @@ export const authGuard: CanActivateFn = () => {
     const token = authService.getToken();
 
     if (token) {
-        return true; // Permitir acceso inmediato si hay token válido
+        return true;
     } else {
-        // Redirigir a landing page si no está autenticado
         router.navigate(['/']);
         return false;
     }

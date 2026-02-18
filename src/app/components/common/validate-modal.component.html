@@ -1,0 +1,61 @@
+@if (modalService.isValidateVisible()) {
+<div class="modal-overlay">
+    <div class="modal-container">
+        <div class="modal-header">
+            <h2>Verificación de Identidad</h2>
+            <p>Para continuar a tu dashboard, necesitamos validar tus credenciales.</p>
+        </div>
+
+        <div class="modal-body">
+            <!-- 1. DNI / Licencia -->
+            <div class="upload-section">
+                <h3>1. Identificación Oficial</h3>
+                <p class="info-text">Sube tu Licencia de Conducir o ID del Estado. <br><small>Es el documento de
+                        identidad más utilizado. Si no conduces, un State ID tiene la misma validez legal.</small></p>
+                <div class="file-input-wrapper" [class.uploaded]="dniFile()">
+                    <input type="file" (change)="onFileSelected($event, 'dni')" accept="image/*,.pdf" id="dni-upload">
+                    <label for="dni-upload">
+                        <span class="material-icons">{{ dniFile() ? 'check_circle' : 'cloud_upload' }}</span>
+                        <span>{{ dniFile() ? dniFile()?.name : 'Subir DNI / Licencia' }}</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 2. W-2 Form -->
+            <div class="upload-section">
+                <h3>2. Formulario W-2</h3>
+                <p class="info-text">Documento fiscal entregado por tu empleador. <br><small>Reporta tus ganancias y
+                        retenciones. Indispensable para tu declaración.</small></p>
+                <div class="file-input-wrapper" [class.uploaded]="w2File()">
+                    <input type="file" (change)="onFileSelected($event, 'w2')" accept="image/*,.pdf" id="w2-upload">
+                    <label for="w2-upload">
+                        <span class="material-icons">{{ w2File() ? 'check_circle' : 'cloud_upload' }}</span>
+                        <span>{{ w2File() ? w2File()?.name : 'Subir Formulario W-2' }}</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 3. SSN -->
+            <div class="upload-section">
+                <h3>3. Seguro Social (SSN)</h3>
+                <p class="info-text">Tarjeta de Seguro Social. <br><small>Necesario para rastrear tus contribuciones y
+                        validar tu identidad fiscal.</small></p>
+                <div class="file-input-wrapper" [class.uploaded]="ssnFile()">
+                    <input type="file" (change)="onFileSelected($event, 'ssn')" accept="image/*,.pdf" id="ssn-upload">
+                    <label for="ssn-upload">
+                        <span class="material-icons">{{ ssnFile() ? 'check_circle' : 'cloud_upload' }}</span>
+                        <span>{{ ssnFile() ? ssnFile()?.name : 'Subir SSN' }}</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn-validate" (click)="submitValidation()"
+                [disabled]="!dniFile() || !w2File() || !ssnFile() || isSubmitting()">
+                {{ isSubmitting() ? 'Verificando...' : 'Validar Documentos' }}
+            </button>
+        </div>
+    </div>
+</div>
+}

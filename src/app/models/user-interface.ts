@@ -16,6 +16,7 @@ export interface User {
     accountNonExpired?: boolean;
     credentialsNonExpired?: boolean;
     accountNonLocked?: boolean;
+    isValidated?: boolean;
 }
 
 export interface Authority {

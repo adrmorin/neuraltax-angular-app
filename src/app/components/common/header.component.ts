@@ -78,13 +78,20 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
     </header>
   `,
   styles: [`
+    /* Host style to prevent inline gaps */
+    :host {
+      display: block;
+      width: 100%;
+    }
+
     /* Header transition for hiding */
     .glass-header {
       transition: transform 0.3s ease-in-out;
-      background: var(--bg-dark-deep) !important;
+      background: var(--bg-dark-deep);
       position: sticky;
       top: 0;
       z-index: 9999;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     }
     
     .glass-header.hidden {
@@ -92,18 +99,22 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
     }
 
     nav ul {
-      gap: 1.5rem !important;
+      display: flex;
+      gap: 1.5rem;
       flex-wrap: nowrap;
+      align-items: center;
+      margin: 0;
+      padding: 0;
     }
 
     .btn-theme {
-      background: transparent !important;
-      border: none !important;
-      color: #4ade80 !important;
+      background: transparent;
+      border: none;
+      color: var(--color-accent-green);
       cursor: pointer;
       padding: 0.5rem;
       border-radius: 50%;
-      display: flex !important;
+      display: flex;
       align-items: center;
       justify-content: center;
       transition: all 0.3s ease;
@@ -112,25 +123,25 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
     }
 
     .btn-theme:hover {
-      background: rgba(74, 222, 128, 0.1) !important;
+      background: rgba(74, 222, 128, 0.1);
     }
 
     .btn-theme .material-symbols-outlined {
-      font-size: 1.5rem !important;
+      font-size: 1.5rem;
       transition: transform 0.3s ease, color 0.3s ease;
-      color: #4ade80 !important;
+      color: var(--color-accent-green);
     }
 
     .btn-theme:hover .material-symbols-outlined {
       transform: rotate(15deg) scale(1.1);
-      color: #22c55e !important;
+      color: #22c55e;
     }
 
     .back-home-link {
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      color: white;
+      color: var(--text-inverse);
       text-decoration: none;
       font-weight: 500;
       font-size: 0.95rem;
@@ -138,7 +149,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
     }
 
     .back-home-link:hover {
-      color: #166534;
+      color: var(--color-accent-green);
       transform: translateX(-4px);
     }
 
@@ -149,95 +160,78 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
     .user-name {
       margin-right: 1rem;
       font-weight: 600;
-      color: white;
+      color: var(--text-inverse);
       font-size: 0.9rem;
+      white-space: nowrap;
     }
 
     .btn-tier {
-      padding: 0.5rem 1.25rem !important;
-      border-radius: 8px !important;
-      font-weight: 600 !important;
-      font-size: 0.9rem !important;
-      transition: all 0.3s ease !important;
-      border: 2px solid transparent !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
       text-decoration: none;
       display: inline-block;
     }
 
     .btn-free {
-      background-color: #9ca3af !important;
-      color: white !important;
+      background-color: #9ca3af;
+      color: white;
     }
 
     .btn-free:hover {
-      background-color: #6b7280 !important;
+      background-color: #6b7280;
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(156, 163, 175, 0.3);
     }
 
     .btn-premium {
-      background-color: var(--brand-blue) !important;
-      color: white !important;
+      background-color: var(--color-brand-blue);
+      color: white;
     }
 
     .btn-premium:hover {
-      background-color: #172554 !important; /* Solid darker blue */
+      background-color: #172554;
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(30, 58, 138, 0.4);
     }
 
-    .btn-agente {
-      background-color: #064e4b !important;
-      color: white !important;
-      border: 2px solid rgba(255, 255, 255, 0.2) !important;
-    }
-
-    .btn-agente:hover {
-      background-color: #0d9488 !important;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(13, 148, 136, 0.4);
-    }
-
-    .btn-vip {
-      background: #000000 !important;
-      color: white !important;
-      border: 2px solid rgba(255, 255, 255, 0.2) !important;
-    }
-
-    .btn-vip:hover {
-      background: #1e293b !important;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-    }
-
     .btn-login {
-      background-color: transparent !important;
-      color: white !important;
-      border: 2px solid white !important;
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+      padding: 0.5rem 1.25rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
       text-decoration: none;
+      cursor: pointer;
     }
 
     .btn-login:hover {
-      background-color: white !important;
-      color: #1e293b !important;
+      background-color: white;
+      color: var(--bg-dark-deep);
       transform: translateY(-2px);
     }
 
     .btn-dashboard {
-      background-color: #9ca3af !important; /* Matched with Free button gray */
-      color: white !important;
-      padding: 0.6rem 1.4rem !important;
-      border-radius: 8px !important;
-      font-weight: 700 !important;
-      font-size: 0.9rem !important;
-      transition: all 0.3s ease !important;
-      border: none !important;
+      background-color: #9ca3af;
+      color: white;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      border: none;
       display: inline-block;
       text-decoration: none;
     }
 
     .btn-dashboard:hover {
-      background-color: #6b7280 !important;
+      background-color: #6b7280;
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(156, 163, 175, 0.3);
     }
@@ -248,36 +242,29 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
       gap: 0.75rem;
     }
 
-    .user-name {
-      font-weight: 600;
-      color: white;
-      font-size: 0.95rem;
-      white-space: nowrap;
-    }
-
     .btn-logout {
-      background-color: transparent !important;
-      color: #ef4444 !important;
-      border: 1px solid rgba(239, 68, 68, 0.3) !important;
-      padding: 0.5rem !important;
-      border-radius: 8px !important;
-      cursor: pointer !important;
-      transition: all 0.3s ease !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
+      background-color: transparent;
+      color: #ef4444;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      padding: 0.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       min-width: 40px;
       min-height: 40px;
     }
 
     .btn-logout:hover {
-      background-color: rgba(239, 68, 68, 0.1) !important;
-      border-color: #ef4444 !important;
+      background-color: rgba(239, 68, 68, 0.1);
+      border-color: #ef4444;
       transform: translateY(-2px);
     }
 
     .btn-logout .material-symbols-outlined {
-      font-size: 1.2rem !important;
+      font-size: 1.2rem;
     }
 
     .user-avatar-container {
@@ -285,7 +272,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      border: 2px solid var(--accent-green-bright);
+      border: 2px solid var(--color-accent-green);
       padding: 2px;
       background: rgba(255, 255, 255, 0.1);
       display: flex;
@@ -318,32 +305,31 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
     }
 
     .btn-lang {
-      background-color: transparent !important;
-      color: white !important;
-      display: flex !important;
-      align-items: center !important;
-      gap: 0.4rem !important;
-      padding: 0.5rem 0.8rem !important;
-      border-radius: 8px !important;
-      font-weight: 700 !important;
-      font-size: 0.85rem !important;
-      border: 1px solid rgba(255, 255, 255, 0.2) !important;
-      cursor: pointer !important;
-      transition: all 0.3s ease !important;
+      background-color: transparent;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 0.8rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
 
     .btn-lang:hover {
-      background-color: rgba(255, 255, 255, 0.1) !important;
-      border-color: var(--accent-green-bright) !important;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: var(--color-accent-green);
     }
 
     .btn-lang .material-symbols-outlined {
-      font-size: 1.2rem !important;
-      color: var(--accent-green-bright) !important;
+      font-size: 1.2rem;
+      color: var(--color-accent-green);
     }
 
     .logo img {
-      /* High contrast faint green almost white */
       filter: brightness(0) invert(1) sepia(0.1) saturate(500%) hue-rotate(70deg) brightness(1.2);
     }
   `]

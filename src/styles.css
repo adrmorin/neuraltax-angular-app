@@ -254,6 +254,26 @@ nav a:hover {
     display: grid;
     grid-template-columns: 260px 1fr;
     min-height: 100vh;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 1024px) {
+    .dashboard-container {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        display: none;
+        /* Or transformed off-canvas */
+        position: fixed;
+        z-index: 100;
+        height: 100%;
+        width: 260px;
+    }
+
+    .sidebar.open {
+        display: block;
+    }
 }
 
 .sidebar {
