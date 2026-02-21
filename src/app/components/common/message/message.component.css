@@ -8,7 +8,9 @@
     font-size: 0.9rem;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--msg-border, rgba(255, 255, 255, 0.1));
+    background: var(--msg-bg, transparent);
+    color: var(--msg-color, inherit);
     animation: fadeIn 0.3s ease-out;
 }
 
@@ -26,6 +28,7 @@
 
 .icon {
     font-size: 1.25rem;
+    color: var(--msg-icon-color);
 }
 
 .text {
@@ -36,42 +39,33 @@
 
 /* Error */
 .message-container.error {
-    background: rgba(239, 68, 68, 0.15);
+    --msg-bg: rgba(239, 68, 68, 0.15);
     /* Red-500 optimized opacity */
-    color: #fca5a5;
+    --msg-color: #fca5a5;
     /* Red-300 */
-    border-color: rgba(239, 68, 68, 0.2);
-}
-
-.message-container.error .icon {
-    color: #ef4444;
+    --msg-border: rgba(239, 68, 68, 0.2);
+    --msg-icon-color: #ef4444;
     /* Red-500 */
 }
 
 /* Success */
 .message-container.success {
-    background: rgba(34, 197, 94, 0.15);
+    --msg-bg: rgba(34, 197, 94, 0.15);
     /* Green-500 */
-    color: #86efac;
+    --msg-color: #86efac;
     /* Green-300 */
-    border-color: rgba(34, 197, 94, 0.2);
-}
-
-.message-container.success .icon {
-    color: #22c55e;
+    --msg-border: rgba(34, 197, 94, 0.2);
+    --msg-icon-color: #22c55e;
     /* Green-500 */
 }
 
 /* Info */
 .message-container.info {
-    background: rgba(59, 130, 246, 0.15);
+    --msg-bg: rgba(59, 130, 246, 0.15);
     /* Blue-500 */
-    color: #93c5fd;
+    --msg-color: #93c5fd;
     /* Blue-300 */
-    border-color: rgba(59, 130, 246, 0.2);
-}
-
-.message-container.info .icon {
-    color: #3b82f6;
+    --msg-border: rgba(59, 130, 246, 0.2);
+    --msg-icon-color: #3b82f6;
     /* Blue-500 */
 }

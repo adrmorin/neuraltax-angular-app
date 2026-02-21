@@ -114,6 +114,26 @@
     white-space: nowrap;
 }
 
+.profile-trigger-btn {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 50%;
+    margin-left: auto;
+    transition: all 0.2s;
+}
+
+.profile-trigger-btn:hover {
+    color: var(--accent-green-bright, #4ade80);
+    background: rgba(255, 255, 255, 0.05);
+    transform: scale(1.1);
+}
+
 .sidebar-nav {
     list-style: none;
     padding: 0;

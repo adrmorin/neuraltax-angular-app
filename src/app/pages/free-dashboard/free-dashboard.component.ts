@@ -5,6 +5,8 @@ import { DashboardHeaderComponent } from '../../components/dashboard/dashboard-h
 import { TaxDataService } from '../../services/tax-data.service';
 import { Form1040PrincipalComponent } from '../../components/forms/form1040-principal/form1040-principal.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { AuthService } from '../../services/auth.service';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
     selector: 'app-free-dashboard',
@@ -17,10 +19,18 @@ export class FreeDashboardComponent {
     // Re-saved to trigger IDE sync
     private taxDataService = inject(TaxDataService);
     private translate = inject(TranslateService);
+    private authService = inject(AuthService);
+    private modalService = inject(ModalService);
     isBusinessOwner = this.taxDataService.isBusinessOwner();
     showForm1040 = false;
 
     scrollToForm() {
+        const user = this.authService.currentUser();
+        if (user && !user.isValidated) {
+            this.modalService.openValidate();
+            return;
+        }
+
         this.showForm1040 = true;
         // Wait for Angular to render the component before scrolling
         setTimeout(() => {

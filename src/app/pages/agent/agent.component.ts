@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardHeaderComponent } from '../../components/dashboard/dashboard-header.component';
 import { TranslateModule } from '@ngx-translate/core';
@@ -8,7 +8,8 @@ import { TranslateModule } from '@ngx-translate/core';
     standalone: true,
     imports: [CommonModule, DashboardHeaderComponent, TranslateModule],
     templateUrl: './agent.component.html',
-    styleUrl: './agent.component.css'
+    styleUrl: './agent.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AgentComponent {
     stats = [

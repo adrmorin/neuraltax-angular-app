@@ -2,12 +2,12 @@
     <!-- Header -->
     <div class="reports-header">
         <div class="header-text">
-            <h1 class="reports-title">Reportes y Análisis</h1>
-            <p class="reports-subtitle">Visualiza el rendimiento de tu práctica</p>
+            <h1 class="reports-title">{{ 'DASHBOARD.REPORTS.TITLE' | translate }}</h1>
+            <p class="reports-subtitle">{{ 'DASHBOARD.REPORTS.SUBTITLE' | translate }}</p>
         </div>
         <button class="export-btn" (click)="exportReport()">
             <span class="material-symbols-outlined">download</span>
-            Exportar Reporte
+            {{ 'DASHBOARD.REPORTS.EXPORT_BTN' | translate }}
         </button>
     </div>
 
@@ -15,8 +15,8 @@
     <div class="chart-card main-chart">
         <div class="chart-header">
             <div>
-                <h3 class="chart-title">Ingresos y Crecimiento de Clientes</h3>
-                <p class="chart-subtitle">Últimos 6 meses</p>
+                <h3 class="chart-title">{{ 'DASHBOARD.REPORTS.MAIN_CHART.TITLE' | translate }}</h3>
+                <p class="chart-subtitle">{{ 'DASHBOARD.REPORTS.MAIN_CHART.SUBTITLE' | translate }}</p>
             </div>
             <button class="expand-btn">
                 <span class="material-symbols-outlined">open_in_full</span>
@@ -55,7 +55,7 @@
                 <g class="x-axis-labels">
                     @for (data of monthlyData; track data.month; let i = $index) {
                     <text [attr.x]="90 + (i * 90)" [attr.y]="235" text-anchor="middle" class="axis-label">
-                        {{ data.month }}
+                        {{ data.month | translate }}
                     </text>
                     }
                 </g>
@@ -83,11 +83,11 @@
             <div class="chart-legend">
                 <div class="legend-item">
                     <span class="legend-dot clients"></span>
-                    <span>Clientes</span>
+                    <span>{{ 'DASHBOARD.REPORTS.MAIN_CHART.CLIENTS' | translate }}</span>
                 </div>
                 <div class="legend-item">
                     <span class="legend-dot income"></span>
-                    <span>Ingresos ($)</span>
+                    <span>{{ 'DASHBOARD.REPORTS.MAIN_CHART.INCOME' | translate }}</span>
                 </div>
             </div>
         </div>
@@ -97,8 +97,9 @@
     <div class="charts-grid">
         <!-- Pie Chart - Membership Distribution -->
         <div class="chart-card">
-            <h3 class="chart-title">Distribución de Membresías</h3>
-            <p class="chart-subtitle">Total: {{ getTotalClients() }} clientes</p>
+            <h3 class="chart-title">{{ 'DASHBOARD.REPORTS.MEMBERSHIP_CHART.TITLE' | translate }}</h3>
+            <p class="chart-subtitle">{{ 'DASHBOARD.REPORTS.MEMBERSHIP_CHART.TOTAL' | translate }}: {{ getTotalClients()
+                }}</p>
             <div class="pie-chart-container">
                 <svg viewBox="0 0 200 200" class="pie-chart">
                     <!-- Pie segments -->
@@ -112,7 +113,7 @@
                     @for (data of membershipData; track data.type) {
                     <div class="pie-label-item">
                         <span class="label-dot" [style.background]="data.color"></span>
-                        <span class="label-text">{{ data.type }}: {{ data.percentage }}%</span>
+                        <span class="label-text">{{ data.type | translate }}: {{ data.percentage }}%</span>
                     </div>
                     }
                 </div>
@@ -121,8 +122,8 @@
 
         <!-- Bar Chart - Tasks Completed -->
         <div class="chart-card">
-            <h3 class="chart-title">Tareas Completadas</h3>
-            <p class="chart-subtitle">Por semana (Noviembre)</p>
+            <h3 class="chart-title">{{ 'DASHBOARD.REPORTS.TASKS_CHART.TITLE' | translate }}</h3>
+            <p class="chart-subtitle">{{ 'DASHBOARD.REPORTS.TASKS_CHART.SUBTITLE' | translate }}</p>
             <div class="bar-chart-container">
                 <svg viewBox="0 0 280 180" class="bar-chart">
                     <!-- Y Axis Labels -->

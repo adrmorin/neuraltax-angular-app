@@ -3,17 +3,19 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalService } from '../../services/modal.service';
 import { AuthService } from '../../services/auth.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-validate-modal',
     standalone: true,
-    imports: [CommonModule, ReactiveFormsModule],
+    imports: [CommonModule, ReactiveFormsModule, TranslateModule],
     templateUrl: './validate-modal.component.html',
     styleUrls: ['./validate-modal.component.css']
 })
 export class ValidateModalComponent {
     modalService = inject(ModalService);
     authService = inject(AuthService);
+    translate = inject(TranslateService);
 
     // Signals for file uploads
     dniFile = signal<File | null>(null);
@@ -36,7 +38,7 @@ export class ValidateModalComponent {
     // Submit validation
     submitValidation() {
         if (!this.dniFile() || !this.w2File() || !this.ssnFile()) {
-            alert('Por favor, sube todos los documentos requeridos.');
+            alert(this.translate.instant('VALIDATION.ERROR_MISSING'));
             return;
         }
 

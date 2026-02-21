@@ -41,11 +41,13 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    cursor: pointer;
+    position: relative;
 }
 
 .user-avatar-circle {
-    width: 44px;
-    height: 44px;
+    width: 58px;
+    height: 58px;
     border-radius: 50%;
     background: linear-gradient(135deg, #688071 0%, #576b5f 100%);
     display: flex;
@@ -53,6 +55,18 @@
     justify-content: center;
     border: 2px solid rgba(255, 255, 255, 0.2);
     overflow: hidden;
+    position: relative;
+}
+
+.status-indicator {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-accent-green, #22c55e);
+    border: 2px solid var(--bg-dark-deep, #0f172a);
+    border-radius: 50%;
 }
 
 .user-avatar-img {
@@ -62,7 +76,7 @@
 }
 
 .user-initials {
-    font-size: 0.875rem;
+    font-size: 1.15rem;
     font-weight: 700;
     color: white;
     text-transform: uppercase;

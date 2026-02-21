@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 // Interfaces for report data
 export interface MonthlyData {
@@ -23,19 +24,19 @@ export interface WeeklyTaskData {
 @Component({
     selector: 'app-reports',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, TranslateModule],
     templateUrl: './reports.component.html',
     styleUrl: './reports.component.css'
 })
 export class ReportsComponent {
     // Monthly data for line chart (last 6 months)
     monthlyData: MonthlyData[] = [
-        { month: 'Jul', clients: 72, income: 18500 },
-        { month: 'Ago', clients: 75, income: 19200 },
-        { month: 'Sep', clients: 79, income: 21000 },
-        { month: 'Oct', clients: 82, income: 22500 },
-        { month: 'Nov', clients: 85, income: 24100 },
-        { month: 'Dic', clients: 87, income: 25800 }
+        { month: 'DASHBOARD.REPORTS.MONTHS.JUL', clients: 72, income: 18500 },
+        { month: 'DASHBOARD.REPORTS.MONTHS.AGO', clients: 75, income: 19200 },
+        { month: 'DASHBOARD.REPORTS.MONTHS.SEP', clients: 79, income: 21000 },
+        { month: 'DASHBOARD.REPORTS.MONTHS.OCT', clients: 82, income: 22500 },
+        { month: 'DASHBOARD.REPORTS.MONTHS.NOV', clients: 85, income: 24100 },
+        { month: 'DASHBOARD.REPORTS.MONTHS.DIC', clients: 87, income: 25800 }
     ];
 
     // Membership distribution
@@ -47,10 +48,10 @@ export class ReportsComponent {
 
     // Weekly tasks completed
     weeklyTaskData: WeeklyTaskData[] = [
-        { week: 'Sem 1', completed: 42 },
-        { week: 'Sem 2', completed: 58 },
-        { week: 'Sem 3', completed: 51 },
-        { week: 'Sem 4', completed: 67 }
+        { week: 'DASHBOARD.REPORTS.WEEKS.WEEK_1', completed: 42 },
+        { week: 'DASHBOARD.REPORTS.WEEKS.WEEK_2', completed: 58 },
+        { week: 'DASHBOARD.REPORTS.WEEKS.WEEK_3', completed: 51 },
+        { week: 'DASHBOARD.REPORTS.WEEKS.WEEK_4', completed: 67 }
     ];
 
     // Y-axis labels for income
@@ -122,6 +123,5 @@ export class ReportsComponent {
     exportReport(): void {
         console.log('Exporting report...');
         // TODO: Implement export functionality (PDF/Excel)
-        alert('Funcionalidad de exportación en desarrollo');
     }
 }

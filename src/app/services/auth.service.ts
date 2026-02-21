@@ -3,7 +3,7 @@ import { Injectable, inject, signal, computed } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, tap, map } from 'rxjs/operators';
 import { User } from '../models/user-interface';
 
 @Injectable({
@@ -23,7 +23,13 @@ export class AuthService {
     public currentUserDashboard = computed(() => {
         const user = this.currentUser();
         if (!user) return '/';
-        return this.getDashboardRoute(user.roles || []);
+
+        let roles = user.roles || [];
+        if (roles.length === 0 && user.authorities) {
+            roles = user.authorities.map(a => a.authority || '');
+        }
+
+        return this.getDashboardRoute(roles);
     });
 
     // === LOGIN ===
@@ -36,7 +42,7 @@ export class AuthService {
         const body = { email, password };
 
         return this.http.post<{ token: string; userId: string; firstName: string; lastName: string }>(`${this.baseUrl}/login`, body, { headers }).pipe(
-            tap((response) => this.handleSuccessfulLogin(response)),
+            tap((response) => this.handleSuccessfulLogin(response, email)),
             catchError(() => {
                 return throwError(() => new Error('Credenciales inválidas o backend no disponible.'));
             })
@@ -44,9 +50,14 @@ export class AuthService {
     }
 
     // === PROCESA EL LOGIN EXITOSO ===
-    private handleSuccessfulLogin(response: { token: string; userId: string; firstName: string; lastName: string }) {
+    private handleSuccessfulLogin(response: { token: string; userId: string; firstName: string; lastName: string }, email: string) {
         if (response && response.token) {
             localStorage.setItem('token', response.token);
+
+            // Guardar info básica por si getUserInfo falla
+            localStorage.setItem('fallback_email', email);
+            if (response.firstName) localStorage.setItem('fallback_firstName', response.firstName);
+            if (response.lastName) localStorage.setItem('fallback_lastName', response.lastName);
 
             // Set expiration to 24 hours from now
             const expirationTime = Date.now() + 24 * 60 * 60 * 1000;
@@ -54,20 +65,25 @@ export class AuthService {
 
             this.loggedIn.next(true);
 
-            // Set user from login response
-            this.currentUser.set({
-                firstName: response.firstName || 'Usuario',
-                lastName: response.lastName || '',
-                email: '',
-                phone: '',
-                password: '',
-                roles: ['ROLE_FREE'],
-                isValidated: false // Explicitly false until they complete validation
+            // Fetch actual user info to get the real roles
+            this.getUserInfo().subscribe({
+                next: (u) => {
+                    this.currentUser.set(u);
+                },
+                error: (err) => {
+                    console.error('❌ Failed to load user info after login:', err);
+                    // Fallback to basic info from login response
+                    this.currentUser.set({
+                        firstName: localStorage.getItem('fallback_firstName') || response.firstName || 'Usuario',
+                        lastName: localStorage.getItem('fallback_lastName') || response.lastName || '',
+                        email: localStorage.getItem('fallback_email') || email,
+                        phone: '',
+                        password: '',
+                        roles: ['ROLE_FREE'],
+                        isValidated: false
+                    });
+                }
             });
-
-            // Navigate to dashboard
-            const dashboardRoute = this.getDashboardRoute(['ROLE_FREE']);
-            this.router.navigate([dashboardRoute]);
         } else {
             throw new Error('El servidor no devolvió un token de acceso válido.');
         }
@@ -137,9 +153,9 @@ export class AuthService {
                             // Even if getUserInfo fails, keep user logged in with minimal info
                             // This prevents showing "Iniciar Sesión" button if token is valid
                             this.currentUser.set({
-                                firstName: 'Usuario',
-                                lastName: '',
-                                email: '',
+                                firstName: localStorage.getItem('fallback_firstName') || 'Usuario',
+                                lastName: localStorage.getItem('fallback_lastName') || '',
+                                email: localStorage.getItem('fallback_email') || '',
                                 phone: '',
                                 password: '',
                                 roles: ['ROLE_FREE'],
@@ -168,7 +184,36 @@ export class AuthService {
     getUserInfo(): Observable<User> {
         console.log('📞 Calling getUserInfo() - Fetching user data from backend...');
 
-        return this.http.get<User>(`${this.baseUrl}/user-info`, { headers: this.getAuthHeaders() });
+        return this.http.get<User & { name?: string }>(`${this.baseUrl}/user-info`, { headers: this.getAuthHeaders() }).pipe(
+            map((data) => {
+                // Normalización de datos en caso de que el backend devuelva otro formato
+                const user: User = {
+                    ...data,
+                    firstName: data.firstName || '',
+                    lastName: data.lastName || '',
+                    email: data.email || '',
+                    phone: data.phone || '',
+                    password: data.password || '',
+                    roles: data.roles || ['ROLE_FREE'],
+                    isValidated: !!data.isValidated
+                };
+
+                if (data.name && !user.firstName) {
+                    const parts = data.name.split(' ');
+                    user.firstName = parts[0] || '';
+                    user.lastName = parts.slice(1).join(' ') || '';
+                }
+
+                if (!user.firstName) {
+                    user.firstName = 'Usuario';
+                }
+                if (!user.roles || user.roles.length === 0) {
+                    user.roles = ['ROLE_FREE'];
+                }
+
+                return user as User;
+            })
+        );
     }
 
     private getAuthHeaders(): Record<string, string> {

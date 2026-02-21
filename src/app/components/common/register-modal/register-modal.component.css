@@ -113,7 +113,7 @@
 }
 
 .error-msg {
-    color: #ef4444;
+    color: var(--color-danger);
     text-align: center;
     margin-bottom: 1rem;
     font-weight: 500;
@@ -130,7 +130,7 @@
 
 .success-msg .check-icon {
     font-size: 4rem;
-    color: #22c55e;
+    color: var(--color-success);
     margin-bottom: 1rem;
 }
 
@@ -212,11 +212,11 @@
 }
 
 .password-requirements p.valid {
-    color: #4ade80;
+    color: var(--color-accent-green);
 }
 
 .password-requirements p.invalid {
-    color: #ef4444;
+    color: var(--color-danger);
 }
 
 .match-message {
@@ -228,11 +228,11 @@
 }
 
 .match-message.valid {
-    color: #4ade80;
+    color: var(--color-accent-green);
 }
 
 .match-message.invalid {
-    color: #ef4444;
+    color: var(--color-danger);
 }
 
 .match-message .icon {

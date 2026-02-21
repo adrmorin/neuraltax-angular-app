@@ -1,6 +1,9 @@
 import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { AuthService } from '../../services/auth.service';
+import { ModalService } from '../../services/modal.service';
+import { UserProfileMenuComponent } from '../common/user-profile-menu/user-profile-menu.component';
 
 interface ClientConfig {
     title: string;
@@ -13,7 +16,7 @@ interface ClientConfig {
 @Component({
     selector: 'app-dashboard-header',
     standalone: true,
-    imports: [CommonModule, TranslateModule],
+    imports: [CommonModule, TranslateModule, UserProfileMenuComponent],
     templateUrl: './dashboard-header.component.html',
     styleUrl: './dashboard-header.component.css'
 })
@@ -33,8 +36,49 @@ export class DashboardHeaderComponent {
     @Input() title?: string;
     @Input() subtitle?: string;
     @Input() showLogo = true;
-    @Input() userName = 'Usuario';
     @Input() userAvatar?: string;
+    public auth = inject(AuthService);
+    public modalService = inject(ModalService);
+
+    isProfileMenuOpen = false;
+    private menuTimeout: ReturnType<typeof setTimeout> | null = null;
+
+    toggleProfileMenu() {
+        if (this.menuTimeout) clearTimeout(this.menuTimeout);
+        this.isProfileMenuOpen = !this.isProfileMenuOpen;
+    }
+
+    cancelMenuClose() {
+        if (this.menuTimeout) clearTimeout(this.menuTimeout);
+    }
+
+    closeProfileMenu() {
+        if (this.menuTimeout) clearTimeout(this.menuTimeout);
+        this.menuTimeout = setTimeout(() => {
+            this.isProfileMenuOpen = false;
+        }, 500); // 500ms delay
+    }
+
+    logout() {
+        this.auth.logout();
+    }
+
+    get userName(): string {
+        const user = this.auth.currentUser();
+        if (user && user.firstName) {
+            return `${user.firstName} ${user.lastName || ''}`.trim();
+        }
+        return 'Usuario';
+    }
+
+    get user() {
+        return this.auth.currentUser();
+    }
+
+    openValidation() {
+        this.isProfileMenuOpen = false;
+        this.modalService.openValidate();
+    }
 
     private clientConfigs: Record<string, ClientConfig> = {
         free: {

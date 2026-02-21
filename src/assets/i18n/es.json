@@ -1,4 +1,5 @@
 {
+    "PAGE_TITLE": "Neuraltax - Agencia de Taxes IA",
     "HEADER": {
         "HOME": "Inicio",
         "ABOUT": "Nosotros",
@@ -207,6 +208,22 @@
         "GUARANTEED_COMPLIANCE": "Cumplimiento Garantizado: Siempre actualizado con las regulaciones fiscales.",
         "DISCOVER_TRANSFORM": "Descubre cómo Neuraltax puede transformar tu experiencia fiscal."
     },
+    "VALIDATION": {
+        "TITLE": "Verificación de Identidad",
+        "DESC": "Para continuar a tu dashboard, necesitamos validar tus credenciales.",
+        "DNI_TITLE": "1. Identificación Oficial",
+        "DNI_DESC": "Sube tu Licencia de Conducir o ID del Estado. <br><small>Es el documento de identidad más utilizado. Si no conduces, un State ID tiene la misma validez legal.</small>",
+        "DNI_UPLOAD": "Subir DNI / Licencia",
+        "W2_TITLE": "2. Formulario W-2",
+        "W2_DESC": "Documento fiscal entregado por tu empleador. <br><small>Reporta tus ganancias y retenciones. Indispensable para tu declaración.</small>",
+        "W2_UPLOAD": "Subir Formulario W-2",
+        "SSN_TITLE": "3. Seguro Social (SSN)",
+        "SSN_DESC": "Tarjeta de Seguro Social. <br><small>Necesario para rastrear tus contribuciones y validar tu identidad fiscal.</small>",
+        "SSN_UPLOAD": "Subir SSN",
+        "BTN_VALIDATE": "Validar Documentos",
+        "BTN_VERIFYING": "Verificando...",
+        "ERROR_MISSING": "Por favor, sube todos los documentos requeridos."
+    },
     "FOOTER": {
         "BRAND_DESC": "Su experto en impuestos automatizado. Simplificando la gestión fiscal con tecnología de IA de vanguardia y precisión.",
         "BUSINESS_REG": "Registro de Empresa",
@@ -271,6 +288,8 @@
             },
             "UPSELL": {
                 "TITLE": "Desbloquea Funciones Premium",
+                "DESC": "Obtén asistencia de IA, documentos ilimitados, Anexo C para negocios, deducciones avanzadas y soporte prioritario.",
+                "UPGRADE_NOW": "Actualizar a Premium",
                 "COMPARE_PLANS": "Comparar Planes"
             }
         },
@@ -308,5 +327,56 @@
                 "GUARANTEE": "Garantía de Devolución"
             }
         }
+    },
+    "AUTH": {
+        "WELCOME": "Bienvenido",
+        "LOGIN_DESC": "Inicia sesión en tu cuenta",
+        "EMAIL": "Email",
+        "PASSWORD": "Contraseña",
+        "LOGGING_IN": "Iniciando...",
+        "LOGIN_BTN": "Iniciar Sesión",
+        "NO_ACCOUNT": "¿No tienes cuenta?",
+        "SIGN_UP": "Regístrate",
+        "JOIN_US": "Únete a Nosotros",
+        "REGISTER_DESC": "Regístrate para recibir actualizaciones exclusivas",
+        "FIRST_NAME": "Nombre",
+        "LAST_NAME": "Apellido",
+        "PHONE": "Teléfono",
+        "HIDE_PASSWORD": "Ocultar contraseña",
+        "SHOW_PASSWORD": "Mostrar contraseña",
+        "REQ_UPPERCASE": "Al menos una mayúscula",
+        "REQ_SPECIAL": "Al menos un carácter especial",
+        "REQ_NUMBER": "Al menos un número",
+        "REQ_MIN_LENGTH": "Mínimo 8 caracteres",
+        "CONFIRM_PASSWORD": "Repetir Contraseña",
+        "PASS_MATCH": "Las contraseñas coinciden",
+        "PASS_NOT_MATCH": "Las contraseñas no coinciden",
+        "REGISTERING": "Registrando...",
+        "REGISTER_BTN": "Registrarme",
+        "REGISTER_SUCCESS": "¡Gracias por registrarte! Te hemos enviado un correo de confirmación.",
+        "HAS_ACCOUNT": "¿Ya tienes cuenta?",
+        "SIGN_IN": "Inicia sesión",
+        "USER": "Usuario"
+    },
+    "PROFILE": {
+        "YOUR_PROFILE": "Tu Perfil",
+        "MANAGE_INFO": "Gestiona tu información personal",
+        "PREMIUM_MEMBER": "Miembro Premium",
+        "MEMBER": "Miembro",
+        "VIP_MEMBER": "Miembro VIP",
+        "AGENT": "Agente",
+        "FREE_MEMBER": "Miembro Gratis",
+        "PHONE": "Teléfono",
+        "PHYSICAL_ADDRESS": "Dirección Física",
+        "NOT_REGISTERED": "No registrado",
+        "PENDING_UPDATE": "Pendiente de actualizar",
+        "VERIFIED_IDENTITY": "Identidad Verificada",
+        "PENDING_VERIFICATION": "Verificación Pendiente",
+        "VERIFIED_DESC": "Tu identidad ha sido comprobada exitosamente.",
+        "PENDING_DESC": "Es necesario validar tu ID para habilitar operaciones fiscales sensibles.",
+        "VERIFY_NOW": "Verificar Ahora",
+        "MY_PROFILE": "Mi Perfil",
+        "VERIFY_IDENTITY": "Verificar Identidad",
+        "LOGOUT": "Cerrar Sesión"
     }
 }

@@ -15,15 +15,23 @@
 
 
         <!-- User Info -->
-        <div class="user-info-section">
+        <div class="user-info-section" (click)="toggleProfileMenu()" tabindex="0" (keydown.enter)="toggleProfileMenu()"
+            role="button" aria-haspopup="menu" (mouseenter)="cancelMenuClose()" (mouseleave)="closeProfileMenu()">
             <div class="user-avatar-circle">
                 @if (userAvatar) {
                 <img [src]="userAvatar" [alt]="userName" class="user-avatar-img">
                 } @else {
                 <span class="user-initials">{{ userInitials }}</span>
                 }
+                <span class="status-indicator"></span>
             </div>
             <span class="user-name-text">{{ userName }}</span>
+
+            <!-- Dropdown Menu -->
+            @if (isProfileMenuOpen) {
+            <app-user-profile-menu [user]="user" (closeMenu)="closeProfileMenu()"
+                (cancelCloseMenu)="cancelMenuClose()"></app-user-profile-menu>
+            }
         </div>
 
         <!-- Brand Info -->

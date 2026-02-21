@@ -1,10 +1,10 @@
-import { Component, inject, ViewChild, ElementRef, signal, AfterViewInit } from '@angular/core';
+import { Component, inject, ViewChild, ElementRef, signal, AfterViewInit, DestroyRef } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AboutUsComponent } from '../../components/common/about-us.component';
 import { ModalService } from '../../services/modal.service';
 import { HeaderComponent } from '../../components/common/header.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-landing-page',
@@ -15,34 +15,59 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class LandingPageComponent implements AfterViewInit {
     public modalService = inject(ModalService);
+    private translateService = inject(TranslateService);
+    private destroyRef = inject(DestroyRef);
 
     @ViewChild('heroVideo') videoRef!: ElementRef<HTMLVideoElement>;
 
     isPlaying = signal(false); // Default to false to ensure content is visible if video fails
-    isMuted = signal(true); // Default to true for better autoplay success
+    isMuted = signal(false); // Enable sound on startup based on user request
 
     ngAfterViewInit() {
         if (this.videoRef && this.videoRef.nativeElement) {
             const video = this.videoRef.nativeElement;
 
-            // Protection Rules:
-            // 1. Set source via JS to bypass basic HTML sniffers
-            video.src = 'assets/landing/Neuraltax_final.mp4';
-            video.setAttribute('controlsList', 'nodownload nofullscreen noremoteplayback');
-            video.setAttribute('disablePictureInPicture', 'true');
-            video.load();
+            const initialLang = this.translateService.currentLang || this.translateService.defaultLang || 'es';
+            this.updateVideoSource(video, initialLang, true);
+
+            const sub = this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
+                this.updateVideoSource(video, event.lang, false);
+            });
+            this.destroyRef.onDestroy(() => sub.unsubscribe());
 
             // 2. Disable pointer events for hover protection
             video.style.pointerEvents = 'none';
 
             // 3. Robust Playback: Wait for metadata to ensure video is ready
             video.addEventListener('loadedmetadata', () => {
-                video.muted = true; // Start muted for higher autoplay reliability
-                this.isMuted.set(true);
+                video.muted = false; // Start with sound enabled
+                this.isMuted.set(false);
 
                 video.play().catch(err => {
                     console.error('❌ Autoplay failed:', err);
                 });
+            }, { once: true });
+        }
+    }
+
+    private updateVideoSource(video: HTMLVideoElement, lang: string, isInitialLoad: boolean) {
+        const wasPlaying = !isInitialLoad && !video.paused && !video.ended;
+        const currentTime = isInitialLoad ? 0 : video.currentTime;
+
+        if (lang === 'en') {
+            video.src = 'assets/landing/videolanding_en_ingles.mp4';
+        } else {
+            video.src = 'assets/landing/videolanding_en_es.mp4';
+        }
+
+        video.setAttribute('controlsList', 'nodownload nofullscreen noremoteplayback');
+        video.setAttribute('disablePictureInPicture', 'true');
+        video.load();
+
+        if (wasPlaying) {
+            video.addEventListener('loadedmetadata', () => {
+                video.currentTime = currentTime;
+                video.play().catch(e => console.error('Play error after lang switch', e));
             }, { once: true });
         }
     }

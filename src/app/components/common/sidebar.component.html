@@ -15,6 +15,9 @@
           @else if (portalType === 'premium') { {{ t('common.premium') }} }
           @else { {{ t('common.agents') }} }
         </span>
+        <button class="profile-trigger-btn" (click)="openProfile()" [title]="'common.profile' | translate">
+          <span class="material-symbols-outlined">account_circle</span>
+        </button>
       </div>
     </div>
     }

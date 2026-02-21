@@ -4,6 +4,7 @@ export interface User {
     lastName: string;
     email: string;
     phone: string;
+    address?: string;
     password: string;
     enabled?: boolean;
     filingStatus?: string | null;

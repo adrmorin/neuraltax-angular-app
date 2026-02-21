@@ -7,11 +7,12 @@ import { ModalService } from '../../services/modal.service';
 import { AuthService } from '../../services/auth.service';
 import { ThemeService } from '../../services/theme.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { UserProfileMenuComponent } from './user-profile-menu/user-profile-menu.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, CommonModule, TranslateModule],
+  imports: [RouterLink, CommonModule, TranslateModule, UserProfileMenuComponent],
   template: `
     <header class="glass-header" [class.hidden]="isHidden">
       <div class="container">
@@ -40,8 +41,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
                 </button>
               </li>
 
-              <li><a routerLink="/free-dashboard" class="btn btn-tier btn-free">{{ 'COMMON.FREE' | translate }}</a></li>
-              <li><a routerLink="/premium-dashboard" class="btn btn-tier btn-premium">{{ 'COMMON.PREMIUM' | translate }}</a></li>
+
 
               <li class="lang-switcher">
                 <button class="btn btn-lang" (click)="switchLanguage(currentLang === 'es' ? 'en' : 'es')">
@@ -55,17 +55,21 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
               @if (!minimal) {
                 <li><a [routerLink]="authService.currentUserDashboard()" class="btn btn-dashboard">{{ 'HEADER.DASHBOARD' | translate }}</a></li>
               }
-              <li class="user-profile">
-                <span class="user-name">
-                  {{ getUserDisplayName(user) }}
-                </span>
-                <div class="user-avatar-container">
-                  <img src="assets/nerea_avatar.png" alt="User Profile" class="user-avatar" />
-                  <span class="status-indicator"></span>
+              <li class="user-profile" (mouseenter)="cancelMenuClose()" (mouseleave)="closeProfileMenu()">
+                <div class="user-info-trigger" (click)="toggleProfileMenu()" tabindex="0" (keydown.enter)="toggleProfileMenu()" role="button" aria-haspopup="menu">
+                  <span class="user-name">
+                    {{ getUserDisplayName(user) }}
+                  </span>
+                  <div class="user-avatar-container">
+                    <img src="assets/nerea_avatar.png" alt="User Profile" class="user-avatar" />
+                    <span class="status-indicator"></span>
+                  </div>
                 </div>
-                <button (click)="logout()" class="btn btn-logout" title="Cerrar Sesión">
-                  <span class="material-symbols-outlined">logout</span>
-                </button>
+
+                <!-- Dropdown Menu -->
+                @if (isProfileMenuOpen) {
+                  <app-user-profile-menu [user]="user" (closeMenu)="closeProfileMenu()" (cancelCloseMenu)="cancelMenuClose()"></app-user-profile-menu>
+                }
               </li>
             } @else {
               @if (!minimal) {
@@ -240,6 +244,14 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
       display: flex;
       align-items: center;
       gap: 0.75rem;
+      position: relative;
+    }
+
+    .user-info-trigger {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
     }
 
     .btn-logout {
@@ -360,7 +372,26 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (user.email) {
       return user.email.split('@')[0];
     }
-    return 'Usuario';
+    return this.translate.instant('AUTH.USER');
+  }
+
+  isProfileMenuOpen = false;
+  private menuTimeout: ReturnType<typeof setTimeout> | null = null;
+
+  toggleProfileMenu() {
+    if (this.menuTimeout) clearTimeout(this.menuTimeout);
+    this.isProfileMenuOpen = !this.isProfileMenuOpen;
+  }
+
+  cancelMenuClose() {
+    if (this.menuTimeout) clearTimeout(this.menuTimeout);
+  }
+
+  closeProfileMenu() {
+    if (this.menuTimeout) clearTimeout(this.menuTimeout);
+    this.menuTimeout = setTimeout(() => {
+      this.isProfileMenuOpen = false;
+    }, 500); // 500ms delay
   }
 
   logout(): void {

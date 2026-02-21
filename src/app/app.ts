@@ -1,17 +1,19 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { ModalService } from './services/modal.service';
 import { LoginComponent } from './pages/login/login.component';
 import { PlansModalComponent } from './components/common/plans-modal.component';
 import { RegisterModalComponent } from './components/common/register-modal/register-modal.component';
+import { ProfileModalComponent } from './components/common/profile-modal/profile-modal.component';
 import { CommonModule } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, LoginComponent, PlansModalComponent, RegisterModalComponent, CommonModule],
+  imports: [RouterOutlet, LoginComponent, PlansModalComponent, RegisterModalComponent, ProfileModalComponent, CommonModule],
   template: `
     <router-outlet />
     
@@ -56,6 +58,19 @@ import { TranslateService } from '@ngx-translate/core';
           </div>
        </div>
     }
+
+    @if (modalService.isProfileVisible()) {
+       <div class="modal-overlay profile-overlay"
+            (click)="modalService.closeProfile()"
+            (keydown.escape)="modalService.closeProfile()"
+            tabindex="0"
+            role="dialog"
+            aria-modal="true">
+          <div class="modal-content profile-content" (click)="$event.stopPropagation()" (keydown.enter)="$event.stopPropagation()" role="document">
+            <app-profile-modal />
+          </div>
+       </div>
+    }
   `,
   styles: [`
     .modal-overlay {
@@ -97,6 +112,7 @@ export class App implements OnInit {
   private auth = inject(AuthService);
   public modalService = inject(ModalService);
   private translate = inject(TranslateService);
+  private titleService = inject(Title);
 
   ngOnInit() {
     this.auth.checkLoginStatus();
@@ -104,5 +120,12 @@ export class App implements OnInit {
     // Initialize translation service
     this.translate.setDefaultLang('es');
     this.translate.use('es');
+
+    // Update document title dynamically based on language
+    this.translate.onLangChange.subscribe(() => {
+      this.translate.get('PAGE_TITLE').subscribe((res: string) => {
+        this.titleService.setTitle(res);
+      });
+    });
   }
 }

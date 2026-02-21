@@ -13,7 +13,7 @@ import { AuthService } from '../services/auth.service';
   standalone: true,
   imports: [RouterOutlet, SidebarComponent, ChatbotComponent, CommonModule, ValidateModalComponent],
   template: `
-    <div class="dashboard-container">
+    <div class="dashboard-container" [class.sidebar-collapsed]="isCollapsed()">
       <app-sidebar 
         [isCollapsed]="isCollapsed()" 
         [portalType]="portalType()"
@@ -29,7 +29,7 @@ import { AuthService } from '../services/auth.service';
   styles: []
 })
 export class DashboardLayoutComponent {
-  isCollapsed = signal(false);
+  isCollapsed = signal(true);
   currentUrl = signal('');
   portalType = computed(() => {
     const url = this.currentUrl();
@@ -58,13 +58,12 @@ export class DashboardLayoutComponent {
   }
 
   checkValidation() {
-    // Check if user is validated (Validation Logic)
+    // Disabled per user request (verification bypass)
+    /*
     const user = this.authService.currentUser();
-    // Only check if user is logged in (implicit by being in dashboard layout, but good to be safe)
     if (user && !user.isValidated) {
-      // Prevent opening if already on validate page (if we were using a page), but we are using a modal.
-      // We should open the modal.
-      this.modalService.openValidate();
+        this.modalService.openValidate();
     }
+    */
   }
 }

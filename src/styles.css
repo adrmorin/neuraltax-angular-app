@@ -10,6 +10,8 @@
     --color-accent-mint: #9DD3AF;
     --color-accent-green: #4ade80;
     --color-brand-blue: #152961;
+    --color-success: #22c55e;
+    --color-danger: #ef4444;
 
     /* Semantic Variables (Default - Light Mode) */
     --bg-page: var(--color-light-bg);
@@ -52,8 +54,9 @@
     /* Deep blue/black for dark mode page */
     --bg-card: #1e293b;
     --text-main: #e2e8f0;
-    /* Light text */
     --text-secondary: #94a3b8;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --bg-hover: rgba(255, 255, 255, 0.05);
 
     /* In dark mode, maybe we want specific overrides? */
 }
@@ -255,6 +258,10 @@ nav a:hover {
     grid-template-columns: 260px 1fr;
     min-height: 100vh;
     transition: all 0.3s ease;
+}
+
+.dashboard-container.sidebar-collapsed {
+    grid-template-columns: 80px 1fr;
 }
 
 @media (max-width: 1024px) {

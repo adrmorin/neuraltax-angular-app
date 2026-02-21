@@ -1,4 +1,5 @@
 {
+    "PAGE_TITLE": "Neuraltax - AI Tax Agency",
     "HEADER": {
         "HOME": "Home",
         "ABOUT": "About Us",
@@ -207,6 +208,22 @@
         "GUARANTEED_COMPLIANCE": "Guaranteed Compliance: Always up-to-date with tax regulations.",
         "DISCOVER_TRANSFORM": "Discover how Neuraltax can transform your tax experience."
     },
+    "VALIDATION": {
+        "TITLE": "Identity Verification",
+        "DESC": "To continue to your dashboard, we need to validate your credentials.",
+        "DNI_TITLE": "1. Official ID",
+        "DNI_DESC": "Upload your Driver's License or State ID. <br><small>It is the most widely used identity document. If you do not drive, a State ID has the same legal validity.</small>",
+        "DNI_UPLOAD": "Upload ID / License",
+        "W2_TITLE": "2. Form W-2",
+        "W2_DESC": "Tax document provided by your employer. <br><small>Reports your earnings and withholdings. Essential for your tax return.</small>",
+        "W2_UPLOAD": "Upload Form W-2",
+        "SSN_TITLE": "3. Social Security (SSN)",
+        "SSN_DESC": "Social Security Card. <br><small>Required to track your contributions and validate your tax identity.</small>",
+        "SSN_UPLOAD": "Upload SSN",
+        "BTN_VALIDATE": "Validate Documents",
+        "BTN_VERIFYING": "Verifying...",
+        "ERROR_MISSING": "Please upload all required documents."
+    },
     "FOOTER": {
         "BRAND_DESC": "Your automated tax expert. Simplifying tax management with cutting-edge AI technology and precision.",
         "BUSINESS_REG": "Business Registration",
@@ -310,5 +327,56 @@
                 "GUARANTEE": "Money-back Guarantee"
             }
         }
+    },
+    "AUTH": {
+        "WELCOME": "Welcome",
+        "LOGIN_DESC": "Log in to your account",
+        "EMAIL": "Email",
+        "PASSWORD": "Password",
+        "LOGGING_IN": "Logging in...",
+        "LOGIN_BTN": "Log In",
+        "NO_ACCOUNT": "Don't have an account?",
+        "SIGN_UP": "Sign up",
+        "JOIN_US": "Join Us",
+        "REGISTER_DESC": "Register to receive exclusive updates",
+        "FIRST_NAME": "First Name",
+        "LAST_NAME": "Last Name",
+        "PHONE": "Phone",
+        "HIDE_PASSWORD": "Hide password",
+        "SHOW_PASSWORD": "Show password",
+        "REQ_UPPERCASE": "At least one uppercase",
+        "REQ_SPECIAL": "At least one special character",
+        "REQ_NUMBER": "At least one number",
+        "REQ_MIN_LENGTH": "Minimum 8 characters",
+        "CONFIRM_PASSWORD": "Repeat Password",
+        "PASS_MATCH": "Passwords match",
+        "PASS_NOT_MATCH": "Passwords do not match",
+        "REGISTERING": "Registering...",
+        "REGISTER_BTN": "Register",
+        "REGISTER_SUCCESS": "Thanks for registering! We have sent you a confirmation email.",
+        "HAS_ACCOUNT": "Already have an account?",
+        "SIGN_IN": "Sign in",
+        "USER": "User"
+    },
+    "PROFILE": {
+        "YOUR_PROFILE": "Your Profile",
+        "MANAGE_INFO": "Manage your personal information",
+        "PREMIUM_MEMBER": "Premium Member",
+        "VIP_MEMBER": "VIP Member",
+        "MEMBER": "Member",
+        "AGENT": "Agent",
+        "FREE_MEMBER": "Free Member",
+        "PHONE": "Phone",
+        "PHYSICAL_ADDRESS": "Physical Address",
+        "NOT_REGISTERED": "Not registered",
+        "PENDING_UPDATE": "Pending update",
+        "VERIFIED_IDENTITY": "Verified Identity",
+        "PENDING_VERIFICATION": "Pending Verification",
+        "VERIFIED_DESC": "Your identity has been successfully checked.",
+        "PENDING_DESC": "It is necessary to validate your ID to enable sensitive tax operations.",
+        "VERIFY_NOW": "Verify Now",
+        "MY_PROFILE": "My Profile",
+        "VERIFY_IDENTITY": "Verify Identity",
+        "LOGOUT": "Logout"
     }
 }

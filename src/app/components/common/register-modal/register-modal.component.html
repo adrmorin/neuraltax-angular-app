@@ -2,40 +2,40 @@
     <button class="close-btn" (click)="modalService.closeRegister()">&times;</button>
     <div class="login-header">
         <img src="assets/neuraltax_logo.png" alt="NeuralTax" style="height: 50px" />
-        <h1>Únete a Nosotros</h1>
-        <p>Regístrate para recibir actualizaciones exclusivas</p>
+        <h1>{{ 'AUTH.JOIN_US' | translate }}</h1>
+        <p>{{ 'AUTH.REGISTER_DESC' | translate }}</p>
     </div>
 
     @if (!success) {
     <form class="login-form" (submit)="onSubmit()">
         <div class="form-row">
             <div class="form-group half">
-                <label for="reg-firstName">First Name</label>
+                <label for="reg-firstName">{{ 'AUTH.FIRST_NAME' | translate }}</label>
                 <input type="text" name="reg-firstName" [(ngModel)]="firstName" placeholder="First Name" required />
             </div>
             <div class="form-group half">
-                <label for="reg-lastName">Last Name</label>
+                <label for="reg-lastName">{{ 'AUTH.LAST_NAME' | translate }}</label>
                 <input type="text" name="reg-lastName" [(ngModel)]="lastName" placeholder="Last Name" required />
             </div>
         </div>
 
         <div class="form-group">
-            <label for="reg-email">Email</label>
+            <label for="reg-email">{{ 'AUTH.EMAIL' | translate }}</label>
             <input type="email" name="reg-email" [(ngModel)]="email" placeholder="tucorreo@email.com" required />
         </div>
 
         <div class="form-group">
-            <label for="reg-phone">Teléfono</label>
+            <label for="reg-phone">{{ 'AUTH.PHONE' | translate }}</label>
             <input type="tel" name="reg-phone" [(ngModel)]="phone" placeholder="1234567890" required />
         </div>
 
         <div class="form-group">
-            <label for="reg-password">Contraseña</label>
+            <label for="reg-password">{{ 'AUTH.PASSWORD' | translate }}</label>
             <div class="password-input-container">
                 <input [type]="showPassword ? 'text' : 'password'" name="reg-password" [(ngModel)]="password"
                     placeholder="********" (input)="validatePassword()" required />
                 <button type="button" class="password-toggle-btn" (click)="togglePasswordVisibility()"
-                    [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'">
+                    [attr.aria-label]="showPassword ? ('AUTH.HIDE_PASSWORD' | translate) : ('AUTH.SHOW_PASSWORD' | translate)">
                     <span class="material-symbols-outlined">
                         {{ showPassword ? 'visibility_off' : 'visibility' }}
                     </span>
@@ -46,33 +46,33 @@
             <div class="password-requirements">
                 <p [class.valid]="hasUpperCase" [class.invalid]="!hasUpperCase">
                     <span class="material-symbols-outlined icon">{{ hasUpperCase ? 'check' : 'close' }}</span>
-                    Al menos una mayúscula
+                    {{ 'AUTH.REQ_UPPERCASE' | translate }}
                 </p>
                 <p [class.valid]="hasSpecialChar" [class.invalid]="!hasSpecialChar">
                     <span class="material-symbols-outlined icon">{{ hasSpecialChar ? 'check' : 'close' }}</span>
-                    Al menos un carácter especial
+                    {{ 'AUTH.REQ_SPECIAL' | translate }}
                 </p>
                 <p [class.valid]="hasNumber" [class.invalid]="!hasNumber">
                     <span class="material-symbols-outlined icon">{{ hasNumber ? 'check' : 'close' }}</span>
-                    Al menos un número
+                    {{ 'AUTH.REQ_NUMBER' | translate }}
                 </p>
                 <p [class.valid]="minLength" [class.invalid]="!minLength">
                     <span class="material-symbols-outlined icon">{{ minLength ? 'check' : 'close' }}</span>
-                    Mínimo 8 caracteres
+                    {{ 'AUTH.REQ_MIN_LENGTH' | translate }}
                 </p>
             </div>
             }
         </div>
 
         <div class="form-group">
-            <label for="reg-confirm-password">Repetir Contraseña</label>
+            <label for="reg-confirm-password">{{ 'AUTH.CONFIRM_PASSWORD' | translate }}</label>
             <input type="password" name="reg-confirm-password" [(ngModel)]="confirmPassword" placeholder="********"
                 (input)="checkPasswordsMatch()" required />
 
             @if (confirmPassword) {
             <p class="match-message" [class.valid]="passwordsMatch" [class.invalid]="!passwordsMatch">
                 <span class="material-symbols-outlined icon">{{ passwordsMatch ? 'check' : 'close' }}</span>
-                {{ passwordsMatch ? 'Las contraseñas coinciden' : 'Las contraseñas no coinciden' }}
+                {{ (passwordsMatch ? 'AUTH.PASS_MATCH' : 'AUTH.PASS_NOT_MATCH') | translate }}
             </p>
             }
         </div>
@@ -82,17 +82,17 @@
         }
 
         <button type="submit" class="btn btn-primary" style="width: 100%" [disabled]="loading">
-            {{ loading ? 'Registrando...' : 'Registrarme' }}
+            {{ (loading ? 'AUTH.REGISTERING' : 'AUTH.REGISTER_BTN') | translate }}
         </button>
     </form>
     } @else {
     <div class="success-msg">
-        <app-message type="success" message="¡Gracias por registrarte! Te hemos enviado un correo de confirmación." />
+        <app-message type="success" [message]="'AUTH.REGISTER_SUCCESS' | translate" />
     </div>
     }
 
     @if (!success) {
-    <p class="login-footer">¿Ya tienes cuenta? <a href="javascript:void(0)" (click)="modalService.openLogin()">Inicia
-            sesión</a></p>
+    <p class="login-footer">{{ 'AUTH.HAS_ACCOUNT' | translate }} <a href="javascript:void(0)"
+            (click)="modalService.openLogin()">{{ 'AUTH.SIGN_IN' | translate }}</a></p>
     }
 </div>

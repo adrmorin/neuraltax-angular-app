@@ -1,13 +1,14 @@
 import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { AuthService } from '../../services/auth.service';
 import { ModalService } from '../../services/modal.service';
 
 @Component({
     selector: 'app-sidebar',
     standalone: true,
-    imports: [RouterLink, RouterLinkActive, CommonModule],
+    imports: [RouterLink, RouterLinkActive, CommonModule, TranslateModule],
     templateUrl: './sidebar.component.html',
     styleUrl: './sidebar.component.css'
 })
@@ -15,7 +16,7 @@ export class SidebarComponent {
     private authService = inject(AuthService);
     private router = inject(Router);
     public modalService = inject(ModalService);
-    @Input() isCollapsed = false;
+    @Input() isCollapsed = true;
     @Input() portalType: 'agent' | 'free' | 'premium' | 'vip' = 'agent';
     @Output() isCollapsedChange = new EventEmitter<boolean>();
 
@@ -29,6 +30,10 @@ export class SidebarComponent {
     toggleLanguage(event: Event): void {
         event.preventDefault();
         this.currentLang = this.currentLang === 'es' ? 'en' : 'es';
+    }
+
+    openProfile(): void {
+        this.modalService.openProfile();
     }
 
     logout(event: Event): void {
@@ -74,3 +79,5 @@ export class SidebarComponent {
         return translations[this.currentLang][key] || key;
     }
 }
+
+

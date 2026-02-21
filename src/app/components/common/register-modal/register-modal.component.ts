@@ -1,20 +1,23 @@
 import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { FormsModule } from '@angular/forms';
 import { ModalService } from '../../../services/modal.service';
 import { CommonModule } from '@angular/common';
 import { MessageComponent } from '../message/message.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-register-modal',
     standalone: true,
-    imports: [FormsModule, CommonModule, MessageComponent],
+    imports: [FormsModule, CommonModule, MessageComponent, TranslateModule],
     templateUrl: './register-modal.component.html',
     styleUrls: ['./register-modal.component.css']
 })
 export class RegisterModalComponent {
     public modalService = inject(ModalService);
     private userService = inject(UserService);
+    private router = inject(Router);
 
     email = '';
     firstName = '';
@@ -95,12 +98,11 @@ export class RegisterModalComponent {
                 console.log('Registration success:', response);
                 this.loading = false;
                 this.success = true;
-                // Close after 2 seconds
-                setTimeout(() => {
-                    this.modalService.closeRegister();
-                    this.success = false;
-                    this.resetForm();
-                }, 2000);
+                // Close modal and route to free dashboard immediately
+                this.modalService.closeRegister();
+                this.success = false;
+                this.resetForm();
+                this.router.navigate(['/home']);
             },
             error: (err) => {
                 this.loading = false;

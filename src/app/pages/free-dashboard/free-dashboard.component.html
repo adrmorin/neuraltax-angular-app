@@ -1,5 +1,5 @@
 <div class="free-dashboard">
-    <app-dashboard-header [clientType]="'free'" [userName]="'Usuario'" [showLangSwitcher]="true">
+    <app-dashboard-header [clientType]="'free'" [showLangSwitcher]="true">
     </app-dashboard-header>
 
     <div class="welcome-banner">
@@ -102,9 +102,9 @@
             <p>{{ 'DASHBOARD.FREE.UPSELL.DESC' | translate }}</p>
         </div>
         <div class="upsell-actions">
-            <button class="btn-premium" routerLink="/premium-dashboard">{{ 'DASHBOARD.FREE.UPSELL.UPGRADE' | translate
+            <button class="btn-premium" routerLink="/update">{{ 'DASHBOARD.FREE.UPSELL.UPGRADE_NOW' | translate
                 }}</button>
-            <a routerLink="/pricing" class="compare-link">{{ 'DASHBOARD.FREE.UPSELL.COMPARE' | translate }}</a>
+            <a routerLink="/pricing" class="compare-link">{{ 'DASHBOARD.FREE.UPSELL.COMPARE_PLANS' | translate }}</a>
         </div>
     </div>
 

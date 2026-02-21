@@ -117,4 +117,35 @@ export class ModalService {
             document.body.style.overflow = 'auto';
         }
     }
+
+    // === PROFILE MODAL ===
+    private profileVisible = signal(false);
+
+    get isProfileVisible() {
+        return this.profileVisible.asReadonly();
+    }
+
+    openProfile() {
+        this.profileVisible.set(true);
+        this.loginVisible.set(false);
+        this.plansVisible.set(false);
+        this.registerVisible.set(false);
+        this.validateVisible.set(false);
+        document.body.style.overflow = 'hidden';
+    }
+
+    closeProfile() {
+        this.profileVisible.set(false);
+        if (!this.loginVisible() && !this.plansVisible() && !this.registerVisible() && !this.validateVisible()) {
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    toggleProfile() {
+        if (this.profileVisible()) {
+            this.closeProfile();
+        } else {
+            this.openProfile();
+        }
+    }
 }
