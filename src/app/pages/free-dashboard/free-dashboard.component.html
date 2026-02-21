@@ -36,11 +36,11 @@
                     <span class="material-symbols-outlined">cloud_upload</span>
                 </div>
                 <div class="action-title">
-                    <h3>{{ 'DASHBOARD.FREE.UPLOAD.TITLE' | translate }}</h3>
-                    <p class="action-step">{{ 'DASHBOARD.FREE.UPLOAD.STEP' | translate }}</p>
+                    <h3>{{ 'DASHBOARD.FREE.ACTIONS.UPLOAD_TITLE' | translate }}</h3>
+                    <p class="action-step">{{ 'DASHBOARD.FREE.ACTIONS.UPLOAD_STEP' | translate }}</p>
                 </div>
             </div>
-            <p class="action-description">{{ 'DASHBOARD.FREE.UPLOAD.DESC' | translate }}</p>
+            <p class="action-description">{{ 'DASHBOARD.FREE.ACTIONS.UPLOAD_DESC' | translate }}</p>
             <ul class="action-checklist">
                 @for (step of uploadSteps; track step.text) {
                 <li [class.completed]="step.completed">
@@ -56,7 +56,7 @@
             </ul>
             <button class="btn btn-primary" routerLink="/upload">
                 <span class="material-symbols-outlined">upload</span>
-                {{ 'DASHBOARD.FREE.UPLOAD.BTN' | translate }}
+                {{ 'DASHBOARD.FREE.ACTIONS.GO_TO_DOCS' | translate }}
             </button>
         </div>
 
@@ -67,11 +67,11 @@
                     <span class="material-symbols-outlined">edit_note</span>
                 </div>
                 <div class="action-title">
-                    <h3>{{ 'DASHBOARD.FREE.DECLARATION.TITLE' | translate }}</h3>
-                    <p class="action-step">{{ 'DASHBOARD.FREE.DECLARATION.STEP' | translate }}</p>
+                    <h3>{{ 'DASHBOARD.FREE.ACTIONS.DECLARATION_TITLE' | translate }}</h3>
+                    <p class="action-step">{{ 'DASHBOARD.FREE.ACTIONS.DECLARATION_STEP' | translate }}</p>
                 </div>
             </div>
-            <p class="action-description">{{ 'DASHBOARD.FREE.DECLARATION.DESC' | translate }}</p>
+            <p class="action-description">{{ 'DASHBOARD.FREE.ACTIONS.DECLARATION_DESC' | translate }}</p>
             <ul class="action-checklist">
                 @for (step of declarationSteps; track step.text) {
                 <li [class.completed]="step.completed">
@@ -87,7 +87,7 @@
             </ul>
             <button class="btn btn-primary" (click)="scrollToForm()">
                 <span class="material-symbols-outlined">description</span>
-                {{ 'DASHBOARD.FREE.DECLARATION.BTN' | translate }}
+                {{ 'DASHBOARD.FREE.ACTIONS.START_DECLARATION' | translate }}
             </button>
         </div>
     </div>

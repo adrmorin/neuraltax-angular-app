@@ -12,21 +12,8 @@ import { AuthService } from '../services/auth.service';
   selector: 'app-dashboard-layout',
   standalone: true,
   imports: [RouterOutlet, SidebarComponent, ChatbotComponent, CommonModule, ValidateModalComponent],
-  template: `
-    <div class="dashboard-container" [class.sidebar-collapsed]="isCollapsed()">
-      <app-sidebar 
-        [isCollapsed]="isCollapsed()" 
-        [portalType]="portalType()"
-        (isCollapsedChange)="isCollapsed.set($event)" 
-      />
-      <main class="main-content" [class.sidebar-collapsed]="isCollapsed()">
-        <router-outlet />
-      </main>
-      <app-chatbot />
-      <app-validate-modal />
-    </div>
-  `,
-  styles: []
+  templateUrl: './dashboard-layout.component.html',
+  styleUrl: './dashboard-layout.component.css'
 })
 export class DashboardLayoutComponent {
   isCollapsed = signal(true);

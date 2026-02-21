@@ -6,48 +6,8 @@ import { Subscription, timer } from 'rxjs';
   selector: 'app-hero-slider',
   standalone: true,
   imports: [CommonModule],
-  template: `
-    <div class="hero-logo-slider">
-      @for (img of images; track img; let i = $index) {
-        <img 
-          [src]="img" 
-          alt="Neuraltax Slider {{i}}" 
-          class="hero-logo-img" 
-          [class.active]="i === currentImageIndex">
-      }
-    </div>
-  `,
-  styles: [`
-    .hero-logo-slider {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: flex-start;
-      z-index: 0;
-    }
-    .hero-logo-img {
-      height: 100%;
-      width: auto;
-      object-fit: contain;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-      z-index: 1;
-    }
-    .hero-logo-img.active {
-      opacity: 1;
-    }
-    @media (max-width: 1024px) {
-      .hero-logo-img { 
-        height: 100%;
-        left: 50%; 
-        transform: translateX(-50%); 
-      } 
-    }
-  `]
+  templateUrl: './hero-slider.component.html',
+  styleUrl: './hero-slider.component.css'
 })
 export class HeroSliderComponent implements OnInit, OnDestroy {
   images: string[] = [

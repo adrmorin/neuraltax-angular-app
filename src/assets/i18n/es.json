@@ -259,8 +259,10 @@
             "SUBTITLE_AGENT": "Bienvenido al portal de agentes"
         },
         "FREE": {
-            "WELCOME_TITLE": "Bienvenido a Neuraltax Free",
-            "WELCOME_DESC": "Sube tus documentos fiscales y completa tu Form 1040 para declarar tus impuestos. Actualiza a Premium para funciones avanzadas y asistencia IA.",
+            "WELCOME": {
+                "TITLE": "Panel Usuario Free.",
+                "SUBTITLE": "Bienvenido a su panel de trabajo para realizar sus taxes. Por favor verifique que su usuario está validado."
+            },
             "STATS": {
                 "UPLOADED_DOCS": "Documentos Subidos",
                 "COMPLETED_FORMS": "Formularios Completados",
@@ -276,7 +278,7 @@
                 "DECLARATION_TITLE": "Prepara tu Declaración",
                 "DECLARATION_STEP": "Paso 2 de 2",
                 "DECLARATION_DESC": "Completa tu formulario 1040 y anexos con nuestra guía paso a paso. Revisión automática de errores incluida.",
-                "START_DECLARATION": "Continuar Declaración"
+                "START_DECLARATION": "Declaración de taxes 2026"
             },
             "STEPS": {
                 "W2": "Formularios W-2",

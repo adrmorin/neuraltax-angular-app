@@ -259,8 +259,10 @@
             "SUBTITLE_AGENT": "Welcome to the agent portal"
         },
         "FREE": {
-            "WELCOME_TITLE": "Welcome to Neuraltax Free",
-            "WELCOME_DESC": "Upload your tax documents and complete your Form 1040 to file your taxes. Upgrade to Premium for advanced features and AI assistance.",
+            "WELCOME": {
+                "TITLE": "Free User Dashboard.",
+                "SUBTITLE": "Welcome to your dashboard to do your taxes. Please verify that your user is validated."
+            },
             "STATS": {
                 "UPLOADED_DOCS": "Uploaded Documents",
                 "COMPLETED_FORMS": "Completed Forms",
@@ -276,7 +278,7 @@
                 "DECLARATION_TITLE": "Tax Declaration (Form 1040)",
                 "DECLARATION_STEP": "Step 2 of 2",
                 "DECLARATION_DESC": "Complete your Form 1040 to calculate your taxes and estimated refund.",
-                "START_DECLARATION": "Start Declaration"
+                "START_DECLARATION": "Tax Declaration 2026"
             },
             "STEPS": {
                 "W2": "W-2 Forms",

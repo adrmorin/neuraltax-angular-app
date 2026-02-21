@@ -11,19 +11,8 @@ import { map } from 'rxjs/operators';
   selector: 'app-layout',
   standalone: true,
   imports: [RouterOutlet, HeaderComponent, FooterComponent, ChatbotComponent],
-  template: `
-    <div class="app-layout">
-      @if (!isLandingPage()) {
-        <app-header />
-      }
-      <main>
-        <router-outlet />
-      </main>
-      <app-footer />
-      <app-chatbot />
-    </div>
-  `,
-  styles: []
+  templateUrl: './layout.component.html',
+  styleUrl: './layout.component.css'
 })
 export class LayoutComponent {
   private router = inject(Router);

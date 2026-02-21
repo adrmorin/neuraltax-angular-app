@@ -188,9 +188,11 @@
 
 .hero-actions {
     display: flex;
-    gap: 1rem;
+    gap: 3%;
     justify-content: center;
     /* Center buttons horizontally */
+    margin-top: 1rem;
+    /* Align buttons with text */
     order: 4;
     /* Buttons last */
 }

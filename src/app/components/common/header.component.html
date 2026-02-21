@@ -1,0 +1,72 @@
+<header class="glass-header" [class.hidden]="isHidden">
+    <div class="container">
+        <div class="logo">
+            <img src="assets/neuraltax_logo.png" alt="NeuralTax AI"
+                style="max-height: 55px; width: auto; display: block; padding: 5px 0;" />
+        </div>
+        <nav>
+            <ul>
+
+                @if (minimal) {
+                <li>
+                    <a routerLink="/home" class="back-home-link">
+                        <span class="material-symbols-outlined">home</span>
+                        {{ 'HEADER.BACK_TO_HOME' | translate }}
+                    </a>
+                </li>
+                }
+
+                @if (!minimal) {
+                <!-- Theme Toggle MOVED UP -->
+                <li class="theme-switcher">
+                    <button class="btn btn-theme" (click)="themeService.toggleTheme()"
+                        [title]="themeService.theme() === 'dark' ? 'Switch to Light' : 'Switch to Dark'">
+                        <span class="material-symbols-outlined">
+                            {{ themeService.theme() === 'dark' ? 'light_mode' : 'dark_mode' }}
+                        </span>
+                    </button>
+                </li>
+
+
+
+                <li class="lang-switcher">
+                    <button class="btn btn-lang" (click)="switchLanguage(currentLang === 'es' ? 'en' : 'es')">
+                        <span class="material-symbols-outlined">public</span>
+                        <span class="lang-text">{{ currentLang | uppercase }}</span>
+                    </button>
+                </li>
+                }
+
+                @if (authService.currentUser(); as user) {
+                @if (!minimal) {
+                <li><a [routerLink]="authService.currentUserDashboard()" class="btn btn-dashboard">{{ 'HEADER.DASHBOARD'
+                        | translate }}</a></li>
+                }
+                <li class="user-profile" (mouseenter)="cancelMenuClose()" (mouseleave)="closeProfileMenu()">
+                    <div class="user-info-trigger" (click)="toggleProfileMenu()" tabindex="0"
+                        (keydown.enter)="toggleProfileMenu()" role="button" aria-haspopup="menu">
+                        <span class="user-name">
+                            {{ getUserDisplayName(user) }}
+                        </span>
+                        <div class="user-avatar-container">
+                            <img src="assets/nerea_avatar.png" alt="User Profile" class="user-avatar" />
+                            <span class="status-indicator"></span>
+                        </div>
+                    </div>
+
+                    <!-- Dropdown Menu -->
+                    @if (isProfileMenuOpen) {
+                    <app-user-profile-menu [user]="user" (closeMenu)="closeProfileMenu()"
+                        (cancelCloseMenu)="cancelMenuClose()"></app-user-profile-menu>
+                    }
+                </li>
+                } @else {
+                @if (!minimal) {
+                <li><button (click)="modalService.openLogin()" class="btn btn-login">{{ 'HEADER.LOGIN' | translate
+                        }}</button></li>
+                }
+                }
+            </ul>
+        </nav>
+    </div>
+</header>

@@ -1,0 +1,33 @@
+<section class="latest-news">
+    <div class="container">
+        <div class="section-actions">
+            <button class="btn-view-all">{{ 'HOME.NEWS.VIEW_ALL' | translate }}</button>
+        </div>
+
+        <div class="section-header">
+            <h2 class="section-title">{{ 'HOME.NEWS.TITLE' | translate }}</h2>
+            <p class="section-subtitle">{{ 'HOME.NEWS.SUBTITLE' | translate }}</p>
+        </div>
+
+        <div class="news-grid">
+            @for (article of articles; track $index) {
+            <article class="news-card">
+                <div class="card-image">
+                    <img [src]="article.image" [alt]="'HOME.NEWS.ARTICLES.' + $index + '.TITLE' | translate">
+                    <span class="category-tag">{{ 'HOME.NEWS.ARTICLES.' + $index + '.CATEGORY' | translate }}</span>
+                </div>
+                <div class="card-content">
+                    <div class="article-meta">
+                        <span class="date">{{ article.date }}</span>
+                        <span class="read-time">{{ article.readTime }} {{ 'COMMON.READ_TIME_SUFFIX' | translate
+                            }}</span>
+                    </div>
+                    <h3 class="article-title">{{ 'HOME.NEWS.ARTICLES.' + $index + '.TITLE' | translate }}</h3>
+                    <p class="article-excerpt">{{ 'HOME.NEWS.ARTICLES.' + $index + '.EXCERPT' | translate }}</p>
+                    <a href="#" class="read-more">{{ 'COMMON.READ_MORE' | translate }} &rsaquo;</a>
+                </div>
+            </article>
+            }
+        </div>
+    </div>
+</section>
