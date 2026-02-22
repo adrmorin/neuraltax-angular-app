@@ -29,6 +29,7 @@
     */
     --text-main: var(--color-dark-deep);
     --text-inverse: var(--color-white);
+    --text-secondary: #64748b;
 
     /* Variables from existing file mapped */
     --bg-dark-deep: #0a0f0d;
@@ -51,7 +52,8 @@
 [data-theme="dark"] {
     /* Dark Mode Overrides */
     --bg-page: #0B1120;
-    /* Deep blue/black for dark mode page */
+    --bg-light-green: #0B1120;
+    /* sync with bg-page to fix dashboard contrast */
     --bg-card: #1e293b;
     --text-main: #e2e8f0;
     --text-secondary: #94a3b8;

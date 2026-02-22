@@ -23,34 +23,16 @@
     }
   </div>
 
-  <!-- Navigation - Only show for agent or premium portal -->
-  @if (portalType === 'agent' || portalType === 'premium') {
-  <ul class="sidebar-nav">
-    @if (portalType === 'agent') {
-    <li>
-      <a routerLink="/clients" routerLinkActive="active">
-        <span class="material-symbols-outlined">group</span>
-        @if (!isCollapsed) { <span>{{ t('common.clients') }}</span> }
-      </a>
-    </li>
-    <li>
-      <a routerLink="/herramientas-ia" routerLinkActive="active">
-        <span class="material-symbols-outlined">psychology</span>
-        @if (!isCollapsed) { <span>{{ t('common.ai_tools') }}</span> }
-      </a>
-    </li>
-    <li>
-      <a routerLink="/reports" routerLinkActive="active">
-        <span class="material-symbols-outlined">bar_chart</span>
-        @if (!isCollapsed) { <span>{{ t('common.reports') }}</span> }
-      </a>
-    </li>
-    }
-  </ul>
-  }
+  <div class="sidebar-separator"></div>
 
-  <div class="sidebar-footer">
-    <ul class="sidebar-footer-nav">
+  <div class="sidebar-core-nav">
+    <ul class="sidebar-nav-list">
+      <li>
+        <a (click)="goBack()" class="nav-link" [title]="t('common.back')">
+          <span class="material-symbols-outlined">arrow_back</span>
+          @if (!isCollapsed) { <span>{{ t('common.back') }}</span> }
+        </a>
+      </li>
       <li>
         <a routerLink="/home" class="nav-link" [title]="t('common.back_to_home')">
           <span class="material-symbols-outlined">home</span>
@@ -64,5 +46,17 @@
         </a>
       </li>
     </ul>
+  </div>
+
+  <!-- Navigation - Only show for agent or premium portal -->
+  @if (portalType === 'agent' || portalType === 'premium') {
+  <ul class="sidebar-nav">
+  </ul>
+  }
+
+  <div class="sidebar-footer">
+    <div class="lang-switcher-container">
+      <!-- keep space or remove if empty -->
+    </div>
   </div>
 </aside>

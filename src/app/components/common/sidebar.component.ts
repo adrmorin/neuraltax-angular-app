@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive, Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { RouterLink, Router } from '@angular/router';
+import { CommonModule, Location } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { AuthService } from '../../services/auth.service';
 import { ModalService } from '../../services/modal.service';
@@ -8,13 +8,14 @@ import { ModalService } from '../../services/modal.service';
 @Component({
     selector: 'app-sidebar',
     standalone: true,
-    imports: [RouterLink, RouterLinkActive, CommonModule, TranslateModule],
+    imports: [RouterLink, CommonModule, TranslateModule],
     templateUrl: './sidebar.component.html',
     styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
     private authService = inject(AuthService);
     private router = inject(Router);
+    private location = inject(Location);
     public modalService = inject(ModalService);
     @Input() isCollapsed = true;
     @Input() portalType: 'agent' | 'free' | 'premium' | 'vip' = 'agent';
@@ -25,6 +26,10 @@ export class SidebarComponent {
     toggleSidebar(): void {
         this.isCollapsed = !this.isCollapsed;
         this.isCollapsedChange.emit(this.isCollapsed);
+    }
+
+    goBack(): void {
+        this.location.back();
     }
 
     toggleLanguage(event: Event): void {
@@ -57,6 +62,7 @@ export class SidebarComponent {
                 'common.documents': 'Documentos',
                 'common.reports': 'Reportes',
                 'common.back_to_home': 'Volver al Inicio',
+                'common.back': 'Volver',
                 'common.settings': 'Configuración',
                 'common.logout': 'Cerrar Sesión',
                 'common.toggle_sidebar': 'Toggle sidebar'
@@ -71,6 +77,7 @@ export class SidebarComponent {
                 'common.documents': 'Documents',
                 'common.reports': 'Reports',
                 'common.back_to_home': 'Back to Home',
+                'common.back': 'Back',
                 'common.settings': 'Settings',
                 'common.logout': 'Logout',
                 'common.toggle_sidebar': 'Toggle sidebar'
