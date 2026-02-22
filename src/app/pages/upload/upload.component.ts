@@ -109,13 +109,13 @@ export class UploadComponent {
 
     // Mock data representing IRS tax documents (Years 2023-2025)
     documents = signal<TaxDocument[]>([
-        { id: '1', name: 'W-2 Empleador Principal', irsModel: 'W-2', type: 'pdf', uploadDate: new Date('2025-02-15T10:30:00'), size: '1.2 MB', year: 2025, status: 'verified' },
-        { id: '2', name: 'Contrato Freelance', irsModel: '1099-NEC', type: 'pdf', uploadDate: new Date('2025-01-16T14:20:00'), size: '2.5 MB', year: 2025, status: 'verified' },
-        { id: '3', name: 'Intereses Bancarios', irsModel: '1099-INT', type: 'img', uploadDate: new Date('2024-11-18T09:15:00'), size: '800 KB', year: 2024, status: 'pending' },
-        { id: '4', name: 'Reporte Salud', irsModel: '1095-A', type: 'pdf', uploadDate: new Date('2024-05-20T11:45:00'), size: '1.5 MB', year: 2024, status: 'pending' },
-        { id: '5', name: 'Declaración Anual', irsModel: 'Form 1040', type: 'pdf', uploadDate: new Date('2024-04-10T16:00:00'), size: '4.1 MB', year: 2023, status: 'verified' },
-        { id: '6', name: 'Ingresos Negocio', irsModel: 'Schedule C', type: 'pdf', uploadDate: new Date('2023-12-25T13:10:00'), size: '3.2 MB', year: 2023, status: 'verified' },
-        { id: '7', name: 'W-2 Antiguo Empleador', irsModel: 'W-2', type: 'img', uploadDate: new Date('2023-02-14T10:00:00'), size: '1.1 MB', year: 2023, status: 'verified' }
+        { id: '1', name: 'UPLOAD.DOCS.W2_MAIN', irsModel: 'W-2', type: 'pdf', uploadDate: new Date('2025-02-15T10:30:00'), size: '1.2 MB', year: 2025, status: 'verified' },
+        { id: '2', name: 'UPLOAD.DOCS.FREELANCE', irsModel: '1099-NEC', type: 'pdf', uploadDate: new Date('2025-01-16T14:20:00'), size: '2.5 MB', year: 2025, status: 'verified' },
+        { id: '3', name: 'UPLOAD.DOCS.BANK_INTEREST', irsModel: '1099-INT', type: 'img', uploadDate: new Date('2024-11-18T09:15:00'), size: '800 KB', year: 2024, status: 'pending' },
+        { id: '4', name: 'UPLOAD.DOCS.HEALTH_REPORT', irsModel: '1095-A', type: 'pdf', uploadDate: new Date('2024-05-20T11:45:00'), size: '1.5 MB', year: 2024, status: 'pending' },
+        { id: '5', name: 'UPLOAD.DOCS.ANNUAL_RETURN', irsModel: 'Form 1040', type: 'pdf', uploadDate: new Date('2024-04-10T16:00:00'), size: '4.1 MB', year: 2023, status: 'verified' },
+        { id: '6', name: 'UPLOAD.DOCS.BUSINESS_INCOME', irsModel: 'Schedule C', type: 'pdf', uploadDate: new Date('2023-12-25T13:10:00'), size: '3.2 MB', year: 2023, status: 'verified' },
+        { id: '7', name: 'UPLOAD.DOCS.W2_OLD', irsModel: 'W-2', type: 'img', uploadDate: new Date('2023-02-14T10:00:00'), size: '1.1 MB', year: 2023, status: 'verified' }
     ]);
 
     // Upload State

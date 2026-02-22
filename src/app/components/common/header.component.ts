@@ -45,6 +45,23 @@ export class HeaderComponent implements OnInit, OnDestroy {
     return this.translate.instant('AUTH.USER');
   }
 
+  get userAvatar(): string | null {
+    // In future: return user.profilePictureUrl
+    return null;
+  }
+
+  getUserInitials(user: { firstName?: string; lastName?: string; email?: string }): string {
+    const name = this.getUserDisplayName(user);
+    const parts = name.split(' ').filter(p => p.length > 0);
+    if (parts.length >= 2) {
+      return (parts[0][0] + parts[1][0]).toUpperCase();
+    }
+    if (name.length > 0) {
+      return name.substring(0, 2).toUpperCase();
+    }
+    return 'U';
+  }
+
   isProfileMenuOpen = false;
   private menuTimeout: ReturnType<typeof setTimeout> | null = null;
 

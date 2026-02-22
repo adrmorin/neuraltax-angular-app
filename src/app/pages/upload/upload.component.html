@@ -3,12 +3,12 @@
     <header class="documents-header">
         <div class="header-content-left">
             <div class="header-text">
-                <h1 class="header-title">Gestión de Documentos</h1>
-                <p class="header-subtitle">Sube y administra tus documentos fiscales (W-2, 1099, 1040, etc.)</p>
+                <h1 class="header-title">{{ 'UPLOAD.TITLE' | translate }}</h1>
+                <p class="header-subtitle">{{ 'UPLOAD.SUBTITLE' | translate }}</p>
             </div>
             <button class="btn-upload" (click)="toggleUploadArea()">
                 <span class="material-symbols-outlined">{{ isUploadAreaVisible() ? 'close' : 'upload_file' }}</span>
-                {{ isUploadAreaVisible() ? 'Cerrar' : 'Subir Documento' }}
+                {{ isUploadAreaVisible() ? ('UPLOAD.BTN_CLOSE' | translate) : ('UPLOAD.BTN_UPLOAD' | translate) }}
             </button>
         </div>
 
@@ -60,15 +60,16 @@
     <!-- Upload Area (Toggleable) -->
     @if (isUploadAreaVisible()) {
     <section class="upload-section">
-        <div class="upload-drop-zone" [class.dragging]="isDragging()" (dragover)="onDragOver($event)"
-            (dragleave)="onDragLeave($event)" (drop)="onFileDropped($event)" (click)="fileInput.click()">
+        <div class="upload-drop-zone" tabindex="0" [class.dragging]="isDragging()" (dragover)="onDragOver($event)"
+            (dragleave)="onDragLeave($event)" (drop)="onFileDropped($event)" (click)="fileInput.click()"
+            (keydown.enter)="fileInput.click()">
             <input type="file" #fileInput (change)="onFileSelected($event)" multiple hidden
                 accept="image/*,application/pdf">
             <div class="drop-zone-content">
                 <span class="material-symbols-outlined upload-icon">cloud_upload</span>
-                <h3>Arrastra tus documentos aquí</h3>
-                <p>o haz clic para seleccionar archivos (PDF, PNG, JPG)</p>
-                <span class="file-limit">Tamaño máximo: 10MB por archivo</span>
+                <h3>{{ 'UPLOAD.DROPZONE.TITLE' | translate }}</h3>
+                <p>{{ 'UPLOAD.DROPZONE.SUBTITLE' | translate }}</p>
+                <span class="file-limit">{{ 'UPLOAD.DROPZONE.LIMIT' | translate }}</span>
             </div>
         </div>
 
@@ -76,8 +77,9 @@
         @if (pendingFiles().length > 0) {
         <div class="preview-gallery">
             <div class="gallery-header">
-                <h4>Archivos Seleccionados ({{ pendingFiles().length }})</h4>
-                <button class="btn-clear" (click)="pendingFiles.set([])">Limpiar todo</button>
+                <h4>{{ 'UPLOAD.SELECTED.TITLE' | translate }} ({{ pendingFiles().length }})</h4>
+                <button class="btn-clear" (click)="pendingFiles.set([])">{{ 'UPLOAD.SELECTED.BTN_CLEAR' | translate
+                    }}</button>
             </div>
 
             <div class="preview-grid">
@@ -107,7 +109,7 @@
             <div class="gallery-actions">
                 <button class="btn-confirm-upload" (click)="uploadFiles()">
                     <span class="material-symbols-outlined">send</span>
-                    Confirmar y Subir
+                    {{ 'UPLOAD.SELECTED.BTN_CONFIRM' | translate }}
                 </button>
             </div>
         </div>
@@ -117,10 +119,10 @@
 
     <!-- Filters -->
     <section class="documents-filters">
-        <span class="filter-title">Filtrar por Año Fiscal:</span>
+        <span class="filter-title">{{ 'UPLOAD.FILTERS.TITLE' | translate }}</span>
         <div class="filter-chips">
             <button class="filter-chip" [class.active]="selectedYear() === null" (click)="onYearSelect(null)">
-                Todos
+                {{ 'UPLOAD.FILTERS.ALL' | translate }}
             </button>
             @for (year of years(); track year) {
             <button class="filter-chip" [class.active]="selectedYear() === year" (click)="onYearSelect(year)">
@@ -134,7 +136,7 @@
     <main class="documents-timeline">
         @for (group of groupedDocuments(); track group.year) {
         <div class="timeline-group">
-            <h2 class="year-heading">Año Fiscal {{ group.year }}</h2>
+            <h2 class="year-heading">{{ 'UPLOAD.TIMELINE.YEAR_HEADING' | translate }} {{ group.year }}</h2>
             <div class="documents-grid">
                 @for (doc of group.documents; track doc.id) {
                 <article class="document-card">
@@ -144,20 +146,21 @@
                     </div>
                     <div class="card-body">
                         <div class="card-main">
-                            <h3 class="document-name">{{ doc.name }}</h3>
+                            <h3 class="document-name">{{ doc.name | translate }}</h3>
                             <span class="status-badge" [attr.data-status]="doc.status">
-                                {{ doc.status === 'verified' ? 'VERIFICADO' : (doc.status === 'pending' ? 'PENDIENTE' :
-                                'RECHAZADO') }}
+                                {{ doc.status === 'verified' ? ('UPLOAD.CARD.STATUS.VERIFIED' | translate) : (doc.status
+                                === 'pending' ? ('UPLOAD.CARD.STATUS.PENDING' | translate) :
+                                ('UPLOAD.CARD.STATUS.REJECTED' | translate)) }}
                             </span>
                         </div>
                         <div class="card-details">
                             <div class="detail-item">
-                                <span class="detail-label">Modelo</span>
+                                <span class="detail-label">{{ 'UPLOAD.CARD.MODEL' | translate }}</span>
                                 <span class="detail-value">{{ doc.irsModel }}</span>
                             </div>
                             <div class="detail-divider"></div>
                             <div class="detail-item">
-                                <span class="detail-label">Tamaño</span>
+                                <span class="detail-label">{{ 'UPLOAD.CARD.SIZE' | translate }}</span>
                                 <span class="detail-value">{{ doc.size }}</span>
                             </div>
                         </div>
@@ -167,10 +170,10 @@
                                 {{ doc.uploadDate | date:'d MMM, y' }}
                             </span>
                             <div class="card-actions">
-                                <button class="action-btn" title="Descargar">
+                                <button class="action-btn" [title]="'UPLOAD.CARD.ACTION_DOWNLOAD' | translate">
                                     <span class="material-symbols-outlined">download</span>
                                 </button>
-                                <button class="action-btn" title="Ver detalle">
+                                <button class="action-btn" [title]="'UPLOAD.CARD.ACTION_VIEW' | translate">
                                     <span class="material-symbols-outlined">visibility</span>
                                 </button>
                             </div>
@@ -183,7 +186,7 @@
         } @empty {
         <div class="empty-state">
             <span class="material-symbols-outlined">folder_open</span>
-            <p>No se encontraron documentos para este periodo.</p>
+            <p>{{ 'UPLOAD.EMPTY_STATE' | translate }}</p>
         </div>
         }
     </main>

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { FormsModule } from '@angular/forms';
 import { ModalService } from '../../../services/modal.service';
+import { AuthService } from '../../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { MessageComponent } from '../message/message.component';
 import { TranslateModule } from '@ngx-translate/core';
@@ -17,6 +18,7 @@ import { TranslateModule } from '@ngx-translate/core';
 export class RegisterModalComponent {
     public modalService = inject(ModalService);
     private userService = inject(UserService);
+    private authService = inject(AuthService);
     private router = inject(Router);
 
     email = '';
@@ -96,13 +98,29 @@ export class RegisterModalComponent {
         this.userService.registerUser(registrationData).subscribe({
             next: (response) => {
                 console.log('Registration success:', response);
-                this.loading = false;
-                this.success = true;
-                // Close modal and route to free dashboard immediately
-                this.modalService.closeRegister();
-                this.success = false;
-                this.resetForm();
-                this.router.navigate(['/home']);
+
+                // Automatically log in the user after successful registration
+                this.authService.login(this.email, this.password).subscribe({
+                    next: (loginResponse) => {
+                        console.log('Auto-login success:', loginResponse);
+                        this.loading = false;
+                        this.success = true;
+                        this.modalService.closeRegister();
+                        this.success = false;
+                        this.resetForm();
+
+                        // Navigate to the user's dashboard based on their role
+                        this.router.navigate([this.authService.currentUserDashboard() || '/free-dashboard']);
+                    },
+                    error: (loginErr) => {
+                        console.error('Auto-login error:', loginErr);
+                        this.loading = false;
+                        // Registration worked but login failed, close modal and go to home to let them login manually
+                        this.modalService.closeRegister();
+                        this.resetForm();
+                        this.router.navigate(['/home']);
+                    }
+                });
             },
             error: (err) => {
                 this.loading = false;

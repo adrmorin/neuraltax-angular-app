@@ -48,8 +48,12 @@
                         <span class="user-name">
                             {{ getUserDisplayName(user) }}
                         </span>
-                        <div class="user-avatar-container">
-                            <img src="assets/nerea_avatar.png" alt="User Profile" class="user-avatar" />
+                        <div class="user-avatar-circle">
+                            @if (userAvatar) {
+                            <img [src]="userAvatar" [alt]="getUserDisplayName(user)" class="user-avatar-img">
+                            } @else {
+                            <span class="user-initials">{{ getUserInitials(user) }}</span>
+                            }
                             <span class="status-indicator"></span>
                         </div>
                     </div>

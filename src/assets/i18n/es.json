@@ -380,5 +380,49 @@
         "MY_PROFILE": "Mi Perfil",
         "VERIFY_IDENTITY": "Verificar Identidad",
         "LOGOUT": "Cerrar Sesión"
+    },
+    "UPLOAD": {
+        "TITLE": "Gestión de Documentos",
+        "SUBTITLE": "Sube y administra tus documentos fiscales (W-2, 1099, 1040, etc.)",
+        "BTN_UPLOAD": "Subir Documento",
+        "BTN_CLOSE": "Cerrar",
+        "DOCS": {
+            "W2_MAIN": "W-2 Empleador Principal",
+            "FREELANCE": "Contrato Freelance",
+            "BANK_INTEREST": "Intereses Bancarios",
+            "HEALTH_REPORT": "Reporte Salud",
+            "ANNUAL_RETURN": "Declaración Anual",
+            "BUSINESS_INCOME": "Ingresos Negocio",
+            "W2_OLD": "W-2 Antiguo Empleador"
+        },
+        "DROPZONE": {
+            "TITLE": "Arrastra tus documentos aquí",
+            "SUBTITLE": "o haz clic para seleccionar archivos (PDF, PNG, JPG)",
+            "LIMIT": "Tamaño máximo: 10MB por archivo"
+        },
+        "SELECTED": {
+            "TITLE": "Archivos Seleccionados",
+            "BTN_CLEAR": "Limpiar todo",
+            "BTN_CONFIRM": "Confirmar y Subir"
+        },
+        "FILTERS": {
+            "TITLE": "Filtrar por Año Fiscal:",
+            "ALL": "Todos"
+        },
+        "TIMELINE": {
+            "YEAR_HEADING": "Año Fiscal"
+        },
+        "CARD": {
+            "STATUS": {
+                "VERIFIED": "VERIFICADO",
+                "PENDING": "PENDIENTE",
+                "REJECTED": "RECHAZADO"
+            },
+            "MODEL": "Modelo",
+            "SIZE": "Tamaño",
+            "ACTION_DOWNLOAD": "Descargar",
+            "ACTION_VIEW": "Ver detalle"
+        },
+        "EMPTY_STATE": "No se encontraron documentos para este periodo."
     }
 }

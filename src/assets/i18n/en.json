@@ -380,5 +380,49 @@
         "MY_PROFILE": "My Profile",
         "VERIFY_IDENTITY": "Verify Identity",
         "LOGOUT": "Logout"
+    },
+    "UPLOAD": {
+        "TITLE": "Document Management",
+        "SUBTITLE": "Upload and manage your tax documents (W-2, 1099, 1040, etc.)",
+        "BTN_UPLOAD": "Upload Document",
+        "BTN_CLOSE": "Close",
+        "DOCS": {
+            "W2_MAIN": "W-2 Principal Employer",
+            "FREELANCE": "Freelance Contract",
+            "BANK_INTEREST": "Bank Interest",
+            "HEALTH_REPORT": "Health Report",
+            "ANNUAL_RETURN": "Annual Return",
+            "BUSINESS_INCOME": "Business Income",
+            "W2_OLD": "W-2 Former Employer"
+        },
+        "DROPZONE": {
+            "TITLE": "Drag and drop your documents here",
+            "SUBTITLE": "or click to select files (PDF, PNG, JPG)",
+            "LIMIT": "Maximum size: 10MB per file"
+        },
+        "SELECTED": {
+            "TITLE": "Selected Files",
+            "BTN_CLEAR": "Clear all",
+            "BTN_CONFIRM": "Confirm and Upload"
+        },
+        "FILTERS": {
+            "TITLE": "Filter by Fiscal Year:",
+            "ALL": "All"
+        },
+        "TIMELINE": {
+            "YEAR_HEADING": "Fiscal Year"
+        },
+        "CARD": {
+            "STATUS": {
+                "VERIFIED": "VERIFIED",
+                "PENDING": "PENDING",
+                "REJECTED": "REJECTED"
+            },
+            "MODEL": "Form",
+            "SIZE": "Size",
+            "ACTION_DOWNLOAD": "Download",
+            "ACTION_VIEW": "View details"
+        },
+        "EMPTY_STATE": "No documents found for this period."
     }
 }
