@@ -65,6 +65,14 @@
                     }
                 </li>
                 } @else {
+                @if (isLanding) {
+                <li>
+                    <a routerLink="/wizard" class="btn-estimate">
+                        <span class="material-symbols-outlined">bolt</span>
+                        {{ 'HOME.HERO.GET_ESTIMATE' | translate }}
+                    </a>
+                </li>
+                }
                 @if (!minimal) {
                 <li><button (click)="modalService.openLogin()" class="btn btn-login">{{ 'HEADER.LOGIN' | translate
                         }}</button></li>

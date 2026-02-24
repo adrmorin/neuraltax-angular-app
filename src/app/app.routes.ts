@@ -108,6 +108,14 @@ export const routes: Routes = [
         canActivate: [authGuard],
         children: [{ path: '', loadComponent: () => import('./pages/premium-dashboard/premium-dashboard.component').then(m => m.PremiumDashboardComponent) }]
     },
+    {
+        path: 'bloginfo',
+        component: DashboardLayoutComponent,
+        children: [
+            { path: '', loadComponent: () => import('./pages/bloginfo/bloginfo.component').then(m => m.BloginfoComponent) },
+            { path: ':id', loadComponent: () => import('./pages/blog-article/blog-article.component').then(m => m.BlogArticleComponent) }
+        ]
+    },
 
     // Fallback
     {

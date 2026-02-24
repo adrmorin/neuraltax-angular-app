@@ -18,6 +18,7 @@ import { UserProfileMenuComponent } from './user-profile-menu/user-profile-menu.
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   @Input() minimal = false;
+  @Input() isLanding = false;
   isHidden = false;
   private scrollSub: Subscription | null = null;
   private inactivitySub: Subscription | null = null;

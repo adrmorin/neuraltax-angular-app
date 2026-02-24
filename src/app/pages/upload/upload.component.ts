@@ -75,9 +75,7 @@ export class UploadComponent {
         return this.auth.currentUser();
     }
 
-    get userAvatar(): string | null {
-        return null;
-    }
+    readonly userAvatar: string | null = null;
 
     get userInitials(): string {
         return this.userName
@@ -96,7 +94,7 @@ export class UploadComponent {
     // Client/Portal Config
     clientType: 'free' | 'premium' | 'vip' | 'agent' = 'free'; // default to free
 
-    private clientConfigs: Record<string, any> = {
+    private clientConfigs: Record<string, { brandSubtitle: string; accentColor: string }> = {
         free: { brandSubtitle: 'COMMON.FREE', accentColor: '#9ca3af' },
         premium: { brandSubtitle: 'COMMON.PREMIUM', accentColor: '#688071' },
         vip: { brandSubtitle: 'COMMON.VIP', accentColor: '#fbbf24' },

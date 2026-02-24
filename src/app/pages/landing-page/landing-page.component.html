@@ -1,5 +1,5 @@
 <div class="landing-page">
-    <app-header></app-header>
+    <app-header [isLanding]="true"></app-header>
     <!-- Hero Section -->
     <section class="hero-new">
         <video #heroVideo autoplay [muted]="isMuted()" playsinline class="hero-bg-video" oncontextmenu="return false;"
@@ -63,7 +63,6 @@
             </div>
         </div>
     </section>
-
     <!-- About / FAQ Section -->
     <app-about-us></app-about-us>
 </div>

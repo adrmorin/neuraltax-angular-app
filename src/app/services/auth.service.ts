@@ -19,7 +19,27 @@ export class AuthService {
     private alreadyChecked = false;
 
     // --- NEW: User Signals ---
-    public currentUser = signal<User | null>(null);
+    private getInitialOptimisticUser(): User | null {
+        // Safe check for SSR environments
+        if (typeof localStorage === 'undefined') return null;
+
+        const token = localStorage.getItem('token');
+        const expiry = localStorage.getItem('token_expiry');
+        if (token && expiry && Date.now() < parseInt(expiry, 10)) {
+            return {
+                firstName: localStorage.getItem('fallback_firstName') || 'Usuario',
+                lastName: localStorage.getItem('fallback_lastName') || '',
+                email: localStorage.getItem('fallback_email') || '',
+                phone: '',
+                password: '',
+                roles: ['ROLE_FREE'],
+                isValidated: false
+            };
+        }
+        return null;
+    }
+
+    public currentUser = signal<User | null>(this.getInitialOptimisticUser());
     public currentUserDashboard = computed(() => {
         const user = this.currentUser();
         if (!user) return '/';
@@ -64,6 +84,17 @@ export class AuthService {
             localStorage.setItem('token_expiry', expirationTime.toString());
 
             this.loggedIn.next(true);
+
+            // Set an optimistic user immediately so the UI reflects the logged-in state without delay
+            this.currentUser.set({
+                firstName: response.firstName || 'Usuario',
+                lastName: response.lastName || '',
+                email: email,
+                phone: '',
+                password: '',
+                roles: ['ROLE_FREE'], // Default optimistic role
+                isValidated: false
+            });
 
             // Fetch actual user info to get the real roles
             this.getUserInfo().subscribe({
@@ -138,6 +169,19 @@ export class AuthService {
         }
 
         if (!this.alreadyChecked) {
+            // Set an optimistic user immediately if we have a token, to avoid UI flicker
+            if (!this.currentUser()) {
+                this.currentUser.set({
+                    firstName: localStorage.getItem('fallback_firstName') || 'Usuario',
+                    lastName: localStorage.getItem('fallback_lastName') || '',
+                    email: localStorage.getItem('fallback_email') || '',
+                    phone: '',
+                    password: '',
+                    roles: ['ROLE_FREE'],
+                    isValidated: false
+                });
+            }
+
             this.validateToken().subscribe({
                 next: () => {
                     this.loggedIn.next(true);

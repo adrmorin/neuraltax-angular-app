@@ -1,35 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, inject, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { RouterModule } from '@angular/router';
+import { BlogService } from '../../../services/blog.service';
 
 @Component({
   selector: 'app-latest-news',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateModule, RouterModule],
   templateUrl: './news.component.html',
   styleUrl: './news.component.css'
 })
 export class LatestNewsComponent {
-  articles = [
-    {
-      date: 'January 15, 2024',
-      readTime: '6',
-      image: 'assets/news/ai-tech.png'
-    },
-    {
-      date: 'January 12, 2024',
-      readTime: '8',
-      image: 'assets/news/irs-guidelines.png'
-    },
-    {
-      date: 'January 8, 2024',
-      readTime: '7',
-      image: 'assets/news/tax-forms.png'
-    },
-    {
-      date: 'January 5, 2024',
-      readTime: '5',
-      image: 'assets/news/innovation.png'
+  private blogService = inject(BlogService);
+  articles = this.blogService.getArticles();
+
+  @ViewChild('carouselTrack') carouselTrack!: ElementRef<HTMLElement>;
+
+  scrollLeft() {
+    if (this.carouselTrack) {
+      const track = this.carouselTrack.nativeElement;
+      // Scroll by the width of one card + gap (~300px + 24px)
+      track.scrollBy({ left: -320, behavior: 'smooth' });
     }
-  ];
+  }
+
+  scrollRight() {
+    if (this.carouselTrack) {
+      const track = this.carouselTrack.nativeElement;
+      track.scrollBy({ left: 320, behavior: 'smooth' });
+    }
+  }
 }
