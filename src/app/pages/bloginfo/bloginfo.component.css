@@ -2,23 +2,23 @@
     padding: 2rem;
     max-width: 1200px;
     margin: 0 auto;
-    background: #f8fafc;
-    /* Subtle background matching layout */
+    background: transparent;
     min-height: 100vh;
 }
 
 .bloginfo-header {
     text-align: center;
     margin-bottom: 3rem;
-    background: white;
+    background: var(--bg-dark-surface, #1e293b);
     padding: 3rem 2rem;
     border-radius: 16px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-dark, #334155);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
 }
 
 .page-title {
     font-size: 2.5rem;
-    color: #152961;
+    color: var(--text-inverse, #ffffff);
     margin-bottom: 1rem;
     font-weight: 700;
 }
@@ -26,7 +26,7 @@
 .page-subtitle {
     max-width: 800px;
     margin: 0 auto;
-    color: #64748b;
+    color: var(--text-secondary, #94a3b8);
     font-size: 1.1rem;
     line-height: 1.6;
 }
@@ -39,19 +39,20 @@
 
 /* Matching the existing Latest News style but for 3 cols for better spacing */
 .news-card {
-    background: white;
+    background: var(--bg-dark-surface, #1e293b);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    border: 1px solid #f1f5f9;
-    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-dark, #334155);
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
     display: flex;
     flex-direction: column;
 }
 
 .news-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    border-color: var(--color-accent-green);
 }
 
 .card-image {
@@ -69,14 +70,16 @@
     position: absolute;
     top: 1rem;
     left: 1rem;
-    background: rgba(104, 128, 113, 0.9);
-    color: white;
+    background: rgba(104, 128, 113, 0.2);
+    color: var(--color-accent-green, #4ade80);
+    border: 1px solid rgba(104, 128, 113, 0.3);
     padding: 0.35rem 0.85rem;
     border-radius: 6px;
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    backdrop-filter: blur(4px);
 }
 
 .card-content {
@@ -89,7 +92,7 @@
 .article-meta {
     display: flex;
     justify-content: space-between;
-    color: #94a3b8;
+    color: var(--text-muted, #64748b);
     font-size: 0.8rem;
     margin-bottom: 1rem;
     font-weight: 500;
@@ -97,7 +100,7 @@
 
 .article-title {
     font-size: 1.35rem;
-    color: #1e293b;
+    color: var(--text-inverse, #ffffff);
     margin-bottom: 1rem;
     line-height: 1.4;
     font-weight: 700;
@@ -105,14 +108,14 @@
 
 .article-excerpt {
     font-size: 0.95rem;
-    color: #64748b;
+    color: var(--text-secondary, #94a3b8);
     margin-bottom: 1.5rem;
     line-height: 1.6;
     flex-grow: 1;
 }
 
 .read-more {
-    color: #152961;
+    color: var(--color-accent-green, #4ade80);
     text-decoration: none;
     font-weight: 600;
     font-size: 0.9rem;
@@ -120,11 +123,12 @@
     align-items: center;
     gap: 0.5rem;
     cursor: pointer;
-    transition: color 0.2s;
+    transition: color 0.2s, transform 0.2s;
 }
 
 .read-more:hover {
-    color: #3b82f6;
+    color: #22c55e;
+    transform: translateX(4px);
 }
 
 /* Responsive */
