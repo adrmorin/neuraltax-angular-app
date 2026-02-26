@@ -668,7 +668,7 @@
 }
 
 .nerea-avatar-mini {
-    background: url('/assets/images/nerea_avatar.png') center/cover no-repeat, #4f46e5;
+    background: url('../../../../assets/nerea_avatar.png') center/cover no-repeat, #4f46e5;
 }
 
 .nerea-advice-bubble {
