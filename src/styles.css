@@ -1238,6 +1238,7 @@ nav a:hover {
 .about-section {
     padding: 6rem 0;
     background: #f8fafc;
+    color: #334155;
 }
 
 .about-container {
@@ -1297,6 +1298,7 @@ nav a:hover {
     overflow: hidden;
     transition: max-height 0.3s ease-out;
     padding: 0 1.5rem;
+    color: #475569;
 }
 
 .accordion-item.active .accordion-body {
