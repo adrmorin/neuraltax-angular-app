@@ -5,7 +5,7 @@
         <h1>{{ 'AUTH.WELCOME' | translate }}</h1>
         <p>{{ 'AUTH.LOGIN_DESC' | translate }}</p>
     </div>
-    <form class="login-form" (submit)="onSubmit()">
+    <form class="login-form" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label for="email">{{ 'AUTH.EMAIL' | translate }}</label>
             <input type="email" name="email" [(ngModel)]="email" placeholder="tucorreo@email.com" required />

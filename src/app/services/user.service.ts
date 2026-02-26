@@ -17,8 +17,7 @@ export class UserService {
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
         return this.http.post<User>(`${this.baseUrl}/register`, userRegister, {
-            headers,
-            withCredentials: true,
+            headers
         });
     }
 }

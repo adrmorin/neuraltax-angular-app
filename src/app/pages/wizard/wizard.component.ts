@@ -1,8 +1,9 @@
 import { Component, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ChatbotComponent } from '../../components/chatbot/chatbot.component';
+import { SidebarComponent } from '../../components/common/sidebar.component';
 import { ModalService } from '../../services/modal.service';
 import { AuthService } from '../../services/auth.service';
 import { TaxDataService } from '../../services/tax-data.service';
@@ -10,7 +11,7 @@ import { TaxDataService } from '../../services/tax-data.service';
 @Component({
     selector: 'app-wizard',
     standalone: true,
-    imports: [CommonModule, FormsModule, ChatbotComponent, RouterLink],
+    imports: [CommonModule, FormsModule, ChatbotComponent, SidebarComponent],
     templateUrl: './wizard.component.html',
     styleUrls: ['./wizard.component.css']
 })
@@ -26,6 +27,7 @@ export class WizardComponent {
             this.modalService.openLogin();
         });
     }
+    isSidebarCollapsed = signal(true);
     currentStep = signal(1);
     isCalculating = signal(false);
     resultData = signal<{ refund: number; taxDue: number } | null>(null);

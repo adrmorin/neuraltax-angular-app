@@ -55,7 +55,8 @@
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "/assets"
-              }
+              },
+              "src/favicon.jpg"
             ],
             "styles": [
               "src/styles.css"

@@ -109,8 +109,8 @@ export class RegisterModalComponent {
                         this.success = false;
                         this.resetForm();
 
-                        // Navigate to the user's dashboard based on their role
-                        this.router.navigate([this.authService.currentUserDashboard() || '/free-dashboard']);
+                        // Navigate to the home page
+                        this.router.navigate(['/home']);
                     },
                     error: (loginErr) => {
                         console.error('Auto-login error:', loginErr);

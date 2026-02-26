@@ -1,18 +1,7 @@
 <div class="wizard-container">
     <!-- Sidebar -->
-    <aside class="wizard-sidebar">
-        <div class="sidebar-logo">
-            <img src="assets/neuraltax1.png" alt="Neuraltax">
-        </div>
-        <nav class="sidebar-nav">
-            <a routerLink="/home" class="nav-item" title="Volver al Inicio">
-                <span class="material-symbols-outlined">home</span>
-            </a>
-            <button (click)="logout()" class="nav-item" title="Cerrar Sesión">
-                <span class="material-symbols-outlined">logout</span>
-            </button>
-        </nav>
-    </aside>
+    <app-sidebar [isCollapsed]="isSidebarCollapsed()" portalType="free"
+        (isCollapsedChange)="isSidebarCollapsed.set($event)"></app-sidebar>
 
     <div class="wizard-main-content">
         <div class="wizard-header">
