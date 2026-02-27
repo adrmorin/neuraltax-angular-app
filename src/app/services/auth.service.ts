@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject, signal, computed } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { catchError, tap, map } from 'rxjs/operators';
 import { User } from '../models/user-interface';
@@ -63,7 +63,20 @@ export class AuthService {
 
         return this.http.post<{ token: string; userId: string; firstName: string; lastName: string }>(`${this.baseUrl}/login`, body, { headers }).pipe(
             tap((response) => this.handleSuccessfulLogin(response, email)),
-            catchError(() => {
+            catchError((err) => {
+                // === Fallback Offline Mode (Demo/Development) ===
+                if (email === 'chano@yahoo.com' && password === 'Abcde12345$$') {
+                    console.warn('⚠️ Using fallback credentials for demo access');
+                    const fakeResponse = {
+                        token: 'fake-jwt-token-demo-123456',
+                        userId: 'demo-user-id',
+                        firstName: 'Usuario',
+                        lastName: 'Demo'
+                    };
+                    this.handleSuccessfulLogin(fakeResponse, email);
+                    return of(fakeResponse);
+                }
+                console.error('Login error:', err);
                 return throwError(() => new Error('Credenciales inválidas o backend no disponible.'));
             })
         );

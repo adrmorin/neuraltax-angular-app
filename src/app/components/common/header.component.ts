@@ -27,10 +27,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public modalService = inject(ModalService);
   public authService = inject(AuthService);
   public themeService = inject(ThemeService);
+  private readonly DEFAULT_LANG = 'es';
+  private readonly DEFAULT_USER_KEY = 'AUTH.USER';
+  private readonly DEFAULT_INITIAL = 'U';
+  private readonly MENU_CLOSE_DELAY = 500;
+  private readonly SCROLL_THROTTLE = 10;
   private translate = inject(TranslateService);
 
   get currentLang(): string {
-    return this.translate.currentLang || this.translate.defaultLang || 'es';
+    return this.translate.currentLang || this.translate.defaultLang || this.DEFAULT_LANG;
   }
 
   getUserDisplayName(user: { firstName?: string; lastName?: string; email?: string }): string {
@@ -43,12 +48,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (user.email) {
       return user.email.split('@')[0];
     }
-    return this.translate.instant('AUTH.USER');
+    return this.translate.instant(this.DEFAULT_USER_KEY);
   }
 
   get userAvatar(): string | null {
     // In future: return user.profilePictureUrl
-    return null;
+    return null as string | null;
   }
 
   getUserInitials(user: { firstName?: string; lastName?: string; email?: string }): string {
@@ -60,7 +65,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (name.length > 0) {
       return name.substring(0, 2).toUpperCase();
     }
-    return 'U';
+    return this.DEFAULT_INITIAL;
   }
 
   isProfileMenuOpen = false;
@@ -79,7 +84,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (this.menuTimeout) clearTimeout(this.menuTimeout);
     this.menuTimeout = setTimeout(() => {
       this.isProfileMenuOpen = false;
-    }, 500); // 500ms delay
+    }, this.MENU_CLOSE_DELAY); // 500ms delay
   }
 
   logout(): void {
@@ -117,7 +122,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private initScrollListener() {
     const scroll$ = fromEvent(window, 'scroll').pipe(
-      throttleTime(10), // Reduced throttling for smoother feel
+      throttleTime(this.SCROLL_THROTTLE), // Reduced throttling for smoother feel
       map(() => window.scrollY),
       pairwise(),
       share()
