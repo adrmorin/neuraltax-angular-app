@@ -1,20 +1,43 @@
+    .about-section {
+        position: relative;
+        overflow: hidden;
+        /* Ensure gradient/image doesn't overflow horizontally */
+        background: #EEF5EC;
+        /* Use the new provided background color */
+        padding-bottom: 0px !important;
+        /* Force tight bottom spacing */
+    }
+
     .about-container {
-        display: grid;
-        grid-template-columns: 1.3fr 1fr;
-        gap: 4rem;
+        display: flex;
+        justify-content: flex-end;
         align-items: center;
         max-width: 1200px;
         margin: 0 auto;
+        position: relative;
+        z-index: 1;
+        /* Keep above background */
+        padding: 0.5rem 1rem 0.5rem 1rem;
+        /* Reduced top and bottom spacing */
     }
 
     .about-visual-new {
-        position: relative;
-        border-radius: 20px;
-        overflow: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50vw;
+        /* Take up half the screen width on the left */
+        height: 100%;
+        /* Match height of container */
+        z-index: 0;
+        /* Send to background */
     }
 
     .about-img {
         width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
         display: block;
     }
 
@@ -24,11 +47,12 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(to right, transparent 50%, #f8fafc 100%);
+        background: linear-gradient(to right, transparent 50%, #EEF5EC 100%);
     }
 
     .about-content {
-        width: 100%;
+        width: 45%;
+        /* Use the right side of the container */
     }
 
     .section-title {
@@ -37,4 +61,24 @@
         font-size: 2.5rem;
         margin-bottom: 2rem;
         font-weight: 700;
+    }
+
+    @media (max-width: 991px) {
+        .about-visual-new {
+            position: relative;
+            width: 100vw;
+            height: 300px;
+        }
+
+        .gradient-overlay {
+            background: linear-gradient(to bottom, transparent 50%, #EEF5EC 100%);
+        }
+
+        .about-container {
+            padding: 0.5rem 1rem 3rem 1rem;
+        }
+
+        .about-content {
+            width: 100%;
+        }
     }

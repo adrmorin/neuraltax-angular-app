@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HeroSliderComponent } from '../hero-slider/hero-slider.component';
 import { ModalService } from '../../../services/modal.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-home-hero',
@@ -14,6 +15,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 })
 export class HomeHeroComponent implements OnInit, OnDestroy {
   public modalService = inject(ModalService);
+  public authService = inject(AuthService);
   private translate = inject(TranslateService);
 
   protected currentMessageIndex = signal(0);

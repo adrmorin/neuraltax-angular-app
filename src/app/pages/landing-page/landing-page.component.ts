@@ -21,7 +21,7 @@ export class LandingPageComponent implements AfterViewInit {
     @ViewChild('heroVideo') videoRef!: ElementRef<HTMLVideoElement>;
 
     isPlaying = signal(false); // Default to false to ensure content is visible if video fails
-    isMuted = signal(true); // Default to muted for reliable autoplay per browser policies
+    isMuted = signal(false); // Default to unmuted for starting with sound
 
     ngAfterViewInit() {
         if (this.videoRef && this.videoRef.nativeElement) {
@@ -40,12 +40,15 @@ export class LandingPageComponent implements AfterViewInit {
 
             // 3. Robust Playback: Wait for metadata to ensure video is ready
             video.addEventListener('loadedmetadata', () => {
-                // Ensure started as muted for autoplay success
-                video.muted = true;
-                this.isMuted.set(true);
+                // Ensure started as unmuted as requested
+                video.muted = false;
+                this.isMuted.set(false);
 
                 video.play().catch(err => {
-                    console.error('❌ Autoplay failed:', err);
+                    console.error('❌ Autoplay unmuted failed, falling back to muted:', err);
+                    video.muted = true;
+                    this.isMuted.set(true);
+                    video.play().catch(e => console.error('Play error after fallback', e));
                 });
             }, { once: true });
         }

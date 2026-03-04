@@ -14,12 +14,6 @@
 
         <!-- Right section with User Info and Logo -->
         <div class="header-right">
-            <!-- Language Switcher -->
-            <button class="btn btn-lang" (click)="switchLanguage(currentLang === 'es' ? 'en' : 'es')">
-                <span class="material-symbols-outlined">public</span>
-                <span class="lang-text">{{ currentLang | uppercase }}</span>
-            </button>
-
             <!-- User Info -->
             <div class="user-info-section" (click)="toggleProfileMenu()" tabindex="0"
                 (keydown.enter)="toggleProfileMenu()" role="button" aria-haspopup="menu"

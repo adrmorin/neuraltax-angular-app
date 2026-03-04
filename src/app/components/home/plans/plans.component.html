@@ -8,6 +8,10 @@
         <div class="plans-grid">
             <!-- Free Plan -->
             <div class="plan-card free">
+                <div class="popular-badge basic-badge">
+                    <span class="material-symbols-outlined">star_rate</span>
+                    {{ 'HOME.PLANS.BASIC_ACCESS' | translate }}
+                </div>
                 <div class="card-header">
                     <h3>{{ 'HOME.PLANS.INDIVIDUAL_FREE' | translate }}</h3>
                     <p>{{ 'HOME.PLANS.FREE_DESC' | translate }}</p>
@@ -28,11 +32,17 @@
                     <li><span class="material-symbols-outlined">check</span> {{ 'HOME.PLANS.FEATURES.CHATBOT' |
                         translate }}</li>
                 </ul>
+                <button class="btn btn-primary" [routerLink]="authService.currentUserDashboard()">{{
+                    'HOME.PLANS.FILE_TAXES_2026' | translate
+                    }}</button>
             </div>
 
             <!-- Smart Saver (Most Popular) -->
             <div class="plan-card featured">
-                <div class="popular-badge">{{ 'HOME.PLANS.MOST_POPULAR' | translate }}</div>
+                <div class="popular-badge">
+                    <span class="material-symbols-outlined">auto_awesome</span>
+                    {{ 'HOME.PLANS.MOST_POPULAR' | translate }}
+                </div>
                 <div class="card-header">
                     <h3>{{ 'HOME.PLANS.SMART_SAVER' | translate }}</h3>
                     <p>{{ 'HOME.PLANS.SMART_SAVER_DESC' | translate }}</p>
@@ -65,7 +75,10 @@
 
             <!-- VIP Plan -->
             <div class="plan-card black">
-                <div class="popular-badge">{{ 'HOME.PLANS.EXCLUSIVE_VIP' | translate }}</div>
+                <div class="popular-badge">
+                    <span class="material-symbols-outlined">workspace_premium</span>
+                    {{ 'HOME.PLANS.EXCLUSIVE_VIP' | translate }}
+                </div>
                 <div class="card-header">
                     <h3>{{ 'HOME.PLANS.BLACK_VIP' | translate }}</h3>
                     <p>{{ 'HOME.PLANS.BLACK_VIP_DESC' | translate }}</p>
@@ -90,7 +103,10 @@
 
             <!-- Agent Plan -->
             <div class="plan-card agent">
-                <div class="popular-badge agent-badge">{{ 'HOME.PLANS.B2B_SOLUTION' | translate }}</div>
+                <div class="popular-badge agent-badge">
+                    <span class="material-symbols-outlined">hub</span>
+                    {{ 'HOME.PLANS.B2B_SOLUTION' | translate }}
+                </div>
                 <div class="card-header">
                     <h3>{{ 'HOME.PLANS.PROFESSIONAL_AGENT' | translate }}</h3>
                     <p>{{ 'HOME.PLANS.AGENT_DESC' | translate }}</p>

@@ -1,5 +1,5 @@
     .latest-news {
-        padding: 6rem 0;
+        padding: 6rem 0 1.2rem 0;
         background: white;
     }
 
@@ -81,7 +81,7 @@
         display: flex;
         gap: 1.5rem;
         overflow-x: auto;
-        padding: 1rem 0.5rem 3rem 0.5rem;
+        padding: 1rem 0.5rem 1rem 0.5rem;
         /* space for scrollbar/shadows */
         scroll-snap-type: x mandatory;
         scroll-behavior: smooth;

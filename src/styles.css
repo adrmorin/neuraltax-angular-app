@@ -1235,18 +1235,6 @@ nav a:hover {
 }
 
 /* About / FAQ Section */
-.about-section {
-    padding: 6rem 0;
-    background: #f8fafc;
-    color: #334155;
-}
-
-.about-container {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 4rem;
-    align-items: start;
-}
 
 .app-mockup {
     width: 100%;

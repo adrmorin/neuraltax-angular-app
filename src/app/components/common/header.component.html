@@ -39,8 +39,8 @@
 
                 @if (authService.currentUser(); as user) {
                 @if (!minimal) {
-                <li><a [routerLink]="authService.currentUserDashboard()" class="btn btn-dashboard">{{ 'HEADER.DASHBOARD'
-                        | translate }}</a></li>
+                <li><a [routerLink]="authService.currentUserDashboard()" class="btn-header-action">{{
+                        'HOME.PLANS.FILE_TAXES_2026' | translate }}</a></li>
                 }
                 <li class="user-profile" (mouseenter)="cancelMenuClose()" (mouseleave)="closeProfileMenu()">
                     <div class="user-info-trigger" (click)="toggleProfileMenu()" tabindex="0"

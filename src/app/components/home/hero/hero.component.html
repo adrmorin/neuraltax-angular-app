@@ -39,6 +39,10 @@
                         <span class="material-symbols-outlined icon-flame">local_fire_department</span>
                         {{ 'HOME.HERO.GET_ESTIMATE' | translate }}
                     </a>
+                    <a [routerLink]="authService.currentUserDashboard()" class="btn btn-primary"
+                        style="font-weight: 700;">
+                        {{ 'HOME.PLANS.FILE_TAXES_2026' | translate }}
+                    </a>
                     <button (click)="modalService.openPlans()" class="btn btn-login-hero">
                         <span>{{ 'HOME.HERO.UPDATE' | translate }}</span>
                     </button>
