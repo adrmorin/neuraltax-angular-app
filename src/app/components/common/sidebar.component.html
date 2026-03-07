@@ -28,7 +28,7 @@
   <div class="sidebar-core-nav">
     <ul class="sidebar-nav-list">
       <li>
-        <a (click)="goBack()" class="nav-link" [title]="t('common.back')">
+        <a tabindex="0" (click)="goBack()" (keydown.enter)="goBack()" class="nav-link" [title]="t('common.back')">
           <span class="material-symbols-outlined">arrow_back</span>
           @if (!isCollapsed) { <span>{{ t('common.back') }}</span> }
         </a>
