@@ -117,6 +117,18 @@ export const routes: Routes = [
         ]
     },
 
+    {
+        path: 'schedule1-a',
+        component: DashboardLayoutComponent,
+        canActivate: [authGuard],
+        children: [{ path: '', loadComponent: () => import('./pages/schedule1-a-page/schedule1-a-page.component').then(m => m.Schedule1APageComponent) }]
+    },
+
+    {
+        path: 'schedule1-a-only',
+        loadComponent: () => import('./pages/schedule1-a-page/schedule1-a-page.component').then(m => m.Schedule1APageComponent)
+    },
+
     // Fallback
     {
         path: 'update',
