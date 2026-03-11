@@ -129,6 +129,17 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/schedule1-a-page/schedule1-a-page.component').then(m => m.Schedule1APageComponent)
     },
 
+    {
+        path: 'f1040s1',
+        component: DashboardLayoutComponent,
+        canActivate: [authGuard],
+        children: [{ path: '', loadComponent: () => import('./components/forms/f1040s1/f1040s1.component').then(m => m.F1040s1Component) }]
+    },
+    {
+        path: 'f1040s1-only',
+        loadComponent: () => import('./components/forms/f1040s1/f1040s1.component').then(m => m.F1040s1Component)
+    },
+
     // Fallback
     {
         path: 'update',

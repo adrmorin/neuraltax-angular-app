@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { Schedule1AComponent } from '../../components/forms/schedule1-a/schedule1-a.component';
+import { Fs10401AComponent } from '../../components/forms/fs10401-a/fs10401-a.component';
 
 @Component({
-    selector: 'app-schedule1-a-page',
-    standalone: true,
-    imports: [Schedule1AComponent],
-    template: `
+  selector: 'app-schedule1-a-page',
+  standalone: true,
+  imports: [Fs10401AComponent],
+  template: `
     <div class="page-container">
-      <app-schedule1-a></app-schedule1-a>
+      <app-fs10401-a></app-fs10401-a>
     </div>
   `,
-    styles: [`
+  styles: [`
     .page-container {
       padding: 20px;
       background-color: #f4f4f7;

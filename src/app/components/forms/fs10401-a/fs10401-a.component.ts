@@ -5,14 +5,14 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { ChatFormsComponent } from '../chatforms/chatforms.component';
 
 @Component({
-    selector: 'app-schedule1-a',
+    selector: 'app-fs10401-a',
     standalone: true,
     imports: [CommonModule, ReactiveFormsModule, ChatFormsComponent],
-    templateUrl: './schedule1-a.component.html',
-    styleUrl: './schedule1-a.component.css',
+    templateUrl: './fs10401-a.component.html',
+    styleUrl: './fs10401-a.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class Schedule1AComponent implements OnInit {
+export class Fs10401AComponent implements OnInit {
     private fb = inject(FormBuilder);
     private cdr = inject(ChangeDetectorRef);
 
