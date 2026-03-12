@@ -129,6 +129,16 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/schedule1-a-page/schedule1-a-page.component').then(m => m.Schedule1APageComponent)
     },
 
+    // Formularios (Modelos IRS)
+    {
+        path: 'schedule-1-a',
+        loadComponent: () => import('./pages/schedule1-a-page/schedule1-a-page.component').then(m => m.Schedule1APageComponent)
+    },
+    {
+        path: 'schedule-2',
+        loadComponent: () => import('./pages/schedule2-page/schedule2-page.component').then(m => m.Schedule2PageComponent)
+    },
+
     {
         path: 'f1040s1',
         component: DashboardLayoutComponent,

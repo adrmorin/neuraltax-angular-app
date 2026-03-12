@@ -70,8 +70,8 @@
     /* Added padding to prevent touching the absolute bottom edge */
 
     transition: opacity 0.6s ease-in-out;
-    opacity: 0;
-    pointer-events: none;
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .hero-container.visible {
@@ -80,8 +80,8 @@
 }
 
 .hero-container.hidden-content {
-    opacity: 0;
-    pointer-events: none;
+    opacity: 1;
+    pointer-events: auto;
 }
 
 /* Ensure existing classes work well with the video bg */

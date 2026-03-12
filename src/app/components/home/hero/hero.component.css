@@ -14,31 +14,37 @@
     .hero-grid {
         position: relative;
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        /* Balanced columns, separated by 2% gap */
-        gap: 2%;
+        grid-template-columns: 1fr;
         width: 100%;
-        padding-right: 10%;
+        padding-right: 0%;
         padding-left: 0;
         align-items: center;
+        justify-items: end;
+        /* Align items to the right in the grid */
     }
 
-    /* LEFT COL */
+    /* LEFT COL - Now Background layer */
     .hero-visual-col {
+        grid-area: 1 / 1;
         display: flex;
         flex-direction: column;
         position: relative;
+        width: 100%;
         height: 100%;
         min-height: 500px;
         justify-content: center;
         padding: 0;
         margin: 0;
+        opacity: 0.3;
+        /* Optional: dim the slider to make text readable */
+        pointer-events: none;
+        /* Let clicks pass through if needed, or remove if slider is interactive */
+        z-index: 1;
     }
 
     .slider-container {
         width: 100%;
         height: 100%;
-        z-index: 0;
         position: relative;
         padding: 0;
         margin: 0;
@@ -47,23 +53,23 @@
     .support-text-block {
         /* Position custom */
         position: absolute;
-        top: 22%;
-        left: 25%;
-        /* transform: translate(-50%, -50%); removed to respect exact coordinates */
-        z-index: 10;
+        top: 10%;
+        left: 5%;
+        z-index: 3;
         width: auto;
         max-width: 400px;
         font-family: 'Inter', sans-serif;
         color: #334155;
-        text-align: right;
+        text-align: left;
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
-        background: rgba(255, 255, 255, 0.6);
+        align-items: flex-start;
+        background: rgba(255, 255, 255, 0.85);
         /* Slight backing for readability */
         padding: 1rem;
         border-radius: 12px;
         backdrop-filter: blur(4px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 
     .animated-text-carousel {
@@ -74,7 +80,7 @@
     .carousel-item {
         animation: textFade 5s infinite;
         display: flex;
-        justify-content: flex-end;
+        justify-content: flex-start;
     }
 
     .carousel-message {
@@ -83,7 +89,7 @@
         color: #166534;
         font-style: italic;
         max-width: 100%;
-        text-align: right;
+        text-align: left;
     }
 
     @keyframes textFade {
@@ -119,13 +125,21 @@
         line-height: 1.5;
     }
 
-    /* RIGHT COL */
+    /* RIGHT COL - Now Foreground content */
     .hero-content-col {
+        grid-area: 1 / 1;
         display: flex;
         flex-direction: column;
         align-items: flex-end;
         text-align: right;
         padding-top: 2rem;
+        z-index: 2;
+        width: 100%;
+        max-width: 900px;
+        margin: 0 5% 0 auto;
+        /* Align to the right with 5% margin */
+        background: transparent;
+        padding: 3rem;
     }
 
     .hero-text-content {
@@ -133,8 +147,8 @@
         display: flex;
         flex-direction: column;
         align-items: flex-end;
-        padding-bottom: 4rem;
-        gap: 2%;
+        padding-bottom: 2rem;
+        gap: 1rem;
     }
 
     .logo-area {
