@@ -241,9 +241,21 @@
                     <tr>
                         <td class="irs-line-num">4</td>
                         <td class="irs-desc" colspan="3">
-                            <div class="irs-desc-content"><span>Self-employment tax. Attach Schedule SE. Check if any
-                                    exemption from (see instructions): 1. 4361 2. 4029</span>
-                                <div class="irs-dots"></div>
+                            <div class="irs-desc-content"
+                                style="flex-direction: column; align-items: flex-start; padding-top:4px; padding-bottom:4px;">
+                                <span>Self-employment tax. Attach Schedule SE. Check if any
+                                    exemption from (see instructions):</span>
+                                <div
+                                    style="display: flex; align-items: center; width:100%; gap: 10px; margin-top: 5px;">
+                                    <span style="font-weight:950;">1</span> <input type="checkbox"
+                                        formControlName="line4Check1"> <span>4361</span>
+                                    <span style="font-weight:950; margin-left:10px;">2</span> <input type="checkbox"
+                                        formControlName="line4Check2"> <span>4029</span>
+                                    <span style="font-weight:950; margin-left:10px;">3</span> <input type="checkbox"
+                                        formControlName="line4Check3"> <input type="text" formControlName="line4Text"
+                                        style="width: 80px; background: #e8efff; border:none; border-bottom: 1px dotted #888;">
+                                    <div class="irs-dots"></div>
+                                </div>
                             </div>
                         </td>
                         <td class="irs-col-main-num irs-thick-left-border">
@@ -253,29 +265,31 @@
                     </tr>
                     <tr>
                         <td class="irs-line-num">5</td>
-                        <td class="irs-desc" colspan="3">
+                        <td class="irs-desc">
                             <div class="irs-desc-content"><span>Social security and Medicare tax on unreported tip
                                     income. Attach Form 4137</span>
                                 <div class="irs-dots"></div>
                             </div>
                         </td>
-                        <td class="irs-col-main-num irs-thick-left-border">
-                            <div class="irs-main-line-num-box">5</div>
-                        </td>
-                        <td class="irs-val-cell irs-blue-cell"><input type="number" formControlName="line5"></td>
+                        <td class="irs-col-sub-num" data-line="5">5</td>
+                        <td class="irs-val-cell-intermediate irs-blue-cell"><input type="number"
+                                formControlName="line5"></td>
+                        <td class="irs-col-main-num irs-thick-left-border"></td>
+                        <td class="irs-val-cell irs-grey-cell"></td>
                     </tr>
                     <tr>
                         <td class="irs-line-num">6</td>
-                        <td class="irs-desc" colspan="3">
+                        <td class="irs-desc">
                             <div class="irs-desc-content"><span>Uncollected social security and Medicare tax on wages.
                                     Attach Form 8919</span>
                                 <div class="irs-dots"></div>
                             </div>
                         </td>
-                        <td class="irs-col-main-num irs-thick-left-border">
-                            <div class="irs-main-line-num-box">6</div>
-                        </td>
-                        <td class="irs-val-cell irs-blue-cell"><input type="number" formControlName="line6"></td>
+                        <td class="irs-col-sub-num" data-line="6">6</td>
+                        <td class="irs-val-cell-intermediate irs-blue-cell"><input type="number"
+                                formControlName="line6"></td>
+                        <td class="irs-col-main-num irs-thick-left-border"></td>
+                        <td class="irs-val-cell irs-grey-cell"></td>
                     </tr>
                     <tr>
                         <td class="irs-line-num">7</td>
@@ -294,9 +308,12 @@
                     <tr>
                         <td class="irs-line-num">8</td>
                         <td class="irs-desc" colspan="3">
-                            <div class="irs-desc-content"><span>Additional tax on IRAs or other tax-favored accounts.
-                                    Attach Form 5329 if required.</span>
-                                <div class="irs-dots"></div>
+                            <div class="irs-desc-content" style="flex-wrap: wrap;">
+                                <span style="width: 100%;">Additional tax on IRAs or other tax-favored accounts. Attach
+                                    Form 5329 if required.</span>
+                                <span>If not required, check here</span>
+                                <div class="irs-dots" style="margin-left:5px;"></div>
+                                <input type="checkbox" style="margin-right:0px;" formControlName="line8Check">
                             </div>
                         </td>
                         <td class="irs-col-main-num irs-thick-left-border">
@@ -412,15 +429,29 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="irs-line-num">a</td>
-                        <td class="irs-desc">
-                            <div class="irs-desc-content" style="display:flex; align-items:center;"><span>Recapture of
-                                    other credits. List type, form number, and amount:
+                        <td class="irs-line-num" rowspan="2"
+                            style="vertical-align: top; padding-top: 6px !important; border-bottom: 1px solid #000;">a
+                        </td>
+                        <td class="irs-desc" rowspan="2"
+                            style="vertical-align: top; padding-top: 4px !important; padding-right: 0 !important; border-bottom: 1px solid #000;">
+                            <div
+                                style="display:flex; flex-direction:column; justify-content: space-between; height: 100%; min-height: 52px;">
+                                <div style="width:100%;">
+                                    <span>Recapture of other credits. List type, form number, and amount:</span>
+                                </div>
+                                <div style="display:flex; width:100%; height: 26px; margin-top: auto;">
                                     <input type="text" formControlName="line17a_type"
-                                        style="margin-left: 10px; width:150px; background: #e8efff; border-bottom: 1px dotted #888;"></span>
-                                <div class="irs-dots"></div>
+                                        style="width:100%; background: #e8efff; border:none; padding: 0 8px; box-sizing: border-box;">
+                                </div>
                             </div>
                         </td>
+                        <td class="irs-col-sub-num" style="background:#fff; border-bottom: 1px solid #000;"></td>
+                        <td class="irs-val-cell-intermediate" style="background:#fff; border-bottom: 1px solid #000;">
+                        </td>
+                        <td class="irs-col-main-num irs-thick-left-border" style="border-bottom: 1px solid #000;"></td>
+                        <td class="irs-val-cell irs-grey-cell" style="border-bottom: 1px solid #000;"></td>
+                    </tr>
+                    <tr>
                         <td class="irs-col-sub-num" data-line="17a">17a</td>
                         <td class="irs-val-cell-intermediate irs-blue-cell"><input type="number"
                                 formControlName="line17a"></td>
@@ -648,15 +679,29 @@
                         <td class="irs-val-cell irs-grey-cell"></td>
                     </tr>
                     <tr>
-                        <td class="irs-line-num">z</td>
-                        <td class="irs-desc">
-                            <div class="irs-desc-content" style="display:flex; align-items:center;"><span>Any other
-                                    taxes. List type and amount:
+                        <td class="irs-line-num" rowspan="2"
+                            style="vertical-align: top; padding-top: 6px !important; border-bottom: 1px solid #000;">z
+                        </td>
+                        <td class="irs-desc" rowspan="2"
+                            style="vertical-align: top; padding-top: 4px !important; padding-right: 0 !important; border-bottom: 1px solid #000;">
+                            <div
+                                style="display:flex; flex-direction:column; justify-content: space-between; height: 100%; min-height: 52px;">
+                                <div style="width:100%;">
+                                    <span>Any other taxes. List type and amount:</span>
+                                </div>
+                                <div style="display:flex; width:100%; height: 26px; margin-top: auto;">
                                     <input type="text" formControlName="line17z_type"
-                                        style="margin-left: 10px; width:150px; background: #e8efff; border-bottom: 1px dotted #888;"></span>
-                                <div class="irs-dots"></div>
+                                        style="width:100%; background: #e8efff; border:none; padding: 0 8px; box-sizing: border-box;">
+                                </div>
                             </div>
                         </td>
+                        <td class="irs-col-sub-num" style="background:#fff; border-bottom: 1px solid #000;"></td>
+                        <td class="irs-val-cell-intermediate" style="background:#fff; border-bottom: 1px solid #000;">
+                        </td>
+                        <td class="irs-col-main-num irs-thick-left-border" style="border-bottom: 1px solid #000;"></td>
+                        <td class="irs-val-cell irs-grey-cell" style="border-bottom: 1px solid #000;"></td>
+                    </tr>
+                    <tr>
                         <td class="irs-col-sub-num" data-line="17z">17z</td>
                         <td class="irs-val-cell-intermediate irs-blue-cell"><input type="number"
                                 formControlName="line17z"></td>
@@ -704,18 +749,21 @@
                         <td class="irs-val-cell irs-blue-cell"><input type="number" formControlName="line20"></td>
                     </tr>
                     <tr>
-                        <td class="irs-line-num">21</td>
-                        <td class="irs-desc" colspan="3">
-                            <div class="irs-desc-content"><span><strong>Add lines 4, 7 through 16, 18, and 19. These are
+                        <td class="irs-line-num" style="border-bottom: 2px solid #000 !important;">21</td>
+                        <td class="irs-desc" colspan="3" style="border-bottom: 2px solid #000 !important;">
+                            <div class="irs-desc-content" style="align-items: flex-end; padding-bottom: 2px;">
+                                <span><strong>Add lines 4, 7 through 16, 18, and 19. These are
                                         your total other taxes. Enter here and on Form 1040
                                         or 1040-SR, line 23; or Form 1040-NR, line 23b</strong></span>
                                 <div class="irs-dots"></div>
                             </div>
                         </td>
-                        <td class="irs-col-main-num irs-thick-left-border">
+                        <td class="irs-col-main-num irs-thick-left-border"
+                            style="border-bottom: 2px solid #000 !important;">
                             <div class="irs-main-line-num-box">21</div>
                         </td>
-                        <td class="irs-val-cell calculated irs-blue-cell" style="background:#eef2ff !important">
+                        <td class="irs-val-cell calculated irs-blue-cell"
+                            style="background:#eef2ff !important; border-bottom: 2px solid #000 !important;">
                             <strong>{{ scheduleForm.get('line21')?.value | number:'1.0-2' }}</strong>
                         </td>
                     </tr>

@@ -138,6 +138,10 @@ export const routes: Routes = [
         path: 'schedule-2',
         loadComponent: () => import('./pages/schedule2-page/schedule2-page.component').then(m => m.Schedule2PageComponent)
     },
+    {
+        path: 'schedule-3',
+        loadComponent: () => import('./components/forms/f1040s3/f1040s3.component').then(m => m.F1040s3Component)
+    },
 
     {
         path: 'f1040s1',

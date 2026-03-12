@@ -34,10 +34,15 @@ export class F1040s2Component implements OnInit {
 
             // Part II
             line4: [null],
+            line4Check1: [false],
+            line4Check2: [false],
+            line4Check3: [false],
+            line4Text: [''],
             line5: [null],
             line6: [null],
             line7: [{ value: null, disabled: true }],
             line8: [null],
+            line8Check: [false],
             line9: [null],
             line10: [null],
             line11: [null],
