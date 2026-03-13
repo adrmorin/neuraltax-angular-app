@@ -35,9 +35,9 @@
         justify-content: center;
         padding: 0;
         margin: 0;
-        opacity: 0.3;
+        opacity: 1;
         /* Optional: dim the slider to make text readable */
-        pointer-events: none;
+        pointer-events: auto;
         /* Let clicks pass through if needed, or remove if slider is interactive */
         z-index: 1;
     }
@@ -53,8 +53,9 @@
     .support-text-block {
         /* Position custom */
         position: absolute;
-        top: 10%;
-        left: 5%;
+        top: 50%;
+        left: 45%;
+        transform: translate(-50%, -50%);
         z-index: 3;
         width: auto;
         max-width: 400px;
@@ -64,7 +65,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        background: rgba(255, 255, 255, 0.85);
+        background: rgba(255, 255, 255, 0.6);
         /* Slight backing for readability */
         padding: 1rem;
         border-radius: 12px;

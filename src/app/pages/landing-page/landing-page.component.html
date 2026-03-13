@@ -8,7 +8,8 @@
         </video>
 
         <div class="hero-bg-overlay" [class.dimmed]="isPlaying()"></div>
-        <div class="container hero-container" [class.visible]="!isPlaying()">
+        <div class="container hero-container" [class.content-hidden]="isPlaying()"
+            [class.content-visible]="!isPlaying()">
 
             <div class="hero-content-right">
                 <div class="main-logo-container">

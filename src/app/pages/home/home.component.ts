@@ -7,11 +7,14 @@ import { TestimonialsComponent } from '../../components/home/testimonials/testim
 import { StatsBarComponent } from '../../components/home/stats/stats.bar.component';
 import { AboutUsComponent } from '../../components/common/about-us.component';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 @Component({
     selector: 'app-home',
     standalone: true,
     imports: [
         CommonModule,
+        TranslateModule,
         HomeHeroComponent,
         MembershipPlansComponent,
         LatestNewsComponent,

@@ -1186,13 +1186,33 @@ nav a:hover {
 
 /* Features Bar */
 .features-bar {
+    position: relative;
     background: linear-gradient(to bottom, #E2EEE2, #ACC4E6);
-    padding: 3rem 0;
+    padding: 2.04rem 0;
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    overflow: hidden;
+}
+
+.features-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/assets/home/features-bg.png');
+    background-size: 50% auto;
+    background-position: 20% center;
+    background-repeat: no-repeat;
+    opacity: 0.25;
+    /* 75% transparencia */
+    z-index: 0;
 }
 
 .features-grid {
+    position: relative;
+    z-index: 1;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
@@ -1208,6 +1228,12 @@ nav a:hover {
 }
 
 
+
+.feature-col h3,
+.feature-col strong {
+    color: #1e3a8a;
+    /* Azul fuerte */
+}
 
 .feature-col p,
 .feature-col li {

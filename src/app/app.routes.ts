@@ -142,6 +142,10 @@ export const routes: Routes = [
         path: 'schedule-3',
         loadComponent: () => import('./components/forms/f1040s3/f1040s3.component').then(m => m.F1040s3Component)
     },
+    {
+        path: 'f1040s8',
+        loadComponent: () => import('./components/forms/f1040s8/f1040s8.component').then(m => m.F1040s8Component)
+    },
 
     {
         path: 'f1040s1',
@@ -154,6 +158,14 @@ export const routes: Routes = [
         loadComponent: () => import('./components/forms/f1040s1/f1040s1.component').then(m => m.F1040s1Component)
     },
 
+    {
+        path: 'f1040s8-only',
+        loadComponent: () => import('./components/forms/f1040s8/f1040s8.component').then(m => m.F1040s8Component)
+    },
+    {
+        path: 'f8962',
+        loadComponent: () => import('./components/forms/f8962/f8962.component').then(m => m.F8962Component)
+    },
     // Fallback
     {
         path: 'update',

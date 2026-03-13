@@ -50,38 +50,32 @@
 .hero-container {
     position: absolute;
     inset: 0;
-    /* Snap to all edges */
     z-index: 2;
-    /* Content above overlay and video */
     width: 100%;
     height: 100%;
-    /* Override global container styles */
     max-width: 100%;
     margin: 0;
     padding: 0;
-    /* Removed padding-top and top positioning as header is no longer fixed overlay */
-
     display: flex;
     justify-content: flex-end;
-    /* Align to right */
     align-items: flex-end;
-    /* Center vertically -> Changed to bottom (al final) */
     padding-bottom: 4rem;
-    /* Added padding to prevent touching the absolute bottom edge */
+    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
 
-    transition: opacity 0.6s ease-in-out;
+.hero-container.content-visible {
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
 }
 
-.hero-container.visible {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.hero-container.hidden-content {
-    opacity: 1;
-    pointer-events: auto;
+.hero-container.content-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 /* Ensure existing classes work well with the video bg */
@@ -119,7 +113,7 @@
     /* First */
 }
 
-.hero-container.visible .main-logo-container {
+.hero-container.content-visible .main-logo-container {
     animation: fadeInUp 0.8s ease forwards 0.1s;
 }
 
@@ -161,7 +155,7 @@
     order: 1;
 }
 
-.hero-container.visible .hero-value-prop h3 {
+.hero-container.content-visible .hero-value-prop h3 {
     animation: fadeInUp 0.8s ease forwards 0.3s;
 }
 
@@ -177,7 +171,7 @@
     order: 2;
 }
 
-.hero-container.visible .hero-value-prop p {
+.hero-container.content-visible .hero-value-prop p {
     animation: fadeInUp 0.8s ease forwards 0.4s;
 }
 
@@ -203,7 +197,7 @@
     }
 }
 
-.hero-container.visible .hero-actions {
+.hero-container.content-visible .hero-actions {
     animation: fadeInUp 0.8s ease forwards 0.5s;
 }
 
@@ -267,12 +261,12 @@
 
 .video-controls {
     position: absolute;
-    bottom: 2rem;
-    left: 2rem;
-    /* Moved from right to left */
+    bottom: 3.5rem;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 1000;
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     pointer-events: auto;
 }
 
